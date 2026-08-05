@@ -1,6 +1,6 @@
 # Projekt P0 „Genesis" — Initiales Projekt: Das Team befähigt sich selbst
 
-**Version:** 0.4 (Entwurf) · **Datum:** 2026-08-05 · **Projektleiter:** PL-Agent (ab Sprint 2; davor Bootstrap durch Setup-Agent/Claude-Session)
+**Version:** 0.5 (Entwurf) · **Datum:** 2026-08-05 · **Projektleiter:** PL-Agent (ab Sprint 2; davor Bootstrap durch Setup-Agent/Claude-Session)
 **Auftraggeber:** Engelchen John · **Status:** Wartet auf Gate G0 (Auftragsfreigabe + Antworten F1–F4 aus dem Masterplan)
 
 ---
@@ -33,6 +33,7 @@ P0 gilt als erfolgreich, wenn der Mensch Folgendes abnimmt:
 6. **Selbstverbesserung belegt:** Mindestens 3 Retro-Verbesserungen wurden als Prozess-CRs umgesetzt und ihre Wirkung gemessen — darunter mindestens ein Wissensbasis-Update einer KI-Rolle (Lernzyklus durchlaufen inkl. Gold-Beispiel-Regressionstest) und mindestens eine Skriptifizierung (Tätigkeit von KI- auf Skript-Route verlagert, Automatisierungsgrad-KPI sichtbar gestiegen).
 7. **Kosten transparent:** Ist-Kosten je Sprint erfasst und im Rahmen (F3).
 8. **Wiederholbarkeit:** Ein neues Projekt kann per dokumentiertem Intake (Projekt-Template + „Projekt anlegen"-Workflow) gestartet werden — nachgewiesen durch Anlage des Pilot-Projekts P1 als leere Hülle.
+9. **Drei LLM-Provider nachgewiesen:** Jeder der drei Executor hat mindestens eine echte Aufgabe erledigt — Claude (Hub, laufend ab Sprint 1), GitHub Copilot CLI und Ollama (Team-Node-PoC in Sprint 6) — mit Provider-Protokollierung am Ticket und identischen DoD-/Review-Checks.
 
 ## 4. Organisation und Arbeitsweise in P0
 
@@ -48,7 +49,7 @@ P0 arbeitet nach dem Team-Playbook (01), mit einer Ausnahme-Regelung für die Bo
 
 ### Sprint 1 — „Rollen & Orchestrator-MVP"
 **Ziel:** Erste Agenten laufen und arbeiten ticket-basiert.
-**Inhalte:** Rollenkarten v1 für PL, CM, COACH (System-Prompts); Prozess-Skills v1 für MAN.3, SUP.8, SUP.10 (aus Playbook abgeleitet); **Rollen-Registry v1** (Besetzungstyp script/ki/mensch je Rolle und Aufgaben-Typ); Orchestrator-MVP auf Claude Agent SDK: Tick-Loop, Board lesen (GitLab-API), **Skript-Route zuerst prüfen**, sonst Aufgabe an Rollen-Agent delegieren, Ergebnis als Kommentar/MR zurückschreiben; Guardrails v1 (Kosten-Limit je Tick, Schreibrechte, Aktions-Log inkl. Ausführungsweg Skript/KI); Issue-Templates (Task, Problem, CR, DR, Clarification, Finding, Skriptifizierung) und Label-Schema.
+**Inhalte:** Rollenkarten v1 für PL, CM, COACH (System-Prompts); Prozess-Skills v1 für MAN.3, SUP.8, SUP.10 (aus Playbook abgeleitet); **Rollen-Registry v1** (Besetzungstyp script/ki/mensch je Rolle und Aufgaben-Typ, inkl. Provider-Präferenzketten); **LLM-Gateway v1**: einheitliche Executor-Schnittstelle mit dem Claude-Executor als erster Implementierung (Copilot-/Ollama-Executor folgen als PoC in Sprint 6); Orchestrator-MVP auf Claude Agent SDK: Tick-Loop, Board lesen (GitLab-API), **Skript-Route zuerst prüfen**, sonst Aufgabe über das Gateway an Rollen-Agent delegieren, Ergebnis als Kommentar/MR zurückschreiben; Guardrails v1 (Kosten-Limit je Tick, Schreibrechte, Aktions-Log inkl. Ausführungsweg Skript/Provider); Issue-Templates (Task, Problem, CR, DR, Clarification, Finding, Skriptifizierung) und Label-Schema.
 **Deliverables:** Erster autonomer Tick, der ein echtes Ticket bearbeitet (z.B. CM erstellt CM-Strategie-Entwurf als MR).
 **DoD:** Tick reproduzierbar; jede Agent-Aktion geloggt; Kosten je Tick sichtbar (Rohdaten reichen).
 
@@ -78,7 +79,7 @@ P0 arbeitet nach dem Team-Playbook (01), mit einer Ausnahme-Regelung für die Bo
 
 ### Sprint 6 — „Härtung, Self-Check & Abnahme"
 **Ziel:** P0-Abnahme.
-**Inhalte:** Self-Check gegen die Basispraktiken aller Stufe-1-Prozesse (QM+COACH; Report mit Fundstellen und Lücken); Lücken schließen oder als Backlog für P1 dokumentieren; KPI-Baseline und Retro-Wirksamkeitsnachweis (Kriterium 6); Betriebs-Runbook (CM): Backup, Monitoring, Update-Prozedur, Störungsbehandlung, Geräte-Onboarding; **Team-Node-Proof-of-Concept**: der Runner-Dienst wird auf einem deiner Geräte (Laptop/PC) installiert und zieht mindestens eine echte Aufgabe per Lease aus der Hub-Queue (voller Multi-Node-Betrieb bleibt Phase P2); Intake-Workflow für neue Projekte + Anlage der P1-Hülle; P0-Abschlussbericht.
+**Inhalte:** Self-Check gegen die Basispraktiken aller Stufe-1-Prozesse (QM+COACH; Report mit Fundstellen und Lücken); Lücken schließen oder als Backlog für P1 dokumentieren; KPI-Baseline und Retro-Wirksamkeitsnachweis (Kriterium 6); Betriebs-Runbook (CM): Backup, Monitoring, Update-Prozedur, Störungsbehandlung, Geräte-Onboarding; **Team-Node-Proof-of-Concept**: der Runner-Dienst wird auf einem deiner Geräte (Laptop/PC) installiert und zieht mindestens eine echte Aufgabe per Lease aus der Hub-Queue; dabei werden auch die beiden weiteren LLM-Executor als PoC nachgewiesen — **Copilot-CLI-Executor** (eine DEV-Routineaufgabe auf dem Node mit gh-Login) und **Ollama-Executor** (eine Text-Aufgabe, z.B. Ticket-Vorklassifikation, auf lokalem Modell) — voller Multi-Node-Betrieb und datenbasierte Routing-Politik bleiben Phase P2; Intake-Workflow für neue Projekte + Anlage der P1-Hülle; P0-Abschlussbericht.
 **Deliverables:** Self-Check-Report, Runbook, P0-Abschlussbericht, P1 bereit.
 **Human-Gates:** P0-Abnahme gegen Kapitel 3 (= G3 für P0 selbst).
 
@@ -123,4 +124,4 @@ P1 = erstes echtes Produkt deiner Wahl im Intake-Workflow: Du übergibst die Erw
 
 ---
 
-*Änderungshistorie: 0.1 initialer Entwurf; 0.2 +Rollen-Registry, Skript-Route, Wissensbasen/Lernzyklus, Live-Board, verschärfte Abnahmekriterien; 0.3 +Produktkatalog v0 und Feedback-Routing im Übungsprodukt-Release; 0.4 +verteilungsfähige Architektur, PWA, Team-Node-PoC (Claude, 2026-08-05). Nächster Schritt: Gate G0 — deine Freigabe.*
+*Änderungshistorie: 0.1 initialer Entwurf; 0.2 +Rollen-Registry, Skript-Route, Wissensbasen/Lernzyklus, Live-Board, verschärfte Abnahmekriterien; 0.3 +Produktkatalog v0 und Feedback-Routing im Übungsprodukt-Release; 0.4 +verteilungsfähige Architektur, PWA, Team-Node-PoC; 0.5 +LLM-Gateway (Claude/Copilot/Ollama), Abnahmekriterium 9 (Claude, 2026-08-05). Gate G0 wurde am 2026-08-05 erteilt (D000).*

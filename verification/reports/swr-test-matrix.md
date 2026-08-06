@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-06 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 62 · ohne Bezug: 9
+Stand: 2026-08-06 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 74 · ohne Bezug: 9
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -23,19 +23,15 @@ Stand: 2026-08-06 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 62 · ohne 
 | SWR-017 | reviewed | test_orchestrator.py::StatusTest::test_setze_status_und_board<br>test_orchestrator.py::StatusTest::test_setze_status_invalide_wirft<br>test_orchestrator.py::SlugTest::test_slug | 3 Test(s) |
 | SWR-018 | reviewed | test_orchestrator.py::AuswahlTest::test_nur_ticket_filter | 1 Test(s) |
 | SWR-019 | reviewed | — | über CI-Workflow verifiziert (kein Unit-Test) |
-| SWR-020 | reviewed | — | **LÜCKE** |
+| SWR-020 | reviewed | test_backend.py::InboxTest::test_liste_nur_offene_drs<br>test_backend.py::InboxTest::test_entscheidung_roundtrip_mit_commit<br>test_backend.py::InboxTest::test_fehlerfaelle<br>test_backend.py::HttpTest::test_post_entscheidung | 4 Test(s) |
 | SWR-021 | reviewed | — | **LÜCKE** |
-| SWR-022 | reviewed | — | **LÜCKE** |
-| SWR-023 | reviewed | — | **LÜCKE** |
-| SWR-024 | reviewed | — | **LÜCKE** |
+| SWR-022 | reviewed | test_backend.py::AggregationTest::test_board_gruppiert_nach_status<br>test_backend.py::AggregationTest::test_reports_und_kpi<br>test_backend.py::HttpTest::test_get_endpunkte | 3 Test(s) |
+| SWR-023 | reviewed | test_backend.py::MailerTest::test_unkonfiguriert_wirft_nicht<br>test_backend.py::MailerTest::test_kaputter_host_wirft_nicht<br>test_backend.py::HttpTest::test_post_entscheidung | 3 Test(s) |
+| SWR-024 | reviewed | test_backend.py::AggregationTest::test_neustart_aequivalenz<br>test_backend.py::InboxTest::test_entscheidung_roundtrip_mit_commit | 2 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 
-- SWR-020
 - SWR-021
-- SWR-022
-- SWR-023
-- SWR-024
 
 ## Tests ohne SWR-Bezug (informativ — Prozess-Tooling mit CR-Bezug erlaubt, T-0025)
 

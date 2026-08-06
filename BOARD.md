@@ -12,7 +12,7 @@ Stand: 2026-08-06 · Tickets: 27
 | [T-0025](tickets/T-0025.md) | Prozess-CR (Retro S2): Requirements-first-Regel für Plattform-/Produkt-Tickets | change-request | chg | mittel | 3 | — |
 | [T-0026](tickets/T-0026.md) | Prozess-CR (Retro S2): SWR-Test-Traceability — Docstring-IDs + Matrix-Generator | change-request | dev | mittel | 3 | — |
 
-## in_progress (1)
+## in_review (1)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|

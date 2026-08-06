@@ -14,14 +14,7 @@ Stand: 2026-08-06 · Tickets: 58
 | [T-0056](tickets/T-0056.md) | Produktkatalog v0: process/catalog/products.yaml + Detailseite, Eintrag skript-generiert | task | cm | mittel | 5 | — |
 | [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
 
-## in_review (2)
-
-| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
-|---|---|---|---|---|---|---|
-| [T-0052](tickets/T-0052.md) | SWE.5/6: Integrations-/Gesamtverifikation datakonv (CLI-E2E gegen STK/SWR) + Report | task | test | hoch | 5 | — |
-| [T-0053](tickets/T-0053.md) | SUP.9: realen Befund aus der Integrationsverifikation als Problem bis Abschluss führen | problem | prob | hoch | 5 | T-0052 |
-
-## done (49)
+## done (51)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -55,6 +48,8 @@ Stand: 2026-08-06 · Tickets: 58
 | [T-0044](tickets/T-0044.md) | SWE.2 datakonv: Architektur (Units, Schnittstellen, ADRs) → G2-Vorlage | task | arch | hoch | 4 | T-0043 |
 | [T-0045](tickets/T-0045.md) | SWE.3 datakonv: Implementierung Units (Python stdlib, requirements-first) | task | dev | hoch | 4 | T-0044 |
 | [T-0046](tickets/T-0046.md) | SWE.4 datakonv: Unit-Verifikation automatisiert in CI + SWR↔Test-Matrix | task | test | hoch | 4 | T-0045 |
+| [T-0052](tickets/T-0052.md) | SWE.5/6: Integrations-/Gesamtverifikation datakonv (CLI-E2E gegen STK/SWR) + Report | task | test | hoch | 5 | — |
+| [T-0053](tickets/T-0053.md) | SUP.9: realen Befund aus der Integrationsverifikation als Problem bis Abschluss führen | problem | prob | hoch | 5 | T-0052 |
 | [T-0003](tickets/T-0003.md) | Rollen-Registry v1: Aufgaben-Typen und Provider-Ketten verfeinern | task | coach | mittel | 1 | T-0001 |
 | [T-0009](tickets/T-0009.md) | Sprint-1-Abnahme: Erster autonomer Tick (CM erstellt CM-Strategie-Entwurf) | task | pl | mittel | 1 | T-0001, T-0002, T-0005, T-0006 |
 | [T-0010](tickets/T-0010.md) | CM-Strategie v1 erstellen (Ziel des ersten autonomen Ticks) | task | cm | mittel | 1 | — |

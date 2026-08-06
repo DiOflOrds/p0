@@ -14,7 +14,7 @@ Stand: 2026-08-06 · Tickets: 58
 | [T-0056](tickets/T-0056.md) | Produktkatalog v0: process/catalog/products.yaml + Detailseite, Eintrag skript-generiert | task | cm | mittel | 5 | — |
 | [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
 
-## in_progress (2)
+## in_review (2)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|

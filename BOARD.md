@@ -10,15 +10,7 @@ Stand: 2026-08-07 · Tickets: 61
 | [T-0008](tickets/T-0008.md) | Anthropic-API-Key als Secret hinterlegen | task | mensch | hoch | 1 | — |
 | [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
 
-## in_review (3)
-
-| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
-|---|---|---|---|---|---|---|
-| [T-0057](tickets/T-0057.md) | Release datakonv 1.0.0 (SPL.2): Packaging, Release Notes, Tag, Katalog → G3 | task | cm | hoch | 5 | T-0052, T-0053, T-0054, T-0056 |
-| [T-0061](tickets/T-0061.md) | DR: G3 — Release datakonv 1.0.0 freigeben | decision-request | pl | hoch | 5 | — |
-| [T-0056](tickets/T-0056.md) | Produktkatalog v0: process/catalog/products.yaml + Detailseite, Eintrag skript-generiert | task | cm | mittel | 5 | — |
-
-## done (55)
+## done (58)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -54,6 +46,8 @@ Stand: 2026-08-07 · Tickets: 61
 | [T-0046](tickets/T-0046.md) | SWE.4 datakonv: Unit-Verifikation automatisiert in CI + SWR↔Test-Matrix | task | test | hoch | 4 | T-0045 |
 | [T-0052](tickets/T-0052.md) | SWE.5/6: Integrations-/Gesamtverifikation datakonv (CLI-E2E gegen STK/SWR) + Report | task | test | hoch | 5 | — |
 | [T-0053](tickets/T-0053.md) | SUP.9: realen Befund aus der Integrationsverifikation als Problem bis Abschluss führen | problem | prob | hoch | 5 | T-0052 |
+| [T-0057](tickets/T-0057.md) | Release datakonv 1.0.0 (SPL.2): Packaging, Release Notes, Tag, Katalog → G3 | task | cm | hoch | 5 | T-0052, T-0053, T-0054, T-0056 |
+| [T-0061](tickets/T-0061.md) | DR: G3 — Release datakonv 1.0.0 freigeben | decision-request | pl | hoch | 5 | — |
 | [T-0003](tickets/T-0003.md) | Rollen-Registry v1: Aufgaben-Typen und Provider-Ketten verfeinern | task | coach | mittel | 1 | T-0001 |
 | [T-0009](tickets/T-0009.md) | Sprint-1-Abnahme: Erster autonomer Tick (CM erstellt CM-Strategie-Entwurf) | task | pl | mittel | 1 | T-0001, T-0002, T-0005, T-0006 |
 | [T-0010](tickets/T-0010.md) | CM-Strategie v1 erstellen (Ziel des ersten autonomen Ticks) | task | cm | mittel | 1 | — |
@@ -74,6 +68,7 @@ Stand: 2026-08-07 · Tickets: 61
 | [T-0050](tickets/T-0050.md) | Prozess-CR (Retro S4): Preflight räumt verwaiste Git-Locks selbst (R7) | change-request | dev | mittel | 5 | — |
 | [T-0054](tickets/T-0054.md) | SUP.10: realer CR am Produkt mit Impact-Analyse (Quelle: Mensch-Feedback via Routing) | change-request | chg | mittel | 5 | T-0055 |
 | [T-0055](tickets/T-0055.md) | Feedback-Routing v1: Skript Feedback-Ticket → Problem/CR (Masterplan 5.5) | task | dev | mittel | 5 | — |
+| [T-0056](tickets/T-0056.md) | Produktkatalog v0: process/catalog/products.yaml + Detailseite, Eintrag skript-generiert | task | cm | mittel | 5 | — |
 | [T-0059](tickets/T-0059.md) | Feedback (Mensch): --indent-Option für die JSON-Ausgabe | feedback | mensch | mittel | 5 | — |
 | [T-0060](tickets/T-0060.md) | CR (aus Feedback T-0059): Feedback (Mensch): --indent-Option für die JSON-Ausgabe | change-request | chg | mittel | 5 | — |
 | [T-0051](tickets/T-0051.md) | Prozess-CR (Retro S4): board.py erzwingt optionen-Frontmatter für neue DRs | change-request | chg | niedrig | 5 | — |

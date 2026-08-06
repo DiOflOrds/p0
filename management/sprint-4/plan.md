@@ -21,6 +21,8 @@ Das volle Team (10 Rollen) arbeitet erstmals eine fremde Aufgabe ab: Übungsprod
 | 9 | T-0046 | SWE.4: Unit-Verifikation automatisiert in CI + SWR↔Test-Matrix datakonv | TEST | T-0045 |
 | 10 | T-0047 | Hub-VM (D014): Beschaffung begleiten — Runbook, Deployment `platform/infra/`, Geräteregister | CM | Mensch: VM |
 
+**Re-Planung 2026-08-06 (PL, D017):** T-0047 entfällt — Hub-VM für P0 gestrichen („bleiben wir lokal"), Betrieb bleibt auf Team-Node-1; R2 geschlossen, E5 revidiert. Der VM-Punkt in den Human-Gates entfällt entsprechend.
+
 **Bewusst nicht gezogen:** SWE.5/SWE.6, Problem-/CR-Zyklus am Produkt, Release + Produktkatalog (P0 Kap. 5 → Sprint 5); Budget-Review D012 bleibt vertagt bis Claude-Kostendaten existieren (D015); T-0008 bleibt beim Menschen.
 
 ## Human-Gates dieses Sprints

@@ -3,7 +3,7 @@
 | ID | Risiko | Wirkung | W'keit | Maßnahme | Eigentümer | Status |
 |---|---|---|---|---|---|---|
 | R1 | Bootstrap-Zirkel: Team soll Prozesse bauen, die es zum Bauen bräuchte | Stillstand Sprint 1–2 | gering | Drei-Stufen-Bootstrap; Stufe 2 erreicht (Sprint 2: 7 Rollen aktiv, Team führt P0 selbst) | PL | entschärft (S2) |
-| R2 | Cloud-VM-Beschaffung verzögert sich | Deployment Sprint 3 rutscht | gering | Sprint 1–2 laufen in Cowork-Sessions; VM erst Sprint 3 nötig | Mensch/CM | offen |
+| R2 | Cloud-VM-Beschaffung verzögert sich | Deployment Sprint 3 rutscht | gering | D017: Betrieb für P0 bewusst lokal auf Team-Node-1 — Risiko gegenstandslos; Infra-as-Code bleibt bereit | Mensch/CM | geschlossen (D017, 2026-08-06) |
 | R3 | Frontend-Scope wuchert | P0 wird nicht fertig | mittel | MVP-Schnitt fixiert (lesend + Decision-Inbox); Rest → P1-Backlog | PL | offen |
 | R4 | Agent-Qualität schwankt je Rolle | Nacharbeit, Kosten | mittel | Kleine Rollenkarten, Lernzyklus, Doppel-Review kritischer Outputs | COACH | offen |
 | R5 | Testphasen-Budget (~20 €) zu knapp für Sprint 0–1 | Ticks stoppen | gering | 0 € Ist nach 3 Sprints (D012); Kette [ollama, session, claude] | PL | entschärft (S2) |

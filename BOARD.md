@@ -3,7 +3,7 @@
 Stand: 2026-08-06 · Tickets: 47
 
 
-## open (6)
+## open (5)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -12,7 +12,6 @@ Stand: 2026-08-06 · Tickets: 47
 | [T-0044](tickets/T-0044.md) | SWE.2 datakonv: Architektur (Units, Schnittstellen, ADRs) → G2-Vorlage | task | arch | hoch | 4 | T-0043 |
 | [T-0045](tickets/T-0045.md) | SWE.3 datakonv: Implementierung Units (Python stdlib, requirements-first) | task | dev | hoch | 4 | T-0044 |
 | [T-0046](tickets/T-0046.md) | SWE.4 datakonv: Unit-Verifikation automatisiert in CI + SWR↔Test-Matrix | task | test | hoch | 4 | T-0045 |
-| [T-0047](tickets/T-0047.md) | Hub-VM (D014, E5): Beschaffung begleiten — Runbook, Deployment, Geräteregister | task | cm | mittel | 4 | — |
 
 ## done (41)
 
@@ -59,3 +58,9 @@ Stand: 2026-08-06 · Tickets: 47
 | [T-0037](tickets/T-0037.md) | Prozess-CR (Retro S3): trace-matrix-Gate in CI (p0-Checkout im platform-Workflow) | change-request | cm | mittel | 4 | — |
 | [T-0038](tickets/T-0038.md) | Prozess-CR (Retro S3): Zweiphasen-Tick idempotent — Phase 1 ohne Statuswechsel-Commits | change-request | dev | mittel | 4 | — |
 | [T-0039](tickets/T-0039.md) | Prozess-CR (Retro S3): DR-Optionen maschinenlesbar (Frontmatter) + Inbox-Validierung | change-request | chg | mittel | 4 | — |
+
+## rejected (1)
+
+| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
+|---|---|---|---|---|---|---|
+| [T-0047](tickets/T-0047.md) | Hub-VM (D014, E5): Beschaffung begleiten — Runbook, Deployment, Geräteregister | task | cm | mittel | 4 | — |

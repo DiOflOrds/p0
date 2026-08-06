@@ -16,7 +16,7 @@ Das erste echte SWE.1-Set des Teams — die Anforderungen an die eigene Plattfor
 
 ## Offene Punkte (ehrlich, QM-geprüft)
 
-1. Die Zuordnung „SWR ↔ einzelner Unit-Test" ist auf Suite-Ebene belegt (test_board/test_gateway/test_orchestrator/test_provider_apifrei); die feingranulare, CI-generierte Traceability-Matrix kommt mit dem Backend (Sprint 3).
+1. ~~Die Zuordnung „SWR ↔ einzelner Unit-Test" ist auf Suite-Ebene belegt (test_board/test_gateway/test_orchestrator/test_provider_apifrei); die feingranulare, CI-generierte Traceability-Matrix kommt mit dem Backend (Sprint 3).~~ **Geschlossen (T-0026, 2026-08-06):** Docstring-IDs je Testmethode + `platform/scripts/trace_matrix.py` generieren die Matrix nach `p0/verification/reports/swr-test-matrix.md` (62 Tests mit SWR-Bezug, 0 Lücken bei 19 reviewed-SWRs); CI-Einbindung folgt mit dem Backend.
 2. SWR-019 (CI) ist committet, aber der erste echte Actions-Lauf auf GitHub steht aus (Push + Secret `PLATFORM_READ_TOKEN` nötig, T-0015).
 3. Besonderheit: Das Set beschreibt zu großen Teilen bereits implementiertes Verhalten (Requirements holen die Realität ein) — ab jetzt gilt die normale Reihenfolge: erst Anforderung/CR, dann Implementierung.
 

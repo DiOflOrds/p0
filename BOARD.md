@@ -16,15 +16,7 @@ Stand: 2026-08-06 · Tickets: 58
 | [T-0056](tickets/T-0056.md) | Produktkatalog v0: process/catalog/products.yaml + Detailseite, Eintrag skript-generiert | task | cm | mittel | 5 | — |
 | [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
 
-## in_review (3)
-
-| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
-|---|---|---|---|---|---|---|
-| [T-0049](tickets/T-0049.md) | Prozess-CR (Retro S4): Matrix-CI-Gate im Produkt-Repo produkt-datakonv | change-request | cm | mittel | 5 | — |
-| [T-0050](tickets/T-0050.md) | Prozess-CR (Retro S4): Preflight räumt verwaiste Git-Locks selbst (R7) | change-request | dev | mittel | 5 | — |
-| [T-0051](tickets/T-0051.md) | Prozess-CR (Retro S4): board.py erzwingt optionen-Frontmatter für neue DRs | change-request | chg | niedrig | 5 | — |
-
-## done (46)
+## done (49)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -74,6 +66,9 @@ Stand: 2026-08-06 · Tickets: 58
 | [T-0038](tickets/T-0038.md) | Prozess-CR (Retro S3): Zweiphasen-Tick idempotent — Phase 1 ohne Statuswechsel-Commits | change-request | dev | mittel | 4 | — |
 | [T-0039](tickets/T-0039.md) | Prozess-CR (Retro S3): DR-Optionen maschinenlesbar (Frontmatter) + Inbox-Validierung | change-request | chg | mittel | 4 | — |
 | [T-0048](tickets/T-0048.md) | Prozess-CR: trace_matrix generalisieren — Produkt-Repos via --tests/--swr/--ziel/--id-muster | change-request | dev | mittel | 4 | — |
+| [T-0049](tickets/T-0049.md) | Prozess-CR (Retro S4): Matrix-CI-Gate im Produkt-Repo produkt-datakonv | change-request | cm | mittel | 5 | — |
+| [T-0050](tickets/T-0050.md) | Prozess-CR (Retro S4): Preflight räumt verwaiste Git-Locks selbst (R7) | change-request | dev | mittel | 5 | — |
+| [T-0051](tickets/T-0051.md) | Prozess-CR (Retro S4): board.py erzwingt optionen-Frontmatter für neue DRs | change-request | chg | niedrig | 5 | — |
 
 ## rejected (1)
 

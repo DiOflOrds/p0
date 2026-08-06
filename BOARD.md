@@ -11,13 +11,7 @@ Stand: 2026-08-06 · Tickets: 47
 | [T-0045](tickets/T-0045.md) | SWE.3 datakonv: Implementierung Units (Python stdlib, requirements-first) | task | dev | hoch | 4 | T-0044 |
 | [T-0046](tickets/T-0046.md) | SWE.4 datakonv: Unit-Verifikation automatisiert in CI + SWR↔Test-Matrix | task | test | hoch | 4 | T-0045 |
 
-## in_review (1)
-
-| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
-|---|---|---|---|---|---|---|
-| [T-0044](tickets/T-0044.md) | SWE.2 datakonv: Architektur (Units, Schnittstellen, ADRs) → G2-Vorlage | task | arch | hoch | 4 | T-0043 |
-
-## done (42)
+## done (43)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -48,6 +42,7 @@ Stand: 2026-08-06 · Tickets: 47
 | [T-0041](tickets/T-0041.md) | DR: Übungsprodukt wählen (P0 Kap. 5, Sprint 4) — Produkt + Repo-Ort | decision-request | pl | hoch | 4 | — |
 | [T-0042](tickets/T-0042.md) | Produkt-Repo-Skelett produkt-datakonv (lokal) + CM-Setup (CI, Baseline-Struktur) | task | cm | hoch | 4 | — |
 | [T-0043](tickets/T-0043.md) | SWE.1 datakonv: Clarifications + STK/SWR-Set (EN, 10–20 SWRs) → G1-Vorlage | task | rm | hoch | 4 | T-0042 |
+| [T-0044](tickets/T-0044.md) | SWE.2 datakonv: Architektur (Units, Schnittstellen, ADRs) → G2-Vorlage | task | arch | hoch | 4 | T-0043 |
 | [T-0003](tickets/T-0003.md) | Rollen-Registry v1: Aufgaben-Typen und Provider-Ketten verfeinern | task | coach | mittel | 1 | T-0001 |
 | [T-0009](tickets/T-0009.md) | Sprint-1-Abnahme: Erster autonomer Tick (CM erstellt CM-Strategie-Entwurf) | task | pl | mittel | 1 | T-0001, T-0002, T-0005, T-0006 |
 | [T-0010](tickets/T-0010.md) | CM-Strategie v1 erstellen (Ziel des ersten autonomen Ticks) | task | cm | mittel | 1 | — |

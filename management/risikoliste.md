@@ -1,10 +1,12 @@
-# Risikoliste P0 (Eigentümer: PL; Review je Sprint)
+# Risikoliste P0 (Eigentümer: PL; Review je Sprint — zuletzt Sprint 2, 2026-08-06)
 
 | ID | Risiko | Wirkung | W'keit | Maßnahme | Eigentümer | Status |
 |---|---|---|---|---|---|---|
-| R1 | Bootstrap-Zirkel: Team soll Prozesse bauen, die es zum Bauen bräuchte | Stillstand Sprint 1–2 | mittel | Drei-Stufen-Bootstrap; Bootstrap-Ausnahme mit Nachreview | PL | offen |
+| R1 | Bootstrap-Zirkel: Team soll Prozesse bauen, die es zum Bauen bräuchte | Stillstand Sprint 1–2 | gering | Drei-Stufen-Bootstrap; Stufe 2 erreicht (Sprint 2: 7 Rollen aktiv, Team führt P0 selbst) | PL | entschärft (S2) |
 | R2 | Cloud-VM-Beschaffung verzögert sich | Deployment Sprint 3 rutscht | gering | Sprint 1–2 laufen in Cowork-Sessions; VM erst Sprint 3 nötig | Mensch/CM | offen |
 | R3 | Frontend-Scope wuchert | P0 wird nicht fertig | mittel | MVP-Schnitt fixiert (lesend + Decision-Inbox); Rest → P1-Backlog | PL | offen |
 | R4 | Agent-Qualität schwankt je Rolle | Nacharbeit, Kosten | mittel | Kleine Rollenkarten, Lernzyklus, Doppel-Review kritischer Outputs | COACH | offen |
-| R5 | Testphasen-Budget (~20 €) zu knapp für Sprint 0–1 | Ticks stoppen | mittel | Skript-Route maximieren; cheap-Modelle; Budget-Review notfalls vorziehen (DR) | PL | offen |
+| R5 | Testphasen-Budget (~20 €) zu knapp für Sprint 0–1 | Ticks stoppen | gering | 0 € Ist nach 3 Sprints (D012); Kette [ollama, session, claude] | PL | entschärft (S2) |
 | R6 | Token-/Zugangsdaten-Handhabung unsauber | Sicherheitsrisiko | gering | Secrets nur in GitLab-CI-Variablen/Hub-Vault, nie in Repos; Geräte-Tokens einzeln widerrufbar | CM | offen |
+| R7 | Cowork-Sandbox-/Mount-Artefakte (VM-Ausfall, stale index.lock, CRLF/filemode) | Zeitverlust je Session-Start | hoch | Preflight-Skript T-0024; Löschrechte früh anfordern; Verifikation auf Team-Node | CM | offen (2x eingetreten S1+S2) |
+| R8 | p0-CI hängt am Secret PLATFORM_READ_TOKEN (Cross-Repo-Zugriff auf board.py) | board-check auf GitHub rot bis Secret da | hoch | klare Fehlermeldung im Workflow; Mensch-Aktion in Abschluss-Anleitung; Alternative (vendored copy) dokumentiert im Ticket T-0015 | Mensch/CM | offen |

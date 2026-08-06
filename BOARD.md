@@ -1,13 +1,16 @@
 # Board (generiert von platform/scripts/board.py — nicht von Hand editieren)
 
-Stand: 2026-08-06 · Tickets: 48
+Stand: 2026-08-06 · Tickets: 51
 
 
-## open (1)
+## open (4)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
 | [T-0008](tickets/T-0008.md) | Anthropic-API-Key als Secret hinterlegen | task | mensch | hoch | 1 | — |
+| [T-0049](tickets/T-0049.md) | Prozess-CR (Retro S4): Matrix-CI-Gate im Produkt-Repo produkt-datakonv | change-request | cm | mittel | 5 | — |
+| [T-0050](tickets/T-0050.md) | Prozess-CR (Retro S4): Preflight räumt verwaiste Git-Locks selbst (R7) | change-request | dev | mittel | 5 | — |
+| [T-0051](tickets/T-0051.md) | Prozess-CR (Retro S4): board.py erzwingt optionen-Frontmatter für neue DRs | change-request | chg | niedrig | 5 | — |
 
 ## done (46)
 

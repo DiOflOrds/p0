@@ -4,11 +4,11 @@
 
 ## Sprint-Ziel und Erreichung
 
-Ziel: Erster autonomer Tick läuft end-to-end auf dem Team-Node. **Stand: Alles vorbereitet; Ausführung API-frei möglich (Ollama oder Session-Austausch, T-0011/T-0012) — wartet nur noch auf den Start durch den Menschen.**
+Ziel: Erster autonomer Tick läuft end-to-end auf dem Team-Node. **ERREICHT (2026-08-06):** Tick lief auf dem User-PC (`--provider ollama`, gemma3:27b): T-0010 gewählt, CM-Strategie als Branch `feature/t-0010-cm-strategie-v1-erstellen-ziel` im process-Repo, Ticket-Update in_review, Run-Registry-Eintrag, Kosten 0,00 €. Offen: Mensch-Review des Artefakts (= dieses Sprint-Review, G4).
 
 ## Ticket-Bilanz
 
-in_review 9: T-0001 (Rollenkarten v1), T-0002 (Skills v1 + 8 Gold-Beispiele), T-0003 (Registry v1), T-0004 (Gateway v1), T-0005 (Orchestrator-MVP), T-0006 (Guardrails v1), T-0007 (board.py v1), T-0011 (Ollama-Executor v1, vorgezogen), T-0012 (Session-Austausch-Provider) — Reviewer benannt, finale Abnahme = dieses Sprint-Review. open 3: T-0008 (Mensch, nur noch für Claude-Stufe nötig), T-0009 (Abnahme-Tick), T-0010 (CM-Strategie, Ziel des Ticks, entblockt).
+in_review 12: T-0001 (Rollenkarten v1), T-0002 (Skills v1 + 8 Gold-Beispiele), T-0003 (Registry v1), T-0004 (Gateway v1), T-0005 (Orchestrator-MVP), T-0006 (Guardrails v1), T-0007 (board.py v1), T-0010 (CM-Strategie, autonom via Ollama erstellt), T-0011 (Ollama-Executor v1), T-0012 (Session-Austausch-Provider), T-0013 + T-0014 (SUP.9-Probleme aus dem ersten Tick, behoben) — Reviewer benannt, finale Abnahme = dieses Sprint-Review. in_progress 1: T-0009 (Nachweis erbracht, wartet auf Mensch-Review). open 1: T-0008 (Mensch, nur noch für Claude-Stufe nötig).
 
 ## Gelieferte Artefakte
 
@@ -18,7 +18,7 @@ process: Rollenkarten v1 (roles/), Skills v1 (skills/), Gold-Beispiele (knowledg
 
 ## Kosten
 
-Diese Session: 0 € API-Kosten (kein Gateway-Lauf; Cowork-Session zählt nicht aufs 20-€-Limit). Erster Tick: erwartet < 1 € (Tick-Limit), protokolliert in `management/runs/run-registry.jsonl`.
+0,00 € API-Kosten gesamt — Engineering in Cowork-Sessions (Abo), erster autonomer Tick auf Ollama (lokal, kostenlos), protokolliert in `management/runs/run-registry.jsonl`. Das 20-€-Testbudget ist unangetastet.
 
 ## Risiken (Delta)
 
@@ -26,7 +26,7 @@ Neu R7: Cowork-Sandbox-Instabilität (Linux-VM startete nicht) — Wirkung: Engi
 
 ## QM-Abschnitt (ungefiltert)
 
-QM-Rolle weiter unbesetzt (Sprint 2). Abweichungen dieser Session: (1) Alle Sprint-1-Tickets wurden von einer Session in mehreren Rollen-Kontexten bearbeitet — Vier-Augen-Prinzip nur über Reviewer-Felder + Mensch-Review abgebildet. (2) Unit-Tests wurden geschrieben, aber in der Session nicht ausgeführt (Sandbox-Ausfall) — Ausführung ist Pflichtschritt vor dem Push (Anleitung). (3) BP-Mapping in den Skills ist ein Arbeits-Mapping; Wortlaut-Verifikation gegen das lizenzierte PAM 4.0 als COACH-Ticket in Sprint 2 nötig. (4) BOARD.md wurde manuell im Generator-Format erstellt; board.py-Lauf vor dem Push verifiziert es.
+QM-Rolle weiter unbesetzt (Sprint 2). Abweichungen: (1) Alle Sprint-1-Tickets wurden von einer Session in mehreren Rollen-Kontexten bearbeitet — Vier-Augen-Prinzip nur über Reviewer-Felder + Mensch-Review abgebildet. (2) Unit-Tests wurden geschrieben, aber in der Session nicht ausgeführt (Sandbox-Ausfall) — Ausführung ist Pflichtschritt vor dem Push (Anleitung). (3) BP-Mapping in den Skills ist ein Arbeits-Mapping; Wortlaut-Verifikation gegen das lizenzierte PAM 4.0 als COACH-Ticket in Sprint 2 nötig. (4) BOARD.md wurde manuell im Generator-Format erstellt; board.py-Lauf vor dem Push verifiziert es. (5) Erster Tick erzeugte zwei Prozessverletzungen: Artefakt-Pfad mit Repo-Präfix (T-0013) und Ergebnis-Commit mit unbeteiligten Änderungen durch `add -A` auf unsauberer Arbeitskopie (T-0014) — beide Ursachen im Tooling behoben; die betroffenen Artefakte bleiben auf Mensch-Entscheidung unverändert auf dem Branch. (6) Der Misch-Commit auf `feature/t-0010-…` schwächt die Traceability dieses einen Commits (v1-Prozessartefakte + CM-Strategie unter einer Ticket-ID); akzeptiert per Mensch-Entscheidung, Merge löst den Zustand nach main auf.
 
 ## Retrospektive (vorläufig; final nach T-0009, max. 3 CRs)
 

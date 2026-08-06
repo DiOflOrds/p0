@@ -12,16 +12,7 @@ Stand: 2026-08-06 · Tickets: 60
 | [T-0056](tickets/T-0056.md) | Produktkatalog v0: process/catalog/products.yaml + Detailseite, Eintrag skript-generiert | task | cm | mittel | 5 | — |
 | [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
 
-## in_review (4)
-
-| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
-|---|---|---|---|---|---|---|
-| [T-0054](tickets/T-0054.md) | SUP.10: realer CR am Produkt mit Impact-Analyse (Quelle: Mensch-Feedback via Routing) | change-request | chg | mittel | 5 | T-0055 |
-| [T-0055](tickets/T-0055.md) | Feedback-Routing v1: Skript Feedback-Ticket → Problem/CR (Masterplan 5.5) | task | dev | mittel | 5 | — |
-| [T-0059](tickets/T-0059.md) | Feedback (Mensch): --indent-Option für die JSON-Ausgabe | feedback | mensch | mittel | 5 | — |
-| [T-0060](tickets/T-0060.md) | CR (aus Feedback T-0059): Feedback (Mensch): --indent-Option für die JSON-Ausgabe | change-request | chg | mittel | 5 | — |
-
-## done (51)
+## done (55)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -75,6 +66,10 @@ Stand: 2026-08-06 · Tickets: 60
 | [T-0048](tickets/T-0048.md) | Prozess-CR: trace_matrix generalisieren — Produkt-Repos via --tests/--swr/--ziel/--id-muster | change-request | dev | mittel | 4 | — |
 | [T-0049](tickets/T-0049.md) | Prozess-CR (Retro S4): Matrix-CI-Gate im Produkt-Repo produkt-datakonv | change-request | cm | mittel | 5 | — |
 | [T-0050](tickets/T-0050.md) | Prozess-CR (Retro S4): Preflight räumt verwaiste Git-Locks selbst (R7) | change-request | dev | mittel | 5 | — |
+| [T-0054](tickets/T-0054.md) | SUP.10: realer CR am Produkt mit Impact-Analyse (Quelle: Mensch-Feedback via Routing) | change-request | chg | mittel | 5 | T-0055 |
+| [T-0055](tickets/T-0055.md) | Feedback-Routing v1: Skript Feedback-Ticket → Problem/CR (Masterplan 5.5) | task | dev | mittel | 5 | — |
+| [T-0059](tickets/T-0059.md) | Feedback (Mensch): --indent-Option für die JSON-Ausgabe | feedback | mensch | mittel | 5 | — |
+| [T-0060](tickets/T-0060.md) | CR (aus Feedback T-0059): Feedback (Mensch): --indent-Option für die JSON-Ausgabe | change-request | chg | mittel | 5 | — |
 | [T-0051](tickets/T-0051.md) | Prozess-CR (Retro S4): board.py erzwingt optionen-Frontmatter für neue DRs | change-request | chg | niedrig | 5 | — |
 
 ## rejected (1)

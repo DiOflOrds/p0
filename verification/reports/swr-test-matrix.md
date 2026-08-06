@@ -1,10 +1,10 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-06 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 83 · ohne Bezug: 11
+Stand: 2026-08-07 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 86 · ohne Bezug: 17
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
-| SWR-001 | reviewed | test_board.py::TestBoard::test_gutfall<br>test_board.py::TestBoard::test_pflichtfeld_fehlt<br>test_board.py::TestBoard::test_ungueltiger_status<br>test_board.py::TestBoard::test_id_dateiname_mismatch<br>test_board.py::TestBoard::test_blocked_ohne_blocker<br>test_board.py::TestBoard::test_in_review_ohne_reviewer<br>test_board.py::TestBoard::test_in_review_reviewer_ist_autor<br>test_board.py::TestBoard::test_in_review_mit_reviewer_ok<br>test_board.py::TestBoard::test_crlf_toleranz<br>test_board.py::DecisionRequestFelderTest::test_gueltige_felder<br>test_board.py::DecisionRequestFelderTest::test_ungueltige_frist<br>test_board.py::DecisionRequestFelderTest::test_default_nicht_in_optionen<br>test_board.py::DecisionRequestFelderTest::test_optionstoken_zerlegung | 13 Test(s) |
+| SWR-001 | reviewed | test_board.py::TestBoard::test_gutfall<br>test_board.py::TestBoard::test_pflichtfeld_fehlt<br>test_board.py::TestBoard::test_ungueltiger_status<br>test_board.py::TestBoard::test_id_dateiname_mismatch<br>test_board.py::TestBoard::test_blocked_ohne_blocker<br>test_board.py::TestBoard::test_in_review_ohne_reviewer<br>test_board.py::TestBoard::test_in_review_reviewer_ist_autor<br>test_board.py::TestBoard::test_in_review_mit_reviewer_ok<br>test_board.py::TestBoard::test_crlf_toleranz<br>test_board.py::DecisionRequestFelderTest::test_gueltige_felder<br>test_board.py::DecisionRequestFelderTest::test_ungueltige_frist<br>test_board.py::DecisionRequestFelderTest::test_default_nicht_in_optionen<br>test_board.py::DecisionRequestFelderTest::test_neuer_dr_ohne_optionen_abgelehnt<br>test_board.py::DecisionRequestFelderTest::test_bestands_dr_ausgenommen<br>test_board.py::DecisionRequestFelderTest::test_optionstoken_zerlegung | 15 Test(s) |
 | SWR-002 | reviewed | test_board.py::TestBoard::test_uebergangsmatrix<br>test_board.py::TestBoard::test_mensch_tickets_ohne_uebergangspruefung | 2 Test(s) |
 | SWR-003 | reviewed | test_board.py::TestBoard::test_blocked_by_unbekannt<br>test_board.py::TestBoard::test_blocked_by_selbstverweis | 2 Test(s) |
 | SWR-004 | reviewed | test_board.py::TestBoard::test_board_deterministisch<br>test_board.py::TestBoard::test_prio_sortierung<br>test_board.py::TestBoard::test_offene_blocker<br>test_board.py::TestBoard::test_main_schreibt_board | 4 Test(s) |
@@ -18,7 +18,7 @@ Stand: 2026-08-06 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 83 · ohne 
 | SWR-012 | reviewed | test_gateway.py::GatewayTest::test_monatslimit_verhindert_lauf<br>test_gateway.py::GatewayTest::test_monatsreserve_zu_klein<br>test_gateway.py::GatewayTest::test_monatskosten_nur_laufender_monat | 3 Test(s) |
 | SWR-013 | reviewed | test_gateway.py::GatewayTest::test_run_registry_wird_geschrieben | 1 Test(s) |
 | SWR-014 | reviewed | test_gateway.py::GatewayTest::test_verbotene_aktion | 1 Test(s) |
-| SWR-015 | reviewed | test_orchestrator.py::ArbeitskopieTest::test_sauber<br>test_orchestrator.py::ArbeitskopieTest::test_unsauber<br>test_orchestrator.py::ArbeitskopieTest::test_ausnahme_praefix | 3 Test(s) |
+| SWR-015 | reviewed | test_orchestrator.py::ArbeitskopieTest::test_sauber<br>test_orchestrator.py::ArbeitskopieTest::test_unsauber<br>test_orchestrator.py::ArbeitskopieTest::test_ausnahme_praefix<br>test_preflight.py::TestReposImRoot::test_produkt_repo_wird_erkannt | 4 Test(s) |
 | SWR-016 | reviewed | test_orchestrator.py::AuswahlTest::test_waehlt_hoechste_prio<br>test_orchestrator.py::AuswahlTest::test_ignoriert_nicht_open<br>test_orchestrator.py::AuswahlTest::test_ignoriert_blockierte<br>test_orchestrator.py::AuswahlTest::test_blocker_done_gibt_frei<br>test_orchestrator.py::AuswahlTest::test_ignoriert_inaktive_und_mensch_rollen<br>test_orchestrator.py::RoutingTest::test_script_route | 6 Test(s) |
 | SWR-017 | reviewed | test_orchestrator.py::StatusTest::test_setze_status_und_board<br>test_orchestrator.py::StatusTest::test_setze_status_invalide_wirft<br>test_orchestrator.py::SlugTest::test_slug<br>test_orchestrator.py::WarteLaufTest::test_phase1_ohne_antwortdatei<br>test_orchestrator.py::WarteLaufTest::test_keine_phase1_mit_antwortdatei<br>test_orchestrator.py::WarteLaufTest::test_keine_phase1_ohne_session_oder_bei_script | 6 Test(s) |
 | SWR-018 | reviewed | test_orchestrator.py::AuswahlTest::test_nur_ticket_filter | 1 Test(s) |
@@ -35,6 +35,12 @@ Keine.
 
 ## Tests ohne SWR-Bezug (informativ — Prozess-Tooling mit CR-Bezug erlaubt, T-0025)
 
+- test_catalog.py::KatalogTest::test_neuer_eintrag_erzeugt_yaml_und_seite
+- test_catalog.py::KatalogTest::test_update_ersetzt_version
+- test_feedback_route.py::RoutingTest::test_wunsch_wird_change_request
+- test_feedback_route.py::RoutingTest::test_fehler_wird_problem
+- test_feedback_route.py::RoutingTest::test_feedback_geht_in_progress_mit_notiz
+- test_feedback_route.py::RoutingTest::test_dry_run_aendert_nichts
 - test_preflight.py::TestLockArtefakte::test_findet_bekannte_artefakte
 - test_preflight.py::TestLockArtefakte::test_sauberes_repo_ohne_funde
 - test_preflight.py::TestLockArtefakte::test_entfernen_meldet_erfolg

@@ -1,6 +1,6 @@
-# Sprint-1-Report — P0 „Genesis" (ENTWURF — final nach T-0009)
+# Sprint-1-Report — P0 „Genesis" (FINAL)
 
-*Stand: 2026-08-06, Engineering-Session (Cowork auf Team-Node). Rolle: PL. Finalisierung nach dem ersten autonomen Tick (T-0009) und Mensch-Review.*
+*Stand: 2026-08-06, Rolle: PL. **Sprint 1 abgenommen (G4, D009):** Mensch-Review 2026-08-06 („mergen und sprint1 abschluss bestätigen"), Merge nach main erfolgt, CM-Strategie an Storage-Location `cm/` korrigiert, Review-Nacharbeit als T-0018 (Sprint 2). Retrospektive: `retro.md` (3 Prozess-CRs T-0015–T-0017).*
 
 ## Sprint-Ziel und Erreichung
 
@@ -28,9 +28,9 @@ Neu R7: Cowork-Sandbox-Instabilität (Linux-VM startete nicht) — Wirkung: Engi
 
 QM-Rolle weiter unbesetzt (Sprint 2). Abweichungen: (1) Alle Sprint-1-Tickets wurden von einer Session in mehreren Rollen-Kontexten bearbeitet — Vier-Augen-Prinzip nur über Reviewer-Felder + Mensch-Review abgebildet. (2) Unit-Tests wurden geschrieben, aber in der Session nicht ausgeführt (Sandbox-Ausfall) — Ausführung ist Pflichtschritt vor dem Push (Anleitung). (3) BP-Mapping in den Skills ist ein Arbeits-Mapping; Wortlaut-Verifikation gegen das lizenzierte PAM 4.0 als COACH-Ticket in Sprint 2 nötig. (4) BOARD.md wurde manuell im Generator-Format erstellt; board.py-Lauf vor dem Push verifiziert es. (5) Erster Tick erzeugte zwei Prozessverletzungen: Artefakt-Pfad mit Repo-Präfix (T-0013) und Ergebnis-Commit mit unbeteiligten Änderungen durch `add -A` auf unsauberer Arbeitskopie (T-0014) — beide Ursachen im Tooling behoben; die betroffenen Artefakte bleiben auf Mensch-Entscheidung unverändert auf dem Branch. (6) Der Misch-Commit auf `feature/t-0010-…` schwächt die Traceability dieses einen Commits (v1-Prozessartefakte + CM-Strategie unter einer Ticket-ID); akzeptiert per Mensch-Entscheidung, Merge löst den Zustand nach main auf.
 
-## Retrospektive (vorläufig; final nach T-0009, max. 3 CRs)
+## Retrospektive (durchgeführt 2026-08-06, siehe retro.md)
 
-Kandidaten: (1) CI-Workflow (GitHub Actions) für board.py --check + Tests je Push — skriptifiziert die Verifikation; (2) PAM-4.0-Wortlaut-Abgleich der Skills; (3) Sandbox-Ausfall-Runbook (Team-Node als Standard-Ausführungsort dokumentieren).
+Beschlossen (max. 3): T-0015 CI-Workflow (board.py --check + Tests je Push), T-0016 Wissensbasen-Erstbefüllung aus T-0013/T-0014, T-0017 PAM-4.0-Wortlaut-Abgleich. Review-Nacharbeit zusätzlich als T-0018 (CM-Strategie an reale Struktur angleichen).
 
 ## Anstehende Entscheidungen
 

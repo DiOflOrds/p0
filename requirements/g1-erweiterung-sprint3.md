@@ -21,4 +21,4 @@ DoD-Checkliste „SW-Anforderung" angewandt (alle 6: eindeutige ID, atomar, test
 
 Freigabe als Baseline-Erweiterung; Tag erfolgt mit der Sprint-3-Baseline (`genesis-v0.3`, CM). Bis zur Freigabe gelten die 6 Einträge als reviewed, aber nicht baselined; Implementierung (T-0032/T-0033) läuft auf eigenes Risiko des Teams gegen den reviewten Stand (requirements-first eingehalten).
 
-**Entscheidung Mensch:** ☐ freigeben · ☐ mit Auflagen · ☐ zurückweisen — bitte im Sprint-3-Review (G4) oder vorab per Decision-Inbox/E-Mail.
+**Entscheidung Mensch:** ☑ **freigegeben** (2026-08-06, D015) — Baseline-Erweiterung Bestandteil von `genesis-v0.3`.

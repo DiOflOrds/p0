@@ -12,7 +12,7 @@ Stand: 2026-08-07 · Tickets: 64
 | [T-0063](tickets/T-0063.md) | Prozess-CR (Retro S5): feedback_route v1.1 — automatischer Feedback-Abschluss | change-request | dev | niedrig | 6 | — |
 | [T-0064](tickets/T-0064.md) | Prozess-CR (Retro S5): Produkt-Konfig produkte.yaml + trace_matrix --produkt | change-request | dev | niedrig | 6 | — |
 
-## in_progress (1)
+## in_review (1)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|

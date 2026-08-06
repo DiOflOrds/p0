@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-06 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 83 · ohne Bezug: 9
+Stand: 2026-08-06 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 83 · ohne Bezug: 11
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -44,3 +44,5 @@ Keine.
 - test_trace_matrix.py::TestScannen::test_ohne_bezug_wird_gemeldet
 - test_trace_matrix.py::TestMatrix::test_luecken_und_ci_ausnahme
 - test_trace_matrix.py::TestMatrix::test_unbekannte_swr_in_tests_ist_luecke
+- test_trace_matrix.py::TestIdMuster::test_produkt_muster_wird_erkannt
+- test_trace_matrix.py::TestIdMuster::test_default_verhalten_unveraendert

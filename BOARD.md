@@ -3,15 +3,20 @@
 Stand: 2026-08-07 · Tickets: 64
 
 
-## open (5)
+## open (4)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
 | [T-0008](tickets/T-0008.md) | Anthropic-API-Key als Secret hinterlegen | task | mensch | hoch | 1 | — |
-| [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
 | [T-0062](tickets/T-0062.md) | Prozess-CR (Retro S5): board.py Status-Subkommando mit Übergangsprüfung | change-request | dev | mittel | 6 | — |
 | [T-0063](tickets/T-0063.md) | Prozess-CR (Retro S5): feedback_route v1.1 — automatischer Feedback-Abschluss | change-request | dev | niedrig | 6 | — |
 | [T-0064](tickets/T-0064.md) | Prozess-CR (Retro S5): Produkt-Konfig produkte.yaml + trace_matrix --produkt | change-request | dev | niedrig | 6 | — |
+
+## in_progress (1)
+
+| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
+|---|---|---|---|---|---|---|
+| [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
 
 ## done (58)
 

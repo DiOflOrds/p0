@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-06 · SWRs: 21 (reviewed: 19) · Tests mit SWR-Bezug: 62 · ohne Bezug: 9
+Stand: 2026-08-06 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 62 · ohne Bezug: 9
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -23,12 +23,19 @@ Stand: 2026-08-06 · SWRs: 21 (reviewed: 19) · Tests mit SWR-Bezug: 62 · ohne 
 | SWR-017 | reviewed | test_orchestrator.py::StatusTest::test_setze_status_und_board<br>test_orchestrator.py::StatusTest::test_setze_status_invalide_wirft<br>test_orchestrator.py::SlugTest::test_slug | 3 Test(s) |
 | SWR-018 | reviewed | test_orchestrator.py::AuswahlTest::test_nur_ticket_filter | 1 Test(s) |
 | SWR-019 | reviewed | — | über CI-Workflow verifiziert (kein Unit-Test) |
-| SWR-020 | draft | — | offen (Status draft) |
-| SWR-021 | draft | — | offen (Status draft) |
+| SWR-020 | reviewed | — | **LÜCKE** |
+| SWR-021 | reviewed | — | **LÜCKE** |
+| SWR-022 | reviewed | — | **LÜCKE** |
+| SWR-023 | reviewed | — | **LÜCKE** |
+| SWR-024 | reviewed | — | **LÜCKE** |
 
 ## Lücken (reviewed ohne Testabdeckung)
 
-Keine.
+- SWR-020
+- SWR-021
+- SWR-022
+- SWR-023
+- SWR-024
 
 ## Tests ohne SWR-Bezug (informativ — Prozess-Tooling mit CR-Bezug erlaubt, T-0025)
 

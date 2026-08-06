@@ -1,6 +1,6 @@
 # Software Requirements — P0 "Genesis" Platform (v1, Sprint 2, T-0021)
 
-*Derived from `../stakeholder/stakeholder-requirements.md`. Components: BRD = board tooling (`platform/scripts/board.py`), GW = LLM gateway (`platform/gateway/`), GRD = guardrails, ORC = orchestrator (`platform/orchestrator/tick.py`), REG = run registry, CI = workflows. Language: English (D011). Status `reviewed` = implemented in Sprint 1/2 and covered by unit tests or CI; `draft` = future (Sprint 3+).*
+*Derived from `../stakeholder/stakeholder-requirements.md`. Components: BRD = board tooling (`platform/scripts/board.py`), GW = LLM gateway (`platform/gateway/`), GRD = guardrails, ORC = orchestrator (`platform/orchestrator/tick.py`), REG = run registry, CI = workflows, BCK = backend (`platform/backend/`), FRT = frontend (Sprint 3, T-0030). Language: English (D011). Status `reviewed` = reviewed for feasibility (ARCH/DEV context) and verifiability (QM/TEST context); implementation follows requirements-first (T-0025). `draft` = not yet reviewed.*
 
 ## Board tooling (BRD)
 
@@ -46,13 +46,16 @@
 |---|---|---|---|---|---|
 | SWR-019 | On every push/PR to platform, CI shall run all unit tests; on every push/PR to p0, CI shall run board validation (`--check --no-git`) and verify BOARD.md is up to date. | STK-010 | Workflow files (T-0015) + first CI runs on GitHub | high | reviewed |
 
-## Backend/Frontend (outlook Sprint 3 — not part of the G1 baseline scope)
+## Backend/Frontend (BCK/FRT — refined Sprint 3, T-0030; proposed G1 baseline extension)
 
 | ID | Requirement | Trace | Verification | Prio | Status |
 |---|---|---|---|---|---|
-| SWR-020 | The backend shall serve the decision inbox (open DRs with options/deadline/default) and accept human decisions, recording them to the decision log. | STK-007, STK-012 | API tests (Sprint 3) | medium | draft |
-| SWR-021 | The frontend shall display board status, sprint reports, cost/KPI trends, and the decision inbox without requiring Git access. | STK-012 | UI acceptance (Sprint 3) | medium | draft |
+| SWR-020 | The backend shall serve the decision inbox via HTTP API: list open decision requests (ticket type `decision-request`, non-final status) with title, context, options, deadline, and default; and accept a human decision (option + rationale), appending it to the decision log file and recording it on the ticket. | STK-007, STK-012 | API tests `test_backend.py` (list + decide round-trip) | medium | reviewed |
+| SWR-021 | The frontend shall display board status, sprint reports, cost/KPI trends, and the decision inbox — including submitting decisions — without requiring Git access, usable on a smartphone-sized screen. | STK-012 | UI acceptance checklist (T-0034) | medium | reviewed |
+| SWR-022 | The backend shall aggregate board status (BOARD.md/tickets), sprint reports (`management/sprint-*/report.md`), and cost/KPI data (run registry JSONL) from the Git working copy and serve them read-only as JSON. | STK-012 | API tests (aggregation endpoints) | medium | reviewed |
+| SWR-023 | The backend shall send e-mail notifications (new decision request, sprint report) to the configured address (D004) via configured SMTP; if SMTP is not configured or fails, the event shall be logged and the API shall keep working. | STK-007, STK-012 | API test (mocked SMTP, failure path) | medium | reviewed |
+| SWR-024 | The backend shall keep no state outside the Git working copy: all reads derive from committed artifacts, all writes go to ticket/decision-log files; a restart shall lose nothing (distribution-ready, API-first). | STK-012 | API test (restart equivalence) + architecture review | medium | reviewed |
 
 ## Traceability summary
 
-STK-001 → SWR-006, 016 · STK-002 → SWR-009, 017 · STK-003 → SWR-001, 003, 004 · STK-004 → SWR-011, 012 · STK-005 → SWR-007, 008, 010, 016 · STK-006 → SWR-006, 011, 013 · STK-007 → SWR-010, 012, 020 · STK-008 → SWR-009, 014 · STK-009 → SWR-008, 018 · STK-010 → SWR-005, 019 · STK-011 → SWR-002, 015, 017 · STK-012 → SWR-020, 021. All STK covered; SWR without STK trace: none.
+STK-001 → SWR-006, 016 · STK-002 → SWR-009, 017 · STK-003 → SWR-001, 003, 004 · STK-004 → SWR-011, 012 · STK-005 → SWR-007, 008, 010, 016 · STK-006 → SWR-006, 011, 013 · STK-007 → SWR-010, 012, 020, 023 · STK-008 → SWR-009, 014 · STK-009 → SWR-008, 018 · STK-010 → SWR-005, 019 · STK-011 → SWR-002, 015, 017 · STK-012 → SWR-020, 021, 022, 023, 024. All STK covered; SWR without STK trace: none.

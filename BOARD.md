@@ -3,17 +3,22 @@
 Stand: 2026-08-06 · Tickets: 47
 
 
-## open (7)
+## open (6)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
 | [T-0008](tickets/T-0008.md) | Anthropic-API-Key als Secret hinterlegen | task | mensch | hoch | 1 | — |
-| [T-0042](tickets/T-0042.md) | Produkt-Repo-Skelett produkt-datakonv (lokal) + CM-Setup (CI, Baseline-Struktur) | task | cm | hoch | 4 | — |
 | [T-0043](tickets/T-0043.md) | SWE.1 datakonv: Clarifications + STK/SWR-Set (EN, 10–20 SWRs) → G1-Vorlage | task | rm | hoch | 4 | T-0042 |
 | [T-0044](tickets/T-0044.md) | SWE.2 datakonv: Architektur (Units, Schnittstellen, ADRs) → G2-Vorlage | task | arch | hoch | 4 | T-0043 |
 | [T-0045](tickets/T-0045.md) | SWE.3 datakonv: Implementierung Units (Python stdlib, requirements-first) | task | dev | hoch | 4 | T-0044 |
 | [T-0046](tickets/T-0046.md) | SWE.4 datakonv: Unit-Verifikation automatisiert in CI + SWR↔Test-Matrix | task | test | hoch | 4 | T-0045 |
 | [T-0047](tickets/T-0047.md) | Hub-VM (D014, E5): Beschaffung begleiten — Runbook, Deployment, Geräteregister | task | cm | mittel | 4 | — |
+
+## in_progress (1)
+
+| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
+|---|---|---|---|---|---|---|
+| [T-0042](tickets/T-0042.md) | Produkt-Repo-Skelett produkt-datakonv (lokal) + CM-Setup (CI, Baseline-Struktur) | task | cm | hoch | 4 | — |
 
 ## done (40)
 

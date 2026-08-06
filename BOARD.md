@@ -12,13 +12,7 @@ Stand: 2026-08-06 · Tickets: 23
 | [T-0022](tickets/T-0022.md) | Budget-Review (D003): Ist-Daten der Testphase → Budget-Festlegung | decision-request | pl | hoch | 2 | — |
 | [T-0023](tickets/T-0023.md) | Prozess-Baseline genesis-v0.2 (Tags + Manifest) | task | cm | mittel | 2 | T-0015, T-0016, T-0017, T-0018, T-0019, T-0020, T-0021 |
 
-## in_progress (1)
-
-| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
-|---|---|---|---|---|---|---|
-| [T-0018](tickets/T-0018.md) | CM-Strategie v1.1: an reale Repo-Struktur und Rollen angleichen (Review-Nacharbeit) | task | cm | mittel | 2 | — |
-
-## in_review (5)
+## in_review (6)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -27,6 +21,7 @@ Stand: 2026-08-06 · Tickets: 23
 | [T-0020](tickets/T-0020.md) | Prozess-Skills v1 für SUP.1, SWE.1, SUP.9 schreiben (+ Gold-Beispiele) | task | coach | hoch | 2 | T-0019 |
 | [T-0016](tickets/T-0016.md) | Prozess-CR (Retro S1): Lessons aus T-0013/T-0014 in die Wissensbasen | change-request | coach | mittel | 2 | — |
 | [T-0017](tickets/T-0017.md) | Prozess-CR (Retro S1): PAM-4.0-Wortlaut-Abgleich der Skill-BP-Mappings | change-request | coach | mittel | 2 | — |
+| [T-0018](tickets/T-0018.md) | CM-Strategie v1.1: an reale Repo-Struktur und Rollen angleichen (Review-Nacharbeit) | task | cm | mittel | 2 | — |
 
 ## done (13)
 

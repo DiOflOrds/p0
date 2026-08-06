@@ -9,19 +9,13 @@ Stand: 2026-08-06 · Tickets: 48
 |---|---|---|---|---|---|---|
 | [T-0008](tickets/T-0008.md) | Anthropic-API-Key als Secret hinterlegen | task | mensch | hoch | 1 | — |
 
-## in_progress (1)
+## in_review (1)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
 | [T-0046](tickets/T-0046.md) | SWE.4 datakonv: Unit-Verifikation automatisiert in CI + SWR↔Test-Matrix | task | test | hoch | 4 | T-0045 |
 
-## in_review (1)
-
-| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
-|---|---|---|---|---|---|---|
-| [T-0048](tickets/T-0048.md) | Prozess-CR: trace_matrix generalisieren — Produkt-Repos via --tests/--swr/--ziel/--id-muster | change-request | dev | mittel | 4 | — |
-
-## done (44)
+## done (45)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -69,6 +63,7 @@ Stand: 2026-08-06 · Tickets: 48
 | [T-0037](tickets/T-0037.md) | Prozess-CR (Retro S3): trace-matrix-Gate in CI (p0-Checkout im platform-Workflow) | change-request | cm | mittel | 4 | — |
 | [T-0038](tickets/T-0038.md) | Prozess-CR (Retro S3): Zweiphasen-Tick idempotent — Phase 1 ohne Statuswechsel-Commits | change-request | dev | mittel | 4 | — |
 | [T-0039](tickets/T-0039.md) | Prozess-CR (Retro S3): DR-Optionen maschinenlesbar (Frontmatter) + Inbox-Validierung | change-request | chg | mittel | 4 | — |
+| [T-0048](tickets/T-0048.md) | Prozess-CR: trace_matrix generalisieren — Produkt-Repos via --tests/--swr/--ziel/--id-muster | change-request | dev | mittel | 4 | — |
 
 ## rejected (1)
 

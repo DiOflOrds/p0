@@ -10,7 +10,7 @@ Stand: 2026-08-07 · Tickets: 61
 | [T-0008](tickets/T-0008.md) | Anthropic-API-Key als Secret hinterlegen | task | mensch | hoch | 1 | — |
 | [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
 
-## in_progress (3)
+## in_review (3)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|

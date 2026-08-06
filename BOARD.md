@@ -3,7 +3,7 @@
 Stand: 2026-08-06 · Tickets: 36
 
 
-## open (11)
+## open (10)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -14,10 +14,15 @@ Stand: 2026-08-06 · Tickets: 36
 | [T-0031](tickets/T-0031.md) | SWE.2: Architektur Backend/Frontend-MVP + ADRs → G2-Vorlage | task | arch | hoch | 3 | T-0028, T-0030 |
 | [T-0032](tickets/T-0032.md) | Backend-MVP: Decision-Inbox, Board/Report-Aggregation, E-Mail-Versand (SWR-020) | task | dev | hoch | 3 | T-0031 |
 | [T-0035](tickets/T-0035.md) | DR: Hub-VM-Beschaffung (E5, R2) — Anbieter/Größe/Kosten + Deployment-Ziel + D006-Review | decision-request | pl | hoch | 3 | — |
-| [T-0026](tickets/T-0026.md) | Prozess-CR (Retro S2): SWR-Test-Traceability — Docstring-IDs + Matrix-Generator | change-request | dev | mittel | 3 | — |
 | [T-0033](tickets/T-0033.md) | Frontend-MVP: lesende PWA + Decision-Inbox (SWR-021) | task | dev | mittel | 3 | T-0031 |
 | [T-0034](tickets/T-0034.md) | SWE.4: Verifikation Backend/Frontend + SWR↔Test-Matrix vollständig | task | test | mittel | 3 | T-0032, T-0033 |
 | [T-0036](tickets/T-0036.md) | Autonome Ticks nachholen: Betriebsdaten sammeln; Claude-Tick sofern T-0008 | task | cm | mittel | 3 | — |
+
+## in_progress (1)
+
+| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
+|---|---|---|---|---|---|---|
+| [T-0026](tickets/T-0026.md) | Prozess-CR (Retro S2): SWR-Test-Traceability — Docstring-IDs + Matrix-Generator | change-request | dev | mittel | 3 | — |
 
 ## done (25)
 

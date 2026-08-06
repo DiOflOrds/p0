@@ -12,13 +12,7 @@ Stand: 2026-08-07 · Tickets: 64
 | [T-0063](tickets/T-0063.md) | Prozess-CR (Retro S5): feedback_route v1.1 — automatischer Feedback-Abschluss | change-request | dev | niedrig | 6 | — |
 | [T-0064](tickets/T-0064.md) | Prozess-CR (Retro S5): Produkt-Konfig produkte.yaml + trace_matrix --produkt | change-request | dev | niedrig | 6 | — |
 
-## in_review (1)
-
-| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
-|---|---|---|---|---|---|---|
-| [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
-
-## done (58)
+## done (59)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -77,6 +71,7 @@ Stand: 2026-08-07 · Tickets: 64
 | [T-0054](tickets/T-0054.md) | SUP.10: realer CR am Produkt mit Impact-Analyse (Quelle: Mensch-Feedback via Routing) | change-request | chg | mittel | 5 | T-0055 |
 | [T-0055](tickets/T-0055.md) | Feedback-Routing v1: Skript Feedback-Ticket → Problem/CR (Masterplan 5.5) | task | dev | mittel | 5 | — |
 | [T-0056](tickets/T-0056.md) | Produktkatalog v0: process/catalog/products.yaml + Detailseite, Eintrag skript-generiert | task | cm | mittel | 5 | — |
+| [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
 | [T-0059](tickets/T-0059.md) | Feedback (Mensch): --indent-Option für die JSON-Ausgabe | feedback | mensch | mittel | 5 | — |
 | [T-0060](tickets/T-0060.md) | CR (aus Feedback T-0059): Feedback (Mensch): --indent-Option für die JSON-Ausgabe | change-request | chg | mittel | 5 | — |
 | [T-0051](tickets/T-0051.md) | Prozess-CR (Retro S4): board.py erzwingt optionen-Frontmatter für neue DRs | change-request | chg | niedrig | 5 | — |

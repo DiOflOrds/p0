@@ -21,13 +21,13 @@ jobs:
             echo "::error::Secret PLATFORM_READ_TOKEN fehlt (Lese-PAT für DiOflOrds/platform). Anleitung im Workflow-Kopf."
             exit 1
           fi
-      - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
         with:
           repository: DiOflOrds/platform
           token: ${{ secrets.PLATFORM_READ_TOKEN }}
           path: .platform-tools
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Ticket-Validierung (Schema, Referenzen)

@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-07 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 95 · ohne Bezug: 21
+Stand: 2026-08-07 · SWRs: 29 (reviewed: 29) · Tests mit SWR-Bezug: 106 · ohne Bezug: 21
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -28,6 +28,11 @@ Stand: 2026-08-07 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 95 · ohne 
 | SWR-022 | reviewed | test_backend.py::AggregationTest::test_board_gruppiert_nach_status<br>test_backend.py::AggregationTest::test_reports_und_kpi<br>test_backend.py::HttpTest::test_get_endpunkte | 3 Test(s) |
 | SWR-023 | reviewed | test_backend.py::MailerTest::test_unkonfiguriert_wirft_nicht<br>test_backend.py::MailerTest::test_kaputter_host_wirft_nicht<br>test_backend.py::HttpTest::test_post_entscheidung | 3 Test(s) |
 | SWR-024 | reviewed | test_backend.py::AggregationTest::test_neustart_aequivalenz<br>test_backend.py::InboxTest::test_entscheidung_roundtrip_mit_commit | 2 Test(s) |
+| SWR-025 | reviewed | test_backend.py::MultiProjektTest::test_discovery_und_scoping<br>test_backend.py::HttpTest::test_multi_projekt_endpunkte<br>test_backend.py::HttpTest::test_unbekanntes_projekt_404 | 3 Test(s) |
+| SWR-026 | reviewed | test_backend.py::MultiProjektTest::test_uebersicht_je_projekt<br>test_backend.py::HttpTest::test_multi_projekt_endpunkte | 2 Test(s) |
+| SWR-027 | reviewed | test_backend.py::MultiProjektTest::test_inbox_ueber_alle_projekte<br>test_backend.py::MultiProjektTest::test_entscheidung_im_richtigen_projekt<br>test_backend.py::HttpTest::test_multi_projekt_endpunkte | 3 Test(s) |
+| SWR-028 | reviewed | test_orchestrator.py::ProjektValidierungTest::test_unbekanntes_projekt_bricht_ab | 1 Test(s) |
+| SWR-029 | reviewed | test_preflight.py::MultiProjektBoardCheckTest::test_invalides_zweitprojekt_ist_befund<br>test_trace_matrix.py::MehrereSwrQuellenTest::test_merge_zweier_quellen_ohne_luecken | 2 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

@@ -11,7 +11,7 @@ Stand: 2026-08-07 · Tickets: 72
 | [T-0071](tickets/T-0071.md) | DR: P0-Abschlussbericht → P0-Abnahme gegen Kap. 3 | decision-request | pl | hoch | 6 | T-0062, T-0063, T-0064, T-0065, T-0066, T-0067, T-0068, T-0070 |
 | [T-0072](tickets/T-0072.md) | Copilot-PoC-Lauf am Team-Node: DEV-Routineaufgabe via --provider copilot (Kriterium 9) | task | dev | mittel | 6 | — |
 
-## in_progress (6)
+## in_review (6)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|

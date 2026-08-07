@@ -3,7 +3,7 @@
 Stand: 2026-08-07 · Tickets: 71
 
 
-## open (11)
+## open (8)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -12,10 +12,15 @@ Stand: 2026-08-07 · Tickets: 71
 | [T-0066](tickets/T-0066.md) | Self-Check-Lücken schließen oder als P1-Backlog dokumentieren | task | pl | hoch | 6 | T-0065 |
 | [T-0067](tickets/T-0067.md) | Betriebs-Runbook: Backup, Monitoring, Update, Störungsbehandlung, Geräte-Onboarding | task | cm | hoch | 6 | — |
 | [T-0071](tickets/T-0071.md) | DR: P0-Abschlussbericht → P0-Abnahme gegen Kap. 3 | decision-request | pl | hoch | 6 | T-0062, T-0063, T-0064, T-0065, T-0066, T-0067, T-0068, T-0070 |
-| [T-0062](tickets/T-0062.md) | Prozess-CR (Retro S5): board.py Status-Subkommando mit Übergangsprüfung | change-request | dev | mittel | 6 | — |
 | [T-0068](tickets/T-0068.md) | KPI-Baseline + Retro-Wirksamkeitsnachweis (P0-Kriterium 6) | task | pl | mittel | 6 | — |
 | [T-0069](tickets/T-0069.md) | Provider-PoC vervollständigen: Copilot-CLI-Executor (F13) + Ollama-Nachweis-Doku | task | dev | mittel | 6 | — |
 | [T-0070](tickets/T-0070.md) | Intake-Workflow für neue Projekte + P1-Hülle | task | pl | mittel | 6 | — |
+
+## in_progress (3)
+
+| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
+|---|---|---|---|---|---|---|
+| [T-0062](tickets/T-0062.md) | Prozess-CR (Retro S5): board.py Status-Subkommando mit Übergangsprüfung | change-request | dev | mittel | 6 | — |
 | [T-0063](tickets/T-0063.md) | Prozess-CR (Retro S5): feedback_route v1.1 — automatischer Feedback-Abschluss | change-request | dev | niedrig | 6 | — |
 | [T-0064](tickets/T-0064.md) | Prozess-CR (Retro S5): Produkt-Konfig produkte.yaml + trace_matrix --produkt | change-request | dev | niedrig | 6 | — |
 

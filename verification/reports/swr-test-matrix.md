@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-07 · SWRs: 29 (reviewed: 29) · Tests mit SWR-Bezug: 106 · ohne Bezug: 21
+Stand: 2026-08-07 · SWRs: 33 (reviewed: 33) · Tests mit SWR-Bezug: 113 · ohne Bezug: 21
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -32,7 +32,11 @@ Stand: 2026-08-07 · SWRs: 29 (reviewed: 29) · Tests mit SWR-Bezug: 106 · ohne
 | SWR-026 | reviewed | test_backend.py::MultiProjektTest::test_uebersicht_je_projekt<br>test_backend.py::HttpTest::test_multi_projekt_endpunkte | 2 Test(s) |
 | SWR-027 | reviewed | test_backend.py::MultiProjektTest::test_inbox_ueber_alle_projekte<br>test_backend.py::MultiProjektTest::test_entscheidung_im_richtigen_projekt<br>test_backend.py::HttpTest::test_multi_projekt_endpunkte | 3 Test(s) |
 | SWR-028 | reviewed | test_orchestrator.py::ProjektValidierungTest::test_unbekanntes_projekt_bricht_ab | 1 Test(s) |
-| SWR-029 | reviewed | test_preflight.py::MultiProjektBoardCheckTest::test_invalides_zweitprojekt_ist_befund<br>test_trace_matrix.py::MehrereSwrQuellenTest::test_merge_zweier_quellen_ohne_luecken | 2 Test(s) |
+| SWR-029 | reviewed | test_preflight.py::MultiProjektBoardCheckTest::test_invalides_zweitprojekt_ist_befund<br>test_trace_matrix.py::MehrereSwrQuellenTest::test_merge_zweier_quellen_ohne_luecken<br>test_trace_matrix.py::AlleProjekteTest::test_discovery_findet_projekt_swr_dokumente | 3 Test(s) |
+| SWR-030 | reviewed | test_backend.py::MultiProjektTest::test_views_requirements_verifikation_baselines | 1 Test(s) |
+| SWR-031 | reviewed | test_backend.py::MultiProjektTest::test_views_requirements_verifikation_baselines | 1 Test(s) |
+| SWR-032 | reviewed | test_backend.py::MultiProjektTest::test_views_requirements_verifikation_baselines | 1 Test(s) |
+| SWR-033 | reviewed | test_dr_benachrichtigung.py::BenachrichtigungTest::test_erfolg_setzt_marker_und_verhindert_doppelversand<br>test_dr_benachrichtigung.py::BenachrichtigungTest::test_fehlschlag_ohne_marker_wird_wiederholt<br>test_dr_benachrichtigung.py::BenachrichtigungTest::test_mailinhalt_traegt_projekt_und_frist | 3 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

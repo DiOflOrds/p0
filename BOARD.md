@@ -1,9 +1,9 @@
 # Board (generiert von platform/scripts/board.py — nicht von Hand editieren)
 
-Stand: 2026-08-07 · Tickets: 71
+Stand: 2026-08-07 · Tickets: 72
 
 
-## open (8)
+## open (9)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -15,6 +15,7 @@ Stand: 2026-08-07 · Tickets: 71
 | [T-0068](tickets/T-0068.md) | KPI-Baseline + Retro-Wirksamkeitsnachweis (P0-Kriterium 6) | task | pl | mittel | 6 | — |
 | [T-0069](tickets/T-0069.md) | Provider-PoC vervollständigen: Copilot-CLI-Executor (F13) + Ollama-Nachweis-Doku | task | dev | mittel | 6 | — |
 | [T-0070](tickets/T-0070.md) | Intake-Workflow für neue Projekte + P1-Hülle | task | pl | mittel | 6 | — |
+| [T-0072](tickets/T-0072.md) | Copilot-PoC-Lauf am Team-Node: DEV-Routineaufgabe via --provider copilot (Kriterium 9) | task | dev | mittel | 6 | — |
 
 ## done (62)
 

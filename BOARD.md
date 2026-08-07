@@ -16,15 +16,7 @@ Stand: 2026-08-07 · Tickets: 71
 | [T-0069](tickets/T-0069.md) | Provider-PoC vervollständigen: Copilot-CLI-Executor (F13) + Ollama-Nachweis-Doku | task | dev | mittel | 6 | — |
 | [T-0070](tickets/T-0070.md) | Intake-Workflow für neue Projekte + P1-Hülle | task | pl | mittel | 6 | — |
 
-## in_review (3)
-
-| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
-|---|---|---|---|---|---|---|
-| [T-0062](tickets/T-0062.md) | Prozess-CR (Retro S5): board.py Status-Subkommando mit Übergangsprüfung | change-request | dev | mittel | 6 | — |
-| [T-0063](tickets/T-0063.md) | Prozess-CR (Retro S5): feedback_route v1.1 — automatischer Feedback-Abschluss | change-request | dev | niedrig | 6 | — |
-| [T-0064](tickets/T-0064.md) | Prozess-CR (Retro S5): Produkt-Konfig produkte.yaml + trace_matrix --produkt | change-request | dev | niedrig | 6 | — |
-
-## done (59)
+## done (62)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
@@ -86,7 +78,10 @@ Stand: 2026-08-07 · Tickets: 71
 | [T-0058](tickets/T-0058.md) | Sprint-5-Report + Retro (max. 3 CRs) → G4 | task | pl | mittel | 5 | T-0057 |
 | [T-0059](tickets/T-0059.md) | Feedback (Mensch): --indent-Option für die JSON-Ausgabe | feedback | mensch | mittel | 5 | — |
 | [T-0060](tickets/T-0060.md) | CR (aus Feedback T-0059): Feedback (Mensch): --indent-Option für die JSON-Ausgabe | change-request | chg | mittel | 5 | — |
+| [T-0062](tickets/T-0062.md) | Prozess-CR (Retro S5): board.py Status-Subkommando mit Übergangsprüfung | change-request | dev | mittel | 6 | — |
 | [T-0051](tickets/T-0051.md) | Prozess-CR (Retro S4): board.py erzwingt optionen-Frontmatter für neue DRs | change-request | chg | niedrig | 5 | — |
+| [T-0063](tickets/T-0063.md) | Prozess-CR (Retro S5): feedback_route v1.1 — automatischer Feedback-Abschluss | change-request | dev | niedrig | 6 | — |
+| [T-0064](tickets/T-0064.md) | Prozess-CR (Retro S5): Produkt-Konfig produkte.yaml + trace_matrix --produkt | change-request | dev | niedrig | 6 | — |
 
 ## rejected (1)
 

@@ -10,7 +10,7 @@ Stand: 2026-08-07 · Tickets: 72
 | [T-0008](tickets/T-0008.md) | Anthropic-API-Key als Secret hinterlegen | task | mensch | hoch | 1 | — |
 | [T-0072](tickets/T-0072.md) | Copilot-PoC-Lauf am Team-Node: DEV-Routineaufgabe via --provider copilot (Kriterium 9) | task | dev | mittel | 6 | — |
 
-## in_progress (1)
+## in_review (1)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|

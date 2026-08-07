@@ -3,19 +3,24 @@
 Stand: 2026-08-07 · Tickets: 72
 
 
-## open (9)
+## open (3)
 
 | ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|
 | [T-0008](tickets/T-0008.md) | Anthropic-API-Key als Secret hinterlegen | task | mensch | hoch | 1 | — |
+| [T-0071](tickets/T-0071.md) | DR: P0-Abschlussbericht → P0-Abnahme gegen Kap. 3 | decision-request | pl | hoch | 6 | T-0062, T-0063, T-0064, T-0065, T-0066, T-0067, T-0068, T-0070 |
+| [T-0072](tickets/T-0072.md) | Copilot-PoC-Lauf am Team-Node: DEV-Routineaufgabe via --provider copilot (Kriterium 9) | task | dev | mittel | 6 | — |
+
+## in_progress (6)
+
+| ID | Titel | Typ | Rolle | Prio | Sprint | blockiert durch |
+|---|---|---|---|---|---|---|
 | [T-0065](tickets/T-0065.md) | Self-Check gegen Basispraktiken aller Stufe-1-Prozesse → Report (Fundstellen/Lücken) | task | qm | hoch | 6 | — |
 | [T-0066](tickets/T-0066.md) | Self-Check-Lücken schließen oder als P1-Backlog dokumentieren | task | pl | hoch | 6 | T-0065 |
 | [T-0067](tickets/T-0067.md) | Betriebs-Runbook: Backup, Monitoring, Update, Störungsbehandlung, Geräte-Onboarding | task | cm | hoch | 6 | — |
-| [T-0071](tickets/T-0071.md) | DR: P0-Abschlussbericht → P0-Abnahme gegen Kap. 3 | decision-request | pl | hoch | 6 | T-0062, T-0063, T-0064, T-0065, T-0066, T-0067, T-0068, T-0070 |
 | [T-0068](tickets/T-0068.md) | KPI-Baseline + Retro-Wirksamkeitsnachweis (P0-Kriterium 6) | task | pl | mittel | 6 | — |
 | [T-0069](tickets/T-0069.md) | Provider-PoC vervollständigen: Copilot-CLI-Executor (F13) + Ollama-Nachweis-Doku | task | dev | mittel | 6 | — |
 | [T-0070](tickets/T-0070.md) | Intake-Workflow für neue Projekte + P1-Hülle | task | pl | mittel | 6 | — |
-| [T-0072](tickets/T-0072.md) | Copilot-PoC-Lauf am Team-Node: DEV-Routineaufgabe via --provider copilot (Kriterium 9) | task | dev | mittel | 6 | — |
 
 ## done (62)
 

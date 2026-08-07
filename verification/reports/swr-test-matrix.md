@@ -1,18 +1,18 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-07 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 86 · ohne Bezug: 17
+Stand: 2026-08-07 · SWRs: 24 (reviewed: 24) · Tests mit SWR-Bezug: 95 · ohne Bezug: 21
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
 | SWR-001 | reviewed | test_board.py::TestBoard::test_gutfall<br>test_board.py::TestBoard::test_pflichtfeld_fehlt<br>test_board.py::TestBoard::test_ungueltiger_status<br>test_board.py::TestBoard::test_id_dateiname_mismatch<br>test_board.py::TestBoard::test_blocked_ohne_blocker<br>test_board.py::TestBoard::test_in_review_ohne_reviewer<br>test_board.py::TestBoard::test_in_review_reviewer_ist_autor<br>test_board.py::TestBoard::test_in_review_mit_reviewer_ok<br>test_board.py::TestBoard::test_crlf_toleranz<br>test_board.py::DecisionRequestFelderTest::test_gueltige_felder<br>test_board.py::DecisionRequestFelderTest::test_ungueltige_frist<br>test_board.py::DecisionRequestFelderTest::test_default_nicht_in_optionen<br>test_board.py::DecisionRequestFelderTest::test_neuer_dr_ohne_optionen_abgelehnt<br>test_board.py::DecisionRequestFelderTest::test_bestands_dr_ausgenommen<br>test_board.py::DecisionRequestFelderTest::test_optionstoken_zerlegung | 15 Test(s) |
-| SWR-002 | reviewed | test_board.py::TestBoard::test_uebergangsmatrix<br>test_board.py::TestBoard::test_mensch_tickets_ohne_uebergangspruefung | 2 Test(s) |
+| SWR-002 | reviewed | test_board.py::TestBoard::test_uebergangsmatrix<br>test_board.py::TestBoard::test_mensch_tickets_ohne_uebergangspruefung<br>test_board.py::SetzeStatusTest::test_gueltiger_uebergang_schreibt_ticket_und_board<br>test_board.py::SetzeStatusTest::test_unzulaessiger_uebergang_wird_abgelehnt<br>test_board.py::SetzeStatusTest::test_in_review_erfordert_reviewer<br>test_board.py::SetzeStatusTest::test_status_cli | 6 Test(s) |
 | SWR-003 | reviewed | test_board.py::TestBoard::test_blocked_by_unbekannt<br>test_board.py::TestBoard::test_blocked_by_selbstverweis | 2 Test(s) |
 | SWR-004 | reviewed | test_board.py::TestBoard::test_board_deterministisch<br>test_board.py::TestBoard::test_prio_sortierung<br>test_board.py::TestBoard::test_offene_blocker<br>test_board.py::TestBoard::test_main_schreibt_board | 4 Test(s) |
 | SWR-005 | reviewed | test_board.py::TestBoard::test_main_check_modus<br>test_board.py::TestBoard::test_main_fehlerfall | 2 Test(s) |
 | SWR-006 | reviewed | test_gateway.py::GatewayTest::test_vertrag_ok<br>test_gateway.py::GatewayTest::test_unbekannter_provider | 2 Test(s) |
-| SWR-007 | reviewed | test_gateway.py::GatewayTest::test_kettenfallback_bei_notimplemented<br>test_gateway.py::GatewayTest::test_claude_ohne_key_nicht_verfuegbar<br>test_orchestrator.py::RoutingTest::test_aufgaben_typ_kette<br>test_orchestrator.py::RoutingTest::test_default_kette<br>test_provider_apifrei.py::OllamaExecutorTest::test_nicht_erreichbar_faellt_in_kette_zurueck | 5 Test(s) |
-| SWR-008 | reviewed | test_gateway.py::GatewayTest::test_stub_executoren_nicht_verfuegbar<br>test_provider_apifrei.py::SessionExecutorTest::test_phase1_erzeugt_prompt_und_wartet<br>test_provider_apifrei.py::SessionExecutorTest::test_phase2_liest_antwort_ein<br>test_provider_apifrei.py::SessionExecutorTest::test_antwort_ohne_bloecke_kein_erfolg<br>test_provider_apifrei.py::SessionExecutorTest::test_wartet_wird_protokolliert<br>test_provider_apifrei.py::OllamaExecutorTest::test_modellwahl | 6 Test(s) |
-| SWR-009 | reviewed | test_orchestrator.py::ArbeitskopieTest::test_auftrag_enthaelt_repo_hinweis<br>test_provider_apifrei.py::DateiblockTest::test_parse_zwei_bloecke<br>test_provider_apifrei.py::DateiblockTest::test_parse_crlf<br>test_provider_apifrei.py::DateiblockTest::test_pfad_traversal_verboten<br>test_provider_apifrei.py::DateiblockTest::test_schreiben<br>test_provider_apifrei.py::DateiblockTest::test_keine_bloecke<br>test_provider_apifrei.py::DateiblockTest::test_repo_praefix_wird_entfernt<br>test_provider_apifrei.py::DateiblockTest::test_repo_praefix_nur_bei_treffer | 8 Test(s) |
+| SWR-007 | reviewed | test_copilot_executor.py::CopilotExecutorTest::test_fehlende_cli_faellt_zur_naechsten_stufe<br>test_gateway.py::GatewayTest::test_kettenfallback_bei_notimplemented<br>test_gateway.py::GatewayTest::test_claude_ohne_key_nicht_verfuegbar<br>test_orchestrator.py::RoutingTest::test_aufgaben_typ_kette<br>test_orchestrator.py::RoutingTest::test_default_kette<br>test_provider_apifrei.py::OllamaExecutorTest::test_nicht_erreichbar_faellt_in_kette_zurueck | 6 Test(s) |
+| SWR-008 | reviewed | test_copilot_executor.py::CopilotExecutorTest::test_fehlende_cli_faellt_zur_naechsten_stufe<br>test_copilot_executor.py::CopilotExecutorTest::test_dateibloecke_werden_eingepflegt<br>test_copilot_executor.py::CopilotExecutorTest::test_cli_fehler_liefert_log_statt_crash<br>test_gateway.py::GatewayTest::test_stub_executoren_nicht_verfuegbar<br>test_provider_apifrei.py::SessionExecutorTest::test_phase1_erzeugt_prompt_und_wartet<br>test_provider_apifrei.py::SessionExecutorTest::test_phase2_liest_antwort_ein<br>test_provider_apifrei.py::SessionExecutorTest::test_antwort_ohne_bloecke_kein_erfolg<br>test_provider_apifrei.py::SessionExecutorTest::test_wartet_wird_protokolliert<br>test_provider_apifrei.py::OllamaExecutorTest::test_modellwahl | 9 Test(s) |
+| SWR-009 | reviewed | test_copilot_executor.py::CopilotExecutorTest::test_dateibloecke_werden_eingepflegt<br>test_orchestrator.py::ArbeitskopieTest::test_auftrag_enthaelt_repo_hinweis<br>test_provider_apifrei.py::DateiblockTest::test_parse_zwei_bloecke<br>test_provider_apifrei.py::DateiblockTest::test_parse_crlf<br>test_provider_apifrei.py::DateiblockTest::test_pfad_traversal_verboten<br>test_provider_apifrei.py::DateiblockTest::test_schreiben<br>test_provider_apifrei.py::DateiblockTest::test_keine_bloecke<br>test_provider_apifrei.py::DateiblockTest::test_repo_praefix_wird_entfernt<br>test_provider_apifrei.py::DateiblockTest::test_repo_praefix_nur_bei_treffer | 9 Test(s) |
 | SWR-010 | reviewed | test_gateway.py::GatewayTest::test_modellaufloesung<br>test_orchestrator.py::RoutingTest::test_gate_relevanter_typ | 2 Test(s) |
 | SWR-011 | reviewed | test_gateway.py::GatewayTest::test_tick_limit_ueberschreitung_bricht_ab<br>test_gateway.py::GatewayTest::test_unvollstaendige_guardrails | 2 Test(s) |
 | SWR-012 | reviewed | test_gateway.py::GatewayTest::test_monatslimit_verhindert_lauf<br>test_gateway.py::GatewayTest::test_monatsreserve_zu_klein<br>test_gateway.py::GatewayTest::test_monatskosten_nur_laufender_monat | 3 Test(s) |
@@ -41,6 +41,8 @@ Keine.
 - test_feedback_route.py::RoutingTest::test_fehler_wird_problem
 - test_feedback_route.py::RoutingTest::test_feedback_geht_in_progress_mit_notiz
 - test_feedback_route.py::RoutingTest::test_dry_run_aendert_nichts
+- test_feedback_route.py::AbschlussTest::test_zwei_laeufe_schliessen_feedback
+- test_feedback_route.py::AbschlussTest::test_offenes_folgeticket_blockiert_abschluss
 - test_preflight.py::TestLockArtefakte::test_findet_bekannte_artefakte
 - test_preflight.py::TestLockArtefakte::test_sauberes_repo_ohne_funde
 - test_preflight.py::TestLockArtefakte::test_entfernen_meldet_erfolg
@@ -52,3 +54,5 @@ Keine.
 - test_trace_matrix.py::TestMatrix::test_unbekannte_swr_in_tests_ist_luecke
 - test_trace_matrix.py::TestIdMuster::test_produkt_muster_wird_erkannt
 - test_trace_matrix.py::TestIdMuster::test_default_verhalten_unveraendert
+- test_trace_matrix.py::ProduktCfgTest::test_cfg_aufloesung_und_unbekanntes_produkt
+- test_trace_matrix.py::ProduktCfgTest::test_echte_cfg_kennt_datakonv

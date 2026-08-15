@@ -10,17 +10,16 @@ Sprint-6-Ergebnis: Retro-CRs T-0062–64 (status-Subkommando, Feedback-Auto-Absc
 
 **P1 „Mission Control 2.0" ist ABGESCHLOSSEN (G4a/D009 via Inbox, 2026-08-15), Baseline `p1-v1.0`** (p1 + platform). Ergebnis: Multi-Projekt-Leitstand (ADR-004-Discovery, 8 Tabs), Inbox als Gate-Regelkanal (3 reale Inbox-Entscheidungen D006/D007/D009), E-Mail-Benachrichtigung live (Zustellnachweis T-0020; Empfänger per D008 dimitri.john83@gmail.com). Kriterien K1–K5 erfüllt (Abschlussbericht mit Evidenz). Ehrliche Abweichung: Benachrichtigt-Marker der T-0022-Mail fehlt im Repo → BB-6.
 
-**P2 „Betriebshärtung": Sprint 1 fertig (2026-08-15), G4 wartet in der Inbox.** G1 erteilt (D002 via Session-Dialog), Baseline `p2-req-v1.0`. Alle 6 SWRs umgesetzt und verifiziert: **Frist-Warnmails** (SWR-034/035, 2-Tage-Schwelle, Default-Hinweis), **Katalog-Check** (SWR-036) als Gate in abschluss.cmd + platform-CI, **Nutzer-Registry + Entscheider-Pflicht + Inbox-Härtung** (SWR-037–039 — entschiedene DRs verschwinden sofort, dein D001-Doppelklick ist damit unmöglich). E1/E3-Doku: Runbook Kap. 8 (Dienst-Checkliste), Geräteregister mit Soll-Toolchain. Tests **138+42 grün**, Matrix **39/0**. Betriebs-Backlog: nur noch BB-1 (Copilot CLI) und BB-5 (PAT-Termine) offen. **G4-DR T-0012 liegt in der Inbox** (Frist 2026-08-22, Default G4a).
+**P2 „Betriebshärtung": Sprint 2 (Abnahmesprint) fertig (2026-08-15) — nur noch der Abnahme-DR offen.** Sprint 1 abgenommen (G4a/**D003** via gehärtete Inbox, mit Entscheider im Log), Baseline `p2-v0.1`. Sprint 2: **Aufwandsschätzung eingeführt und gelebt** (E5/K4: 70 min geschätzt, 63 min Ist), Retro-Maßnahmen dokumentiert (Runbook Kap. 9 **Team-Node-Gate**, Gold-Beispiel „hermetische Tests"), zwei reale SUP.9-Zyklen im Projekt (T-0002 Suite-Mails/Windows, T-0013 CI-Tag-Rauschen/fetch-tags — beide gefixt). Abnahmebilanz K1–K5 im Report. **Abnahme-DR T-0017 liegt in der Inbox** — Frist **2026-08-17** bewusst in der Warnschwelle: der nächste abschluss-Lauf verschickt Neu-Mail UND Frist-Warnmail (= K2-Realnachweis; Dry-Run zeigt beide).
 
-## Warten auf Auftraggeber (~5 Min)
+## Warten auf Auftraggeber (~3 Min)
 
-1. **PAT erweitern** (für die neue Katalog-CI): [github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens) → `p0-read-fuer-platform-ci` → Repository access um **p2, process, produkt-datakonv** ergänzen. Ohne das wird der nächste platform-CI-Lauf rot (klare Meldung beim Checkout).
-2. **`abschluss.cmd`** — pusht Sprint 1 und mailt den G4-DR (T-0012).
-3. **T-0012 in der Inbox beantworten** (Projekt p2) — dabei siehst du live die neue Entscheider-Auswahl, und der DR verschwindet nach der Antwort sofort (SWR-039-Stichprobe).
+1. **`abschluss.cmd`** — pusht Sprint 2 (inkl. Tags `p2-v0.1`) und verschickt **zwei Mails** zu T-0017 an dimitri.john83@gmail.com: „Neuer Decision Request" und „FRIST-WARNUNG" mit Default-Hinweis. Beide im Posteingang = K2 erfüllt.
+2. **T-0017 in der Inbox beantworten** (Projekt p2): G4a = Sprint 2 abnehmen + P2 abschließen. Achtung: Frist ist der 17.08. — danach greift der Default G4a automatisch.
 
 ## Nächste Session
 
-Nach der G4-Antwort: D003 verbuchen, Baseline `p2-v0.1` (p2 + platform), **„Starte P2 Sprint 2"** — Aufwandsschätzung (E5, erstmals selbst gelebt), K2-Realnachweis (Warnmail), Windows-Gate-Schritt (Retro-Maßnahme 1), dann Abnahme G3/G4.
+Nach der Antwort (oder dem Default): D004 verbuchen, **Baseline `p2-v1.0`**, P2-Abschlussbericht — drittes Projekt fertig, Team wieder im Regelbetrieb. Danach offen nur Betrieb: BB-1 (Copilot CLI + T-0072-Lauf), BB-5 (PAT-Erneuerung ab 2026-09-05), neues Projekt jederzeit per Intake.
 
 ## Betriebs-Backlog (Runbook Kap. 7)
 

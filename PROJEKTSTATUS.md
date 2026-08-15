@@ -23,15 +23,16 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 **team-mail ist LIVE (TG-a + D001, 2026-08-15)** — erstes Projekt-Team der Organisation im echten Betrieb: Postfach dimitri.john83@gmail.com, Zugang über vorhandene Mail-Einrichtung (SMTP-Fallback), IMAP-Test real grün (57 Mails), T-0002 done, **erster Digest geliefert** (`team-mail/digest/2026-08-15-digest.md` — 3 Reaktionspunkte, Sicherheits-Check, Rest kompakt). Repo lokal ohne GitHub-Remote (Datenklasse sensibel, `.kein-remote`). Takt T-0001 läuft ab jetzt je Session; Pilotreview ab 2026-08-29 (B002/B003).
 
+**AKTIV: P7 „Teams im HMI" (Sprint 0 geliefert, wartet auf G1).** Beauftragt via pm/T-0005 als **P7b** (pm/D001 → p7/D000, kein Doppel-G0): Team-Tab mit Digest-Verlauf, Cockpit-Kachel, PIN-geschützter Konfigurator, Digest-Mailversand; Sicherheitslinie: Remote-**Lesen** sensibler Team-Inhalte nur mit PIN. STK-017 + SWR-053–058 reviewed, Matrix 58/0. G1-DR: `p7/T-0003` (Frist 2026-08-22, Default G1a). Sofortteil bereits live: `team-mail/konfiguration.yaml` (Tages/Wochen/Monat, Mehrkonto, Rechnungs-Abschnitt) + mail_digest v0.2.
+
 **Auto-Abschluss ist AKTIV (D028, Wunsch pm/N-0001):** Session schreibt `PUSH-ANFORDERUNG.txt`, die Windows-Aufgabenplanung führt `abschluss-auto.cmd` alle 15 Min aus (nur bei Anforderung; Log `abschluss-auto.log`). Einmalige Registrierung nötig — Befehl in der Briefantwort pm/N-0001 und Runbook Kap. 11. **Session-Pflicht ab jetzt: an jedem Abschlusspunkt die Anforderung schreiben.**
 
 *Ursprünglicher Intake-Vermerk:* Auftraggeber-Update vom 15.08.: Die Organisation wächst — neben dem ASPICE-Team entstehen ein **PM-Team** und beliebige **Projekt-Teams** (Steuer, Mail, Trading-Analyse, Wissenschaft …). Grundlage: Orgkonzept v1.0 (`process/docs/02-genesis-2.0-orgkonzept.md`, Lücken L1–L9) + **p0/D027** (F14 Session-Takt 0 €, F15 Klasse B an PM, F16 Pilot = Mail-Zusammenfassung, F17 harte Guardrails: KI handelt nie mit Außenwirkung, sensible Daten nie in Repos mit GitHub-Remote). P5 baut den Rahmen: Prozessprofile (entwicklung/dienstleistung/wiederkehrend), Entscheidungsklassen A/B/C, Team-Registry + Template, PM-Repo `pm`. 2 Sprints, 0 €. Danach P6: reale Gründung des Pilot-Teams. G0-DR: `p5/T-0001` (Frist 2026-08-22, Default G0a).
 
 ## Warten auf Auftraggeber
 
-1. **Aufgabenplanung registrieren** (einmalig, normale Eingabeaufforderung): `schtasks /Create /TN "ASPICE-AutoAbschluss" /TR "\"C:\Users\KI_I7_Machine\Downloads\aspice-team-repos-final\abschluss-auto.cmd\"" /SC MINUTE /MO 15 /F` — die erste PUSH-ANFORDERUNG liegt schon bereit, der Push passiert dann von selbst (Log: abschluss-auto.log).
-2. **IMAP einrichten** für den ersten Digest: team-mail/T-0002 (App-Passwort + 3× setx, Runbook Kap. 12).
-3. Team-Chat lesen: Antwort auf deinen Brief wartet in **pm/N-0001**.
+1. **GitHub-Repo `DiOflOrds/p7`** anlegen (privat, leer) + Secret `PLATFORM_READ_TOKEN` in p7 + PAT `p0-read-fuer-platform-ci` um p7 erweitern. (Falls pm-Repo/Aufgabenplanung noch offen: ebenfalls erledigen — Runbook Kap. 11.)
+2. **Inbox:** G1 zu P7 entscheiden (`p7/T-0003`, 1 Stichprobe: SWR-Set, 3 Min). Danach: „Starte P7 Sprint 1".
 
 ## Betriebs-Backlog
 

@@ -31,9 +31,9 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 ## Warten auf Auftraggeber
 
-**NEU: P8 „Mail-Autopilot" wartet auf G0** (`p8/T-0001`, Frist 2026-08-22, Default G0a) — aus deinem Brief N-0002: Ollama verdichtet lokal (0 €, revidiert F14 für team-mail), Sofort-Zusammenfassung per Knopf, Tag/Woche/Monat gleichzeitig. **Neustart-Knopf ist da** (SWR-061, p7/T-0015): einmal noch von Hand über die neuen Skripte `mission-control.cmd` / `mission-control-lan.cmd` starten — ab dann per „⟳ Neustart" im HMI.
+**AKTIV: P8 „Mail-Autopilot" (Sprint 1 geliefert, wartet auf Abnahme).** G0 (D000, „Ollama vorhanden") und G1 (D001) via Inbox. Umgesetzt: **mail_digest v1.0** — lokale Ollama-Verdichtung mit Fallback, **Mehrfach-Takt** (Tag/Woche/Monat gleichzeitig, je Takt eigene Fälligkeit + Einmal-Zustellung), **`--auto`** für die Aufgabenplanung (Runbook Kap. 13), **„Jetzt zusammenfassen (Ollama)"-Knopf** im Team-Tab, Takt-Checkboxen im Konfigurator. 171 Tests grün, Matrix 65/0, Mail-Inhalte verlassen den Rechner nie. Abnahme-DR: `p8/T-0008` (Frist 2026-08-23, Default G4a — Stichprobe 1: Sofort-Knopf drücken und die Ollama-Qualität bewerten; Stichprobe 2: Aufgabenplanung „ASPICE-MailAutopilot" registrieren).
 
-Deine Schritte: 1. GitHub-Repo `DiOflOrds/p8` + Secret + PAT-Erweiterung (wie gehabt). 2. Server über das neue Skript starten. 3. Inbox: G0 zu P8 entscheiden. Sonst: Pilotreview team-mail ab 29.08., BB-5 PAT ab 5.9.
+Danach ist der Kreis geschlossen: Digest entsteht und kommt per Mail — ganz ohne Session. Sonst: Pilotreview team-mail ab 29.08., BB-5 PAT ab 5.9.
 
 ## Betriebs-Backlog
 

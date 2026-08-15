@@ -19,15 +19,17 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 **Fünf Projekte abgeschlossen** (P0 Genesis, P1 MC 2.0, P2 Betriebshärtung, P3 MC 3.0, P4 MC 3.1), 1 Produkt released, 156+42 Tests, 52 SWRs / 0 Lücken, 0,00 € API über alles. Session-Routine: **Briefkasten zuerst.**
 
-**AKTIV: P5 „Genesis 2.0 — Organisationsrahmen" (Sprint 1 geliefert, wartet auf G4/Abnahme).** G0 (D000) und G1 (D001) via Inbox erteilt. Sprint 0: Playbook Kap. 15 (drei Prozessprofile) + Kap. 16 (Entscheidungsklassen A/B/C, F17-Guardrails), Team-Registry, Team-Template, intake.md v2. Sprint 1: **PM-Team real gegründet** — Repo `pm` (Charter, 4 SLAs, Kanban-Takt-Tickets, Session-Agenda v1, Klasse-B-Log B000/B001), Registry `aktiv`, erscheint per Discovery automatisch in Mission Control; **E5-Befund:** Plattform trägt sprintlosen Betrieb ohne Code-Änderung (keine neuen SWRs nötig); **K3-Probelauf** des Templates grün. Abnahme-DR: `p5/T-0011` (Frist 2026-08-22, Default G4a, 3 Stichproben). Danach: Baseline `p5-v1.0` + P6-Gründungs-DR (Pilot Mail-Team).
+**P5 „Genesis 2.0 — Organisationsrahmen" ist ABGESCHLOSSEN (G4a/D002, 2026-08-15), Baseline `p5-v1.0`** (p5 + platform). Geliefert: Playbook Kap. 15 (drei Prozessprofile) + Kap. 16 (Entscheidungsklassen A/B/C, F17-Guardrails), Team-Registry, Gründungs-Template, intake.md v2 — und als erster Vollzug das **PM-Team** (`pm`: Charter, SLAs, Kanban, Session-Agenda, Klasse-B-Log). 0 Zeilen Plattform-Code, 0 € API, 1 Tag. **Die Organisation läuft ab jetzt über die PM-Session-Agenda** (`pm/management/session-agenda.md`). Sechs Projekte abgeschlossen.
+
+**Nächster Klasse-A-Entscheid in der Inbox: `pm/T-0004`** — Gründung Pilot-Team **team-mail** (Mail-Zusammenfassung, F16/D027): Datenklasse `sensibel` → lokales Repo ohne GitHub-Remote (Guardrail 2), IMAP nur lesend als lokale Env-Vars, Digest je Session. Vorgehen lt. B002: Routine-Gründung mit 2-Wochen-Pilotreview statt eigenem Projektrepo „P6". Frist 2026-08-22, Default TG-a.
 
 *Ursprünglicher Intake-Vermerk:* Auftraggeber-Update vom 15.08.: Die Organisation wächst — neben dem ASPICE-Team entstehen ein **PM-Team** und beliebige **Projekt-Teams** (Steuer, Mail, Trading-Analyse, Wissenschaft …). Grundlage: Orgkonzept v1.0 (`process/docs/02-genesis-2.0-orgkonzept.md`, Lücken L1–L9) + **p0/D027** (F14 Session-Takt 0 €, F15 Klasse B an PM, F16 Pilot = Mail-Zusammenfassung, F17 harte Guardrails: KI handelt nie mit Außenwirkung, sensible Daten nie in Repos mit GitHub-Remote). P5 baut den Rahmen: Prozessprofile (entwicklung/dienstleistung/wiederkehrend), Entscheidungsklassen A/B/C, Team-Registry + Template, PM-Repo `pm`. 2 Sprints, 0 €. Danach P6: reale Gründung des Pilot-Teams. G0-DR: `p5/T-0001` (Frist 2026-08-22, Default G0a).
 
 ## Warten auf Auftraggeber
 
-1. **GitHub-Repo `DiOflOrds/pm`** anlegen (privat, leer) + Secret **PLATFORM_READ_TOKEN** in pm + PAT-Erweiterungen um pm (beide PATs: platform-Lese-PAT und p0-read-fuer-platform-ci — Repo-Auswahl editieren, Token-Werte bleiben gleich).
-2. **`abschluss.cmd`** — pusht Sprint 1 (pm-Repo, Registry aktiv, Report, T-0007–T-0011, CI-Erweiterung).
-3. **Inbox:** G4/Abnahme zu P5 entscheiden (T-0011, 3 Stichproben: pm im Cockpit, Agenda + Klasse-B-Log, K-Bilanz). Danach: „P5 abschließen" oder einfach die nächste Session starten — die Agenda kennt den Weg.
+1. Falls noch offen: GitHub-Repo `DiOflOrds/pm` + Secret `PLATFORM_READ_TOKEN` in pm + PAT `p0-read-fuer-platform-ci` um pm erweitern (nur diese eine — die platform-Lese-PAT braucht keine Erweiterung).
+2. **`abschluss.cmd`** — pusht P5-Abschluss (Tags `p5-v1.0` auf p5 + platform) und den pm-Stand.
+3. **Inbox:** `pm/T-0004` entscheiden — Gründung team-mail (TG-a/b/c). Bei TG-a folgt in der nächsten Session: Gründung + IMAP-Einrichtungs-Anleitung + erster Digest.
 
 ## Betriebs-Backlog
 

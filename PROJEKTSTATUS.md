@@ -23,7 +23,7 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 **team-mail ist LIVE (TG-a + D001, 2026-08-15)** — erstes Projekt-Team der Organisation im echten Betrieb: Postfach dimitri.john83@gmail.com, Zugang über vorhandene Mail-Einrichtung (SMTP-Fallback), IMAP-Test real grün (57 Mails), T-0002 done, **erster Digest geliefert** (`team-mail/digest/2026-08-15-digest.md` — 3 Reaktionspunkte, Sicherheits-Check, Rest kompakt). Repo lokal ohne GitHub-Remote (Datenklasse sensibel, `.kein-remote`). Takt T-0001 läuft ab jetzt je Session; Pilotreview ab 2026-08-29 (B002/B003).
 
-**AKTIV: P7 „Teams im HMI" (Sprint 0 geliefert, wartet auf G1).** Beauftragt via pm/T-0005 als **P7b** (pm/D001 → p7/D000, kein Doppel-G0): Team-Tab mit Digest-Verlauf, Cockpit-Kachel, PIN-geschützter Konfigurator, Digest-Mailversand; Sicherheitslinie: Remote-**Lesen** sensibler Team-Inhalte nur mit PIN. STK-017 + SWR-053–058 reviewed, Matrix 58/0. G1-DR: `p7/T-0003` (Frist 2026-08-22, Default G1a). Sofortteil bereits live: `team-mail/konfiguration.yaml` (Tages/Wochen/Monat, Mehrkonto, Rechnungs-Abschnitt) + mail_digest v0.2.
+**AKTIV: P7 „Teams im HMI" (Sprint 1 geliefert, wartet auf G4-Sprint-1).** Beauftragt als **P7b** (pm/D001 → p7/D000); G1 erteilt (p7/D001, Baseline p7-req-v1.0). Sprint 1 fertig: Modul `teams.py` + `/api/team*` mit **PIN-Lesegate** (ADR-006-Delta, architektur v1.4), Konfigurations-Schreibpfad mit Sofort-Commit („Mensch via HMI", Konten = Klasse A ausgenommen), **Tab „Team"** (Digest-Verlauf/-Detail, Steckbrief, Charter, Konfigurator-Formular), Cockpit-Team-Kachel. 162 Tests grün (+6), Matrix 58/0. G4-DR: `p7/T-0009` (Frist 2026-08-22, Default G4a, 4 kurze Stichproben — Server vorher neu starten). Danach Sprint 2: Digest-Mailversand (SWR-058) + Abnahme. Sofortteil weiter live: `team-mail/konfiguration.yaml` + mail_digest v0.2.
 
 **Auto-Abschluss ist AKTIV (D028, Wunsch pm/N-0001):** Session schreibt `PUSH-ANFORDERUNG.txt`, die Windows-Aufgabenplanung führt `abschluss-auto.cmd` alle 15 Min aus (nur bei Anforderung; Log `abschluss-auto.log`). Einmalige Registrierung nötig — Befehl in der Briefantwort pm/N-0001 und Runbook Kap. 11. **Session-Pflicht ab jetzt: an jedem Abschlusspunkt die Anforderung schreiben.**
 
@@ -31,8 +31,8 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 ## Warten auf Auftraggeber
 
-1. **GitHub-Repo `DiOflOrds/p7`** anlegen (privat, leer) + Secret `PLATFORM_READ_TOKEN` in p7 + PAT `p0-read-fuer-platform-ci` um p7 erweitern. (Falls pm-Repo/Aufgabenplanung noch offen: ebenfalls erledigen — Runbook Kap. 11.)
-2. **Inbox:** G1 zu P7 entscheiden (`p7/T-0003`, 1 Stichprobe: SWR-Set, 3 Min). Danach: „Starte P7 Sprint 1".
+1. Falls noch offen: GitHub-Repo `DiOflOrds/p7` + Secret + PAT-Erweiterung (siehe Runbook); Push läuft per Auto-Abschluss (Anforderung liegt bereit).
+2. **Server neu starten** (mission-control[-lan].cmd) — dann **Inbox:** G4 Sprint 1 entscheiden (`p7/T-0009`, 4 Stichproben à ~1 Min: Team-Tab, Konfigurator, PIN-Lesegate, Cockpit-Kachel). Danach: „Starte P7 Sprint 2".
 
 ## Betriebs-Backlog
 

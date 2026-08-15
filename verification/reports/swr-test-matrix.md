@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-15 · SWRs: 60 (reviewed: 60) · Tests mit SWR-Bezug: 161 · ohne Bezug: 19
+Stand: 2026-08-15 · SWRs: 61 (reviewed: 61) · Tests mit SWR-Bezug: 161 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -64,6 +64,7 @@ Stand: 2026-08-15 · SWRs: 60 (reviewed: 60) · Tests mit SWR-Bezug: 161 · ohne
 | SWR-058 | reviewed | test_digest_zustellung.py::DigestZustellungTest::test_sendet_einmal_und_vermerkt<br>test_digest_zustellung.py::DigestZustellungTest::test_deaktivierte_teams_werden_uebersprungen<br>test_digest_zustellung.py::DigestZustellungTest::test_fehler_blockiert_nicht_und_vermerkt_nicht<br>test_digest_zustellung.py::DigestZustellungTest::test_dry_run_sendet_nichts | 4 Test(s) |
 | SWR-059 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-060 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-061 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

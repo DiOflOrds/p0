@@ -15,13 +15,23 @@
 
 Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 realer SUP.9-Zyklen (Test-Mails/Windows-Pfade, CI-Tag-Rauschen/fetch-tags, Hermetik-Nachzügler), deren Lehren als Runbook-Regeln (Kap. 8/9), Gold-Beispiel und Anforderung SWR-047 im System gelandet sind. Copilot-PoC ehrlich als extern blockiert geschlossen (p0/D026: Abo abgelaufen; Reaktivierung per CR).
 
-## Warten auf Auftraggeber
+**P4 „Mission Control 3.1: Fernzugriff & Briefkasten-Chat" per Intake angelegt (2026-08-15, CR auf P3).** Dreifach-Wunsch des Auftraggebers: LAN-Sichtbarkeit (mit PIN-Schutz für Schreibzugriffe), volle Handy-Bedienung (Android/Chrome, realer Gerätetest), Team-Konversation im Browser — im Intake als **Briefkasten-Chat** entschieden (Session-Austausch, 0 €, asynchron; Live-API-Chat als Folge-CR zurückgestellt). 3 Epics, 5 Abnahmekriterien, 2 Sprints, Leitplanke: nur LAN, kein Internet-Expose. Hülle `p4/` valide, platform-CI um p4 erweitert. **G0 wartet als Inbox-DR T-0001** (Frist 2026-08-22, Default G0a).
 
-Nur noch: **`abschluss.cmd`** — pusht den P3-Abschluss inkl. Tags `p3-v1.0`. Danach ist alles draußen.
+## Warten auf Auftraggeber (~5 Min)
+
+1. GitHub-Repo **p4** anlegen (privat, ohne README): [github.com/new](https://github.com/new) → dann: `git -C p4 remote add origin https://github.com/DiOflOrds/p4.git`
+2. Secret: [github.com/DiOflOrds/p4/settings/secrets/actions](https://github.com/DiOflOrds/p4/settings/secrets/actions) → `PLATFORM_READ_TOKEN` (gleicher Wert wie bisher).
+3. PAT `p0-read-fuer-platform-ci` um **p4** erweitern: [github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens).
+4. **`abschluss.cmd`** — pusht P3-Abschluss (Tags `p3-v1.0`) + p4 und mailt den G0-DR.
+5. **T-0001 in der Inbox beantworten** (Projekt p4) — per Button, versteht sich.
+
+## Nächste Session
+
+Nach der G0-Antwort: **„Starte P4 Sprint 0"** — Anforderungen ab SWR-048 (→ G1) + ADR-006 (LAN-Bind, PIN-Mechanik, Briefkasten-Ablage → G2).
 
 ## Betriebs-Backlog
 
-**BB-5** PAT-Erneuerung ab 2026-09-05 (Runbook Kap. 4/7) — sonst leer. CR-Kandidaten aus den Schluss-Retros: JS-Test-Ansatz fürs Frontend (P3-R1), Architekturbilder je Produkt-Repo (P3-R2), Aufwandsschätzung als Playbook-Standard nach Kalibrierung (P2-R1). Neues Projekt jederzeit per **„Starte Intake"**.
+**BB-5** PAT-Erneuerung ab 2026-09-05 (Runbook Kap. 4/7) — sonst leer. CR-Kandidaten: Live-API-Chat mit Budgetfreigabe (P4-Rest), JS-Tests (P3-R1), Produkt-Architekturbilder (P3-R2), Schätz-Kalibrierung (P2-R1).
 
 ## Offene Fragen
 

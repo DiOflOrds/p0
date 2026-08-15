@@ -15,19 +15,16 @@
 
 Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 realer SUP.9-Zyklen (Test-Mails/Windows-Pfade, CI-Tag-Rauschen/fetch-tags, Hermetik-Nachzügler), deren Lehren als Runbook-Regeln (Kap. 8/9), Gold-Beispiel und Anforderung SWR-047 im System gelandet sind. Copilot-PoC ehrlich als extern blockiert geschlossen (p0/D026: Abo abgelaufen; Reaktivierung per CR).
 
-**P4 „Mission Control 3.1: Fernzugriff & Briefkasten-Chat" per Intake angelegt (2026-08-15, CR auf P3).** Dreifach-Wunsch des Auftraggebers: LAN-Sichtbarkeit (mit PIN-Schutz für Schreibzugriffe), volle Handy-Bedienung (Android/Chrome, realer Gerätetest), Team-Konversation im Browser — im Intake als **Briefkasten-Chat** entschieden (Session-Austausch, 0 €, asynchron; Live-API-Chat als Folge-CR zurückgestellt). 3 Epics, 5 Abnahmekriterien, 2 Sprints, Leitplanke: nur LAN, kein Internet-Expose. Hülle `p4/` valide, platform-CI um p4 erweitert. **G0 wartet als Inbox-DR T-0001** (Frist 2026-08-22, Default G0a).
+**P4 „Mission Control 3.1: Fernzugriff & Briefkasten-Chat" — Sprint 0 gelaufen (2026-08-15).** G0 erteilt (D000 via Inbox). Requirements-first steht: **STK-016 + SWR-048–052** reviewed (Remote-Schreibzugriffe nur mit PIN bei freiem localhost, PIN-Eingabe im Frontend, Briefkasten als versionierte Dateien mit sofortigem Commit + Konversations-API, Team-Chat-Tab mit Cockpit-Hinweis, volle Handy-Bedienbarkeit inkl. PWA-Installation). **ADR-006 + architektur.md v1.3** (localhost-frei/remote-PIN mit sicherem Default, Briefkasten-Ablageformat, LAN-Prozedur; harte Leitplanke: kein Internet-Expose). Matrix 52/0, Preflight STARTKLAR. **G1-DR T-0005 und G2-DR T-0006 liegen in der Inbox** (Frist 2026-08-22, Defaults G1a/G2a).
 
-## Warten auf Auftraggeber (~5 Min)
+## Warten auf Auftraggeber (~4 Min)
 
-1. GitHub-Repo **p4** anlegen (privat, ohne README): [github.com/new](https://github.com/new) → dann: `git -C p4 remote add origin https://github.com/DiOflOrds/p4.git`
-2. Secret: [github.com/DiOflOrds/p4/settings/secrets/actions](https://github.com/DiOflOrds/p4/settings/secrets/actions) → `PLATFORM_READ_TOKEN` (gleicher Wert wie bisher).
-3. PAT `p0-read-fuer-platform-ci` um **p4** erweitern: [github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens).
-4. **`abschluss.cmd`** — pusht P3-Abschluss (Tags `p3-v1.0`) + p4 und mailt den G0-DR.
-5. **T-0001 in der Inbox beantworten** (Projekt p4) — per Button, versteht sich.
+1. **`abschluss.cmd`** — pusht Sprint 0 und mailt beide DRs (G1 + G2).
+2. **In der Inbox beantworten** (Projekt p4): **T-0005** (G1: SWR-Set — deckt es die drei Wünsche?) und **T-0006** (G2: ADR-006, besonders die Sicherheits-Leitplanke).
 
 ## Nächste Session
 
-Nach der G0-Antwort: **„Starte P4 Sprint 0"** — Anforderungen ab SWR-048 (→ G1) + ADR-006 (LAN-Bind, PIN-Mechanik, Briefkasten-Ablage → G2).
+Nach beiden Antworten: **„Starte P4 Sprint 1"** — Umsetzung: PIN-Schutz + LAN-Startskript + Runbook (E1), Briefkasten-Endpunkte + Chat-Tab (E3), Mobile-Feinschliff (E2), dann reale Geräte-Stichproben (Handy!) und Abnahme.
 
 ## Betriebs-Backlog
 

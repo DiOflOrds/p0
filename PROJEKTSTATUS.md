@@ -1,34 +1,36 @@
-# Projektstatus P0 „Genesis" — Fortschreibung über Sessions
+# Projektstatus — Fortschreibung über Sessions
 
-*Dieses Dokument ist der Übergabepunkt zwischen Cowork-Sessions: aktueller Stand, nächste Schritte, offene Punkte. Zuletzt aktualisiert: 2026-08-07 (Sprint 5 ABGESCHLOSSEN UND ABGENOMMEN, D022). Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert; im Claude-Projekt ersetzt es `aspice-team/10-projektstatus.md` (oder p0-Repo als GitHub-Quelle verbinden).*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-15 — **P0 UND P1 ABGESCHLOSSEN, TEAM IM REGELBETRIEB**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
 
-**Sprint 0–5: abgeschlossen und abgenommen.** Sprint 5 „Generalprobe Teil 2 + Release" (**G4/D022**, Baseline **`genesis-v0.5`**): **datakonv 1.0.0 released** (G3/D021, Tags `v1.0.0` + `req-v1.1`, Produktkatalog-Eintrag) — **P0-Abnahmekriterium 1 (E2E-Nachweis) ist erfüllt:** SWE.1–SWE.6, realer Problem-Zyklus und realer Feedback→CR-Zyklus liefen ohne operative Mensch-Arbeit (nur Clarifications, Gates, Feedback). Kernstand:
+**P0 ist fertig.** Sprints 0–6 abgeschlossen, P0-Abnahme gegen Kap. 3 erteilt (D024), Baseline **`genesis-v1.0`** getaggt. Das Team ist einsatzbereit: 10 aktive Rollen, Plattform mit 112 grünen Tests und 3 CI-Matrix-Gates, released Produkt **datakonv 1.0.0** (42 Tests, Katalog-Eintrag), Runbook, Intake-Workflow, P1-Hülle mit priorisiertem Backlog (B1–B10). Gesamtkosten: **0,00 € API** — alles über Abo-Session, Ollama und Skript-Routen.
 
-- **Realer Problem-Zyklus (T-0053):** BOM-Befund aus der Integrationsverifikation (T-0052, E2E-Suite) → Fix + SWR-D14-Präzisierung + Regressionstests.
-- **Realer CR-Zyklus (T-0054/T-0059/T-0060):** Mensch-Feedback (--indent) → Routing-Skript v1 (T-0055, Erstlauf korrekt) → Impact-Analyse → SWR-D18 reviewed vor Code → Umsetzung.
-- **Produktkatalog v0** (`process/catalog/`, Masterplan 5.5) mit Generator-Skript; erster Eintrag live.
-- **Retro-CRs S4 umgesetzt** (T-0049 Matrix-Gate produkt-CI, T-0050 Preflight+Produkt-Repos, T-0051 DR-optionen-Pflicht — fand real den Bestands-DR T-0022).
-- KPIs: Tests 101 (platform) + 42 (produkt) grün · Matrizen 24/0 und 18/0 · API-Kosten Sprint 0–5: **0,00 €** · Gates G1–G4 alle real durchlaufen · Entscheidungen D000–D022.
-- Retro-CRs für Sprint 6: **T-0062** (board.py Status-Subkommando), **T-0063** (Feedback-Auto-Abschluss), **T-0064** (produkte.yaml + `trace_matrix --produkt`).
+Sprint-6-Ergebnis: Retro-CRs T-0062–64 (status-Subkommando, Feedback-Auto-Abschluss, produkte.yaml), Self-Check (12 Gebiete belegt, Lücken adressiert), KPI-Baseline mit Wirksamkeitsnachweis über 14 Prozess-CRs, Copilot-Executor v1 (D023: Abo vorhanden), Betriebs-Runbook, Intake + P1-Hülle, Abschlussbericht. Abweichungen der Abnahme (Kriterien 4/5/9 teilweise) transparent dokumentiert und nachverfolgt (B5/B6/B9, T-0072).
 
-## Warten auf Auftraggeber
+**P1 „Mission Control 2.0" ist ABGESCHLOSSEN (G4a/D009 via Inbox, 2026-08-15), Baseline `p1-v1.0`** (p1 + platform). Ergebnis: Multi-Projekt-Leitstand (ADR-004-Discovery, 8 Tabs), Inbox als Gate-Regelkanal (3 reale Inbox-Entscheidungen D006/D007/D009), E-Mail-Benachrichtigung live (Zustellnachweis T-0020; Empfänger per D008 dimitri.john83@gmail.com). Kriterien K1–K5 erfüllt (Abschlussbericht mit Evidenz). Ehrliche Abweichung: Benachrichtigt-Marker der T-0022-Mail fehlt im Repo → BB-6.
 
-1. **Secret `PLATFORM_READ_TOKEN` in DiOflOrds/produkt-datakonv anlegen** (gleiche PAT wie p0/board-check; Anleitung im CI-Workflow-Kopf), dann **`sprint5-abschluss.cmd` ausführen** — prüft alles, pusht alle vier Repos inkl. Tags, öffnet die Actions.
-2. Offene Fragen F6, F8–F13; T-0008 (API-Key) bleibt bewusst verschoben (D015) — Wiedervorlage in Sprint 6 (Copilot-/Ollama-PoC braucht ihn nicht, der erste Claude-Tick schon).
+**P2 „Betriebshärtung" per Intake angelegt (2026-08-15):** Projektwahl durch Auftraggeber (Session-Dialog), Repo-Hülle `p2/` valide (board-check grün), Projektauftrag v0.1 mit 6 Epics (BB-2/3/4, B7, B3, F9) und 5 Abnahmekriterien. **G0 wartet als Inbox-DR T-0001** (Frist 2026-08-22, Default G0a) — dessen Mail ist zugleich der BB-6-Nachweis. `abschluss.cmd` pusht jetzt generisch jedes Repo mit Remote.
 
-## Nächste Session (Sprint 6 — „Härtung, Self-Check & Abnahme", letzter P0-Sprint)
+## Warten auf Auftraggeber (~5 Min)
 
-1. Sprint-6-Planning (PL): Retro-CRs T-0062–T-0064; **Self-Check** gegen die Basispraktiken aller Stufe-1-Prozesse (QM+COACH, Report mit Fundstellen/Lücken); Lücken schließen oder als P1-Backlog dokumentieren.
-2. **Betriebs-Runbook** (CM): Backup, Monitoring, Update, Störungsbehandlung, Geräte-Onboarding; KPI-Baseline + Retro-Wirksamkeitsnachweis (Kriterium 6).
-3. **Team-Node-PoC-Vervollständigung:** Copilot-CLI-Executor (F13: gh-Login nötig) und Ollama-Executor-Nachweis; Intake-Workflow P1 + P1-Hülle.
-4. **P0-Abschlussbericht** → P0-Abnahme gegen Kap. 3 (= G3 für P0 selbst) durch den Menschen.
+1. GitHub-Repo **p2** anlegen (privat): [github.com/new](https://github.com/new) → Name `p2`, Private, ohne README. Dann im cmd-Fenster im Repo-Ordner: `git -C p2 remote add origin https://github.com/DiOflOrds/p2.git`
+2. Secret setzen: [github.com/DiOflOrds/p2/settings/secrets/actions](https://github.com/DiOflOrds/p2/settings/secrets/actions) → `PLATFORM_READ_TOKEN` (gleiche PAT wie bei p0/p1).
+3. **`abschluss.cmd`** — pusht alles (inkl. p1-v1.0-Tags + p2) und mailt den G0-DR an dimitri.john83@gmail.com.
+4. **T-0001 in der Inbox beantworten** (Projekt p2): G0a = Projektauftrag freigeben.
+
+## Nächste Session
+
+Nach der G0-Antwort: D000 verbuchen, Sprint-0-Planning P2 (Anforderungen E2/E4/E6 requirements-first → G1). Aufruf: **„Starte P2 Sprint 0"**.
+
+## Betriebs-Backlog (Runbook Kap. 7)
+
+BB-1 Copilot CLI installieren + T-0072-Lauf (schließt P0-K9) · BB-2/3/4 → **in P2 übernommen** (E1/E2/E3) · BB-5 PAT-Erneuerung ab 2026-09-05 · BB-6 Mail-Zustellung beobachten → **Nachweis mit dem G0-DR T-0001**.
 
 ## Offene Fragen
 
-F6 Zielprodukte · F8 parallele Projekte · F9 weitere Nutzer · F10 Vertraulichkeit · F11 Arbeitsteam-Domäne · F12 Geräte-Landschaft/Hub-Gerät · F13 Copilot-Abo/Ollama-Hardware (relevant für Sprint 6-PoC)
+Keine — F1–F13 vollständig entschieden; P0 (D000–D025) und P1 (D000–D009) abgeschlossen.
 
 ## Referenzen
 
-Masterplan 0.6 · Playbook 0.6 · Repos: github.com/DiOflOrds/{process,platform,p0,produkt-datakonv} · Baselines: **genesis-v0.5**, datakonv **v1.0.0**/req-v1.1 · Decision Log: D000–**D022** · Sprint-5-Report: `p0/management/sprint-5/report.md` · Katalog: `process/catalog/products.yaml`
+Repos: github.com/DiOflOrds/{process,platform,p0,produkt-datakonv,p1} (+p2 lokal, Remote anlegen) · Baselines: **genesis-v1.0**, datakonv v1.0.0/req-v1.1, **p1-v1.0** · **Abschlussberichte:** `p0/management/p0-abschlussbericht.md`, `p1/management/p1-abschlussbericht.md` · Runbook + Betriebs-Backlog: `process/cm/runbook.md` · Intake: `process/process/intake.md`

@@ -16,19 +16,16 @@ Sprint-6-Ergebnis: Retro-CRs T-0062–64 (status-Subkommando, Feedback-Auto-Absc
 
 **Nachtrag Betrieb (2026-08-15 abends): BB-1 geschlossen — extern blockiert (p0/D026).** Copilot CLI 1.0.80 wurde installiert + eingeloggt und der Executor real durchgemessen (Aufruf, Antwort, Diagnose) — die wörtliche Ursache steht in Registry und Ticket: **das Copilot-Abo ist abgelaufen** (revidiert D023/F13). Auftraggeber-Entscheidung: schließen, 0-€-Prinzip; Wiedereröffnung per CR bei neuem Abo. T-0072 + p1/T-0018 rejected mit voller Evidenz. Nebengewinn: Executor gehärtet (ANSI-Strip, Zaun-Toleranz, Rohantwort-Diagnose in der Registry, +3 Tests → Suite 141).
 
-**P3 „Mission Control 3.0: Jira-like HMI" per Intake angelegt (2026-08-15).** Projektwunsch wörtlich vom Auftraggeber: alles klickbar (Tickets öffnen, Inbox, Querverweise), Requirements/Traceability tabellarisch, Architektur als Bild, Projekt-Cockpit. 5 Epics, 5 Abnahmekriterien, 3 Sprints, diesmal mit G2. Repo-Hülle `p3/` valide (board-check grün), platform-CI um p3-Checkout erweitert. **G0 wartet als Inbox-DR T-0001** (Frist 2026-08-22, Default G0a).
+**P3 „Mission Control 3.0: Jira-like HMI" — Sprint 0 gelaufen (2026-08-15).** G0 erteilt (D000 via Inbox, nach Server-Neustart — Befund als Runbook-Eintrag UND als Anforderung SWR-047 verwertet). Requirements-first steht: **STK-015 + SWR-040–047** reviewed (Ticket-Detail + klickbare Querverweise, Board Jira-like mit Filtern, Inbox-Options-Buttons + DR-Historie, Requirements-/Traceability-Tabellen, Architektur-SVG aus versionierter Quelle, Projekt-Cockpit mit Frist-Ampel, Versions-/Neustart-Hinweis). **Architektur-Delta v1.2 + ADR-005** (Hash-Routing, komponenten.yaml → SVG-Generator, 4 neue Read-only-Endpunkte). Matrix 47/0 (UI-Checklisten-Regel), Preflight STARTKLAR. **G1-DR T-0005 und G2-DR T-0006 liegen in der Inbox** (Frist 2026-08-22, Defaults G1a/G2a).
 
-## Warten auf Auftraggeber (~5 Min)
+## Warten auf Auftraggeber (~4 Min)
 
-1. GitHub-Repo **p3** anlegen (privat, ohne README): [github.com/new](https://github.com/new) → dann im cmd-Fenster im Repo-Ordner: `git -C p3 remote add origin https://github.com/DiOflOrds/p3.git`
-2. Secret: [github.com/DiOflOrds/p3/settings/secrets/actions](https://github.com/DiOflOrds/p3/settings/secrets/actions) → `PLATFORM_READ_TOKEN` (gleicher Wert wie bei p0/p1/p2).
-3. PAT `p0-read-fuer-platform-ci` um **p3** erweitern: [github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens) (sonst wird platform-CI beim p3-Checkout rot).
-4. **`abschluss.cmd`** — pusht p3 und mailt den G0-DR.
-5. **T-0001 in der Inbox beantworten** (Projekt p3): G0a = Auftrag freigeben; bei Änderungswünschen G0b mit Begründung.
+1. **`abschluss.cmd`** — pusht Sprint 0 und mailt **zwei** DRs (G1 + G2).
+2. **In der Inbox beantworten** (Projekt p3): **T-0005** (G1, Stichprobe: SWR-Set kurz lesen — deckt es deinen Wunsch?) und **T-0006** (G2, Stichprobe: ADR-005, 2 Min).
 
 ## Nächste Session
 
-Nach der G0-Antwort: **„Starte P3 Sprint 0"** — Anforderungen ab SWR-040 (→ G1) + Architektur-Delta für Detail-Routing und Diagramm-Quelle (→ G2).
+Nach beiden Antworten: **„Starte P3 Sprint 1"** — Verbuchen, Baseline `p3-req-v1.0`, dann Umsetzung „Klickbarkeit": Ticket-Detail (SWR-040), Board Jira-like (041), Inbox-Buttons + Historie (042), Versions-Hinweis (047).
 
 ## Betriebs-Backlog
 

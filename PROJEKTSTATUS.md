@@ -15,17 +15,17 @@
 
 Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 realer SUP.9-Zyklen (Test-Mails/Windows-Pfade, CI-Tag-Rauschen/fetch-tags, Hermetik-Nachzügler), deren Lehren als Runbook-Regeln (Kap. 8/9), Gold-Beispiel und Anforderung SWR-047 im System gelandet sind. Copilot-PoC ehrlich als extern blockiert geschlossen (p0/D026: Abo abgelaufen; Reaktivierung per CR).
 
-**P4 „Mission Control 3.1" — Sprint 1 fertig (2026-08-15), nur noch der Abnahme-DR offen.** G1+G2 erteilt (D001/D002 via Inbox), Baseline `p4-req-v1.0`. Umgesetzt und getestet: **PIN-Schutz** (localhost frei, remote nur mit `MC_PIN`, ohne PIN gesperrt — 6 Schutzregel-Tests), **`mission-control-lan.cmd`** (0.0.0.0-Bind, zeigt Handy-Adresse) + Runbook Kap. 10 (Firewall, Leitplanke kein Internet), **Briefkasten** (Briefe als versionierte Dateien + Commit, Team-Chat-Tab, Cockpit-Pille, Preflight „Briefkasten zuerst"), **Mobile-Feinschliff** (Touch-Buttons, Ein-Spalten-Board, PWA). Tests **156** grün, Matrix 52/0, alle 4 Gates konsistent. **Abnahme-DR T-0012 liegt in der Inbox** — die 5 Stichproben sind die LAN/Handy-Premiere selbst (Frist 2026-08-22, Default G4a).
+**P4 „Mission Control 3.1" ist ABGESCHLOSSEN (G4a/D003, 2026-08-15 — vom Handy aus entschieden), Baseline `p4-v1.0`** (p4 + platform). Alle 5 Stichproben real: LAN-Zugriff vom Handy, Falsch-PIN-Ablehnung, erster echter Briefkasten-Roundtrip (p0/N-0001: Handy-Brief → Commit → Team-Antwort in derselben Datei = K4), Handy-Button-Entscheidung. Mission Control läuft jetzt vom Sofa: `mission-control-lan.cmd`, PIN-Schutz, Team-Chat, Mobile-PWA. Leitplanke fürs Leben: **nur Heim-LAN, nie Port-Forwarding** (Runbook Kap. 10).
 
-## Warten auf Auftraggeber (~10 Min — das Sofa-Abenteuer)
+**Das Team ist im Regelbetrieb.** Fünf Projekte abgeschlossen (P0 Genesis, P1 MC 2.0, P2 Betriebshärtung, P3 MC 3.0, P4 MC 3.1), 1 Produkt released, 156+42 Tests, 52 SWRs / 0 Lücken, 0,00 € API über alles. Session-Routine ab jetzt: **Briefkasten zuerst.**
 
-1. **`abschluss.cmd`** — pusht Sprint 1 und mailt den Abnahme-DR.
-2. `setx MC_PIN <deine-PIN>` → dann **`mission-control-lan.cmd`** starten (Firewall: zulassen).
-3. Am **Handy** die angezeigte Adresse öffnen → ohne PIN entscheiden versuchen (Ablehnung sehen) → PIN eintragen → im **Team-Chat (p4)** einen echten Brief schreiben → **T-0012 vom Handy per G4a-Button** beantworten.
+## Warten auf Auftraggeber
 
-## Nächste Session
+Nur noch: **`abschluss.cmd`** — pusht den P4-Abschluss inkl. Tags `p4-v1.0` und die Briefantwort. Danach: Team-Chat neu laden — die erste Team-Antwort wartet dort schon.
 
-Beginnt mit **„Briefkasten zuerst"**: dein Handy-Brief wird beantwortet (schließt K4), dann D003 verbuchen, **Baseline `p4-v1.0`**, P4-Abschlussbericht — fünftes Projekt fertig.
+## Betriebs-Backlog
+
+**BB-5** PAT-Erneuerung ab 2026-09-05 (Runbook Kap. 4/7) — sonst leer. CR-Kandidaten: Live-API-Chat mit Budgetfreigabe, „Briefkasten zuerst" ins Playbook, JS-Tests (P3-R1), Produkt-Architekturbilder (P3-R2), Schätz-Kalibrierung (P2-R1). Neues Projekt per **„Starte Intake"** — oder einfach per Brief vom Sofa.
 
 ## Betriebs-Backlog
 

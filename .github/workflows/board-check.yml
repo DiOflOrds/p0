@@ -8,6 +8,7 @@
 name: Board-Check
 on:
   push:
+    branches: [main]  # P2/T-0013: keine Tag-Laeufe (alte Commits vs. heutige Repos = Rauschen)
   pull_request:
 jobs:
   board:

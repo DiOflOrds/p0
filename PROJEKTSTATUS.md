@@ -1,45 +1,32 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-15 — **P0 UND P1 ABGESCHLOSSEN, TEAM IM REGELBETRIEB**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-15 — **VIER PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
 
-**P0 ist fertig.** Sprints 0–6 abgeschlossen, P0-Abnahme gegen Kap. 3 erteilt (D024), Baseline **`genesis-v1.0`** getaggt. Das Team ist einsatzbereit: 10 aktive Rollen, Plattform mit 112 grünen Tests und 3 CI-Matrix-Gates, released Produkt **datakonv 1.0.0** (42 Tests, Katalog-Eintrag), Runbook, Intake-Workflow, P1-Hülle mit priorisiertem Backlog (B1–B10). Gesamtkosten: **0,00 € API** — alles über Abo-Session, Ollama und Skript-Routen.
+**Das Team ist im Regelbetrieb — kein aktives Projekt.** Bilanz: **4 abgeschlossene Projekte**, 1 released Produkt, 153 + 42 grüne Tests, Matrix 47 SWRs / 0 Lücken, 4 Konsistenz-Gates in abschluss.cmd (Tests, Matrix, Katalog, Architekturbild), **0,00 € API** über alles.
 
-Sprint-6-Ergebnis: Retro-CRs T-0062–64 (status-Subkommando, Feedback-Auto-Abschluss, produkte.yaml), Self-Check (12 Gebiete belegt, Lücken adressiert), KPI-Baseline mit Wirksamkeitsnachweis über 14 Prozess-CRs, Copilot-Executor v1 (D023: Abo vorhanden), Betriebs-Runbook, Intake + P1-Hülle, Abschlussbericht. Abweichungen der Abnahme (Kriterien 4/5/9 teilweise) transparent dokumentiert und nachverfolgt (B5/B6/B9, T-0072).
+| Projekt | Ergebnis | Baseline | Abnahme |
+|---|---|---|---|
+| **P0 „Genesis"** | Team + Plattform + Prozess, Übungsprodukt datakonv 1.0.0 released | genesis-v1.0 | D024 |
+| **P1 „Mission Control 2.0"** | Multi-Projekt-Leitstand, Inbox-Regelkanal, E-Mail-Benachrichtigung | p1-v1.0 | D009 via Inbox |
+| **P2 „Betriebshärtung"** | Frist-Warnmails, Katalog-Gate, Nutzer-Registry/Entscheider, Inbox-Härtung, Aufwandsschätzung | p2-v1.0 | D004 via Inbox (K2-Realnachweis durch eigenes Feature) |
+| **P3 „Mission Control 3.0"** | Jira-like HMI: Router, Ticket-Detail, Board-Spalten+Filter, Options-Buttons + Historie, Tabellen, Architekturbild mit Drift-Gate, Cockpit mit Frist-Ampel, Versions-Banner | p3-v1.0 | D004 via Inbox-**Button** |
 
-**P1 „Mission Control 2.0" ist ABGESCHLOSSEN (G4a/D009 via Inbox, 2026-08-15), Baseline `p1-v1.0`** (p1 + platform). Ergebnis: Multi-Projekt-Leitstand (ADR-004-Discovery, 8 Tabs), Inbox als Gate-Regelkanal (3 reale Inbox-Entscheidungen D006/D007/D009), E-Mail-Benachrichtigung live (Zustellnachweis T-0020; Empfänger per D008 dimitri.john83@gmail.com). Kriterien K1–K5 erfüllt (Abschlussbericht mit Evidenz). Ehrliche Abweichung: Benachrichtigt-Marker der T-0022-Mail fehlt im Repo → BB-6.
+Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 realer SUP.9-Zyklen (Test-Mails/Windows-Pfade, CI-Tag-Rauschen/fetch-tags, Hermetik-Nachzügler), deren Lehren als Runbook-Regeln (Kap. 8/9), Gold-Beispiel und Anforderung SWR-047 im System gelandet sind. Copilot-PoC ehrlich als extern blockiert geschlossen (p0/D026: Abo abgelaufen; Reaktivierung per CR).
 
-**P2 „Betriebshärtung" ist ABGESCHLOSSEN (G4a/D004 via Inbox, 2026-08-15), Baseline `p2-v1.0`** (p2 + platform) — drittes Projekt in den Büchern, komplett an einem Tag. K1–K5 erfüllt mit Evidenz (Abschlussbericht); Höhepunkt: der K2-Realnachweis lief über das in P2 selbst gebaute Feature (Neu-Mail + FRIST-WARNUNG zu T-0017, beide Marker im Ticket, Zustellung bestätigt). 5 Entscheidungen, 4 davon via Inbox mit Entscheider-Protokoll.
+## Warten auf Auftraggeber
 
-**Das Team ist im Regelbetrieb.** Kein aktives Projekt. Werkzeuge: Intake für neue Projekte, Feedback-Route für Produkte, Inbox mit Mail + Frist-Warnung + Default für alle Gates, Katalog-Gate, Team-Node-Gate-Regel, Aufwandsschätzung.
-
-**Nachtrag Betrieb (2026-08-15 abends): BB-1 geschlossen — extern blockiert (p0/D026).** Copilot CLI 1.0.80 wurde installiert + eingeloggt und der Executor real durchgemessen (Aufruf, Antwort, Diagnose) — die wörtliche Ursache steht in Registry und Ticket: **das Copilot-Abo ist abgelaufen** (revidiert D023/F13). Auftraggeber-Entscheidung: schließen, 0-€-Prinzip; Wiedereröffnung per CR bei neuem Abo. T-0072 + p1/T-0018 rejected mit voller Evidenz. Nebengewinn: Executor gehärtet (ANSI-Strip, Zaun-Toleranz, Rohantwort-Diagnose in der Registry, +3 Tests → Suite 141).
-
-**P3 „Mission Control 3.0" — Sprint 2 fertig (2026-08-15), nur noch der Abnahme-DR offen.** Sprint 1 abgenommen (G4a/**D003 per Options-Button** — die Klickstrecke war die Stichprobe), Baseline `p3-v0.1`. Sprint 2: **Requirements/Traceability als sortier- und filterbare Tabellen** (SWR-043/044, Parser unit-getestet), **Architekturbild** aus `komponenten.yaml` per deterministischem SVG-Generator mit Drift-Gate in abschluss.cmd (SWR-045, neuer Tab), **Projekt-Cockpit** mit Status-Zahlen, Frist-Ampel, Baseline und KPI je Projekt (SWR-046). Tests **153** grün, Matrix 47/0, alle Gates (Matrix/Katalog/Architektur) konsistent. Abnahmebilanz K1–K5 im Report. **Abnahme-DR T-0018 liegt in der Inbox** (Frist 2026-08-22, Default G4a).
-
-## Warten auf Auftraggeber (~4 Min)
-
-1. **`abschluss.cmd`** — pusht Sprint 2 (inkl. `p3-v0.1`-Tags) und mailt den Abnahme-DR.
-2. **Server neu starten** + Strg+F5 (das Banner hätte es dir gesagt).
-3. **T-0018 beantworten** — die Stichproben sind wieder das Ausprobieren: Requirements-Tabelle sortieren/filtern, Architektur-Tab ansehen, Cockpit mit Frist-Ampel prüfen, dann G4a-Button.
-
-## Nächste Session
-
-Nach der Antwort: D004 verbuchen, **Baseline `p3-v1.0`**, P3-Abschlussbericht — viertes Projekt fertig. Danach Regelbetrieb: nur BB-5 (PAT ab 2026-09-05) offen, neues Projekt jederzeit per Intake.
+Nur noch: **`abschluss.cmd`** — pusht den P3-Abschluss inkl. Tags `p3-v1.0`. Danach ist alles draußen.
 
 ## Betriebs-Backlog
 
-**BB-5** PAT-Erneuerung ab 2026-09-05 (Runbook Kap. 4/7) — sonst leer. R1 (P2-Retro): Aufwandsschätzung nach 2–3 Sprints kalibrieren → Playbook-Standard.
-
-## Betriebs-Backlog (Runbook Kap. 7)
-
-BB-1 Copilot CLI installieren + T-0072-Lauf (schließt P0-K9) · BB-2/3/4 → in P2 (E1/E2/E3) · BB-5 PAT-Erneuerung ab 2026-09-05 · BB-6 **erledigt** (Marker + Zustellung T-0001, 2026-08-15).
+**BB-5** PAT-Erneuerung ab 2026-09-05 (Runbook Kap. 4/7) — sonst leer. CR-Kandidaten aus den Schluss-Retros: JS-Test-Ansatz fürs Frontend (P3-R1), Architekturbilder je Produkt-Repo (P3-R2), Aufwandsschätzung als Playbook-Standard nach Kalibrierung (P2-R1). Neues Projekt jederzeit per **„Starte Intake"**.
 
 ## Offene Fragen
 
-Keine — F1–F13 vollständig entschieden; P0 (D000–D025) und P1 (D000–D009) abgeschlossen.
+Keine — F1–F13 vollständig entschieden; Decision Logs: p0 D000–D026, p1 D000–D009, p2 D000–D004, p3 D000–D004.
 
 ## Referenzen
 
-Repos: github.com/DiOflOrds/{process,platform,p0,produkt-datakonv,p1,p2} · Baselines: **genesis-v1.0**, datakonv v1.0.0/req-v1.1, **p1-v1.0**, **p2-v1.0** · **Abschlussberichte:** `p0/management/p0-abschlussbericht.md`, `p1/management/p1-abschlussbericht.md`, `p2/management/p2-abschlussbericht.md` · Runbook + Betriebs-Backlog: `process/cm/runbook.md` · Intake: `process/process/intake.md`
+Repos: github.com/DiOflOrds/{process,platform,p0,produkt-datakonv,p1,p2,p3} · Baselines: **genesis-v1.0**, datakonv v1.0.0/req-v1.1, **p1-v1.0**, **p2-v1.0**, **p3-v1.0** · **Abschlussberichte:** `p0/management/p0-abschlussbericht.md`, `p1/…/p1-abschlussbericht.md`, `p2/…/p2-abschlussbericht.md`, `p3/…/p3-abschlussbericht.md` · Runbook + Betriebs-Backlog: `process/cm/runbook.md` · Intake: `process/process/intake.md`

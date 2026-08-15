@@ -16,9 +16,19 @@ Sprint-6-Ergebnis: Retro-CRs T-0062–64 (status-Subkommando, Feedback-Auto-Absc
 
 **Nachtrag Betrieb (2026-08-15 abends): BB-1 geschlossen — extern blockiert (p0/D026).** Copilot CLI 1.0.80 wurde installiert + eingeloggt und der Executor real durchgemessen (Aufruf, Antwort, Diagnose) — die wörtliche Ursache steht in Registry und Ticket: **das Copilot-Abo ist abgelaufen** (revidiert D023/F13). Auftraggeber-Entscheidung: schließen, 0-€-Prinzip; Wiedereröffnung per CR bei neuem Abo. T-0072 + p1/T-0018 rejected mit voller Evidenz. Nebengewinn: Executor gehärtet (ANSI-Strip, Zaun-Toleranz, Rohantwort-Diagnose in der Registry, +3 Tests → Suite 141).
 
-## Warten auf Auftraggeber
+**P3 „Mission Control 3.0: Jira-like HMI" per Intake angelegt (2026-08-15).** Projektwunsch wörtlich vom Auftraggeber: alles klickbar (Tickets öffnen, Inbox, Querverweise), Requirements/Traceability tabellarisch, Architektur als Bild, Projekt-Cockpit. 5 Epics, 5 Abnahmekriterien, 3 Sprints, diesmal mit G2. Repo-Hülle `p3/` valide (board-check grün), platform-CI um p3-Checkout erweitert. **G0 wartet als Inbox-DR T-0001** (Frist 2026-08-22, Default G0a).
 
-Nur noch: **`abschluss.cmd`** (pusht P2-Abschluss inkl. Tags `p2-v1.0` + die BB-1-Verbuchung). Danach ist nichts mehr offen außer Betrieb.
+## Warten auf Auftraggeber (~5 Min)
+
+1. GitHub-Repo **p3** anlegen (privat, ohne README): [github.com/new](https://github.com/new) → dann im cmd-Fenster im Repo-Ordner: `git -C p3 remote add origin https://github.com/DiOflOrds/p3.git`
+2. Secret: [github.com/DiOflOrds/p3/settings/secrets/actions](https://github.com/DiOflOrds/p3/settings/secrets/actions) → `PLATFORM_READ_TOKEN` (gleicher Wert wie bei p0/p1/p2).
+3. PAT `p0-read-fuer-platform-ci` um **p3** erweitern: [github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens) (sonst wird platform-CI beim p3-Checkout rot).
+4. **`abschluss.cmd`** — pusht p3 und mailt den G0-DR.
+5. **T-0001 in der Inbox beantworten** (Projekt p3): G0a = Auftrag freigeben; bei Änderungswünschen G0b mit Begründung.
+
+## Nächste Session
+
+Nach der G0-Antwort: **„Starte P3 Sprint 0"** — Anforderungen ab SWR-040 (→ G1) + Architektur-Delta für Detail-Routing und Diagramm-Quelle (→ G2).
 
 ## Betriebs-Backlog
 

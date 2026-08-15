@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-15 · SWRs: 47 (reviewed: 47) · Tests mit SWR-Bezug: 147 · ohne Bezug: 19
+Stand: 2026-08-15 · SWRs: 52 (reviewed: 52) · Tests mit SWR-Bezug: 151 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -51,6 +51,11 @@ Stand: 2026-08-15 · SWRs: 47 (reviewed: 47) · Tests mit SWR-Bezug: 147 · ohne
 | SWR-045 | reviewed | test_arch_diagramm.py::ArchDiagrammTest::test_svg_enthaelt_komponenten_und_pfeile<br>test_arch_diagramm.py::ArchDiagrammTest::test_deterministisch_und_drift_erkennbar<br>test_arch_diagramm.py::ArchDiagrammTest::test_unbekannte_komponente_wird_abgelehnt<br>test_arch_diagramm.py::ArchDiagrammTest::test_eingecheckte_quelle_konsistent_zum_bild | 4 Test(s) |
 | SWR-046 | reviewed | test_backend.py::HmiSprint2Test::test_cockpit_mit_frist_ampel<br>test_backend.py::HmiSprint2Test::test_cockpit_alle_ueber_api_form | 2 Test(s) |
 | SWR-047 | reviewed | test_backend.py::HttpTest::test_version_endpunkt | 1 Test(s) |
+| SWR-048 | reviewed | test_backend.py::FernzugriffTest::test_schreibschutz_regeln | 1 Test(s) |
+| SWR-049 | reviewed | test_backend.py::FernzugriffTest::test_schreibschutz_regeln | 1 Test(s) |
+| SWR-050 | reviewed | test_backend.py::FernzugriffTest::test_briefkasten_senden_und_lesen | 1 Test(s) |
+| SWR-051 | reviewed | test_backend.py::FernzugriffTest::test_cockpit_zaehlt_offene_briefe | 1 Test(s) |
+| SWR-052 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

@@ -23,7 +23,7 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 **team-mail ist LIVE (TG-a + D001, 2026-08-15)** — erstes Projekt-Team der Organisation im echten Betrieb: Postfach dimitri.john83@gmail.com, Zugang über vorhandene Mail-Einrichtung (SMTP-Fallback), IMAP-Test real grün (57 Mails), T-0002 done, **erster Digest geliefert** (`team-mail/digest/2026-08-15-digest.md` — 3 Reaktionspunkte, Sicherheits-Check, Rest kompakt). Repo lokal ohne GitHub-Remote (Datenklasse sensibel, `.kein-remote`). Takt T-0001 läuft ab jetzt je Session; Pilotreview ab 2026-08-29 (B002/B003).
 
-**AKTIV: P7 „Teams im HMI" (Sprint 2 geliefert, wartet auf Abnahme).** P7b (pm/D001→D000), G1 (D001), G4 Sprint 1 (D002, Baseline p7-v0.1 — inkl. realem Konfigurator-Roundtrip). Sprint 1: teams.py + `/api/team*` mit PIN-Lesegate (ADR-006-Delta, architektur v1.4), Tab „Team", Konfigurator, Cockpit-Kachel. Sprint 2: **Digest-Mailversand** (SWR-058: idempotent per Zustellvermerk, abschluss-Schritt [2c/5], per Konfigurator schaltbar) + **formatierte Digest-/Charter-Ansicht** (SWR-059 aus dem G4-Befund „nur Plain Text" — eigener Markdown-Renderer, ADR-002-konform). 166 Tests grün, Matrix 59/0. Abnahme-DR: `p7/T-0013` (Frist 2026-08-22, Default G4a — Stichprobe 1: der jetzt lesbare Digest).
+**P7 „Teams im HMI" ist ABGESCHLOSSEN (G4a/D003, 2026-08-15), Baseline `p7-v1.0`** (p7 + platform). Teams sind vollwertig in Mission Control: Tab „Team" (formatierter Digest-Verlauf per eigenem Markdown-Renderer — SWR-059 aus deinem Sprint-1-Befund, noch am selben Tag behoben), Cockpit-Kachel, PIN-geschützter Konfigurator mit Sofort-Commit, **PIN-Lesegate** für sensible Team-Inhalte (ADR-006-Delta, architektur v1.4), **Digest-Mailversand** idempotent im abschluss-Schritt [2c/5]. 166+42 Tests, Matrix 59/0, ~300 min Ist (−13 %). **Sieben Projekte abgeschlossen.** K4-Restpunkt im Betrieb: Mail-Zustellung im Konfigurator aktivieren → erster Lauf liefert den Realnachweis (PM prüft als Klasse-B-Stichprobe).
 
 **Auto-Abschluss ist AKTIV (D028, Wunsch pm/N-0001):** Session schreibt `PUSH-ANFORDERUNG.txt`, die Windows-Aufgabenplanung führt `abschluss-auto.cmd` alle 15 Min aus (nur bei Anforderung; Log `abschluss-auto.log`). Einmalige Registrierung nötig — Befehl in der Briefantwort pm/N-0001 und Runbook Kap. 11. **Session-Pflicht ab jetzt: an jedem Abschlusspunkt die Anforderung schreiben.**
 
@@ -31,8 +31,7 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 ## Warten auf Auftraggeber
 
-1. **Server neu starten** + Seite hart neu laden — dann **Inbox:** P7-Abnahme entscheiden (`p7/T-0013`): Digest jetzt formatiert lesen (dein Befund, Stichprobe 1), im Konfigurator „Digest per Mail" aktivieren (Stichprobe 2 — die Mail kommt mit dem nächsten Auto-Abschluss-Lauf), K-Bilanz im Report.
-2. Push läuft per Auto-Abschluss (Anforderung liegt bereit; falls p7 auf GitHub noch fehlt: Repo + Secret + PAT, Runbook).
+Nichts Dringendes — der Auto-Abschluss pusht den P7-Abschluss (Anforderung liegt bereit). Optional: Mail-Zustellung im Konfigurator aktivieren (erster Digest kommt dann per Mail). Neue Projekte/Teams: „Starte Intake" oder Brief in den Team-Chat — die nächste Session folgt der PM-Agenda (Pilotreview team-mail ab 29.08., BB-5 PAT ab 5.9.).
 
 ## Betriebs-Backlog
 

@@ -31,7 +31,9 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 ## Warten auf Auftraggeber
 
-Nichts Dringendes — der Auto-Abschluss pusht den P7-Abschluss (Anforderung liegt bereit). Optional: Mail-Zustellung im Konfigurator aktivieren (erster Digest kommt dann per Mail). Neue Projekte/Teams: „Starte Intake" oder Brief in den Team-Chat — die nächste Session folgt der PM-Agenda (Pilotreview team-mail ab 29.08., BB-5 PAT ab 5.9.).
+**NEU: P8 „Mail-Autopilot" wartet auf G0** (`p8/T-0001`, Frist 2026-08-22, Default G0a) — aus deinem Brief N-0002: Ollama verdichtet lokal (0 €, revidiert F14 für team-mail), Sofort-Zusammenfassung per Knopf, Tag/Woche/Monat gleichzeitig. **Neustart-Knopf ist da** (SWR-061, p7/T-0015): einmal noch von Hand über die neuen Skripte `mission-control.cmd` / `mission-control-lan.cmd` starten — ab dann per „⟳ Neustart" im HMI.
+
+Deine Schritte: 1. GitHub-Repo `DiOflOrds/p8` + Secret + PAT-Erweiterung (wie gehabt). 2. Server über das neue Skript starten. 3. Inbox: G0 zu P8 entscheiden. Sonst: Pilotreview team-mail ab 29.08., BB-5 PAT ab 5.9.
 
 ## Betriebs-Backlog
 

@@ -10,22 +10,21 @@ Sprint-6-Ergebnis: Retro-CRs T-0062–64 (status-Subkommando, Feedback-Auto-Absc
 
 **P1 „Mission Control 2.0" ist ABGESCHLOSSEN (G4a/D009 via Inbox, 2026-08-15), Baseline `p1-v1.0`** (p1 + platform). Ergebnis: Multi-Projekt-Leitstand (ADR-004-Discovery, 8 Tabs), Inbox als Gate-Regelkanal (3 reale Inbox-Entscheidungen D006/D007/D009), E-Mail-Benachrichtigung live (Zustellnachweis T-0020; Empfänger per D008 dimitri.john83@gmail.com). Kriterien K1–K5 erfüllt (Abschlussbericht mit Evidenz). Ehrliche Abweichung: Benachrichtigt-Marker der T-0022-Mail fehlt im Repo → BB-6.
 
-**P2 „Betriebshärtung" per Intake angelegt (2026-08-15):** Projektwahl durch Auftraggeber (Session-Dialog), Repo-Hülle `p2/` valide (board-check grün), Projektauftrag v0.1 mit 6 Epics (BB-2/3/4, B7, B3, F9) und 5 Abnahmekriterien. **G0 wartet als Inbox-DR T-0001** (Frist 2026-08-22, Default G0a) — dessen Mail ist zugleich der BB-6-Nachweis. `abschluss.cmd` pusht jetzt generisch jedes Repo mit Remote.
+**P2 „Betriebshärtung": Sprint 1 fertig (2026-08-15), G4 wartet in der Inbox.** G1 erteilt (D002 via Session-Dialog), Baseline `p2-req-v1.0`. Alle 6 SWRs umgesetzt und verifiziert: **Frist-Warnmails** (SWR-034/035, 2-Tage-Schwelle, Default-Hinweis), **Katalog-Check** (SWR-036) als Gate in abschluss.cmd + platform-CI, **Nutzer-Registry + Entscheider-Pflicht + Inbox-Härtung** (SWR-037–039 — entschiedene DRs verschwinden sofort, dein D001-Doppelklick ist damit unmöglich). E1/E3-Doku: Runbook Kap. 8 (Dienst-Checkliste), Geräteregister mit Soll-Toolchain. Tests **138+42 grün**, Matrix **39/0**. Betriebs-Backlog: nur noch BB-1 (Copilot CLI) und BB-5 (PAT-Termine) offen. **G4-DR T-0012 liegt in der Inbox** (Frist 2026-08-22, Default G4a).
 
 ## Warten auf Auftraggeber (~5 Min)
 
-1. GitHub-Repo **p2** anlegen (privat): [github.com/new](https://github.com/new) → Name `p2`, Private, ohne README. Dann im cmd-Fenster im Repo-Ordner: `git -C p2 remote add origin https://github.com/DiOflOrds/p2.git`
-2. Secret setzen: [github.com/DiOflOrds/p2/settings/secrets/actions](https://github.com/DiOflOrds/p2/settings/secrets/actions) → `PLATFORM_READ_TOKEN` (gleiche PAT wie bei p0/p1).
-3. **`abschluss.cmd`** — pusht alles (inkl. p1-v1.0-Tags + p2) und mailt den G0-DR an dimitri.john83@gmail.com.
-4. **T-0001 in der Inbox beantworten** (Projekt p2): G0a = Projektauftrag freigeben.
+1. **PAT erweitern** (für die neue Katalog-CI): [github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens) → `p0-read-fuer-platform-ci` → Repository access um **p2, process, produkt-datakonv** ergänzen. Ohne das wird der nächste platform-CI-Lauf rot (klare Meldung beim Checkout).
+2. **`abschluss.cmd`** — pusht Sprint 1 und mailt den G4-DR (T-0012).
+3. **T-0012 in der Inbox beantworten** (Projekt p2) — dabei siehst du live die neue Entscheider-Auswahl, und der DR verschwindet nach der Antwort sofort (SWR-039-Stichprobe).
 
 ## Nächste Session
 
-Nach der G0-Antwort: D000 verbuchen, Sprint-0-Planning P2 (Anforderungen E2/E4/E6 requirements-first → G1). Aufruf: **„Starte P2 Sprint 0"**.
+Nach der G4-Antwort: D003 verbuchen, Baseline `p2-v0.1` (p2 + platform), **„Starte P2 Sprint 2"** — Aufwandsschätzung (E5, erstmals selbst gelebt), K2-Realnachweis (Warnmail), Windows-Gate-Schritt (Retro-Maßnahme 1), dann Abnahme G3/G4.
 
 ## Betriebs-Backlog (Runbook Kap. 7)
 
-BB-1 Copilot CLI installieren + T-0072-Lauf (schließt P0-K9) · BB-2/3/4 → **in P2 übernommen** (E1/E2/E3) · BB-5 PAT-Erneuerung ab 2026-09-05 · BB-6 Mail-Zustellung beobachten → **Nachweis mit dem G0-DR T-0001**.
+BB-1 Copilot CLI installieren + T-0072-Lauf (schließt P0-K9) · BB-2/3/4 → in P2 (E1/E2/E3) · BB-5 PAT-Erneuerung ab 2026-09-05 · BB-6 **erledigt** (Marker + Zustellung T-0001, 2026-08-15).
 
 ## Offene Fragen
 

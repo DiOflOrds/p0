@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-15 · SWRs: 47 (reviewed: 47) · Tests mit SWR-Bezug: 137 · ohne Bezug: 19
+Stand: 2026-08-15 · SWRs: 47 (reviewed: 47) · Tests mit SWR-Bezug: 147 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -46,10 +46,10 @@ Stand: 2026-08-15 · SWRs: 47 (reviewed: 47) · Tests mit SWR-Bezug: 137 · ohne
 | SWR-040 | reviewed | test_backend.py::HttpTest::test_ticket_detail | 1 Test(s) |
 | SWR-041 | reviewed | test_backend.py::HttpTest::test_board_felder_fuer_filter | 1 Test(s) |
 | SWR-042 | reviewed | test_backend.py::HttpTest::test_inbox_optionen_und_historie | 1 Test(s) |
-| SWR-043 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
-| SWR-044 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
-| SWR-045 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
-| SWR-046 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-043 | reviewed | test_backend.py::HmiSprint2Test::test_md_tabellen_parser<br>test_backend.py::HmiSprint2Test::test_requirements_liefern_tabellen | 2 Test(s) |
+| SWR-044 | reviewed | test_backend.py::HmiSprint2Test::test_md_tabellen_parser<br>test_backend.py::HmiSprint2Test::test_requirements_liefern_tabellen | 2 Test(s) |
+| SWR-045 | reviewed | test_arch_diagramm.py::ArchDiagrammTest::test_svg_enthaelt_komponenten_und_pfeile<br>test_arch_diagramm.py::ArchDiagrammTest::test_deterministisch_und_drift_erkennbar<br>test_arch_diagramm.py::ArchDiagrammTest::test_unbekannte_komponente_wird_abgelehnt<br>test_arch_diagramm.py::ArchDiagrammTest::test_eingecheckte_quelle_konsistent_zum_bild | 4 Test(s) |
+| SWR-046 | reviewed | test_backend.py::HmiSprint2Test::test_cockpit_mit_frist_ampel<br>test_backend.py::HmiSprint2Test::test_cockpit_alle_ueber_api_form | 2 Test(s) |
 | SWR-047 | reviewed | test_backend.py::HttpTest::test_version_endpunkt | 1 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)

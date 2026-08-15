@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-15 · SWRs: 39 (reviewed: 39) · Tests mit SWR-Bezug: 133 · ohne Bezug: 19
+Stand: 2026-08-15 · SWRs: 47 (reviewed: 47) · Tests mit SWR-Bezug: 137 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -43,6 +43,14 @@ Stand: 2026-08-15 · SWRs: 39 (reviewed: 39) · Tests mit SWR-Bezug: 133 · ohne
 | SWR-037 | reviewed | test_backend.py::NutzerUndHaertungTest::test_registry_parsen_und_fallback<br>test_backend.py::HttpTest::test_nutzer_endpunkt | 2 Test(s) |
 | SWR-038 | reviewed | test_backend.py::NutzerUndHaertungTest::test_entscheider_pflicht<br>test_backend.py::HttpTest::test_nutzer_endpunkt | 2 Test(s) |
 | SWR-039 | reviewed | test_backend.py::NutzerUndHaertungTest::test_entschiedener_dr_verschwindet_und_sperrt | 1 Test(s) |
+| SWR-040 | reviewed | test_backend.py::HttpTest::test_ticket_detail | 1 Test(s) |
+| SWR-041 | reviewed | test_backend.py::HttpTest::test_board_felder_fuer_filter | 1 Test(s) |
+| SWR-042 | reviewed | test_backend.py::HttpTest::test_inbox_optionen_und_historie | 1 Test(s) |
+| SWR-043 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-044 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-045 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-046 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-047 | reviewed | test_backend.py::HttpTest::test_version_endpunkt | 1 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

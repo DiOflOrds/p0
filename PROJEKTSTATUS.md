@@ -16,17 +16,17 @@ Sprint-6-Ergebnis: Retro-CRs T-0062–64 (status-Subkommando, Feedback-Auto-Absc
 
 **Nachtrag Betrieb (2026-08-15 abends): BB-1 geschlossen — extern blockiert (p0/D026).** Copilot CLI 1.0.80 wurde installiert + eingeloggt und der Executor real durchgemessen (Aufruf, Antwort, Diagnose) — die wörtliche Ursache steht in Registry und Ticket: **das Copilot-Abo ist abgelaufen** (revidiert D023/F13). Auftraggeber-Entscheidung: schließen, 0-€-Prinzip; Wiedereröffnung per CR bei neuem Abo. T-0072 + p1/T-0018 rejected mit voller Evidenz. Nebengewinn: Executor gehärtet (ANSI-Strip, Zaun-Toleranz, Rohantwort-Diagnose in der Registry, +3 Tests → Suite 141).
 
-**P3 „Mission Control 3.0" — Sprint 1 „Klickbarkeit" fertig (2026-08-15).** G1+G2 erteilt (D001/D002 via Inbox), Baseline `p3-req-v1.0`. Umgesetzt und getestet: **Hash-Router** (jede Ansicht verlinkbar, ADR-005), **Ticket-Detailansicht** mit klickbaren T-xxxx-Querverweisen (SWR-040), **Board Jira-like** mit Statusspalten und Sprint/Rolle/Typ-Filtern (041), **Inbox mit Options-Buttons + DR-Historie** (042), **Versions-Banner** „Server neu starten" bei Code/Prozess-Versatz (047 — aus dem heutigen Befund). Tests 145 grün (+4 mit SWR-Bezug), Matrix 47/0, E5: 135 min geschätzt / 118 Ist. **G4-DR T-0012 liegt in der Inbox** (Frist 2026-08-22, Default G4a) — die Abnahme IST das Ausprobieren: Karte klicken, Querverweis klicken, per G4a-Button antworten.
+**P3 „Mission Control 3.0" — Sprint 2 fertig (2026-08-15), nur noch der Abnahme-DR offen.** Sprint 1 abgenommen (G4a/**D003 per Options-Button** — die Klickstrecke war die Stichprobe), Baseline `p3-v0.1`. Sprint 2: **Requirements/Traceability als sortier- und filterbare Tabellen** (SWR-043/044, Parser unit-getestet), **Architekturbild** aus `komponenten.yaml` per deterministischem SVG-Generator mit Drift-Gate in abschluss.cmd (SWR-045, neuer Tab), **Projekt-Cockpit** mit Status-Zahlen, Frist-Ampel, Baseline und KPI je Projekt (SWR-046). Tests **153** grün, Matrix 47/0, alle Gates (Matrix/Katalog/Architektur) konsistent. Abnahmebilanz K1–K5 im Report. **Abnahme-DR T-0018 liegt in der Inbox** (Frist 2026-08-22, Default G4a).
 
-## Warten auf Auftraggeber (~5 Min)
+## Warten auf Auftraggeber (~4 Min)
 
-1. **`abschluss.cmd`** — pusht Sprint 1 (inkl. `p3-req-v1.0`) und mailt den G4-DR.
-2. **Server neu starten** (Strg+C, `python platform\backend\server.py --repos .`) + Seite hart neu laden (Strg+F5) — letztmalig aus dem Kopf, ab jetzt erinnert das Banner.
-3. **T-0012 in der Inbox beantworten** — im neuen HMI: Board ansehen, Filter setzen, Karte öffnen, Querverweis klicken, dann den **G4a-Button** drücken.
+1. **`abschluss.cmd`** — pusht Sprint 2 (inkl. `p3-v0.1`-Tags) und mailt den Abnahme-DR.
+2. **Server neu starten** + Strg+F5 (das Banner hätte es dir gesagt).
+3. **T-0018 beantworten** — die Stichproben sind wieder das Ausprobieren: Requirements-Tabelle sortieren/filtern, Architektur-Tab ansehen, Cockpit mit Frist-Ampel prüfen, dann G4a-Button.
 
 ## Nächste Session
 
-Nach der G4-Antwort: Baseline `p3-v0.1`, **„Starte P3 Sprint 2"** — Requirements-/Traceability-Tabellen (SWR-043/044), Architektur-SVG (045), Projekt-Cockpit (046) + Abnahme.
+Nach der Antwort: D004 verbuchen, **Baseline `p3-v1.0`**, P3-Abschlussbericht — viertes Projekt fertig. Danach Regelbetrieb: nur BB-5 (PAT ab 2026-09-05) offen, neues Projekt jederzeit per Intake.
 
 ## Betriebs-Backlog
 

@@ -21,15 +21,17 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 **P5 „Genesis 2.0 — Organisationsrahmen" ist ABGESCHLOSSEN (G4a/D002, 2026-08-15), Baseline `p5-v1.0`** (p5 + platform). Geliefert: Playbook Kap. 15 (drei Prozessprofile) + Kap. 16 (Entscheidungsklassen A/B/C, F17-Guardrails), Team-Registry, Gründungs-Template, intake.md v2 — und als erster Vollzug das **PM-Team** (`pm`: Charter, SLAs, Kanban, Session-Agenda, Klasse-B-Log). 0 Zeilen Plattform-Code, 0 € API, 1 Tag. **Die Organisation läuft ab jetzt über die PM-Session-Agenda** (`pm/management/session-agenda.md`). Sechs Projekte abgeschlossen.
 
-**Nächster Klasse-A-Entscheid in der Inbox: `pm/T-0004`** — Gründung Pilot-Team **team-mail** (Mail-Zusammenfassung, F16/D027): Datenklasse `sensibel` → lokales Repo ohne GitHub-Remote (Guardrail 2), IMAP nur lesend als lokale Env-Vars, Digest je Session. Vorgehen lt. B002: Routine-Gründung mit 2-Wochen-Pilotreview statt eigenem Projektrepo „P6". Frist 2026-08-22, Default TG-a.
+**team-mail ist LIVE (TG-a + D001, 2026-08-15)** — erstes Projekt-Team der Organisation im echten Betrieb: Postfach dimitri.john83@gmail.com, Zugang über vorhandene Mail-Einrichtung (SMTP-Fallback), IMAP-Test real grün (57 Mails), T-0002 done, **erster Digest geliefert** (`team-mail/digest/2026-08-15-digest.md` — 3 Reaktionspunkte, Sicherheits-Check, Rest kompakt). Repo lokal ohne GitHub-Remote (Datenklasse sensibel, `.kein-remote`). Takt T-0001 läuft ab jetzt je Session; Pilotreview ab 2026-08-29 (B002/B003).
+
+**Auto-Abschluss ist AKTIV (D028, Wunsch pm/N-0001):** Session schreibt `PUSH-ANFORDERUNG.txt`, die Windows-Aufgabenplanung führt `abschluss-auto.cmd` alle 15 Min aus (nur bei Anforderung; Log `abschluss-auto.log`). Einmalige Registrierung nötig — Befehl in der Briefantwort pm/N-0001 und Runbook Kap. 11. **Session-Pflicht ab jetzt: an jedem Abschlusspunkt die Anforderung schreiben.**
 
 *Ursprünglicher Intake-Vermerk:* Auftraggeber-Update vom 15.08.: Die Organisation wächst — neben dem ASPICE-Team entstehen ein **PM-Team** und beliebige **Projekt-Teams** (Steuer, Mail, Trading-Analyse, Wissenschaft …). Grundlage: Orgkonzept v1.0 (`process/docs/02-genesis-2.0-orgkonzept.md`, Lücken L1–L9) + **p0/D027** (F14 Session-Takt 0 €, F15 Klasse B an PM, F16 Pilot = Mail-Zusammenfassung, F17 harte Guardrails: KI handelt nie mit Außenwirkung, sensible Daten nie in Repos mit GitHub-Remote). P5 baut den Rahmen: Prozessprofile (entwicklung/dienstleistung/wiederkehrend), Entscheidungsklassen A/B/C, Team-Registry + Template, PM-Repo `pm`. 2 Sprints, 0 €. Danach P6: reale Gründung des Pilot-Teams. G0-DR: `p5/T-0001` (Frist 2026-08-22, Default G0a).
 
 ## Warten auf Auftraggeber
 
-1. Falls noch offen: GitHub-Repo `DiOflOrds/pm` + Secret `PLATFORM_READ_TOKEN` in pm + PAT `p0-read-fuer-platform-ci` um pm erweitern (nur diese eine — die platform-Lese-PAT braucht keine Erweiterung).
-2. **`abschluss.cmd`** — pusht P5-Abschluss (Tags `p5-v1.0` auf p5 + platform) und den pm-Stand.
-3. **Inbox:** `pm/T-0004` entscheiden — Gründung team-mail (TG-a/b/c). Bei TG-a folgt in der nächsten Session: Gründung + IMAP-Einrichtungs-Anleitung + erster Digest.
+1. **Aufgabenplanung registrieren** (einmalig, normale Eingabeaufforderung): `schtasks /Create /TN "ASPICE-AutoAbschluss" /TR "\"C:\Users\KI_I7_Machine\Downloads\aspice-team-repos-final\abschluss-auto.cmd\"" /SC MINUTE /MO 15 /F` — die erste PUSH-ANFORDERUNG liegt schon bereit, der Push passiert dann von selbst (Log: abschluss-auto.log).
+2. **IMAP einrichten** für den ersten Digest: team-mail/T-0002 (App-Passwort + 3× setx, Runbook Kap. 12).
+3. Team-Chat lesen: Antwort auf deinen Brief wartet in **pm/N-0001**.
 
 ## Betriebs-Backlog
 

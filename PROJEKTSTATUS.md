@@ -14,13 +14,15 @@ Sprint-6-Ergebnis: Retro-CRs T-0062–64 (status-Subkommando, Feedback-Auto-Absc
 
 **Das Team ist im Regelbetrieb.** Kein aktives Projekt. Werkzeuge: Intake für neue Projekte, Feedback-Route für Produkte, Inbox mit Mail + Frist-Warnung + Default für alle Gates, Katalog-Gate, Team-Node-Gate-Regel, Aufwandsschätzung.
 
+**Nachtrag Betrieb (2026-08-15 abends): BB-1 geschlossen — extern blockiert (p0/D026).** Copilot CLI 1.0.80 wurde installiert + eingeloggt und der Executor real durchgemessen (Aufruf, Antwort, Diagnose) — die wörtliche Ursache steht in Registry und Ticket: **das Copilot-Abo ist abgelaufen** (revidiert D023/F13). Auftraggeber-Entscheidung: schließen, 0-€-Prinzip; Wiedereröffnung per CR bei neuem Abo. T-0072 + p1/T-0018 rejected mit voller Evidenz. Nebengewinn: Executor gehärtet (ANSI-Strip, Zaun-Toleranz, Rohantwort-Diagnose in der Registry, +3 Tests → Suite 141).
+
 ## Warten auf Auftraggeber
 
-Nur noch: **`abschluss.cmd`** (pusht den P2-Abschluss inkl. Tags `p2-v1.0`). Danach ist nichts mehr offen außer Betrieb.
+Nur noch: **`abschluss.cmd`** (pusht P2-Abschluss inkl. Tags `p2-v1.0` + die BB-1-Verbuchung). Danach ist nichts mehr offen außer Betrieb.
 
 ## Betriebs-Backlog
 
-**BB-1** Copilot CLI installieren, dann `python platform\orchestrator\tick.py --repos . --ticket T-0072 --provider copilot` (schließt P0-K9) · **BB-5** PAT-Erneuerung ab 2026-09-05 (Runbook Kap. 4/7) · R1 (P2-Retro): Aufwandsschätzung nach 2–3 Sprints kalibrieren → Playbook-Standard.
+**BB-5** PAT-Erneuerung ab 2026-09-05 (Runbook Kap. 4/7) — sonst leer. R1 (P2-Retro): Aufwandsschätzung nach 2–3 Sprints kalibrieren → Playbook-Standard.
 
 ## Betriebs-Backlog (Runbook Kap. 7)
 

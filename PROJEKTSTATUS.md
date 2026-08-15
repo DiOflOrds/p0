@@ -31,9 +31,11 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 ## Warten auf Auftraggeber
 
-**AKTIV: P8 „Mail-Autopilot" (Sprint 1 geliefert, wartet auf Abnahme).** G0 (D000, „Ollama vorhanden") und G1 (D001) via Inbox. Umgesetzt: **mail_digest v1.0** — lokale Ollama-Verdichtung mit Fallback, **Mehrfach-Takt** (Tag/Woche/Monat gleichzeitig, je Takt eigene Fälligkeit + Einmal-Zustellung), **`--auto`** für die Aufgabenplanung (Runbook Kap. 13), **„Jetzt zusammenfassen (Ollama)"-Knopf** im Team-Tab, Takt-Checkboxen im Konfigurator. 171 Tests grün, Matrix 65/0, Mail-Inhalte verlassen den Rechner nie. Abnahme-DR: `p8/T-0008` (Frist 2026-08-23, Default G4a — Stichprobe 1: Sofort-Knopf drücken und die Ollama-Qualität bewerten; Stichprobe 2: Aufgabenplanung „ASPICE-MailAutopilot" registrieren).
+**P8 „Mail-Autopilot" ist ABGESCHLOSSEN (G4a/D002, 2026-08-16), Baseline `p8-v1.0`** (p8 + platform) — team-mail verdichtet per lokalem Ollama, Mehrfach-Takt, Sofort-Knopf, `--auto` in der Aufgabenplanung. **Acht Projekte abgeschlossen.** 171+42 Tests, Matrix 65/0, 0,00 € API.
 
-Danach ist der Kreis geschlossen: Digest entsteht und kommt per Mail — ganz ohne Session. Sonst: Pilotreview team-mail ab 29.08., BB-5 PAT ab 5.9.
+**BUGFIX (N-0006/pm-T-0009, SUP.9):** Auto-Push scheiterte seit 15.08. 17:36 an einem cmd-Klammern-Fehler in abschluss.cmd (:repo_push) — **behoben**; Erfolgsnachweis: PUSH-ANFORDERUNG.txt verschwindet beim nächsten Wächter-Lauf. Voraussetzung: GitHub-Repos **p7 + p8** existieren (+ Secret, PAT). Lesson L-2026-08-16 verankert.
+
+**P9 „Org-Cockpit" ist beauftragt (P9a, pm/D002)** — Intake + Sprint 0 als erster Punkt der nächsten Session (nach Bug-Verifikation), danach die CRs **Ollama-Modellwahl** (pm/T-0006) und **KI-Hinweisfeld** (pm/T-0007). Sonst: Pilotreview team-mail ab 29.08., BB-5 PAT ab 5.9.
 
 ## Betriebs-Backlog
 

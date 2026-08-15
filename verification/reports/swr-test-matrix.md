@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-15 · SWRs: 58 (reviewed: 58) · Tests mit SWR-Bezug: 151 · ohne Bezug: 19
+Stand: 2026-08-15 · SWRs: 59 (reviewed: 59) · Tests mit SWR-Bezug: 161 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -56,12 +56,13 @@ Stand: 2026-08-15 · SWRs: 58 (reviewed: 58) · Tests mit SWR-Bezug: 151 · ohne
 | SWR-050 | reviewed | test_backend.py::FernzugriffTest::test_briefkasten_senden_und_lesen | 1 Test(s) |
 | SWR-051 | reviewed | test_backend.py::FernzugriffTest::test_cockpit_zaehlt_offene_briefe | 1 Test(s) |
 | SWR-052 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
-| SWR-053 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-053 | reviewed | test_teams.py::TeamsTest::test_team_daten_vollstaendig<br>test_teams.py::TeamsTest::test_digest_inhalt_und_pfadschutz<br>test_teams.py::TeamsTest::test_kein_team_projekt | 3 Test(s) |
 | SWR-054 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
-| SWR-055 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
-| SWR-056 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-055 | reviewed | test_teams.py::TeamsTest::test_cockpit_team_kachel | 1 Test(s) |
+| SWR-056 | reviewed | test_teams.py::TeamsTest::test_konfiguration_schreiben_und_commit<br>test_teams.py::TeamsTest::test_konfiguration_validierung | 2 Test(s) |
 | SWR-057 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
-| SWR-058 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-058 | reviewed | test_digest_zustellung.py::DigestZustellungTest::test_sendet_einmal_und_vermerkt<br>test_digest_zustellung.py::DigestZustellungTest::test_deaktivierte_teams_werden_uebersprungen<br>test_digest_zustellung.py::DigestZustellungTest::test_fehler_blockiert_nicht_und_vermerkt_nicht<br>test_digest_zustellung.py::DigestZustellungTest::test_dry_run_sendet_nichts | 4 Test(s) |
+| SWR-059 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

@@ -10,16 +10,17 @@ Sprint-6-Ergebnis: Retro-CRs T-0062–64 (status-Subkommando, Feedback-Auto-Absc
 
 **P1 „Mission Control 2.0" ist ABGESCHLOSSEN (G4a/D009 via Inbox, 2026-08-15), Baseline `p1-v1.0`** (p1 + platform). Ergebnis: Multi-Projekt-Leitstand (ADR-004-Discovery, 8 Tabs), Inbox als Gate-Regelkanal (3 reale Inbox-Entscheidungen D006/D007/D009), E-Mail-Benachrichtigung live (Zustellnachweis T-0020; Empfänger per D008 dimitri.john83@gmail.com). Kriterien K1–K5 erfüllt (Abschlussbericht mit Evidenz). Ehrliche Abweichung: Benachrichtigt-Marker der T-0022-Mail fehlt im Repo → BB-6.
 
-**P2 „Betriebshärtung": Sprint 2 (Abnahmesprint) fertig (2026-08-15) — nur noch der Abnahme-DR offen.** Sprint 1 abgenommen (G4a/**D003** via gehärtete Inbox, mit Entscheider im Log), Baseline `p2-v0.1`. Sprint 2: **Aufwandsschätzung eingeführt und gelebt** (E5/K4: 70 min geschätzt, 63 min Ist), Retro-Maßnahmen dokumentiert (Runbook Kap. 9 **Team-Node-Gate**, Gold-Beispiel „hermetische Tests"), zwei reale SUP.9-Zyklen im Projekt (T-0002 Suite-Mails/Windows, T-0013 CI-Tag-Rauschen/fetch-tags — beide gefixt). Abnahmebilanz K1–K5 im Report. **Abnahme-DR T-0017 liegt in der Inbox** — Frist **2026-08-17** bewusst in der Warnschwelle: der nächste abschluss-Lauf verschickt Neu-Mail UND Frist-Warnmail (= K2-Realnachweis; Dry-Run zeigt beide).
+**P2 „Betriebshärtung" ist ABGESCHLOSSEN (G4a/D004 via Inbox, 2026-08-15), Baseline `p2-v1.0`** (p2 + platform) — drittes Projekt in den Büchern, komplett an einem Tag. K1–K5 erfüllt mit Evidenz (Abschlussbericht); Höhepunkt: der K2-Realnachweis lief über das in P2 selbst gebaute Feature (Neu-Mail + FRIST-WARNUNG zu T-0017, beide Marker im Ticket, Zustellung bestätigt). 5 Entscheidungen, 4 davon via Inbox mit Entscheider-Protokoll.
 
-## Warten auf Auftraggeber (~3 Min)
+**Das Team ist im Regelbetrieb.** Kein aktives Projekt. Werkzeuge: Intake für neue Projekte, Feedback-Route für Produkte, Inbox mit Mail + Frist-Warnung + Default für alle Gates, Katalog-Gate, Team-Node-Gate-Regel, Aufwandsschätzung.
 
-1. **`abschluss.cmd`** — pusht Sprint 2 (inkl. Tags `p2-v0.1`) und verschickt **zwei Mails** zu T-0017 an dimitri.john83@gmail.com: „Neuer Decision Request" und „FRIST-WARNUNG" mit Default-Hinweis. Beide im Posteingang = K2 erfüllt.
-2. **T-0017 in der Inbox beantworten** (Projekt p2): G4a = Sprint 2 abnehmen + P2 abschließen. Achtung: Frist ist der 17.08. — danach greift der Default G4a automatisch.
+## Warten auf Auftraggeber
 
-## Nächste Session
+Nur noch: **`abschluss.cmd`** (pusht den P2-Abschluss inkl. Tags `p2-v1.0`). Danach ist nichts mehr offen außer Betrieb.
 
-Nach der Antwort (oder dem Default): D004 verbuchen, **Baseline `p2-v1.0`**, P2-Abschlussbericht — drittes Projekt fertig, Team wieder im Regelbetrieb. Danach offen nur Betrieb: BB-1 (Copilot CLI + T-0072-Lauf), BB-5 (PAT-Erneuerung ab 2026-09-05), neues Projekt jederzeit per Intake.
+## Betriebs-Backlog
+
+**BB-1** Copilot CLI installieren, dann `python platform\orchestrator\tick.py --repos . --ticket T-0072 --provider copilot` (schließt P0-K9) · **BB-5** PAT-Erneuerung ab 2026-09-05 (Runbook Kap. 4/7) · R1 (P2-Retro): Aufwandsschätzung nach 2–3 Sprints kalibrieren → Playbook-Standard.
 
 ## Betriebs-Backlog (Runbook Kap. 7)
 
@@ -31,4 +32,4 @@ Keine — F1–F13 vollständig entschieden; P0 (D000–D025) und P1 (D000–D00
 
 ## Referenzen
 
-Repos: github.com/DiOflOrds/{process,platform,p0,produkt-datakonv,p1} (+p2 lokal, Remote anlegen) · Baselines: **genesis-v1.0**, datakonv v1.0.0/req-v1.1, **p1-v1.0** · **Abschlussberichte:** `p0/management/p0-abschlussbericht.md`, `p1/management/p1-abschlussbericht.md` · Runbook + Betriebs-Backlog: `process/cm/runbook.md` · Intake: `process/process/intake.md`
+Repos: github.com/DiOflOrds/{process,platform,p0,produkt-datakonv,p1,p2} · Baselines: **genesis-v1.0**, datakonv v1.0.0/req-v1.1, **p1-v1.0**, **p2-v1.0** · **Abschlussberichte:** `p0/management/p0-abschlussbericht.md`, `p1/management/p1-abschlussbericht.md`, `p2/management/p2-abschlussbericht.md` · Runbook + Betriebs-Backlog: `process/cm/runbook.md` · Intake: `process/process/intake.md`

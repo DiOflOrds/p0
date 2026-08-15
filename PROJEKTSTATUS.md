@@ -16,16 +16,17 @@ Sprint-6-Ergebnis: Retro-CRs T-0062–64 (status-Subkommando, Feedback-Auto-Absc
 
 **Nachtrag Betrieb (2026-08-15 abends): BB-1 geschlossen — extern blockiert (p0/D026).** Copilot CLI 1.0.80 wurde installiert + eingeloggt und der Executor real durchgemessen (Aufruf, Antwort, Diagnose) — die wörtliche Ursache steht in Registry und Ticket: **das Copilot-Abo ist abgelaufen** (revidiert D023/F13). Auftraggeber-Entscheidung: schließen, 0-€-Prinzip; Wiedereröffnung per CR bei neuem Abo. T-0072 + p1/T-0018 rejected mit voller Evidenz. Nebengewinn: Executor gehärtet (ANSI-Strip, Zaun-Toleranz, Rohantwort-Diagnose in der Registry, +3 Tests → Suite 141).
 
-**P3 „Mission Control 3.0: Jira-like HMI" — Sprint 0 gelaufen (2026-08-15).** G0 erteilt (D000 via Inbox, nach Server-Neustart — Befund als Runbook-Eintrag UND als Anforderung SWR-047 verwertet). Requirements-first steht: **STK-015 + SWR-040–047** reviewed (Ticket-Detail + klickbare Querverweise, Board Jira-like mit Filtern, Inbox-Options-Buttons + DR-Historie, Requirements-/Traceability-Tabellen, Architektur-SVG aus versionierter Quelle, Projekt-Cockpit mit Frist-Ampel, Versions-/Neustart-Hinweis). **Architektur-Delta v1.2 + ADR-005** (Hash-Routing, komponenten.yaml → SVG-Generator, 4 neue Read-only-Endpunkte). Matrix 47/0 (UI-Checklisten-Regel), Preflight STARTKLAR. **G1-DR T-0005 und G2-DR T-0006 liegen in der Inbox** (Frist 2026-08-22, Defaults G1a/G2a).
+**P3 „Mission Control 3.0" — Sprint 1 „Klickbarkeit" fertig (2026-08-15).** G1+G2 erteilt (D001/D002 via Inbox), Baseline `p3-req-v1.0`. Umgesetzt und getestet: **Hash-Router** (jede Ansicht verlinkbar, ADR-005), **Ticket-Detailansicht** mit klickbaren T-xxxx-Querverweisen (SWR-040), **Board Jira-like** mit Statusspalten und Sprint/Rolle/Typ-Filtern (041), **Inbox mit Options-Buttons + DR-Historie** (042), **Versions-Banner** „Server neu starten" bei Code/Prozess-Versatz (047 — aus dem heutigen Befund). Tests 145 grün (+4 mit SWR-Bezug), Matrix 47/0, E5: 135 min geschätzt / 118 Ist. **G4-DR T-0012 liegt in der Inbox** (Frist 2026-08-22, Default G4a) — die Abnahme IST das Ausprobieren: Karte klicken, Querverweis klicken, per G4a-Button antworten.
 
-## Warten auf Auftraggeber (~4 Min)
+## Warten auf Auftraggeber (~5 Min)
 
-1. **`abschluss.cmd`** — pusht Sprint 0 und mailt **zwei** DRs (G1 + G2).
-2. **In der Inbox beantworten** (Projekt p3): **T-0005** (G1, Stichprobe: SWR-Set kurz lesen — deckt es deinen Wunsch?) und **T-0006** (G2, Stichprobe: ADR-005, 2 Min).
+1. **`abschluss.cmd`** — pusht Sprint 1 (inkl. `p3-req-v1.0`) und mailt den G4-DR.
+2. **Server neu starten** (Strg+C, `python platform\backend\server.py --repos .`) + Seite hart neu laden (Strg+F5) — letztmalig aus dem Kopf, ab jetzt erinnert das Banner.
+3. **T-0012 in der Inbox beantworten** — im neuen HMI: Board ansehen, Filter setzen, Karte öffnen, Querverweis klicken, dann den **G4a-Button** drücken.
 
 ## Nächste Session
 
-Nach beiden Antworten: **„Starte P3 Sprint 1"** — Verbuchen, Baseline `p3-req-v1.0`, dann Umsetzung „Klickbarkeit": Ticket-Detail (SWR-040), Board Jira-like (041), Inbox-Buttons + Historie (042), Versions-Hinweis (047).
+Nach der G4-Antwort: Baseline `p3-v0.1`, **„Starte P3 Sprint 2"** — Requirements-/Traceability-Tabellen (SWR-043/044), Architektur-SVG (045), Projekt-Cockpit (046) + Abnahme.
 
 ## Betriebs-Backlog
 

@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-15 · SWRs: 33 (reviewed: 33) · Tests mit SWR-Bezug: 113 · ohne Bezug: 21
+Stand: 2026-08-15 · SWRs: 39 (reviewed: 39) · Tests mit SWR-Bezug: 130 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -37,6 +37,12 @@ Stand: 2026-08-15 · SWRs: 33 (reviewed: 33) · Tests mit SWR-Bezug: 113 · ohne
 | SWR-031 | reviewed | test_backend.py::MultiProjektTest::test_views_requirements_verifikation_baselines | 1 Test(s) |
 | SWR-032 | reviewed | test_backend.py::MultiProjektTest::test_views_requirements_verifikation_baselines | 1 Test(s) |
 | SWR-033 | reviewed | test_dr_benachrichtigung.py::BenachrichtigungTest::test_erfolg_setzt_marker_und_verhindert_doppelversand<br>test_dr_benachrichtigung.py::BenachrichtigungTest::test_fehlschlag_ohne_marker_wird_wiederholt<br>test_dr_benachrichtigung.py::BenachrichtigungTest::test_mailinhalt_traegt_projekt_und_frist | 3 Test(s) |
+| SWR-034 | reviewed | test_dr_benachrichtigung.py::BenachrichtigungTest::test_erfolg_setzt_marker_und_verhindert_doppelversand<br>test_dr_benachrichtigung.py::BenachrichtigungTest::test_fehlschlag_ohne_marker_wird_wiederholt<br>test_dr_benachrichtigung.py::FristWarnungTest::test_schwelle_zwei_tage<br>test_dr_benachrichtigung.py::FristWarnungTest::test_warnung_nur_einmal<br>test_dr_benachrichtigung.py::FristWarnungTest::test_entschiedene_drs_ohne_warnung<br>test_dr_benachrichtigung.py::FristWarnungTest::test_unparsebare_frist_ohne_warnung | 6 Test(s) |
+| SWR-035 | reviewed | test_dr_benachrichtigung.py::FristWarnungTest::test_warntext_mit_und_ohne_default | 1 Test(s) |
+| SWR-036 | reviewed | test_catalog.py::KatalogTest::test_neuer_eintrag_erzeugt_yaml_und_seite<br>test_catalog.py::KatalogTest::test_update_ersetzt_version<br>test_catalog.py::KatalogCheckTest::test_konsistenter_katalog_ohne_befund<br>test_catalog.py::KatalogCheckTest::test_versionskonflikt_und_fehlender_tag<br>test_catalog.py::KatalogCheckTest::test_release_repo_ohne_eintrag | 5 Test(s) |
+| SWR-037 | reviewed | test_backend.py::NutzerUndHaertungTest::test_registry_parsen_und_fallback<br>test_backend.py::HttpTest::test_nutzer_endpunkt | 2 Test(s) |
+| SWR-038 | reviewed | test_backend.py::NutzerUndHaertungTest::test_entscheider_pflicht<br>test_backend.py::HttpTest::test_nutzer_endpunkt | 2 Test(s) |
+| SWR-039 | reviewed | test_backend.py::NutzerUndHaertungTest::test_entschiedener_dr_verschwindet_und_sperrt | 1 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 
@@ -44,8 +50,6 @@ Keine.
 
 ## Tests ohne SWR-Bezug (informativ — Prozess-Tooling mit CR-Bezug erlaubt, T-0025)
 
-- test_catalog.py::KatalogTest::test_neuer_eintrag_erzeugt_yaml_und_seite
-- test_catalog.py::KatalogTest::test_update_ersetzt_version
 - test_feedback_route.py::RoutingTest::test_wunsch_wird_change_request
 - test_feedback_route.py::RoutingTest::test_fehler_wird_problem
 - test_feedback_route.py::RoutingTest::test_feedback_geht_in_progress_mit_notiz

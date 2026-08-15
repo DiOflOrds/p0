@@ -19,13 +19,15 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 **Fünf Projekte abgeschlossen** (P0 Genesis, P1 MC 2.0, P2 Betriebshärtung, P3 MC 3.0, P4 MC 3.1), 1 Produkt released, 156+42 Tests, 52 SWRs / 0 Lücken, 0,00 € API über alles. Session-Routine: **Briefkasten zuerst.**
 
-**AKTIV: P5 „Genesis 2.0 — Organisationsrahmen" (Intake abgeschlossen, wartet auf G0).** Auftraggeber-Update vom 15.08.: Die Organisation wächst — neben dem ASPICE-Team entstehen ein **PM-Team** und beliebige **Projekt-Teams** (Steuer, Mail, Trading-Analyse, Wissenschaft …). Grundlage: Orgkonzept v1.0 (`process/docs/02-genesis-2.0-orgkonzept.md`, Lücken L1–L9) + **p0/D027** (F14 Session-Takt 0 €, F15 Klasse B an PM, F16 Pilot = Mail-Zusammenfassung, F17 harte Guardrails: KI handelt nie mit Außenwirkung, sensible Daten nie in Repos mit GitHub-Remote). P5 baut den Rahmen: Prozessprofile (entwicklung/dienstleistung/wiederkehrend), Entscheidungsklassen A/B/C, Team-Registry + Template, PM-Repo `pm`. 2 Sprints, 0 €. Danach P6: reale Gründung des Pilot-Teams. G0-DR: `p5/T-0001` (Frist 2026-08-22, Default G0a).
+**AKTIV: P5 „Genesis 2.0 — Organisationsrahmen" (Sprint 0 geliefert, wartet auf G1).** G0 erteilt (D000/G0a via Inbox). Sprint 0 fertig: **Playbook Kap. 15** (Prozessprofile entwicklung/dienstleistung/wiederkehrend mit Gates/Artefakten/DoD), **Kap. 16** (Entscheidungsklassen A/B/C + die zwei F17-Guardrails als harte Regeln), **Team-Registry** (`process/teams/registry.yaml`: ASPICE aktiv, PM in Gründung), **Team-Template** (`process/templates/team-repo/`), **intake.md v2** (Team-Gründung = Klasse A, inkl. Datenklassen-Weiche). G1-DR: `p5/T-0006` (Frist 2026-08-22, Default G1a, 2 Stichproben à wenige Minuten). Danach Sprint 1: PM-Repo `pm` + Template-Probelauf + Abnahme.
+
+*Ursprünglicher Intake-Vermerk:* Auftraggeber-Update vom 15.08.: Die Organisation wächst — neben dem ASPICE-Team entstehen ein **PM-Team** und beliebige **Projekt-Teams** (Steuer, Mail, Trading-Analyse, Wissenschaft …). Grundlage: Orgkonzept v1.0 (`process/docs/02-genesis-2.0-orgkonzept.md`, Lücken L1–L9) + **p0/D027** (F14 Session-Takt 0 €, F15 Klasse B an PM, F16 Pilot = Mail-Zusammenfassung, F17 harte Guardrails: KI handelt nie mit Außenwirkung, sensible Daten nie in Repos mit GitHub-Remote). P5 baut den Rahmen: Prozessprofile (entwicklung/dienstleistung/wiederkehrend), Entscheidungsklassen A/B/C, Team-Registry + Template, PM-Repo `pm`. 2 Sprints, 0 €. Danach P6: reale Gründung des Pilot-Teams. G0-DR: `p5/T-0001` (Frist 2026-08-22, Default G0a).
 
 ## Warten auf Auftraggeber
 
-1. **GitHub-Repo `DiOflOrds/p5`** anlegen (privat, leer) + Secret **PLATFORM_READ_TOKEN** in p5 (gleiche PAT wie p0–p4) + PAT **p0-read-fuer-platform-ci** um p5-Zugriff erweitern (Repo-Auswahl editieren — Token-Wert bleibt gleich).
-2. **`abschluss.cmd`** — pusht P4-Abschluss (Tags `p4-v1.0`, Briefantwort N-0001), Orgkonzept + D027 und die P5-Hülle.
-3. **Inbox:** G0 zu P5 entscheiden (T-0001). Danach: „Starte P5 Sprint 0".
+1. Falls noch offen: GitHub-Repo `DiOflOrds/p5` + Secret PLATFORM_READ_TOKEN + PAT-Erweiterung um p5 (Anleitung in `p5/.github/workflows/board-check.yml`-Kopf).
+2. **`abschluss.cmd`** — pusht Sprint 0 (Playbook 0.7, Registry, Template, intake v2, p5-Tickets).
+3. **Inbox:** G1 zu P5 entscheiden (T-0006, 2 Stichproben: Playbook Kap. 15+16, intake.md Team-Gründung). Danach: „Starte P5 Sprint 1".
 
 ## Betriebs-Backlog
 

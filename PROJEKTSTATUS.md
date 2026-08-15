@@ -15,16 +15,17 @@
 
 Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 realer SUP.9-Zyklen (Test-Mails/Windows-Pfade, CI-Tag-Rauschen/fetch-tags, Hermetik-Nachzügler), deren Lehren als Runbook-Regeln (Kap. 8/9), Gold-Beispiel und Anforderung SWR-047 im System gelandet sind. Copilot-PoC ehrlich als extern blockiert geschlossen (p0/D026: Abo abgelaufen; Reaktivierung per CR).
 
-**P4 „Mission Control 3.1: Fernzugriff & Briefkasten-Chat" — Sprint 0 gelaufen (2026-08-15).** G0 erteilt (D000 via Inbox). Requirements-first steht: **STK-016 + SWR-048–052** reviewed (Remote-Schreibzugriffe nur mit PIN bei freiem localhost, PIN-Eingabe im Frontend, Briefkasten als versionierte Dateien mit sofortigem Commit + Konversations-API, Team-Chat-Tab mit Cockpit-Hinweis, volle Handy-Bedienbarkeit inkl. PWA-Installation). **ADR-006 + architektur.md v1.3** (localhost-frei/remote-PIN mit sicherem Default, Briefkasten-Ablageformat, LAN-Prozedur; harte Leitplanke: kein Internet-Expose). Matrix 52/0, Preflight STARTKLAR. **G1-DR T-0005 und G2-DR T-0006 liegen in der Inbox** (Frist 2026-08-22, Defaults G1a/G2a).
+**P4 „Mission Control 3.1" — Sprint 1 fertig (2026-08-15), nur noch der Abnahme-DR offen.** G1+G2 erteilt (D001/D002 via Inbox), Baseline `p4-req-v1.0`. Umgesetzt und getestet: **PIN-Schutz** (localhost frei, remote nur mit `MC_PIN`, ohne PIN gesperrt — 6 Schutzregel-Tests), **`mission-control-lan.cmd`** (0.0.0.0-Bind, zeigt Handy-Adresse) + Runbook Kap. 10 (Firewall, Leitplanke kein Internet), **Briefkasten** (Briefe als versionierte Dateien + Commit, Team-Chat-Tab, Cockpit-Pille, Preflight „Briefkasten zuerst"), **Mobile-Feinschliff** (Touch-Buttons, Ein-Spalten-Board, PWA). Tests **156** grün, Matrix 52/0, alle 4 Gates konsistent. **Abnahme-DR T-0012 liegt in der Inbox** — die 5 Stichproben sind die LAN/Handy-Premiere selbst (Frist 2026-08-22, Default G4a).
 
-## Warten auf Auftraggeber (~4 Min)
+## Warten auf Auftraggeber (~10 Min — das Sofa-Abenteuer)
 
-1. **`abschluss.cmd`** — pusht Sprint 0 und mailt beide DRs (G1 + G2).
-2. **In der Inbox beantworten** (Projekt p4): **T-0005** (G1: SWR-Set — deckt es die drei Wünsche?) und **T-0006** (G2: ADR-006, besonders die Sicherheits-Leitplanke).
+1. **`abschluss.cmd`** — pusht Sprint 1 und mailt den Abnahme-DR.
+2. `setx MC_PIN <deine-PIN>` → dann **`mission-control-lan.cmd`** starten (Firewall: zulassen).
+3. Am **Handy** die angezeigte Adresse öffnen → ohne PIN entscheiden versuchen (Ablehnung sehen) → PIN eintragen → im **Team-Chat (p4)** einen echten Brief schreiben → **T-0012 vom Handy per G4a-Button** beantworten.
 
 ## Nächste Session
 
-Nach beiden Antworten: **„Starte P4 Sprint 1"** — Umsetzung: PIN-Schutz + LAN-Startskript + Runbook (E1), Briefkasten-Endpunkte + Chat-Tab (E3), Mobile-Feinschliff (E2), dann reale Geräte-Stichproben (Handy!) und Abnahme.
+Beginnt mit **„Briefkasten zuerst"**: dein Handy-Brief wird beantwortet (schließt K4), dann D003 verbuchen, **Baseline `p4-v1.0`**, P4-Abschlussbericht — fünftes Projekt fertig.
 
 ## Betriebs-Backlog
 

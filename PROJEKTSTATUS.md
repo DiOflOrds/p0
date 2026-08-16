@@ -1,5 +1,105 @@
 # Projektstatus — Fortschreibung über Sessions
 
+## Das Wichtigste (Stand Sprint 2, 2026-08-17)
+
+1. **Die CI-Statusprüfung aus Sprint 1 hat beim ersten Lauf drei rote Repos gefunden** — `p3`,
+   `p5`, `platform`. `p3` und `p5` waren seit dem 16.08. 07:00 rot: rund **siebzehn Stunden
+   unbemerkt**. Das ist der erste Ertrag von SWR-105 und die Rechtfertigung des Tickets.
+2. **Vier Tickets geschlossen** (`platform/T-0003`, `pm/T-0010`, `pm/T-0013`, `pm/T-0026`) — alle
+   mit dem Fremdnachweis, auf den sie seit dem 16.08. warteten.
+3. **Eine plausible Erklärung wurde widerlegt statt übernommen.** Dass `p3`/`p5` an der
+   Board-Formatänderung liegen, klang zwingend. `p7` trägt denselben Commit-Zeitpunkt **auf die
+   Sekunde**, dieselbe Workflow-Datei, dieselbe Formatänderung — und ist **grün**. Ohne die
+   Gegenprobe wären zwei Tickets mit falscher Begründung geschlossen worden (L-2026-08-17c).
+4. **`platform` ist rot, weil zwei Gates einander auschecken** und im selben Lauf gepusht werden.
+   Es gibt **keine** Push-Reihenfolge, die beide grün macht (B061, `pm/T-0042`). Nachgestellt:
+   104 SWRs / 1 Lücke gegen 105 / 0, je nach Stand von `p0`/`p9`.
+5. **463 Tests grün**, Matrix **107 SWRs / 0 Lücken**, Preflight STARTKLAR, kein offener Brief
+   (48 Briefe), unterminiert 0, überfällig 0.
+
+*Ab hier: Belege und Details zum Nachlesen. Übergabepunkt zwischen Cowork-Sessions, wird per
+Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+
+## Aktueller Stand
+
+**Sprint 2 (2026-08-17), der Lauf, in dem die CI-Prüfung zum ersten Mal etwas gefunden hat.**
+
+**Der Plan war klein, der Ertrag nicht.** Sprint 2 hatte eine Aufgabe: den ersten `CI-STATUS.md`
+auswerten und die vier Tickets schließen, die darauf warteten. Der Bericht (Stand 00:31, **15
+Abfragen**, `budget_erschoepft: false`) meldete acht Repos grün **für ihren eigenen Commit**,
+`team-dashboard` als „kein CI zu erwarten" — und **drei rot**.
+
+**Was geschlossen wurde und woran.** `pm/T-0010`: acht grüne board-checks, darunter zwei mit
+Commits **nach** Mitternacht — der `-I "^Stand:"`-Fix trägt über die Datumsgrenze. `pm/T-0013`:
+Kriterium 2 erfüllt, die Reihenfolgeregel tut für den board-check, was sie soll. `pm/T-0026`: der
+`projects`-Checkout ist als Ursache **ausgeschlossen** (in beiden Rekonstruktionen vorhanden).
+`platform/T-0003`: alle fünf DoD-Punkte belegt, **Netzweg nachgewiesen**.
+
+**Die Stichprobe wurde stärker erbracht als vorgesehen.** Der Auftraggeber sollte prüfen, ob das
+Urteil des Berichts mit der Actions-Seite übereinstimmt. Statt dessen wurde das rote Urteil über
+`platform` **unabhängig rekonstruiert**: derselbe Commit, derselbe Repo-Satz, zwei Stände von
+`p0`/`p9` — vor dem Push Exit 1 mit *104 SWRs, 1 Lücke (SWR-105)*, nach dem Push Exit 0 mit
+*105 SWRs, 0 Lücken*. Ein roter Befund, der sich auf einem zweiten, unabhängigen Weg herstellen
+lässt, ist besser belegt als einer, den jemand angesehen hat.
+
+**Der Befund dahinter ist struktureller Art (B061).** `platform` prüft mit seinem Matrix-Gate
+`p0`/`p9`; die Projekt-Repos prüfen mit ihrem board-check `platform`. Alle werden im selben Lauf
+gepusht — wer zuerst geht, sieht den anderen alt. `pm/T-0013` hat die eine Hälfte gelöst und die
+andere erzeugt, ohne dass es auffiel, weil der Beleg fehlte. **Die Asymmetrie entscheidet:** das
+Board-Format ändert sich zweimal im Projektleben, eine neue Anforderung entsteht in fast jedem
+Sprint — die heutige Reihenfolge macht also den Regelfall rot. Vier Wege mit ihrem jeweiligen Preis
+stehen in `pm/T-0042`; entschieden wird in Sprint 3, weil die Behebung `abschluss.cmd` oder ein
+Gate ändert und `abschluss.cmd` in Sprint 1 rekonstruiert werden musste (B025).
+
+**Noch im selben Sprint bestätigt — die Diagnose war eine Vorhersage.** Der Host-Wächter pushte um
+**00:46** erneut und erzeugte einen zweiten Bericht. `platform` ist **wieder rot**, jetzt für den
+Commit `9c25a1f6` (SWR-106) statt `34a44d57` (SWR-105). Vorher nachgerechnet, hinterher
+eingetroffen: die Lücke ist **jedes Mal genau die Anforderung des jeweiligen Sprints** (105 SWRs /
+1 Lücke gegen 106 / 0). Zwei von zwei beobachteten Pushes rot, beide aus demselben Grund. Damit ist
+die Häufigkeitsannahme aus `pm/T-0042` keine Schätzung mehr, und die Kosten des Nichtstuns sind
+höher als die jedes der vier Lösungswege.
+
+**Wo nicht geraten wurde.** Für `p3`/`p5` lag die Erklärung fertig da und ist widerlegt: gegen
+**jede** `board.py`-Fassung seit dem 16.08. sind `p3`, `p5` **und** `p7` grün, gegen die Fassung
+davor alle drei rot. Es gibt keine Version, die p3/p5 rot und p7 grün macht; alle 16 Repos
+regenerieren ihre `BOARD.md` heute byte-gleich. Was bleibt, ist ein Workflow-Schritt, den die
+Sandbox nicht nachstellen kann. Der Befund steht als `pm/T-0043` **ohne Ursachenbehauptung**, mit
+dem Vermerk, dass die Behebung **Klasse A** wäre (Zugang), falls es das Secret ist — dann geht sie
+als Inbox-DR an den Auftraggeber und wird nicht vom Team entschieden.
+
+**Gebaut im selben Sprint: SWR-107 (`platform/T-0004`).** Der Bericht sagte `ROT` und nicht
+**warum** — und ließ damit genau die Lücke offen, die er schließen sollte: ein Mensch hätte doch
+wieder die Actions-Seite öffnen müssen. `GET /repos/{slug}/actions/runs/{id}/jobs` ist dieselbe
+anmeldefreie API-Familie; der Bericht nennt jetzt **Job und Schritt**. **19 neue Tests** (Suite 444 → **463**, davon 8 aus der Gegenprüfung), alle mit injizierter Abruffunktion. Die Nachfrage läuft **nach** der Warteschleife
+(rot ist ein Endzustand), **einmal je rotem Repo**, gegen **dasselbe** Budget; scheitert sie,
+bleibt das Repo **rot** und der Bericht sagt „Schritt unbekannt" — eine Diagnose, die einen Befund
+verschluckt, wäre schlimmer als keine (B038). `in_review`, weil der Netzweg der Jobs-Adresse erst
+der nächste Hostlauf belegt; das geschieht **ohne Handlung**.
+
+**Guardrail 2 erneut bestätigt.** Der Versuch, die Actions-API aus der Sandbox zu erreichen,
+scheiterte. Es wurde **kein** Umweg gesucht — die Regel steht, und die Konsequenz (Netzweg
+unbelegt) steht im Ticket statt in einer grünen Zahl.
+
+**Lessons sofort verankert (D005, noch in diesem Lauf):** **L-2026-08-17b** (B061) und
+**L-2026-08-17c** (B062 — *„Was tut der Leser als Erstes, nachdem er das gelesen hat, und kann der
+Melder ihm das abnehmen?"* sowie *„Welcher Nachbar müsste nach dieser Erklärung dasselbe Ergebnis
+haben — und hat er es?"*).
+
+**Board-Check gegen die Erwartung gelesen (B041 Regel 3):** pm **43** Tickets (+2), platform **4**
+(+1), gesamt **246** (+3); nicht geschlossen **15** (vorher 16). Briefe **48**, davon **0 offen**.
+Matrix **107 SWRs / 0 Lücken** (vorher 106), **463 Tests** (vorher 444). `nicht_geplant: []`,
+`widersprueche: []`.
+
+**Offen und benannt:** `team-dashboard/T-0001` trägt `takt: je-session` **und**
+`geplant_sprint: 3` — nach der eigenen Regel aus SWR-106 eine Doppelaussage (B033). Die
+Widerspruchsprüfung schlägt nicht an, weil keine Frist verletzt wird. Als Feldkorrektur in der
+Agenda vermerkt, kein eigenes Ticket.
+
+---
+
+## Vorheriger Stand (Sprint 1, 2026-08-17)
+
+
 ## Das Wichtigste (Stand Sprint 1, 2026-08-17)
 
 1. **Die Planeinheit ist ab jetzt der Sprint, nicht der Kalendertag** (Auftraggeber, 2026-08-17).

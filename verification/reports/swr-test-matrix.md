@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 83 (reviewed: 78) · Tests mit SWR-Bezug: 221 · ohne Bezug: 19
+Stand: 2026-08-16 · SWRs: 84 (reviewed: 79) · Tests mit SWR-Bezug: 225 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -87,6 +87,7 @@ Stand: 2026-08-16 · SWRs: 83 (reviewed: 78) · Tests mit SWR-Bezug: 221 · ohne
 | SWR-081 | draft | — | offen (Status draft) |
 | SWR-082 | reviewed | test_backend.py::HttpTest::test_navigation_endpunkt<br>test_org_cockpit.py::NavigationTest::test_gruppen_reihenfolge_und_trennung<br>test_org_cockpit.py::NavigationTest::test_gleiche_einstufung_wie_cockpit<br>test_org_cockpit.py::NavigationTest::test_leere_gruppen_entfallen<br>test_org_cockpit.py::NavigationTest::test_nur_abgeschlossene_bleiben_erreichbar | 5 Test(s) |
 | SWR-083 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-084 | reviewed | test_backend.py::InboxTest::test_zeitpunkt_mit_uhrzeit_in_log_und_ticket<br>test_backend.py::InboxTest::test_zeitpunkt_formatiert_uebergebene_uhr<br>test_backend.py::InboxTest::test_historie_liest_vermerk_mit_uhrzeit<br>test_backend.py::InboxTest::test_alte_eintraege_ohne_uhrzeit_bleiben_gueltig | 4 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

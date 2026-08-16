@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 87 (reviewed: 87) · Tests mit SWR-Bezug: 267 · ohne Bezug: 26
+Stand: 2026-08-16 · SWRs: 87 (reviewed: 87) · Tests mit SWR-Bezug: 267 · ohne Bezug: 30
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -115,6 +115,10 @@ Keine.
 - test_preflight.py::TestLockParkplatz::test_preflight_hinterlaesst_keinen_lock
 - test_preflight.py::TestLockParkplatz::test_nur_locks_laesst_repos_unberuehrt
 - test_preflight.py::TestLockParkplatz::test_artefakte_aus_unterordnern_kollidieren_nicht
+- test_preflight.py::TestProzessAbfrage::test_fremde_codepage_bricht_die_abfrage_nicht
+- test_preflight.py::TestProzessAbfrage::test_treffer_wird_trotz_ersatzzeichen_erkannt
+- test_preflight.py::TestProzessAbfrage::test_unklare_abfrage_bleibt_vorsichtig_und_meldet_sich
+- test_preflight.py::TestProzessAbfrage::test_laufender_git_prozess_schuetzt_den_lock_weiterhin
 - test_preflight.py::TestPreflightGesamt::test_fehlende_repos_sind_befunde
 - test_trace_matrix.py::TestScannen::test_methode_vor_klasse_vor_modul
 - test_trace_matrix.py::TestScannen::test_ohne_bezug_wird_gemeldet

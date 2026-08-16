@@ -1,6 +1,6 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-15 — **VIER PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 (Routine-Session) — **NEUN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
 
@@ -35,7 +35,13 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 **BUGFIX (N-0006/pm-T-0009, SUP.9):** Auto-Push scheiterte seit 15.08. 17:36 an einem cmd-Klammern-Fehler in abschluss.cmd (:repo_push) — **behoben**; Erfolgsnachweis: PUSH-ANFORDERUNG.txt verschwindet beim nächsten Wächter-Lauf. Voraussetzung: GitHub-Repos **p7 + p8** existieren (+ Secret, PAT). Lesson L-2026-08-16 verankert.
 
-**P9 „Org-Cockpit": Sprint 1 GELIEFERT, wartet auf Abnahme (`p9/T-0004`, Frist 23.08., Default G4a).** Cockpit gruppiert jetzt: Feste Teams / Projekt-Teams / aktiv / abgeschlossen (eingeklappt, automatisch über Baselines erkannt), jede Karte mit Beschreibung (12 Steckbriefe, SWR-069), Status-Pille und offenen Aufgaben; **projects-Sammelrepo wird entdeckt** (SWR-070) — P10 ist nur noch ein Ordner. 174 Tests, Matrix 70/0. Vor der Stichprobe: Server per ⟳ neu starten. Die CRs Ollama-Modellwahl (pm/T-0006) und KI-Hinweisfeld (pm/T-0007) übernimmt die 30-Min-Routine-Session (D004). Sonst: Pilotreview 29.08., BB-5 PAT ab 5.9.
+**P9 „Org-Cockpit" ist ABGESCHLOSSEN (G4a/D002, 2026-08-16), Baseline `p9-v1.0`** (p9 + platform). Cockpit gruppiert: Feste Teams (ASPICE + PM) / Projekt-Teams / aktiv / abgeschlossen (eingeklappt, automatisch über Baselines erkannt), jede Karte mit Beschreibung (13 Steckbriefe, SWR-069), Status-Pille und offenen Aufgaben; **projects-Sammelrepo wird entdeckt** (SWR-070) — P10 ist nur noch ein Ordner. **Neun Projekte abgeschlossen.** Vor der Stichprobe: Server per ⟳ neu starten; die drei Cockpit-Stichproben aus `p9/T-0004` stehen als Betriebs-Nachweis noch offen (werden nicht vom Team abgehakt).
+
+**Betriebs-CRs T-0006/T-0007 ERLEDIGT (Routine-Session, PM-Beschluss B010):** Der Konfigurator bietet jetzt die **Ollama-Modellwahl** (Liste live vom lokalen Ollama, „automatisch" bleibt Default, aktives Modell wird angezeigt — SWR-071) und ein **KI-Hinweisfeld** (freier Zusatz-Auftrag an die KI, z. B. „achte auf Bewerbungen"; ergänzt den Prompt, ersetzt die feste Digest-Struktur nie — SWR-072). Umsetzung als p8/T-0009 + p8/T-0010 auf der P8-Fläche, **ohne neue Projekt-Baseline**. **181 Tests, Matrix 73/0, 0,00 € API.** Deine Stichprobe: Modell wählen, Hinweis eintragen, speichern, „Jetzt zusammenfassen" — und den Digest inhaltlich bewerten.
+
+**Briefe N-0010/N-0011 beantwortet und erledigt (B013):** Mission Control **startet sich jetzt selbst neu**, wenn eine Session neuen Code auf die Platte legt (SWR-073, p7/T-0016) — abgesichert dreifach: nur mit Startskript (`mission-control[-lan].cmd`), nur bei Ruhe (kein Abbruch mitten in Entscheidung oder Digest-Lauf) und entprellt gegen Neustart-Flattern; die Seite lädt sich danach von allein nach. Zum Status-Wunsch: `in_progress` **existierte bereits** (open → in_analysis → in_progress → in_review → done, eigene Board-Spalte, erzwungene Übergänge) — der echte Befund war die Sichtbarkeit, deshalb neue Playbook-Regel (Kap. 5): `in_progress` wird beim Arbeitsbeginn gesetzt, nicht am Ende nachgezogen. **181 Tests, Matrix 73/0.** Deine Stichprobe: Server einmal manuell neu starten, damit die neue Fassung läuft.
+
+Sonst: Pilotreview team-mail 29.08., BB-5 PAT ab 5.9.; `pm/T-0010` (board-check-Flake) bleibt `in_review`, bis ein GitHub-Actions-Lauf nach dem Fix grün ist.
 
 ## Betriebs-Backlog
 

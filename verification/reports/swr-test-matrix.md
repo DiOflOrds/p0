@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 81 (reviewed: 76) · Tests mit SWR-Bezug: 190 · ohne Bezug: 19
+Stand: 2026-08-16 · SWRs: 82 (reviewed: 77) · Tests mit SWR-Bezug: 195 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -85,6 +85,7 @@ Stand: 2026-08-16 · SWRs: 81 (reviewed: 76) · Tests mit SWR-Bezug: 190 · ohne
 | SWR-079 | draft | — | offen (Status draft) |
 | SWR-080 | draft | — | offen (Status draft) |
 | SWR-081 | draft | — | offen (Status draft) |
+| SWR-082 | reviewed | test_backend.py::HttpTest::test_navigation_endpunkt<br>test_org_cockpit.py::NavigationTest::test_gruppen_reihenfolge_und_trennung<br>test_org_cockpit.py::NavigationTest::test_gleiche_einstufung_wie_cockpit<br>test_org_cockpit.py::NavigationTest::test_leere_gruppen_entfallen<br>test_org_cockpit.py::NavigationTest::test_nur_abgeschlossene_bleiben_erreichbar | 5 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

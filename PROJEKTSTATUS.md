@@ -1,8 +1,56 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 12:16 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB, ZWEI NEUE BRIEFE BEANTWORTET (N-0022/N-0023)**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 14:05 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB, DREI NEUE BRIEFE BEANTWORTET (N-0024/N-0025/N-0026)**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Routine-Session 14:05:** Briefkasten hatte **drei neue Briefe** seit der 12:16-Session.
+`pm/N-0024` (12:05) lag beim ersten Check bereits vor und wurde sofort bearbeitet; **während**
+die Session daran arbeitete, gingen zwei weitere ein — `pm/N-0025` (12:08) und `pm/N-0026`
+(12:10) —, gefunden erst bei der Zweitprüfung vor Sessionende (Lesson B036 hat sich damit ein
+drittes Mal bezahlt gemacht). Alle drei beantwortet, dritte Prüfung danach: wieder leer. Inbox
+unverändert leer (37/37 `done`).
+
+**`pm/N-0024` sofort geliefert als `pm/T-0029`** (SUP.9, zweite Korrektur an SWR-088, kein
+neuer SWR): Selbst die in `pm/T-0027` auf 4000 Zeichen angehobene Grenze reichte für ein
+reales „Quelle"-Feld (Zusatzspalte bei Technik-Kandidaten) nicht — zweiter Fehlversuch, eine
+konkrete Zahl zu raten. Statt einer dritten Zahl: die eigentliche Ursache behoben.
+`platform/backend/pool.py`: `FELD_MAX` 4000 → 200 000 — keine Inhaltsgrenze mehr, nur noch
+eine technische Notbremse gegen einen versehentlichen Mega-Paste; hart verboten bleibt
+weiterhin nur `|` (das einzige Zeichen, das die Markdown-Tabellenzeile wirklich sprengt, wie
+schon in T-0027 festgehalten). HMI (`app.js`): „Nutzen"/„Voraussetzung"/„Quelle" laufen jetzt
+ebenfalls über `<textarea>` statt einzeiliger Eingabe, weil alle drei durch dieselbe
+Prüffunktion laufen — sonst wäre derselbe Befund an der nächsten Spalte fällig gewesen. 1
+neuer Test, Gesamtsuite **310 Tests** (vorher 309), Matrix weiterhin **89 SWRs / 0 Lücken**,
+Katalog- und Architektur-Gate geprüft und grün. Klasse C (rein technische Validierungsgrenze,
+keine Geld-/Rechts-/Außenwirkung) — kein Decision-Log-Eintrag nötig, analog zu T-0027.
+
+**`pm/N-0025` — BEFUND in eigener Sache: Ein offenes Ticket blieb über fünf Sessions liegen,
+der Vorwurf trifft zu (B043, `pm/T-0030`).** Der Auftraggeber bemängelt, dass offene PM-Aufgaben
+nicht terminiert werden und liegen bleiben, wiederkehrende Aufgaben keinen echten Zeittakt
+(„jeden Tag um 14 Uhr") haben. Konkreter Beleg: `pm/T-0025` steht seit der 10:40-Session offen,
+fünf Routine-Sessions haben es nicht aufgegriffen, obwohl die Agenda es seit der 10:23-Session
+nennt — nur eben als Randnotiz ohne Priorität. Zwei strukturelle Lücken benannt: Backlog-Tickets
+(CR/Problem) haben kein Fristfeld (nur Decision-Requests haben `frist`/`default`); „wiederkehrend"
+heißt bisher nur „je Sessionlauf geprüft", nicht „zu einer festen Uhrzeit". **Nicht sofort
+gebaut** — ein Fristfeld ohne geklärte Eskalationsregel und ein neuer Uhrzeit-Takt neben den
+bestehenden zwei Taktlogiken (Session-Takt F14, team-mail-Takt) wären ein zu schnell gebautes
+Werkzeug (B025/B038-Risiko). Als `pm/T-0030` für eine Design-Session eingeplant, Entwurf im
+Ticket. **Sofort umgesetzt:** `pm/T-0025` Priorität mittel → hoch, jetzt oben auf der Agenda.
+
+**`pm/N-0026` — einfache Statusfrage, direkt beantwortet:** Ja, P9 „Org-Cockpit" ist
+abgeschlossen (G4a/D002, Baseline `p9-v1.0`), kein offenes Ticket in `p9`. Offen bleiben nur die
+drei Betriebs-Stichproben aus `p9/T-0004`, die bewusst nicht vom Team abgehakt werden — kein
+Blocker für den Abschlussstatus.
+
+Push: `PUSH-ANFORDERUNG.txt` aus der 12:16-Session war beim Sessionstart bereits abgearbeitet
+— diese Session schreibt am Ende eine neue Zeile für ihre eigenen Commits (platform, pm).
+`pm/T-0010`/`T-0013`/`T-0026` bleiben unverändert `in_review` (kein `gh`/Netzzugriff in
+dieser Sandbox). team-mail-Digest-Befund unverändert offen (`mail_digest.faellig(7)`
+weiterhin `True`, nur am Mission-Control-Host prüfbar — siehe Session-Agenda Punkt 3).
+`pm/T-0028` (Team-Gründung im Pool) bleibt bewusst `open`, für eine dafür vorgesehene
+Session — kein Blocker für diese Session. Alle Änderungen committet, `preflight.py` meldet
+STARTKLAR, `PUSH-ANFORDERUNG.txt` fortgeschrieben.
 
 **Routine-Session 12:16:** Briefkasten hatte **zwei neue Briefe** seit der 11:45-Session —
 `pm/N-0022` (09:59, committet 11:59) und `pm/N-0023` (10:05, committet 12:05), beide erst nach

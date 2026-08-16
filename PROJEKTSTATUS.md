@@ -1,6 +1,89 @@
 # Projektstatus — Fortschreibung über Sessions
 
-## Das Wichtigste (Stand 2026-08-16 19:35)
+## Das Wichtigste (Stand 2026-08-16 20:35)
+
+1. **Dein Brief `pm/N-0030` ist beantwortet — er hat einen echten Werkzeugbefund getroffen
+   (B053).** Du wolltest wissen, wer an welchem Task arbeitet. **Das Board kann das nicht sagen:**
+   die einzige Zuordnungsspalte ist `rolle`, und die nennt die **Fachrolle** (`prob`, `cm`), nicht
+   den Ausführenden.
+2. **Die Zuordnung selbst steht jetzt in der Agenda, getrennt nach „Für dich" und „Für das
+   Team":** von 15 offenen Tickets warten **4 auf dich**, **6 auf das Team**, **5 sind
+   Takt-Dauerläufer** ohne Rückstand. Nicht so viele, wie es sich anfühlt.
+3. **Der Beleg:** Vier offene Tickets sind nur von dir am Host lösbar (`pm/T-0034`, `T-0013`,
+   `T-0010`, `T-0026`) — das steht in allen vieren im **Fließtext** und in **keinem Feld**.
+4. **Nicht gebaut, eingeplant: `pm/T-0038`** (Feld `verantwortlich`, Frist 23.08., gebündelt mit
+   `pm/T-0036` — beide ändern das `BOARD.md`-Format).
+5. **Weiterhin für dich:** `pm/T-0034` ist **morgen** fällig; ein Blick auf die
+   GitHub-Actions-Seiten schließt drei Tickets (Frist 18.08.).
+
+*Ab hier: Belege und Details zum Nachlesen. Übergabepunkt zwischen Cowork-Sessions, wird per
+Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+
+## Aktueller Stand
+
+**Routine-Session 20:06–20:35.** Briefkasten beim Start: **ein offener Brief** — `pm/N-0030`
+(18:02), gefunden bei der Durchsuchung aller **40** Briefe aller Projekte/Teams auf
+`status: offen`; **beantwortet**. Inbox beim Start: **leer und beweisbar nichts Unverbuchtes** —
+gegen die DR-Rohdaten geprüft (Ablaufregel aus B047): **kein einziger `decision-request` mit
+Status ≠ `done`** (47 DRs). **Kein überfälliges Ticket** (frühester Termin `pm/T-0034`, 17.08.).
+
+**Der Brief war die Arbeit — und er war kein Auskunftswunsch.** `pm/N-0030` stellt zwei Fragen in
+einem Satz: *was ist als nächstes geplant* (aus dem Bestand beantwortbar) und *wer arbeitet daran,
+Team oder Mensch* (**nicht** beantwortbar). Die zweite ist ein Werkzeugbefund.
+
+**⚠ Die Auflösung „Rolle → Mensch oder KI" existiert und wird von niemandem gelesen.**
+`process/roles/registry.yaml` trägt je Rolle `besetzung: ki | mensch | script` — elf Rollen auf
+`ki`, genau eine (`MENSCH`) auf `mensch`. Gelesen wird das Feld von **keiner** Ausgabe: nicht vom
+generierten `BOARD.md`, nicht von der Cockpit-Kachel, nicht vom Preflight. Was im Board steht, ist
+`prob` oder `cm` — die Fachrolle des Autors (`board.py`: *„reviewer darf nicht der Autor (rolle)
+sein"*).
+
+**⚠ Der Beleg, dass das nicht theoretisch ist.** `pm/T-0034`, `pm/T-0013`, `pm/T-0010` (`prob`)
+und `pm/T-0026` (`cm`) sind ausschließlich am Host durch den Menschen lösbar. In `T-0034` heißt
+eine Abschnittsüberschrift wörtlich *„Was zu prüfen ist (am Host, eine Handlung des
+Auftraggebers)"*, in `T-0026` *„Voraussetzung beim Menschen"* — im Fließtext, in keinem Feld.
+**Vier von zehn terminierten offenen Tickets sehen im Board aus wie Teamaufgaben.** Muster
+**B043**: die Information ist vollständig da, nur an einer Stelle, an die keine Übersicht sieht.
+
+**⚠ Die naheliegende Abkürzung wäre ein stiller Schaden gewesen.** `rolle: mensch` auf die vier
+Tickets zu setzen, hätte die Frage scheinbar gelöst. Das Feld hat in `board.py` aber eine
+**zweite, verhaltensändernde** Bedeutung: Tickets mit `rolle: mensch` sind Gates und von der
+Status-Übergangsprüfung **ausgenommen** (`t.get("rolle") != "mensch"` in `validiere`). Vier
+Tickets hätten ohne eine einzige Meldung ihre Übergangsprüfung verloren — ein Feld für zwei
+Zwecke, die Familie aus **B033**. Deshalb ein eigenes Feld. Als **L-2026-08-16g** in
+`process/knowledge/cm/lessons.md`.
+
+**Nicht gebaut, eingeplant als `pm/T-0038`** (Klasse B, Frist **23.08.**): Feld
+`verantwortlich: team | mensch`, sichtbar als Board-Spalte und im Cockpit, Preflight-Zeile mit den
+**Refs** statt nur einer Zahl (B038), und bei `mensch` ein Pflichtabschnitt *„Handlung beim
+Menschen"* im Ticket. Ticket-Schema, Board-Format, Cockpit-Vertrag und Preflight gleichzeitig in
+einer 30-Minuten-Routine wäre B025/B038. **Dieselbe Frist wie `pm/T-0036`** ist Absicht: beide
+fügen dem generierten `BOARD.md` etwas hinzu, und zwei getrennte Formatänderungen am Board haben
+am 16.08. früh sämtliche board-check-Workflows rot gemacht (`pm/T-0013`).
+
+**Sofort von Hand angewandt, was ohne Code geht:** Die Session-Agenda trennt ab jetzt **„Für
+dich"** von **„Für das Team"** — zwei Tabellen nach Frist, ganz oben. Dieselbe Zuordnung steht als
+Momentaufnahme mit Zeitstempel in der Brief-Antwort.
+
+**Kein Code geändert, deshalb keine neuen Tests.** **334 Tests**, Matrix **101 SWRs / 0 Lücken**
+unverändert. Board-Check gegen die Erwartung gelesen (B041 Regel 3): **pm 38 Tickets** (vorher 37,
++`T-0038`), offene pm-Tickets **10 → 11**; Briefe organisationsweit **40** (vorher 39), davon
+**0 offen** nach dieser Session. Fremde Änderungen: nur die bekannte `team-mail`-Anzeige
+(`digest/2026-08-16-woche-digest.md`, `git diff --quiet` = 0) — der Index-Refresh aus R7, erneut
+geprüft, erneut kein Commit.
+
+**⚠ Morgen fällig, nur am Host lösbar: `pm/T-0034`** (17.08., hoch) — unverändert, kein
+IMAP/Ollama in dieser Sandbox (Guardrail 2). `pm/T-0010`/`T-0013`/`T-0026` bleiben `in_review`,
+terminiert auf 18.08.
+
+Push: `PUSH-ANFORDERUNG.txt` war beim Start **nicht vorhanden** (die Zeile der 19:35-Session ist
+abgearbeitet). Diese Session legt sie neu an (Repos: pm, process). Alle Änderungen committet,
+`preflight.py` meldet STARTKLAR.
+
+---
+
+## Stand der Vorsession (19:06)
+
 
 1. **Deine Inbox ist leer, dein Brief ist beantwortet.** Du hast `p12/T-0002` um **19:11** mit
    **G1a** entschieden — mitten in der Session. Verbucht: Sprint 1 für P12 ist beauftragt
@@ -24,7 +107,6 @@
 *Ab hier: Belege und Details zum Nachlesen. Übergabepunkt zwischen Cowork-Sessions, wird per
 Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
-## Aktueller Stand
 
 **Routine-Session 19:06–19:35.** Briefkasten beim Start **leer** (38 Briefe aller Projekte/Teams
 auf `status: offen` durchsucht) — die **Zweitprüfung am Ende fand einen neuen**

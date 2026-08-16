@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 101 (reviewed: 91) · Tests mit SWR-Bezug: 353 · ohne Bezug: 30
+Stand: 2026-08-16 · SWRs: 101 (reviewed: 91) · Tests mit SWR-Bezug: 355 · ohne Bezug: 30
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -53,7 +53,7 @@ Stand: 2026-08-16 · SWRs: 101 (reviewed: 91) · Tests mit SWR-Bezug: 353 · ohn
 | SWR-047 | reviewed | test_backend.py::HttpTest::test_version_endpunkt | 1 Test(s) |
 | SWR-048 | reviewed | test_backend.py::FernzugriffTest::test_schreibschutz_regeln<br>test_pool_kandidat.py::TestLaufendeNummer::test_nummer_steigt_kategorieuebergreifend<br>test_pool_kandidat.py::TestValidierungAllgemein::test_unbekannte_kategorie<br>test_pool_kandidat.py::TestValidierungAllgemein::test_fehlende_pool_datei<br>test_pool_kandidat.py::TestCommit::test_commit_mit_herkunft<br>test_pool_kandidat.py::TestCommit::test_gescheiterter_commit_nimmt_zurueck<br>test_pool_kandidat.py::HttpTest::test_post_legt_kandidat_an_und_get_zeigt_ihn_sofort<br>test_pool_kandidat.py::HttpTest::test_ungueltige_eingabe_meldet_400<br>test_pool_starten.py::TestStartenAblehnungen::test_team_kandidat_abgelehnt<br>test_pool_starten.py::TestStartenAblehnungen::test_unbekannter_kandidat<br>test_pool_starten.py::TestStartenAblehnungen::test_leerer_kandidat<br>test_pool_starten.py::TestStartenAblehnungen::test_verbotenes_zeichen_pipe<br>test_pool_starten.py::TestStartenAblehnungen::test_verbotenes_zeichen_anfuehrungszeichen<br>test_pool_starten.py::TestStartenAblehnungen::test_fehlendes_projects_repo<br>test_pool_starten.py::TestStartenAblehnungen::test_fehlende_pool_datei<br>test_pool_starten.py::TestNummerierung::test_nummer_ueber_toplevel_und_sammelrepo<br>test_pool_starten.py::TestNummerierung::test_nummer_ohne_bestandsprojekte<br>test_pool_starten.py::TestCommitRuecknahme::test_gescheiterter_projekt_commit_nimmt_ordner_zurueck<br>test_pool_starten.py::TestCommitRuecknahme::test_gescheiterter_pool_commit_behaelt_projekt<br>test_pool_starten.py::HttpTest::test_post_startet_kandidat<br>test_pool_starten.py::HttpTest::test_unbekannter_kandidat_meldet_404<br>test_pool_starten.py::HttpTest::test_team_kandidat_meldet_400 | 22 Test(s) |
 | SWR-049 | reviewed | test_backend.py::FernzugriffTest::test_schreibschutz_regeln | 1 Test(s) |
-| SWR-050 | reviewed | test_backend.py::FernzugriffTest::test_briefkasten_senden_und_lesen | 1 Test(s) |
+| SWR-050 | reviewed | test_backend.py::FernzugriffTest::test_briefkasten_senden_und_lesen<br>test_backend.py::FernzugriffTest::test_briefkasten_erkennt_die_ueberschrift_der_sessions<br>test_backend.py::FernzugriffTest::test_briefkasten_antwort_steht_nicht_im_nachrichtenblock | 3 Test(s) |
 | SWR-051 | reviewed | test_backend.py::FernzugriffTest::test_cockpit_zaehlt_offene_briefe | 1 Test(s) |
 | SWR-052 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-053 | reviewed | test_teams.py::TeamsTest::test_team_daten_vollstaendig<br>test_teams.py::TeamsTest::test_digest_inhalt_und_pfadschutz<br>test_teams.py::TeamsTest::test_kein_team_projekt | 3 Test(s) |

@@ -1,8 +1,27 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 10:23 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN (P10 heute abgenommen), TEAM IM REGELBETRIEB**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 11:21 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB, `pm/T-0022` TEIL 1 GELIEFERT**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Routine-Session 11:21:** Briefkasten leer (30/30 beantwortet), Inbox leer (37/37 DRs
+entschieden, gegen Rohdaten geprüft). Der Auto-Push-Wächter lief um 11:00 wieder erfolgreich
+(Nachfolge zu `pm/T-0024`) — 21 liegen gebliebene Commits und `p10-v1.0` sind auf GitHub;
+`pm/T-0010`/`T-0013`/`T-0026` bleiben `in_review`, weil diese Sandbox keinen GitHub-Actions-Lauf
+prüfen kann (kein `gh`, kein Netzzugriff). **Geliefert: `pm/T-0022` Teil 1 „Anlegen"** — neuer
+Schreibpfad `platform/backend/pool.py` für den Projekt-Pool (Muster `tickets.py`/`inbox.py`:
+PIN, Sofort-Commit, Rücknahme bei Fehlschlag), Formular für Team- und Technik-Kandidaten mit den
+Feldern der jeweiligen Tabelle, laufende Nummer über beide Kategorien, Duplikat-Ablehnung.
+SWR-088 auf der P9-Fläche (v1.5). **285 Tests (vorher 268), Matrix 88 SWRs / 0 Lücken**,
+Katalog-/Architektur-Gate unverändert grün. Teil 2 „Starten" bewusst zurückgestellt (eigene
+Session, Begründung + Stichprobe in `pm/T-0022` und der Session-Agenda). **Neuer Befund
+team-mail:** ein Wochen-Digest ist laut `mail_digest.faellig(7)` fällig und wurde noch nie
+erzeugt, obwohl `takte: [7]` seit Gründung gilt — aus dieser Sandbox nicht ausführbar (keine
+IMAP/SMTP/Ollama-Zugangsdaten hier, Guardrail 2), Prüfung am Mission-Control-Host nötig (Details
+in der Session-Agenda). Alle Änderungen committet, `preflight.py` meldet STARTKLAR,
+`PUSH-ANFORDERUNG.txt` für den nächsten Wächter-Lauf geschrieben.
+
+---
 
 **Das Team ist im Regelbetrieb — kein aktives Projekt.** *(Stand 2026-08-16 10:12: **zehn** abgeschlossene Projekte — P10 „Aufgaben bearbeiten im HMI" wurde heute um 10:02 mit G4a/D002 abgenommen, Baseline `p10-v1.0`. **263 Tests, Matrix 87 SWRs / 0 Lücken, 0,00 € API.** Die Tabelle unten zeigt den historischen Stand bis P3.)* Bilanz: **4 abgeschlossene Projekte**, 1 released Produkt, 153 + 42 grüne Tests, Matrix 47 SWRs / 0 Lücken, 4 Konsistenz-Gates in abschluss.cmd (Tests, Matrix, Katalog, Architekturbild), **0,00 € API** über alles.
 

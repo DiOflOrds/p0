@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 87 (reviewed: 82) · Tests mit SWR-Bezug: 234 · ohne Bezug: 19
+Stand: 2026-08-16 · SWRs: 87 (reviewed: 82) · Tests mit SWR-Bezug: 234 · ohne Bezug: 26
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -108,6 +108,13 @@ Keine.
 - test_preflight.py::TestLockArtefakte::test_sauberes_repo_ohne_funde
 - test_preflight.py::TestLockArtefakte::test_entfernen_meldet_erfolg
 - test_preflight.py::TestLockArtefakte::test_entfernen_meldet_fehlschlag
+- test_preflight.py::TestLockParkplatz::test_nicht_loeschbarer_lock_wird_geparkt
+- test_preflight.py::TestLockParkplatz::test_git_sieht_den_lock_danach_nicht_mehr
+- test_preflight.py::TestLockParkplatz::test_geparktes_artefakt_bleibt_erhalten
+- test_preflight.py::TestLockParkplatz::test_parkplatz_wird_nicht_erneut_als_lock_erkannt
+- test_preflight.py::TestLockParkplatz::test_preflight_hinterlaesst_keinen_lock
+- test_preflight.py::TestLockParkplatz::test_nur_locks_laesst_repos_unberuehrt
+- test_preflight.py::TestLockParkplatz::test_artefakte_aus_unterordnern_kollidieren_nicht
 - test_preflight.py::TestPreflightGesamt::test_fehlende_repos_sind_befunde
 - test_trace_matrix.py::TestScannen::test_methode_vor_klasse_vor_modul
 - test_trace_matrix.py::TestScannen::test_ohne_bezug_wird_gemeldet

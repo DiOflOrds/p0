@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 87 (reviewed: 87) · Tests mit SWR-Bezug: 267 · ohne Bezug: 30
+Stand: 2026-08-16 · SWRs: 87 (reviewed: 87) · Tests mit SWR-Bezug: 268 · ohne Bezug: 30
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -66,7 +66,7 @@ Stand: 2026-08-16 · SWRs: 87 (reviewed: 87) · Tests mit SWR-Bezug: 267 · ohne
 | SWR-060 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-061 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-062 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_verdichte_erfolg_und_fallback<br>test_mail_autopilot.py::MailAutopilotTest::test_lauf_takt_schreibt_und_stellt_zu | 2 Test(s) |
-| SWR-063 | reviewed | test_teams.py::TeamsTest::test_digest_jetzt | 1 Test(s) |
+| SWR-063 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_jetzt_takte_folgt_konfiguration<br>test_teams.py::TeamsTest::test_digest_jetzt | 2 Test(s) |
 | SWR-064 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_konfiguration_takte_und_fallback<br>test_mail_autopilot.py::MailAutopilotTest::test_faelligkeit_je_takt | 2 Test(s) |
 | SWR-065 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-066 | reviewed | test_org_cockpit.py::OrgCockpitTest::test_steckbrief_und_gruppen<br>test_org_cockpit.py::OrgCockpitTest::test_status_fallback_ueber_baseline_tag<br>test_org_cockpit.py::VerschachtelteDrsTest::test_top_level_projekte_unveraendert | 3 Test(s) |

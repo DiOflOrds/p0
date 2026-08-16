@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 87 (reviewed: 87) · Tests mit SWR-Bezug: 268 · ohne Bezug: 30
+Stand: 2026-08-16 · SWRs: 88 (reviewed: 88) · Tests mit SWR-Bezug: 292 · ohne Bezug: 30
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -51,7 +51,7 @@ Stand: 2026-08-16 · SWRs: 87 (reviewed: 87) · Tests mit SWR-Bezug: 268 · ohne
 | SWR-045 | reviewed | test_arch_diagramm.py::ArchDiagrammTest::test_svg_enthaelt_komponenten_und_pfeile<br>test_arch_diagramm.py::ArchDiagrammTest::test_deterministisch_und_drift_erkennbar<br>test_arch_diagramm.py::ArchDiagrammTest::test_unbekannte_komponente_wird_abgelehnt<br>test_arch_diagramm.py::ArchDiagrammTest::test_eingecheckte_quelle_konsistent_zum_bild | 4 Test(s) |
 | SWR-046 | reviewed | test_backend.py::HmiSprint2Test::test_cockpit_mit_frist_ampel<br>test_backend.py::HmiSprint2Test::test_cockpit_alle_ueber_api_form<br>test_backend.py::EindeutigeKennungTest::test_cockpit_und_inbox_tragen_die_kennung | 3 Test(s) |
 | SWR-047 | reviewed | test_backend.py::HttpTest::test_version_endpunkt | 1 Test(s) |
-| SWR-048 | reviewed | test_backend.py::FernzugriffTest::test_schreibschutz_regeln | 1 Test(s) |
+| SWR-048 | reviewed | test_backend.py::FernzugriffTest::test_schreibschutz_regeln<br>test_pool_kandidat.py::TestLaufendeNummer::test_nummer_steigt_kategorieuebergreifend<br>test_pool_kandidat.py::TestValidierungAllgemein::test_unbekannte_kategorie<br>test_pool_kandidat.py::TestValidierungAllgemein::test_fehlende_pool_datei<br>test_pool_kandidat.py::TestCommit::test_commit_mit_herkunft<br>test_pool_kandidat.py::TestCommit::test_gescheiterter_commit_nimmt_zurueck<br>test_pool_kandidat.py::HttpTest::test_post_legt_kandidat_an_und_get_zeigt_ihn_sofort<br>test_pool_kandidat.py::HttpTest::test_ungueltige_eingabe_meldet_400 | 8 Test(s) |
 | SWR-049 | reviewed | test_backend.py::FernzugriffTest::test_schreibschutz_regeln | 1 Test(s) |
 | SWR-050 | reviewed | test_backend.py::FernzugriffTest::test_briefkasten_senden_und_lesen | 1 Test(s) |
 | SWR-051 | reviewed | test_backend.py::FernzugriffTest::test_cockpit_zaehlt_offene_briefe | 1 Test(s) |
@@ -91,6 +91,7 @@ Stand: 2026-08-16 · SWRs: 87 (reviewed: 87) · Tests mit SWR-Bezug: 268 · ohne
 | SWR-085 | reviewed | test_backend.py::RequirementsUeberAlleTest::test_alle_projekte_in_einer_antwort<br>test_backend.py::RequirementsUeberAlleTest::test_herkunft_je_datei_fuer_den_filter | 2 Test(s) |
 | SWR-086 | reviewed | test_backend.py::ProjektPoolTest::test_kandidaten_nach_kategorie<br>test_backend.py::ProjektPoolTest::test_ohne_datei_keine_ausnahme<br>test_backend.py::ProjektPoolTest::test_abschnitte_ohne_tabelle_werden_uebersprungen | 3 Test(s) |
 | SWR-087 | reviewed | test_backend.py::EindeutigeKennungTest::test_ref_ist_eine_quelle<br>test_backend.py::EindeutigeKennungTest::test_gleiche_nummer_zwei_projekte_unterscheidbar | 2 Test(s) |
+| SWR-088 | reviewed | test_pool_kandidat.py::TestAnlegenTeam::test_team_kandidat_wird_angelegt<br>test_pool_kandidat.py::TestAnlegenTeam::test_zeile_landet_am_ende_der_eigenen_kategorie<br>test_pool_kandidat.py::TestAnlegenTeam::test_ungueltiger_name_abgelehnt<br>test_pool_kandidat.py::TestAnlegenTeam::test_kurzbeschreibung_pflicht<br>test_pool_kandidat.py::TestAnlegenTeam::test_pflichtfeld_fehlt<br>test_pool_kandidat.py::TestAnlegenTeam::test_zeilenumbruch_abgelehnt<br>test_pool_kandidat.py::TestAnlegenTeam::test_doppelter_kandidat_abgelehnt<br>test_pool_kandidat.py::TestAnlegenTechnik::test_technik_kandidat_wird_angelegt<br>test_pool_kandidat.py::TestAnlegenTechnik::test_quelle_pflicht<br>test_pool_kandidat.py::TestAnlegenTechnik::test_doppelter_kandidat_abgelehnt_technik<br>test_pool_kandidat.py::TestLaufendeNummer::test_nummer_steigt_kategorieuebergreifend<br>test_pool_kandidat.py::TestValidierungAllgemein::test_unbekannte_kategorie<br>test_pool_kandidat.py::TestValidierungAllgemein::test_fehlende_pool_datei<br>test_pool_kandidat.py::TestCommit::test_commit_mit_herkunft<br>test_pool_kandidat.py::TestCommit::test_gescheiterter_commit_nimmt_zurueck<br>test_pool_kandidat.py::HttpTest::test_post_legt_kandidat_an_und_get_zeigt_ihn_sofort<br>test_pool_kandidat.py::HttpTest::test_ungueltige_eingabe_meldet_400 | 17 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

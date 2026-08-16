@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 87 (reviewed: 82) · Tests mit SWR-Bezug: 234 · ohne Bezug: 26
+Stand: 2026-08-16 · SWRs: 87 (reviewed: 87) · Tests mit SWR-Bezug: 267 · ohne Bezug: 26
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -80,11 +80,11 @@ Stand: 2026-08-16 · SWRs: 87 (reviewed: 82) · Tests mit SWR-Bezug: 234 · ohne
 | SWR-074 | reviewed | test_board.py::TestBoard::test_takt_wiederkehrend_sichtbar<br>test_board.py::TestBoard::test_takt_ohne_feld_unveraendert<br>test_board.py::TestBoard::test_takt_ungueltig_wird_abgelehnt<br>test_org_cockpit.py::OrgCockpitTest::test_takt_im_cockpit_und_board | 4 Test(s) |
 | SWR-075 | reviewed | test_org_cockpit.py::OrgCockpitTest::test_altlasten_erkennung<br>test_org_cockpit.py::OrgCockpitTest::test_board_reicht_veraltet_durch | 2 Test(s) |
 | SWR-076 | reviewed | test_backend.py::NutzerUndHaertungTest::test_inbox_zaehler_fuer_den_menschen | 1 Test(s) |
-| SWR-077 | draft | — | offen (Status draft) |
-| SWR-078 | draft | — | offen (Status draft) |
-| SWR-079 | draft | — | offen (Status draft) |
-| SWR-080 | draft | — | offen (Status draft) |
-| SWR-081 | draft | — | offen (Status draft) |
+| SWR-077 | reviewed | test_p10_editor.py::TestEditorRegeln::test_gueltige_aenderung_wird_uebernommen<br>test_p10_editor.py::TestEditorRegeln::test_ungueltiger_typ_wird_mit_board_meldung_abgelehnt<br>test_p10_editor.py::TestEditorRegeln::test_unzulaessiger_status_uebergang<br>test_p10_editor.py::TestEditorRegeln::test_in_review_ohne_reviewer_abgelehnt<br>test_p10_editor.py::TestEditorRegeln::test_nicht_editierbares_feld_wird_abgelehnt<br>test_p10_editor.py::TestEditorRegeln::test_erledigtes_ticket_ist_archiv<br>test_p10_editor.py::TestEditorRegeln::test_leere_aenderung_wird_abgelehnt<br>test_p10_editor.py::TestEditorRegeln::test_fliesstext_wird_ersetzt | 8 Test(s) |
+| SWR-078 | reviewed | test_p10_editor.py::TestCommit::test_commit_mit_herkunft_und_board<br>test_p10_editor.py::TestCommit::test_abgelehnte_aenderung_committet_nichts<br>test_p10_editor.py::TestCommit::test_gescheiterter_commit_nimmt_die_aenderung_zurueck<br>test_p10_editor.py::TestCommit::test_unbekanntes_ticket_meldet_404<br>test_p10_editor.py::TestApiSchutz::test_schreiben_ueber_api_localhost | 5 Test(s) |
+| SWR-079 | reviewed | test_p10_editor.py::TestLabels::test_labels_setzen_und_lesen<br>test_p10_editor.py::TestLabels::test_ungueltiges_label_abgelehnt<br>test_p10_editor.py::TestLabels::test_zu_viele_labels_abgelehnt<br>test_p10_editor.py::TestLabels::test_ticket_ohne_labelfeld_bleibt_gueltig<br>test_p10_editor.py::TestLabels::test_labels_leeren_entfernt_die_zeile<br>test_p10_editor.py::TestLabels::test_board_api_liefert_labels | 6 Test(s) |
+| SWR-080 | reviewed | test_p10_editor.py::TestKonflikt::test_unveraenderte_datei_schreibt<br>test_p10_editor.py::TestKonflikt::test_veraenderte_datei_wird_abgelehnt<br>test_p10_editor.py::TestKonflikt::test_konflikt_ist_eigener_fehlertyp<br>test_p10_editor.py::TestKonflikt::test_fingerprint_ignoriert_zeilenenden<br>test_p10_editor.py::TestKonflikt::test_backend_meldet_409<br>test_p10_editor.py::TestKonflikt::test_backend_verlangt_fingerprint | 6 Test(s) |
+| SWR-081 | reviewed | test_p10_editor.py::TestHistorieUndEditorDaten::test_historienzeile_wird_angehaengt<br>test_p10_editor.py::TestHistorieUndEditorDaten::test_historie_sammelt_sich<br>test_p10_editor.py::TestHistorieUndEditorDaten::test_editor_daten_liefern_formularzustand<br>test_p10_editor.py::TestHistorieUndEditorDaten::test_editor_daten_erklaeren_archiv<br>test_p10_editor.py::TestHistorieUndEditorDaten::test_zeitpunkt_hat_eine_quelle<br>test_p10_editor.py::TestApiSchutz::test_editor_lesen_ohne_pin<br>test_p10_editor.py::TestApiSchutz::test_editor_unbekanntes_ticket_404<br>test_p10_editor.py::TestApiSchutz::test_schreibschutz_greift_fuer_fremde_adressen | 8 Test(s) |
 | SWR-082 | reviewed | test_backend.py::HttpTest::test_navigation_endpunkt<br>test_org_cockpit.py::NavigationTest::test_gruppen_reihenfolge_und_trennung<br>test_org_cockpit.py::NavigationTest::test_gleiche_einstufung_wie_cockpit<br>test_org_cockpit.py::NavigationTest::test_leere_gruppen_entfallen<br>test_org_cockpit.py::NavigationTest::test_nur_abgeschlossene_bleiben_erreichbar | 5 Test(s) |
 | SWR-083 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-084 | reviewed | test_backend.py::InboxTest::test_zeitpunkt_mit_uhrzeit_in_log_und_ticket<br>test_backend.py::InboxTest::test_zeitpunkt_formatiert_uebergebene_uhr<br>test_backend.py::InboxTest::test_historie_liest_vermerk_mit_uhrzeit<br>test_backend.py::InboxTest::test_alte_eintraege_ohne_uhrzeit_bleiben_gueltig | 4 Test(s) |

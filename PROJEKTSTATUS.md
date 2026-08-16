@@ -1,8 +1,81 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 16:15 (Routine-Session) — **PROJEKT P11 „WIDGET-DASHBOARD" IST ANGELEGT UND HAT G1 — BEIDE KLASSE-A-ENTSCHEIDE FIELEN UND WURDEN IN DERSELBEN SESSION VERBUCHT (G0a/D007 um 15:55, G1a/p11-D001 um 16:07 — 51 Sekunden nach dem Commit, mit dem das Projekt entstand). DIE INBOX IST LEER. ZWEI BEFUNDE AM WERKZEUG: EIN ENTSCHIEDENER, NICHT VERBUCHTER DR IST IN DER INBOX UNSICHTBAR, UND `blocked_by` REICHT NICHT ÜBER REPO-GRENZEN.** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 16:50 (Routine-Session) — **DER „OHNE FRIST"-ZÄHLER IST ZU ENDE GELESEN: HINTER DER LETZTEN OFFENEN KACHEL (p0) STAND `p0/T-0008`, DAS EINZIGE OFFENE TICKET IN ZWEI ABGESCHLOSSENEN PROJEKTEN — ZWEIMAL VERTAGT, ABER OHNE JEDEN HINWEIS DARAUF IM TICKET. SEIN ZWILLING AUS DEMSELBEN ABNAHMEKRITERIUM IST LÄNGST `rejected`. BELEGKETTE NACHGETRAGEN (KLASSE C), ENTSCHEIDUNG NICHT SELBST GETROFFEN — `pm/T-0035` LIEGT ALS KLASSE-A-ANTRAG IN DER INBOX.** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Routine-Session 16:50:** Briefkasten **leer** (37 Briefe aller Projekte/Teams auf `status: offen`
+durchsucht, zweimal geprüft). Inbox beim Start leer — und **erstmals beweisbar** nach der neuen
+Ablaufregel aus B047: gegen die **DR-Rohdaten** geprüft, es existiert **kein einziger
+`decision-request` mit Status ≠ `done`**. Die Klasse „entschieden, aber nicht verbucht" ist damit
+leer, nicht nur laut `inbox.liste`. **Kein überfälliges Ticket** (frühester Termin `pm/T-0034`,
+17.08.), `mail_digest.faellig(1)` und `faellig(7)` beide `False`.
+
+**Der einzige offene Agenda-Punkt war der Zähler aus SWR-091 — und er hat etwas gefunden
+(B048).** Die 16:15-Session hatte den „ohne Frist"-Zähler **nur für die pm-Kachel** abgearbeitet
+(`pm/T-0003` bekam sein `takt`-Feld); `cockpit_alle` meldet für **p0 unverändert
+`unterminiert=1`**. Dahinter: **`p0/T-0008`** (Anthropic-API-Key, `open`, `prio: hoch`, ohne
+Frist, erstellt **05.08.**) — das **einzige offene Ticket in zwei abgeschlossenen Projekten**
+(P0 `genesis-v1.0`, P1 `p1-v1.0`).
+
+**Es ist nicht liegengeblieben, sondern zweimal ausdrücklich vertagt:** `p0/D008` („kommt später",
+Ollama vorgezogen), `p0/D015` („weiter verschoben", Budget-Review vertagt), im
+P0-Abschlussbericht als Kriterium 9 **„teilweise"** mit Backlog-Punkt **B9** abgenommen und als
+Epic **P1-E5** weitergereicht („optional nach Budgetfreigabe"). **Nur stand davon nichts im
+Ticket.** Wer es heute öffnet, liest eine elf Tage alte hochpriorisierte Sprint-1-Aufgabe ohne
+Termin — das Muster aus **B043**, diesmal nicht durch Vergessen, sondern weil der Kontext in drei
+anderen Dokumenten liegt. Der Zähler kann das nicht unterscheiden: er zählt „ohne Frist", er liest
+keine Decision-Logs.
+
+**⚠ Der schärfere Teil des Befunds: der Zwilling ist längst entschieden.** P0-Kriterium 9 hatte
+**zwei** Betriebsreste, beide als P1-E5 weitergereicht — der **Copilot-Lauf** ist als `p0/T-0072`
+**und** `p1/T-0018` **rejected**, der **Claude-API-Tick** blieb `open`. Zwei gleichrangige Reste
+desselben Kriteriums, einer geschlossen, einer nicht. Das ist der Kern, nicht die 20 €.
+
+**Getan (Klasse C):** Belegkette und die Begründung für die fehlende Frist stehen jetzt **im
+Ticket selbst** — die nächste Session muss nicht neu recherchieren. **Status unverändert `open`.**
+**Nicht getan (Klasse A):** über das Ticket entschieden. Ein API-Key ist eine Budget- und
+Zugangsfreigabe (Playbook Kap. 16), **in beide Richtungen** — ihn anzulegen ist eine
+Geldentscheidung, ihn abzuräumen eine Scope-Entscheidung über ein Abnahmekriterium. Vorgelegt als
+**`pm/T-0035`**: AK-a jetzt umsetzen · **AK-b schließen wie den Zwilling** · AK-c offen lassen mit
+Frist. Frist **23.08.**, **Default AK-b** — Schweigen darf nie in Richtung Geldausgabe oder neuer
+Credentials laufen, und AK-c wäre der dritte Aufschub.
+
+**Eine Frist hat das Ticket bewusst nicht bekommen.** Es wartet nicht auf Arbeit des Teams,
+sondern auf eine Entscheidung, die der Auftraggeber zweimal vertagt hat; ein von der Session
+gesetztes Datum hätte einen Termin behauptet, den niemand zugesagt hat (B038-Familie). Die Frist
+trägt der Antrag, nicht das Ticket.
+
+**⚠ Morgen fällig, nur am Host lösbar: `pm/T-0034`** (Frist 17.08., Priorität hoch). Der
+Wochendigest liegt; offen ist der eigentliche Befund — warum Ollama um 15:28 nicht erreichbar war
+und ob `ASPICE-MailAutopilot` überhaupt eingerichtet ist. Kein IMAP/Ollama in dieser Sandbox
+(Guardrail 2): **kein übergangenes Ticket im Sinne von B044**, sondern die Grenze der Ausführung.
+
+**Kein Code geändert, deshalb keine neuen Tests** — der Befund war eine Recherche in vorhandenen
+Dokumenten und ein Antrag. **329 Tests, Matrix 96 SWRs / 0 Lücken, Katalog- und Architektur-Gate
+grün.** Board-Check gegen die Erwartung gelesen (B041 Regel 3): **pm 35 Tickets** (vorher 34), p0
+72 unverändert. Die bekannte `team-mail`-Anzeige (`digest/2026-08-16-woche-digest.md` erscheint in
+`git status` als geändert, `git diff` ist leer) ist unverändert der nicht durchlaufende
+Index-Refresh aus R7 — **erneut geprüft, erneut kein Commit**.
+
+Push: die Zeile der 16:15-Session in `PUSH-ANFORDERUNG.txt` (16:32) war beim Start **noch
+unverarbeitet** (letzter Wächter-Erfolg damals 16:30:26) — und ist **während dieser Session
+abgearbeitet worden**: Wächter-Start **16:44:00**, Erfolg **16:45:25** (`OK - alles geprueft und
+gepusht`). Aufgefallen ist das nur, weil `pm` nach dem eigenen Commit **ahead 1** statt **ahead 2**
+meldete; eine bereits geschriebene Notiz („Zeile ggf. noch offen") wäre sonst als plausibel
+klingende Falschaussage stehen geblieben — dieselbe Prüfung wie in B041 Regel 3 („Zahlen aus
+Werkzeugausgaben gegen die Erwartung lesen"), diesmal an einer Zahl, die *kleiner* war als
+erwartet. Korrigiert in `PUSH-ANFORDERUNG.txt`, Agenda und hier. Diese Session hängt eine neue
+Zeile für ihre eigenen Commits an (Repos: pm, p0). `pm/T-0010`/`T-0013`/`T-0026` bleiben
+`in_review` (kein `gh`/Netzzugriff). Alle Änderungen committet, `preflight.py` meldet STARTKLAR.
+
+---
+
+## Stand der Vorsession
+
+*Zuletzt aktualisiert: 2026-08-16 16:15 (Routine-Session) — **PROJEKT P11 „WIDGET-DASHBOARD" IST ANGELEGT UND HAT G1 — BEIDE KLASSE-A-ENTSCHEIDE FIELEN UND WURDEN IN DERSELBEN SESSION VERBUCHT (G0a/D007 um 15:55, G1a/p11-D001 um 16:07 — 51 Sekunden nach dem Commit, mit dem das Projekt entstand). DIE INBOX IST LEER. ZWEI BEFUNDE AM WERKZEUG: EIN ENTSCHIEDENER, NICHT VERBUCHTER DR IST IN DER INBOX UNSICHTBAR, UND `blocked_by` REICHT NICHT ÜBER REPO-GRENZEN.** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+
+### Aktueller Stand der 16:15-Session
 
 **Routine-Session 16:15:** Briefkasten **leer** (zweimal geprüft; alle Briefkästen aller
 Projekte/Teams auf `status: offen` durchsucht, kein Treffer). Inbox: **zwei Klasse-A-Entscheidungen
@@ -96,7 +169,7 @@ STARTKLAR.
 
 ---
 
-## Stand der Vorsession
+### Stand davor
 
 **Routine-Session 15:35:** Briefkasten **leer** (zweimal geprüft, alle 36 Briefe beantwortet).
 Inbox: **eine Entscheidung fiel während der Session** — `pm/T-0031` → **D006/TG-a um 15:21**,
@@ -464,6 +537,22 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 ---
 
 ## Warten auf Auftraggeber
+
+**⬜ NEU (16:50-Session): `pm/T-0035` liegt in der Inbox — Klasse A, drei Knöpfe, Frist 23.08.,
+Default AK-b.** Es geht um `p0/T-0008`, den Anthropic-API-Key (~20 € Limit nach `D003`). Das
+Ticket steht seit dem **05.08.** offen, hochpriorisiert und ohne Termin — und ist damit das
+**einzige offene Ticket in zwei abgeschlossenen Projekten**. Du hast es zweimal vertagt (`D008`,
+`D015`), P0 wurde **mit** dieser Abweichung abgenommen (Kriterium 9 „teilweise", Backlog-Punkt
+B9), P1 hat es als Epic E5 „optional nach Budgetfreigabe" mitgenommen und ist inzwischen ebenfalls
+geschlossen. **Der Zwilling aus demselben Kriterium — der Copilot-Lauf — ist längst `rejected`
+(`p0/T-0072`, `p1/T-0018`); dieser hier blieb stehen.** Das Team hat die Belegkette ins Ticket
+nachgetragen, aber **nicht entschieden**: Ein API-Key ist eine Budget- und Zugangsfreigabe, und
+das gilt in beide Richtungen. **AK-a** jetzt umsetzen (Key anlegen, erster Claude-Tick mit
+Kostendaten, Kriterium 9 wird voll erfüllt — der Executor ist gebaut und getestet, es fehlt nur
+der Key). **AK-b** schließen wie den Zwilling (Empfehlung; die Organisation läuft seit dem 05.08.
+auf Cowork-Session + Ollama, 0,00 € API — Wiederaufnahme kostet ein neues Ticket, nichts wird
+zurückgebaut). **AK-c** offen lassen mit einer Frist, die du setzt. Ohne Antwort bis zum 23.08.
+gilt **AK-b** — Schweigen soll nie Geld ausgeben oder neue Credentials anlegen.
 
 **✔ P10 IST ABGENOMMEN — G4a/D002 am 2026-08-16 um 10:02 von dir per Inbox-Knopf entschieden, Baseline `p10-v1.0` auf `projects` und `platform`.** Damit ist P10 das **zehnte abgeschlossene Projekt** und das erste, das vollständig als Ordner im Sammel-Repo `projects` gelaufen ist. Bemerkenswert am Ablauf: Deine Entscheidung fiel **14 Sekunden** nach dem Commit, mit dem der Sprint fertig wurde — Lieferung, Antrag, Knopfdruck und Abnahme lagen zum ersten Mal in einer einzigen Session. Verbucht sind `p10/T-0003` und `p10/T-0004`, der Abschlussbericht liegt in `projects/p10/management/p10-abschlussbericht.md`. **Deine sieben Stichproben aus `p10/T-0004` stehen weiterhin offen** — sie sind Betriebsnachweis und werden nicht vom Team abgehakt (Serverneustart vorher).
 

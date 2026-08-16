@@ -1,8 +1,97 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 15:35 (Routine-Session) — **ELF TEAMS/PROJEKTE IM SYSTEM: `team-dashboard` IST GEGRÜNDET (D006/TG-a, entschieden 15:21 mitten in der Session), `pm/T-0030` TEIL 1 IST ERLEDIGT (SWR-091 — offene Aufgaben lassen sich ab jetzt terminieren), UND EIN NEUER KLASSE-A-ENTSCHEID LIEGT IN DER INBOX (pm/T-0033, G0 für Projekt P11 „Widget-Dashboard").** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 16:15 (Routine-Session) — **PROJEKT P11 „WIDGET-DASHBOARD" IST ANGELEGT UND HAT G1 — BEIDE KLASSE-A-ENTSCHEIDE FIELEN UND WURDEN IN DERSELBEN SESSION VERBUCHT (G0a/D007 um 15:55, G1a/p11-D001 um 16:07 — 51 Sekunden nach dem Commit, mit dem das Projekt entstand). DIE INBOX IST LEER. ZWEI BEFUNDE AM WERKZEUG: EIN ENTSCHIEDENER, NICHT VERBUCHTER DR IST IN DER INBOX UNSICHTBAR, UND `blocked_by` REICHT NICHT ÜBER REPO-GRENZEN.** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Routine-Session 16:15:** Briefkasten **leer** (zweimal geprüft; alle Briefkästen aller
+Projekte/Teams auf `status: offen` durchsucht, kein Treffer). Inbox: **zwei Klasse-A-Entscheidungen
+verbucht**, beide vom Auftraggeber im laufenden Betrieb getroffen.
+
+**`pm/T-0033` → D007/G0a (15:55): Projekt P11 „Widget-Dashboard" ist beauftragt und angelegt.**
+`projects/p11` im Sammel-Repo (`pm/D003`), fachlicher Auftraggeber ist `team-dashboard` — das
+**erste Projekt der Organisation mit einem Team als Abnehmer**. Geliefert ist Sprint 0:
+
+- **Projektauftrag v1.0** mit fünf **messbaren** Abnahmekriterien (u. a. „passt bei 1920×1080 ohne
+  Scrollen — mit dem vollen Bestand, nicht mit einer Auswahl") und ausgeschriebener Abgrenzung.
+- **STK-021 und SWR-092–096 — alle auf `draft`** (B027). Sie auf `reviewed` zu setzen, weil eine
+  Freigabe vorliegt, wäre wörtlich der Fehler, gegen den B027 geschrieben wurde: fünf leere
+  Anforderungen unter einem grünen Lücken-Gate. Matrix: **96 SWRs / 0 Lücken.**
+- **Sprint-0-Plan mit fünf Risiken**, darunter R1 („keine zweite Datenquelle neben
+  `aggregation.cockpit`" — die Falle aus B033) und R2 („‚nicht scrollbar' wird beim Bau
+  stillschweigend aufgeweicht").
+- **G1-DR `p11/T-0002`** mit drei offengelegten Punkten: die Layout-Frage bleibt **bewusst offen**
+  (SWR-092 formuliert das Kriterium, nicht den Weg dorthin — der Entwurf fällt vor dem Bau),
+  Sprint 1 startet erst mit dem Widget-Vertrag, „vom Handy aus dem Internet" bleibt außen vor.
+
+**`p11/T-0002` → p11/D001/G1a (16:07), 51 Sekunden nach dem Projekt-Commit.** Zweiter
+vollständiger Roundtrip Lieferung → Antrag → Knopf → Freigabe innerhalb einer Session (nach
+B035). Verbucht: G1-Vermerk in beiden Requirements-Dokumenten, **SWRs bleiben `draft`** — die
+Freigabe beauftragt den Sprint, sie verifiziert keine Anforderung. Sprint-1-Ticket `p11/T-0003`
+angelegt (Frist 30.08.). Beide DRs über die erlaubten Übergänge geschlossen
+(`open → in_progress → in_review → done`), nicht per Direktsetzung.
+
+**⚠ Befund am Werkzeug: Ein entschiedener, aber noch nicht verbuchter DR ist in der Inbox
+unsichtbar.** `inbox.liste` meldete `{"inbox": []}`, während `pm/T-0033` seit 15:55 entschieden
+dalag — `_dr_tickets` filtert jeden DR heraus, dessen Text schon einen Entscheidungsvermerk trägt
+(SWR-039). Für die Inbox ist das korrekt (dort steht, was *wartet*); als Verbuchungsprüfung taugt
+sie nicht. Gefunden nur, weil die Agenda `pm/T-0033` namentlich als „wartend" nannte und **gegen
+die Rohdaten** geprüft wurde — der fünfte Beleg für B025 („ein leeres Werkzeugergebnis ist kein
+Beweis für ‚nichts zu tun'"). Neue Ablaufregel in der Agenda; ein Werkzeug dafür steht als CR im
+Betriebs-Backlog, nicht nebenbei gebaut.
+
+**⚠ Zweiter Befund, unbehoben und offengelegt: `blocked_by` reicht nicht über Repo-Grenzen.**
+`p11/T-0003` **sollte** `blocked` sein — die Sperre ist der Widget-Vertrag
+`team-dashboard/T-0001` (Frist 23.08.). `board.py` verlangt zu `blocked` einen
+`blocked_by`-Verweis und prüft ihn gegen die IDs **desselben** Repos. Die Abhängigkeit *Projekt
+wartet auf Team* ist mit `team-dashboard` als Auftraggeber zum ersten Mal entstanden und im Board
+nicht ausdrückbar. Einen erfundenen p11-internen Verweis einzutragen, nur damit das Feld gefüllt
+ist, wäre eine behauptete Sperre, die es nicht gibt (B038-Familie). Deshalb `open`, Ursache im
+Klartext, **Frist 30.08.** — der Termin trägt die Aussage, die sonst der Status getragen hätte.
+
+**Zwei kleinere Punkte mit erledigt:** `pm/T-0003` hat sein fehlendes `takt`-Feld bekommen
+(`je-session`); der Beleg stand im Ticket selbst („prüft je Routine-Session") — der Titel nennt
+den *Anlass*, `takt` den *Rhythmus des Aufgreifens*, und diese Verwechslung war der Grund für das
+Zögern der Vorsession. Ein **ereignisgebundener** Takt fehlt `TAKTE` weiterhin und bleibt bei
+`pm/T-0032` (Frist 19.08.). Und **Pool-Kandidat #13** ist aus der Kandidatenliste heraus — nicht
+gelöscht, sondern in einen neuen Abschnitt **„Realisiert"** verschoben, mit dem Weg (Team +
+Projekt) und den Belegen; ein Kandidat, der geräuschlos verschwindet, sieht aus wie einer, den
+nie jemand wollte (B029). Nächste freie Nummer bleibt 14.
+
+**Fremde Änderung in `team-mail` geprüft, nicht verworfen und nicht mitverbucht (B041).** Preflight
+meldete beim Start eine unsaubere Arbeitskopie an `digest/2026-08-16-woche-digest.md` — einer
+Datei, die diese Session nie angefasst hat. Der Diff umfasst **zwei Zeilen mit identischem Text**,
+Unterschied ausschließlich **CRLF statt LF**; ohne Zeilenenden bitgleich (`md5sum` gegengeprüft).
+Herkunft: der Zustellschritt am Host um 15:45. In-place zurückgesetzt (`git checkout` scheitert am
+bekannten `unable to unlink` des Mounts, R7 — Überschreiben ohne Löschen ist der Ausweg aus
+`pm/T-0023`). `git diff` ist leer; dass `git status` die Datei weiter als geändert zeigt, ist der
+nicht durchlaufende Index-Refresh, kein Inhalt. **Bewusst kein Commit** — eine Historienzeile über
+null inhaltliche Änderung behauptet etwas, das nicht stattgefunden hat.
+
+**329 Tests, Matrix 96 SWRs / 0 Lücken, Katalog- und Architektur-Gate grün** — diese Session hat
+keinen Code geändert, deshalb keine neuen Tests: Projektanlage und Verbuchung sind Dokumente und
+Ticketzustände, und ein Test, der nur bezeugt, dass eine Datei existiert, prüft nichts.
+
+**⚠ Beobachtung, offen: ein Testlauf war einmal rot, und die Testnamen sind verloren.** Der
+Abschluss-Preflight meldete einmalig `FAILED (failures=4)`; sechs anschließende Läufe der Suite
+und zwei weitere Preflight-Läufe waren grün — nicht reproduzierbar. Verfolgen ließ es sich
+nicht, weil `preflight.unit_tests` die Ausgabe auf die **letzten drei Zeilen** kürzt: bei einem
+roten Lauf ist das die Zusammenfassung, die `FAIL:`-Zeilen mit den Namen stehen darüber und
+werden verworfen. Der Fehlschlag ist also sichtbar, aber unbrauchbar — dieselbe Familie wie B038,
+eine Stufe später. Als CR vermerkt (bei `returncode != 0` die Fehlerzeilen mitgeben); **nicht auf
+Verdacht repariert**, weil ohne Testnamen jede Änderung geraten wäre. Verwandt mit `pm/T-0010`.
+
+Push: `PUSH-ANFORDERUNG.txt` aus der 15:35-Session war beim Sessionstart **bereits abgearbeitet**
+(Wächter-Erfolg **15:45:30**, Log `OK - alles geprueft und gepusht`) — diese Session schreibt am
+Ende eine neue Zeile für ihre eigenen Commits (Repos: projects, pm, p0; `team-dashboard` bleibt
+lokal-only, bis das GitHub-Repo besteht). `pm/T-0010`/`T-0013`/`T-0026` bleiben unverändert
+`in_review` (kein `gh`/Netzzugriff in dieser Sandbox). `pm/T-0034` (team-mail-Autopilot, Frist
+17.08.) bleibt offen — nur am Host lösbar. Alle Änderungen committet, `preflight.py` meldet
+STARTKLAR.
+
+---
+
+## Stand der Vorsession
 
 **Routine-Session 15:35:** Briefkasten **leer** (zweimal geprüft, alle 36 Briefe beantwortet).
 Inbox: **eine Entscheidung fiel während der Session** — `pm/T-0031` → **D006/TG-a um 15:21**,

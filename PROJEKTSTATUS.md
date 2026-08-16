@@ -1,8 +1,67 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 14:05 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB, DREI NEUE BRIEFE BEANTWORTET (N-0024/N-0025/N-0026)**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 14:50 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB. ERSTER TEAM-GRÜNDUNGSANTRAG SEIT team-mail LIEGT IN DER INBOX (pm/T-0031, „team-dashboard"), UND pm/T-0025 IST ERLEDIGT (SWR-090).** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Routine-Session 14:50:** Briefkasten hatte **einen neuen Brief** seit der 14:05-Session —
+`pm/N-0027` (12:43), beantwortet; zweite Prüfung am Sessionende: leer. Inbox: **erstmals seit
+Tagen wieder ein wartender Entscheid**, und zwar der von dieser Session vorgelegte (`pm/T-0031`),
+gegen die Rohdaten geprüft.
+
+**`pm/N-0027` („starte mit der initialiserung von team-dashboard aus dem projekt-pool") —
+angefangen, aber bewusst nicht vollzogen.** Eine Team-Gründung ist **Klasse A** (Playbook
+Kap. 16, `intake.md`): Das Team hat Schritt 1+2 des Intake geliefert — **Steckbrief formuliert**
+(Auftrag, Profil `wiederkehrend`, Rollen, Datenklasse, Zugänge, Grenzen, SLA) und den
+**Gründungs-DR `pm/T-0031`** in die Inbox gestellt (Optionen TG-a–TG-d, Frist 23.08., Default
+TG-a). Repo aus Template, Registry-Eintrag und Betriebsstart folgen **nach** dem Entscheid. Der
+Pool-Knopf „Team gründen" (`pm/T-0028`) wurde dafür **nicht** erst gebaut — die Gründung lief von
+Hand über den regulären Intake-Weg; was dabei entstand, ist die Feldliste seines künftigen
+Formulars. **Drei Befunde stehen im Antrag:**
+
+1. **Das gewünschte Mail-Widget berührt Guardrail 2.** `team-mail` ist `sensibel` (private Mails,
+   lokales Repo ohne GitHub-Remote). Machbar ist es genau so, wie der Team-Reiter es seit P7 tut —
+   Rendern **zur Laufzeit** hinter dem bestehenden **PIN-Lesegate** — mit der harten Auflage,
+   **nie** einen Digest-Inhalt oder Mail-Auszug in ein Repo zu committen. Wird das je gebraucht,
+   ist `team-dashboard` ab dem Moment `sensibel` und verliert den GitHub-Remote. Das steht im
+   Klartext im DR, weil ein Feldwert „intern" diese Regel nicht erzwingt.
+2. **Der Kandidat-Text enthält zwei Dinge: ein Team und eine Produktspezifikation.** „Verwaltet,
+   koordiniert, updatet" ist eine Daueraufgabe; das Dashboard selbst ist SW-Entwicklung auf der
+   Mission-Control-Fläche, und die gehört dem ASPICE-Team. Empfehlung: **Bau als eigenes Projekt
+   P11**, das neue Team ist fachlicher Auftraggeber, G0-Antrag getrennt — ein Projektauftrag soll
+   nicht in einer Gründung mitlaufen. Option **TG-c** bietet den schlanken Weg ohne eigenes Team.
+3. **„Vom Handy aus dem Internet" kollidiert mit Runbook Kap. 10** (nur Heim-LAN, nie
+   Port-Forwarding). Weder still übergangen noch nebenbei aufgeweicht: Es gibt einen Weg, der die
+   Leitplanke nicht bricht — ein **VPN** ins Heimnetz, kein offener Port —, aber das ist ein
+   eigener Klasse-A-Entscheid und **nicht** Teil dieser Gründung.
+
+**`pm/T-0025` ist ERLEDIGT (SWR-090) — genau das Ticket, an dem der Befund B043 hing.** Nach
+sechs Sessions Liegenzeit als erste Arbeit nach dem Briefkasten aufgegriffen, wie die
+14:05-Agenda es nach der Hochstufung angeordnet hatte. Der Sofort-Knopf im Team-Reiter sagt
+jetzt **vorher**, womit er läuft (Takte · Modell · KI-Hinweis · Versand), und **hinterher**,
+welche Digest-Dateien entstanden sind. Gebaut **ohne eine zweite Kopie der Takt-Regel**: neuer
+Modus `--was-laeuft` im Werkzeug (Auskunft ohne Wirkung — kein IMAP, kein Ollama, keine Datei;
+Takte aus **`jetzt_takte()`**), `teams.digest_vorschau()` fragt genau das über denselben
+injizierbaren Runner wie der Lauf, `GET /api/team/digest-vorschau` hinter dem PIN-Lesegate. Die
+geschriebenen Dateien werden aus der Ergebniszeile des Werkzeugs gelesen und **nicht** aus einem
+Verzeichnis-Vergleich — der hätte beim zweiten Klick am selben Tag „nichts passiert" gemeldet
+und wäre die Unsichtbarkeit aus `N-0002` in neuem Gewand. **8 neue Tests, Gesamtsuite 318**
+(vorher 310), Matrix **90 SWRs / 0 Lücken**, Katalog- und Architektur-Gate grün. **Gegenprobe
+geführt** (eine aus `cfg["takte"]` nachgebaute Variante scheitert am `--tage`-Override
+nachweislich) und **am echten System gelaufen**: gegen die reale team-mail-Konfiguration meldet
+die Vorschau „Woche · gemma3:27b · kein Zusatz · zusätzlich per Mail" — also genau den
+Wochentakt, der im Brief `N-0002` nicht durchkam.
+
+Push: `PUSH-ANFORDERUNG.txt` aus der 14:05-Session war beim Sessionstart bereits abgearbeitet
+(Wächter-Erfolg 14:30:22) — diese Session schreibt am Ende eine neue Zeile für ihre eigenen
+Commits (pm, platform, team-mail, p8, p0). `pm/T-0010`/`T-0013`/`T-0026` bleiben unverändert
+`in_review` (kein `gh`/Netzzugriff in dieser Sandbox). team-mail-Digest-Befund unverändert offen
+(`mail_digest.faellig(7)` weiterhin `True`, nur am Mission-Control-Host prüfbar — Session-Agenda
+Punkt 3). `pm/T-0028` (Gründungs-Knopf im Pool) und `pm/T-0030` (Fristen/Uhrzeit-Takt) bleiben
+`open`; `T-0030` ist jetzt der oberste offene Punkt. Alle Änderungen committet, `preflight.py`
+meldet STARTKLAR, `PUSH-ANFORDERUNG.txt` fortgeschrieben.
+
+---
 
 **Routine-Session 14:05:** Briefkasten hatte **drei neue Briefe** seit der 12:16-Session.
 `pm/N-0024` (12:05) lag beim ersten Check bereits vor und wurde sofort bearbeitet; **während**

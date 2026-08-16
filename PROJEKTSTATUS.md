@@ -35,7 +35,7 @@ Bemerkenswert am 15.08.: P2 und P3 liefen komplett an einem Tag — inkl. 3 real
 
 **BUGFIX (N-0006/pm-T-0009, SUP.9):** Auto-Push scheiterte seit 15.08. 17:36 an einem cmd-Klammern-Fehler in abschluss.cmd (:repo_push) — **behoben**; Erfolgsnachweis: PUSH-ANFORDERUNG.txt verschwindet beim nächsten Wächter-Lauf. Voraussetzung: GitHub-Repos **p7 + p8** existieren (+ Secret, PAT). Lesson L-2026-08-16 verankert.
 
-**P9 „Org-Cockpit" ist beauftragt (P9a, pm/D002)** — Intake + Sprint 0 als erster Punkt der nächsten Session (nach Bug-Verifikation), danach die CRs **Ollama-Modellwahl** (pm/T-0006) und **KI-Hinweisfeld** (pm/T-0007). Sonst: Pilotreview team-mail ab 29.08., BB-5 PAT ab 5.9.
+**P9 „Org-Cockpit": Sprint 1 GELIEFERT, wartet auf Abnahme (`p9/T-0004`, Frist 23.08., Default G4a).** Cockpit gruppiert jetzt: Feste Teams / Projekt-Teams / aktiv / abgeschlossen (eingeklappt, automatisch über Baselines erkannt), jede Karte mit Beschreibung (12 Steckbriefe, SWR-069), Status-Pille und offenen Aufgaben; **projects-Sammelrepo wird entdeckt** (SWR-070) — P10 ist nur noch ein Ordner. 174 Tests, Matrix 70/0. Vor der Stichprobe: Server per ⟳ neu starten. Die CRs Ollama-Modellwahl (pm/T-0006) und KI-Hinweisfeld (pm/T-0007) übernimmt die 30-Min-Routine-Session (D004). Sonst: Pilotreview 29.08., BB-5 PAT ab 5.9.
 
 ## Betriebs-Backlog
 

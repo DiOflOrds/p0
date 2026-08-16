@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 96 (reviewed: 91) · Tests mit SWR-Bezug: 348 · ohne Bezug: 30
+Stand: 2026-08-16 · SWRs: 101 (reviewed: 91) · Tests mit SWR-Bezug: 348 · ohne Bezug: 30
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -100,6 +100,11 @@ Stand: 2026-08-16 · SWRs: 96 (reviewed: 91) · Tests mit SWR-Bezug: 348 · ohne
 | SWR-094 | draft | — | offen (Status draft) |
 | SWR-095 | draft | — | offen (Status draft) |
 | SWR-096 | draft | — | offen (Status draft) |
+| SWR-097 | draft | — | offen (Status draft) |
+| SWR-098 | draft | — | offen (Status draft) |
+| SWR-099 | draft | — | offen (Status draft) |
+| SWR-100 | draft | — | offen (Status draft) |
+| SWR-101 | draft | — | offen (Status draft) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

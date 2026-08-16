@@ -79,7 +79,12 @@ nicht, weil `preflight.unit_tests` die Ausgabe auf die **letzten drei Zeilen** k
 roten Lauf ist das die Zusammenfassung, die `FAIL:`-Zeilen mit den Namen stehen darüber und
 werden verworfen. Der Fehlschlag ist also sichtbar, aber unbrauchbar — dieselbe Familie wie B038,
 eine Stufe später. Als CR vermerkt (bei `returncode != 0` die Fehlerzeilen mitgeben); **nicht auf
-Verdacht repariert**, weil ohne Testnamen jede Änderung geraten wäre. Verwandt mit `pm/T-0010`.
+Verdacht repariert**, weil ohne Testnamen jede Änderung geraten wäre. **Zweimal aufgetreten**,
+beide Male in einem Preflight-Lauf direkt nach einem `git commit`, nie in einem nackten Suite-Lauf
+— Verdacht: parallele Git-Aktivität gegen einen nicht ganz hermetischen Test (B038, dritter Teil).
+Eine naheliegende Spur ist **ausgeschlossen und dokumentiert**, damit sie niemand zweimal geht:
+`TestLockArtefakte` hat genau vier Tests und nagelt als einzige Klasse `git_prozess_aktiv` nicht
+fest — mit erzwungenem `True` bleiben trotzdem alle vier grün. Verwandt mit `pm/T-0010`.
 
 Push: `PUSH-ANFORDERUNG.txt` aus der 15:35-Session war beim Sessionstart **bereits abgearbeitet**
 (Wächter-Erfolg **15:45:30**, Log `OK - alles geprueft und gepusht`) — diese Session schreibt am

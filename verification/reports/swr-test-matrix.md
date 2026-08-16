@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 74 (reviewed: 74) · Tests mit SWR-Bezug: 181 · ohne Bezug: 19
+Stand: 2026-08-16 · SWRs: 75 (reviewed: 75) · Tests mit SWR-Bezug: 183 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -78,6 +78,7 @@ Stand: 2026-08-16 · SWRs: 74 (reviewed: 74) · Tests mit SWR-Bezug: 181 · ohne
 | SWR-072 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_ki_hinweis_im_prompt | 1 Test(s) |
 | SWR-073 | reviewed | test_backend.py::SelbstNeustartTest::test_entscheidung_nur_bei_neuem_stand_ruhe_und_schleife<br>test_backend.py::SelbstNeustartTest::test_wache_beendet_prozess_mit_42<br>test_backend.py::SelbstNeustartTest::test_wache_ohne_marker_beendet_nie | 3 Test(s) |
 | SWR-074 | reviewed | test_board.py::TestBoard::test_takt_wiederkehrend_sichtbar<br>test_board.py::TestBoard::test_takt_ohne_feld_unveraendert<br>test_board.py::TestBoard::test_takt_ungueltig_wird_abgelehnt<br>test_org_cockpit.py::OrgCockpitTest::test_takt_im_cockpit_und_board | 4 Test(s) |
+| SWR-075 | reviewed | test_org_cockpit.py::OrgCockpitTest::test_altlasten_erkennung<br>test_org_cockpit.py::OrgCockpitTest::test_board_reicht_veraltet_durch | 2 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

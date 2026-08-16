@@ -1,23 +1,110 @@
 # Projektstatus — Fortschreibung über Sessions
 
-## Das Wichtigste (Stand 2026-08-16 18:35)
+## Das Wichtigste (Stand 2026-08-16 19:35)
 
-1. **Dein Knopf hat funktioniert.** Du hast „Markdown-Renderer auch für Briefe/Reports" um 18:03
-   aus dem Pool gestartet und um 18:04 mit **G0a** freigegeben. **Projekt P12 existiert, Sprint 0
-   ist geliefert** — Auftrag mit sechs messbaren Kriterien, fünf Anforderungen, sechs Risiken.
-2. **Eine Entscheidung wartet auf dich:** `p12/T-0002` (G1, Frist **23.08.**, Default G1a).
-3. **Der Kern des Projekts kam erst beim Hinsehen heraus:** Es gibt zwei Textwege im HMI — einer
-   formatiert, kann aber keine Ticket-Links; der andere verlinkt, formatiert aber nicht. Einfach
-   umstellen hätte die Links verloren, wo die meisten stehen. P12 führt beide zusammen.
-4. **Ehrlich offengelegt statt zugesagt:** Die Kriterien verlangen Tests an JavaScript — die
-   gibt es in der ganzen Organisation nicht. Wie geprüft wird, ist die erste Arbeit in Sprint 1.
-5. **Weiterhin für dich:** ein Blick auf die GitHub-Actions-Seiten schließt drei Tickets
-   (Frist 18.08.); `pm/T-0034` ist **morgen** fällig und nur am Host lösbar.
+1. **Deine Inbox ist leer, dein Brief ist beantwortet.** Du hast `p12/T-0002` um **19:11** mit
+   **G1a** entschieden — mitten in der Session. Verbucht: Sprint 1 für P12 ist beauftragt
+   (`p12/T-0003`, Frist 30.08.). Und `team-dashboard/N-0001` („wie ist der stand zum projekt")
+   ist beantwortet. **Beides fand erst die Zweitprüfung am Sessionende** (B036, sechster Fund).
+2. **Der Routine-Teil war beim Start leer — deshalb wurde der nächste geplante CR gebaut:
+   `pm/T-0037` ist erledigt.** Der
+   „Starten"-Knopf verschiebt den Pool-Kandidaten jetzt nach „Realisiert" statt ihn zu löschen,
+   und das erzeugte Decision-Log bekommt seinen Tabellenkopf. Der nächste Knopfdruck braucht
+   keine Handarbeit mehr. **334 Tests grün** (vorher 329).
+3. **Der Test, der den Schaden benennt:** Gegen den alten Stand findet der Tabellen-Parser im
+   erzeugten Decision-Log **0 Tabellen**. Die Entscheidung war im HMI also nicht als Eintrag
+   lesbar — nicht bloß unschön formatiert.
+4. **Ein eigener Befund über die eigene Fußzeile (B052):** „über die erlaubten Übergänge
+   geschlossen" stimmt nur, wenn **je Übergang committet** wird — die Prüfung liest die Historie,
+   nicht die Arbeitskopie. Sieben Sessions haben das so geschrieben; belegt war es zur Hälfte.
+5. **Weiterhin für dich:** `p12/T-0002` (G1, Frist 23.08.) wartet; `pm/T-0034` ist **morgen**
+   fällig und nur am Host lösbar; ein Blick auf die GitHub-Actions-Seiten schließt drei Tickets
+   (Frist 18.08.).
 
 *Ab hier: Belege und Details zum Nachlesen. Übergabepunkt zwischen Cowork-Sessions, wird per
 Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Routine-Session 19:06–19:35.** Briefkasten beim Start **leer** (38 Briefe aller Projekte/Teams
+auf `status: offen` durchsucht) — die **Zweitprüfung am Ende fand einen neuen**
+(`team-dashboard/N-0001`, beantwortet). Inbox beim Start: ein wartender DR (`p12/T-0002`), nichts
+Unverbuchtes. Um **19:11** entschieden mit **G1a** — mitten in der Session, gefunden über die
+DR-Rohdaten (B047), nicht über `inbox.liste`. **Verbucht.** Am Ende: **kein wartender und kein
+unverbuchter DR.** **Kein überfälliges Ticket, Org-Summe „ohne Frist" = 0** (alle sieben Kacheln
+einzeln gelesen, B049), `mail_digest.faellig(1)` und `faellig(7)` beide `False`.
+
+**⚠ Zum sechsten Mal war die Zweitprüfung am Sessionende der Grund, dass nichts liegenblieb
+(B036).** Beide Vorgänge — Entscheidung und Brief — kamen **nach** dem Startcheck herein. Bei einem
+30-Minuten-Takt ist das kein Ausnahmefall, sondern der Regelfall: die Wahrscheinlichkeit, dass ein
+Vorgang genau in das Fenster einer laufenden Session fällt, ist so hoch wie das Fenster lang ist.
+
+**`p12/D001`/G1a verbucht (Klasse C — die Entscheidung war Klasse A und ist gefallen).** G1-Vermerk
+in beiden Requirements-Dokumenten; **SWR-097–101 bleiben `draft`** (B027 — G1a beauftragt den
+Sprint, es verifiziert keine Anforderung); Sprint-1-Ticket **`p12/T-0003`** (Frist 30.08.) mit
+ausgeschriebener Reihenfolge: erst die Teststrecken-Entscheidung (R5) im ADR, dann das Delta zu
+ADR-002, dann der Vollständigkeitsnachweis (SWR-099) gegen den **Bestand**, erst dann die
+Umstellung. Ausdrücklich im Ticket: führt der Weg zu Kosten oder einem neuen externen Werkzeug, ist
+das **Klasse A** und geht als DR in die Inbox, nicht in den Sprint. `T-0002` über die erlaubten
+Übergänge geschlossen, mit Commit je Übergang.
+
+**Brief `team-dashboard/N-0001` beantwortet** („wie ist der stand zum projekt"): P11 hat beide
+Freigaben und einen beauftragten Sprint 1 — was anhängt, ist der **Widget-Vertrag dieses Teams**
+(`team-dashboard/T-0001`, Frist 23.08., noch nicht entworfen). Die ehrliche Zuordnung gehört in die
+Antwort, sonst liest sich „das Projekt hängt" wie ein Problem des Projekts.
+
+**Der Routine-Teil war in wenigen Minuten leer — und statt „nichts zu tun" zu melden, hat die
+Session den nächsten geplanten CR gebaut.** `pm/T-0037` war von der Vorsession mit einer
+ausdrücklichen Begründung aufgeschoben worden: *„nicht nebenbei, weil diese Session eine
+Klasse-A-Entscheidung zu vollziehen hat" (B025/B038)*. Diese Session hatte nichts daneben — damit
+fällt der Grund weg. `pm/T-0032` (Frist 19.08., also früher) wurde bewusst **nicht** genommen:
+dort steht vor dem Bau eine Abgrenzungsfrage zwischen drei Taktlogiken, die eine halbe Stunde
+nicht trägt; `T-0037` hatte eine ausgeschriebene DoD.
+
+**Was jetzt anders ist:** `kandidat_starten` verschiebt die Kandidatenzeile nach „Realisiert"
+(`# | Kandidat | Wohin | Beleg`) statt sie zu löschen — im selben Schreibvorgang und Commit, den
+Abschnitt legt es an, wenn er fehlt. Und das Decision-Log entsteht mit **Tabellenkopf**; der
+Platzhaltersatz entfällt, weil er nach der ersten Entscheidung falsch wurde.
+
+**⚠ Der Test, der den Schaden wirklich benennt.** Für den Tabellenkopf hätte ein „steht er da?"
+gereicht. Stattdessen hängt ein Test eine echte D000-Zeile an und lässt
+`aggregation.parse_md_tabellen` darüberlaufen: **gegen den Altstand findet der Parser 0 Tabellen.**
+Die Entscheidung war im HMI also nicht als Eintrag lesbar. Gegenprobe gefahren (DoD-Punkt 4):
+**alle fünf neuen Tests scheitern gegen `git show HEAD:backend/pool.py`**, danach `pool.py`
+bitgleich zurückgeschrieben. **334 Tests**, Matrix **101 SWRs / 0 Lücken** unverändert (SWR-089
+zählt 22 statt 17 Tests — keine neue Anforderungsfläche).
+
+**⚠ Eigener Befund dieser Session (B052): die eigene Fußzeile war zur Hälfte unbelegt.** Die Kette
+`open → in_progress → in_review → done` wurde in drei `board.py status`-Aufrufen **ohne
+Zwischencommit** gefahren — so, wie „über die erlaubten Übergänge geschlossen" seit sieben
+Sessions in den Fußzeilen steht. `board.py pm --check` meldete danach `unzulässiger
+Status-Übergang: open -> done`: `board.validiere` vergleicht gegen **HEAD**. Für die Prüfung
+existieren Zwischenschritte nur, wenn sie committet sind — und das ist die richtige Prüfung an der
+einzigen Stelle, die sie belegen kann. Behoben mit **einem Commit je Übergang**, jeder mit der
+Begründung in der Botschaft (`-> in_review: DoD vollständig`, `-> done: Tests grün`). Als
+**L-2026-08-16f** in `process/knowledge/cm/lessons.md`.
+
+**Fremde Änderung geprüft und verbucht (B041).** `projects/p12/tickets/T-0002.md` trug beim Start
+den uncommitteten Marker **„Benachrichtigt: 2026-08-16 per E-Mail (SWR-033)"** aus
+`dr_benachrichtigung.py` (DR-Mailversand am Host nach der 18:35-Session) — inhaltlich echt,
+deshalb eigener Commit **vor** der Sessionarbeit. Die bekannte `team-mail`-Anzeige ist unverändert
+der Index-Refresh aus R7 (`git diff --quiet` = 0) — erneut geprüft, erneut kein Commit.
+
+**⚠ Morgen fällig, nur am Host lösbar: `pm/T-0034`** (17.08., hoch) — unverändert, kein
+IMAP/Ollama in dieser Sandbox (Guardrail 2). `pm/T-0010`/`T-0013`/`T-0026` bleiben `in_review`,
+terminiert auf 18.08.
+
+Board-Check gegen die Erwartung gelesen (B041 Regel 3): **pm 37 Tickets** (unverändert — `T-0037`
+hat den Status gewechselt, es kam keins dazu), offene pm-Tickets **11 → 10**; **p12 3 Tickets**
+(vorher 2, +`T-0003`); Briefe organisationsweit **39** (vorher 38).
+
+Push: `PUSH-ANFORDERUNG.txt` war beim Start **nicht vorhanden** (die Zeile der 18:35-Session ist
+abgearbeitet, Wächter-Erfolg **18:30:26**). Diese Session legt sie neu an (Repos: platform, pm,
+process, p0, projects, team-dashboard — letzteres bleibt lokal-only, bis das GitHub-Repo besteht). Alle Änderungen committet, `preflight.py` meldet STARTKLAR.
+
+---
+
+## Stand der Vorsession (18:04)
 
 **Routine-Session 18:04–18:35.** Briefkasten **leer** (38 Briefe aller Projekte/Teams auf
 `status: offen` durchsucht, zweimal geprüft). Inbox: `inbox.liste` meldete **leer** — und das war

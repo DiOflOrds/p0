@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 101 (reviewed: 91) · Tests mit SWR-Bezug: 355 · ohne Bezug: 30
+Stand: 2026-08-16 · SWRs: 102 (reviewed: 92) · Tests mit SWR-Bezug: 372 · ohne Bezug: 30
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -105,6 +105,7 @@ Stand: 2026-08-16 · SWRs: 101 (reviewed: 91) · Tests mit SWR-Bezug: 355 · ohn
 | SWR-099 | draft | — | offen (Status draft) |
 | SWR-100 | draft | — | offen (Status draft) |
 | SWR-101 | draft | — | offen (Status draft) |
+| SWR-102 | reviewed | test_session_kachel.py::WichtigstesTest::test_block_wird_am_naechsten_trenner_beendet<br>test_session_kachel.py::WichtigstesTest::test_ueberschrift_mit_stand_wird_nicht_mitgeliefert<br>test_session_kachel.py::WichtigstesTest::test_ueberschrift_wird_am_anfang_erkannt_nicht_am_wortlaut<br>test_session_kachel.py::WichtigstesTest::test_fehlender_block_liefert_leer_statt_dateianfang<br>test_session_kachel.py::StilleTest::test_frischer_lauf_ist_nicht_veraltet<br>test_session_kachel.py::StilleTest::test_ausgefallener_lauf_nennt_die_uhrzeit<br>test_session_kachel.py::StilleTest::test_ohne_lesbaren_zeitpunkt_gilt_veraltet_nicht_frisch<br>test_session_kachel.py::StilleTest::test_zeitzonenlose_und_zeitzonenbehaftete_angabe_vergleichbar<br>test_session_kachel.py::FortschreibungenTest::test_nur_der_laufende_tag_zaehlt<br>test_session_kachel.py::FortschreibungenTest::test_leere_historie_ist_null_kein_fehler<br>test_session_kachel.py::StandTest::test_zeitstempel_kommt_aus_dem_commit_nicht_aus_dem_text<br>test_session_kachel.py::StandTest::test_text_ist_der_block_und_kein_zweiter_text<br>test_session_kachel.py::StandTest::test_ausgefallener_lauf_meldet_sich_in_der_nutzlast<br>test_session_kachel.py::StandTest::test_zweiter_commit_zaehlt_als_zweite_fortschreibung<br>test_session_kachel.py::StandTest::test_fehlende_datei_bricht_nicht_ab<br>test_session_kachel.py::StandTest::test_kein_git_repo_liefert_unbekannt_statt_ausnahme<br>test_session_kachel.py::EndpunktTest::test_endpunkt_liefert_block_und_commit_zeitstempel | 17 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

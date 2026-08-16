@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 76 (reviewed: 76) · Tests mit SWR-Bezug: 184 · ohne Bezug: 19
+Stand: 2026-08-16 · SWRs: 81 (reviewed: 76) · Tests mit SWR-Bezug: 190 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -73,13 +73,18 @@ Stand: 2026-08-16 · SWRs: 76 (reviewed: 76) · Tests mit SWR-Bezug: 184 · ohne
 | SWR-067 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-068 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-069 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
-| SWR-070 | reviewed | test_org_cockpit.py::OrgCockpitTest::test_projects_sammelrepo_discovery | 1 Test(s) |
+| SWR-070 | reviewed | test_board.py::ProjektDiscoveryTest::test_findet_top_level_und_verschachtelte_projekte<br>test_board.py::ProjektDiscoveryTest::test_top_level_gewinnt_bei_namensgleichheit<br>test_board.py::ProjektDiscoveryTest::test_fehlender_wurzelordner_ist_leer<br>test_org_cockpit.py::OrgCockpitTest::test_projects_sammelrepo_discovery<br>test_preflight.py::MultiProjektBoardCheckTest::test_kaputtes_ticket_im_sammelrepo_ist_befund<br>test_trace_matrix.py::SwrQuellenDiscoveryTest::test_verschachteltes_projekt_liefert_swr_quelle<br>test_trace_matrix.py::SwrQuellenDiscoveryTest::test_projekt_ohne_anforderungsdokument_wird_uebersprungen | 7 Test(s) |
 | SWR-071 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_ki_hinweis_im_prompt<br>test_teams.py::TeamsTest::test_modellwahl_und_ki_hinweis_rundlauf<br>test_teams.py::TeamsTest::test_modellwahl_und_hinweis_validierung<br>test_teams.py::TeamsTest::test_ollama_modelle_liste | 4 Test(s) |
 | SWR-072 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_ki_hinweis_im_prompt | 1 Test(s) |
 | SWR-073 | reviewed | test_backend.py::SelbstNeustartTest::test_entscheidung_nur_bei_neuem_stand_ruhe_und_schleife<br>test_backend.py::SelbstNeustartTest::test_wache_beendet_prozess_mit_42<br>test_backend.py::SelbstNeustartTest::test_wache_ohne_marker_beendet_nie | 3 Test(s) |
 | SWR-074 | reviewed | test_board.py::TestBoard::test_takt_wiederkehrend_sichtbar<br>test_board.py::TestBoard::test_takt_ohne_feld_unveraendert<br>test_board.py::TestBoard::test_takt_ungueltig_wird_abgelehnt<br>test_org_cockpit.py::OrgCockpitTest::test_takt_im_cockpit_und_board | 4 Test(s) |
 | SWR-075 | reviewed | test_org_cockpit.py::OrgCockpitTest::test_altlasten_erkennung<br>test_org_cockpit.py::OrgCockpitTest::test_board_reicht_veraltet_durch | 2 Test(s) |
 | SWR-076 | reviewed | test_backend.py::NutzerUndHaertungTest::test_inbox_zaehler_fuer_den_menschen | 1 Test(s) |
+| SWR-077 | draft | — | offen (Status draft) |
+| SWR-078 | draft | — | offen (Status draft) |
+| SWR-079 | draft | — | offen (Status draft) |
+| SWR-080 | draft | — | offen (Status draft) |
+| SWR-081 | draft | — | offen (Status draft) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

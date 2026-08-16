@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 84 (reviewed: 79) · Tests mit SWR-Bezug: 225 · ohne Bezug: 19
+Stand: 2026-08-16 · SWRs: 87 (reviewed: 82) · Tests mit SWR-Bezug: 234 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -33,7 +33,7 @@ Stand: 2026-08-16 · SWRs: 84 (reviewed: 79) · Tests mit SWR-Bezug: 225 · ohne
 | SWR-027 | reviewed | test_backend.py::MultiProjektTest::test_inbox_ueber_alle_projekte<br>test_backend.py::MultiProjektTest::test_entscheidung_im_richtigen_projekt<br>test_backend.py::HttpTest::test_multi_projekt_endpunkte<br>test_org_cockpit.py::VerschachtelteDrsTest::test_inbox_zeigt_dr_aus_sammelrepo | 4 Test(s) |
 | SWR-028 | reviewed | test_orchestrator.py::ProjektValidierungTest::test_unbekanntes_projekt_bricht_ab | 1 Test(s) |
 | SWR-029 | reviewed | test_preflight.py::MultiProjektBoardCheckTest::test_invalides_zweitprojekt_ist_befund<br>test_trace_matrix.py::MehrereSwrQuellenTest::test_merge_zweier_quellen_ohne_luecken<br>test_trace_matrix.py::AlleProjekteTest::test_discovery_findet_projekt_swr_dokumente | 3 Test(s) |
-| SWR-030 | reviewed | test_backend.py::MultiProjektTest::test_views_requirements_verifikation_baselines | 1 Test(s) |
+| SWR-030 | reviewed | test_backend.py::MultiProjektTest::test_views_requirements_verifikation_baselines<br>test_backend.py::RequirementsUeberAlleTest::test_einzelprojekt_unveraendert | 2 Test(s) |
 | SWR-031 | reviewed | test_backend.py::MultiProjektTest::test_views_requirements_verifikation_baselines | 1 Test(s) |
 | SWR-032 | reviewed | test_backend.py::MultiProjektTest::test_views_requirements_verifikation_baselines | 1 Test(s) |
 | SWR-033 | reviewed | test_dr_benachrichtigung.py::BenachrichtigungTest::test_erfolg_setzt_marker_und_verhindert_doppelversand<br>test_dr_benachrichtigung.py::BenachrichtigungTest::test_fehlschlag_ohne_marker_wird_wiederholt<br>test_dr_benachrichtigung.py::BenachrichtigungTest::test_mailinhalt_traegt_projekt_und_frist<br>test_org_cockpit.py::VerschachtelteDrsTest::test_fristwarnung_sieht_dr_aus_sammelrepo | 4 Test(s) |
@@ -49,7 +49,7 @@ Stand: 2026-08-16 · SWRs: 84 (reviewed: 79) · Tests mit SWR-Bezug: 225 · ohne
 | SWR-043 | reviewed | test_backend.py::HmiSprint2Test::test_md_tabellen_parser<br>test_backend.py::HmiSprint2Test::test_requirements_liefern_tabellen | 2 Test(s) |
 | SWR-044 | reviewed | test_backend.py::HmiSprint2Test::test_md_tabellen_parser<br>test_backend.py::HmiSprint2Test::test_requirements_liefern_tabellen | 2 Test(s) |
 | SWR-045 | reviewed | test_arch_diagramm.py::ArchDiagrammTest::test_svg_enthaelt_komponenten_und_pfeile<br>test_arch_diagramm.py::ArchDiagrammTest::test_deterministisch_und_drift_erkennbar<br>test_arch_diagramm.py::ArchDiagrammTest::test_unbekannte_komponente_wird_abgelehnt<br>test_arch_diagramm.py::ArchDiagrammTest::test_eingecheckte_quelle_konsistent_zum_bild | 4 Test(s) |
-| SWR-046 | reviewed | test_backend.py::HmiSprint2Test::test_cockpit_mit_frist_ampel<br>test_backend.py::HmiSprint2Test::test_cockpit_alle_ueber_api_form | 2 Test(s) |
+| SWR-046 | reviewed | test_backend.py::HmiSprint2Test::test_cockpit_mit_frist_ampel<br>test_backend.py::HmiSprint2Test::test_cockpit_alle_ueber_api_form<br>test_backend.py::EindeutigeKennungTest::test_cockpit_und_inbox_tragen_die_kennung | 3 Test(s) |
 | SWR-047 | reviewed | test_backend.py::HttpTest::test_version_endpunkt | 1 Test(s) |
 | SWR-048 | reviewed | test_backend.py::FernzugriffTest::test_schreibschutz_regeln | 1 Test(s) |
 | SWR-049 | reviewed | test_backend.py::FernzugriffTest::test_schreibschutz_regeln | 1 Test(s) |
@@ -88,6 +88,9 @@ Stand: 2026-08-16 · SWRs: 84 (reviewed: 79) · Tests mit SWR-Bezug: 225 · ohne
 | SWR-082 | reviewed | test_backend.py::HttpTest::test_navigation_endpunkt<br>test_org_cockpit.py::NavigationTest::test_gruppen_reihenfolge_und_trennung<br>test_org_cockpit.py::NavigationTest::test_gleiche_einstufung_wie_cockpit<br>test_org_cockpit.py::NavigationTest::test_leere_gruppen_entfallen<br>test_org_cockpit.py::NavigationTest::test_nur_abgeschlossene_bleiben_erreichbar | 5 Test(s) |
 | SWR-083 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-084 | reviewed | test_backend.py::InboxTest::test_zeitpunkt_mit_uhrzeit_in_log_und_ticket<br>test_backend.py::InboxTest::test_zeitpunkt_formatiert_uebergebene_uhr<br>test_backend.py::InboxTest::test_historie_liest_vermerk_mit_uhrzeit<br>test_backend.py::InboxTest::test_alte_eintraege_ohne_uhrzeit_bleiben_gueltig | 4 Test(s) |
+| SWR-085 | reviewed | test_backend.py::RequirementsUeberAlleTest::test_alle_projekte_in_einer_antwort<br>test_backend.py::RequirementsUeberAlleTest::test_herkunft_je_datei_fuer_den_filter | 2 Test(s) |
+| SWR-086 | reviewed | test_backend.py::ProjektPoolTest::test_kandidaten_nach_kategorie<br>test_backend.py::ProjektPoolTest::test_ohne_datei_keine_ausnahme<br>test_backend.py::ProjektPoolTest::test_abschnitte_ohne_tabelle_werden_uebersprungen | 3 Test(s) |
+| SWR-087 | reviewed | test_backend.py::EindeutigeKennungTest::test_ref_ist_eine_quelle<br>test_backend.py::EindeutigeKennungTest::test_gleiche_nummer_zwei_projekte_unterscheidbar | 2 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

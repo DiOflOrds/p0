@@ -1,6 +1,109 @@
 # Projektstatus — Fortschreibung über Sessions
 
-## Das Wichtigste (Stand 2026-08-16 20:35)
+## Das Wichtigste (Stand 2026-08-16 20:50)
+
+1. **Drei Briefe waren offen, alle drei sind beantwortet** (`pm/N-0031`, `N-0032`, `N-0033`). Beim
+   Startcheck war nur einer da — die anderen beiden kamen um 20:40 herein und fand die
+   Zweitprüfung (**B036**, siebter Fund in Folge).
+2. **⚠ Befund in eigener Sache, und er betrifft dich direkt: Mission Control hat unsere Antworten
+   als deine Nachrichten dargestellt.** Bei **10 von 30** beantworteten Briefen — darunter
+   `pm/N-0030` — standen Frage und Antwort als **ein** Textblock da, ohne Absender und ohne Datum.
+   **Behoben, heute**, mit zwei Tests. 336 Tests grün.
+3. **Gut möglich, dass genau das dein Brief war.** `N-0031` wünscht „direkt weiterkommentieren" —
+   und im Chat war Frage und Antwort ein Klumpen Text.
+4. **Zwei CRs eingeplant, nicht gebaut:** `pm/T-0039` (am Brief weiterkommentieren) und
+   `pm/T-0040` (Session-Zusammenfassung in Mission Control), beide Frist **23.08.**
+5. **Weiterhin für dich:** `pm/T-0034` ist **morgen** fällig; ein Blick auf die
+   GitHub-Actions-Seite schließt drei Tickets (Frist 18.08.).
+
+*Ab hier: Belege und Details zum Nachlesen. Übergabepunkt zwischen Cowork-Sessions, wird per
+Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+
+## Aktueller Stand
+
+**Routine-Session 20:36–20:50.** Briefkasten beim Start: **ein offener Brief** — `pm/N-0031`
+(18:36); die **Zweitprüfung fand zwei weitere**, `N-0032` (20:40:14) und `N-0033` (20:40:32),
+wortgleich. **Alle drei beantwortet.** Inbox beim Start: **leer und beweisbar nichts
+Unverbuchtes** — gegen die DR-Rohdaten geprüft (Ablaufregel aus B047): kein `decision-request` mit
+Status ≠ `done`. **Kein überfälliges Ticket** (frühester Termin `pm/T-0034`, 17.08.).
+
+**⚠ Der Befund: Mission Control hat unsere Antworten als deine Nachrichten dargestellt (B054).**
+`briefkasten._parse` trennte Nachricht und Team-Antwort an einer **wörtlichen** Überschrift
+(`## Antwort (Team, JJJJ-MM-TT)`) — genau der Fassung, die der zugehörige Test **selbst erzeugt**.
+Die Routine-Sessions schreiben seit dem 15.08. `## Antwort des Teams (Routine-Session,
+JJJJ-MM-TT HH:MM)`, mit Uhrzeit, weil bei einem 30-Minuten-Takt das Datum nicht mehr
+unterscheidet. **Bei 10 von 30 beantworteten Briefen** blieb `antwort` deshalb leer und die
+komplette Team-Antwort stand im **Nachrichtenblock**; die Chat-Ansicht rendert den Antwortblock nur
+bei gefülltem `b.antwort` (`app.js`) und zeigte beides als einen Text. Betroffen war auch
+**`pm/N-0030`**, der Brief, auf den `N-0031` sich bezieht.
+
+**⚠ Warum es niemandem auffiel.** Der Fehler hat keine Meldung, kein rotes Gate, keinen
+Stacktrace — er sieht nur falsch aus, und zwar ausschließlich in der HMI des Auftraggebers. Der
+Preflight zählt Briefe nach `status`, nicht nach Lesbarkeit; die SWR-Matrix meldete SWR-050 als
+verifiziert, durch einen Test, der seine eigene Eingabe schreibt. Als **L-2026-08-16h** in
+`process/knowledge/cm/lessons.md`: *Wo ein Parser ein Format liest, das andere Teile des Systems
+schreiben, muss mindestens ein Testfall die Fassung benutzen, die tatsächlich im Repo steht.*
+
+**Behoben (Klasse C, Werkzeugpflege).** `briefkasten.spalte_antwort` erkennt die **Überschrift**
+statt ihrer Fassung; das Datum kommt aus der Kopfzeile. Alle 30 beantworteten Briefe werden jetzt
+getrennt gelesen — `N-0030`: Nachricht **292** statt 5527 Zeichen, Antwort **5175** statt 0.
+**336 Tests** (vorher 334), Matrix **101 SWRs / 0 Lücken**, SWR-050 von 1 auf **3** Tests.
+
+**⚠ Eigene Lehre über die Gegenprobe.** Der erste Gegenprobentest scheiterte gegen den Altstand
+nur mit `AttributeError` — die Funktion existierte dort nicht, das belegt nichts über den Schaden.
+Der zweite läuft über den echten Lesepfad `liste()` und sichert zu, dass die Team-Antwort **nicht
+in `nachricht`** landet; gegen den Altstand scheitert er mit `AssertionError`. Danach
+`briefkasten.py` bitgleich zurückgeschrieben (DoD-Punkt 4).
+
+**Nicht gebaut, eingeplant: `pm/T-0039`** (Klasse B, Frist 23.08.) — der Brief wird ein Verlauf aus
+beliebig vielen Beiträgen, „Antworten"-Feld je Karte, die 33 bestehenden Briefe ohne Migration
+lesbar. **Der Punkt, an dem die Minimallösung schaden würde:** Ein Kommentar an einem Brief mit
+`status: beantwortet` wird von **keiner** Session gesehen (`offene()` zählt nur `status: offen`,
+und diese Zahl trägt Preflight und Cockpit). Ohne Status-Rücksetzung wäre der CR schädlich statt
+nützlich.
+
+**Die zweite Frage aus `N-0031` beantwortet, als Punkt e) in `pm/T-0038` verbucht.** *Warum stehen
+die Mensch-Tasks nicht in der Inbox?* Weil die Inbox **unentschiedene Decision Requests** zeigt —
+zwei Filter in `inbox._dr_tickets` (`typ == "decision-request"`, kein Entscheidungsvermerk,
+SWR-039). Die vier Tickets haben `typ: problem`; die Inbox lehnt sie nicht ab, sie **kennt sie
+nicht**. Es fehlt kein Filter, sondern der **Kanal** — derselbe Befund wie `N-0030`, von der
+anderen Seite: dort fehlte das Feld, hier die Ansicht. **Nicht in dieselbe Liste**, sondern als
+eigener Abschnitt am selben Ort: an der Inbox-Liste hängen die Entscheidungsknöpfe
+(`optionen`/`default`, SWR-042) — ein Eintrag ohne Optionen erzwänge Knöpfe, die nichts tun, also
+**B033** zum zweiten Mal in zwei Tagen.
+
+**`N-0032`/`N-0033` beantwortet — der Inhalt existiert, die Ausgabe fehlt (`pm/T-0040`, Frist
+23.08.).** Jede Session schreibt den Stand in `pm/management/session-agenda.md` (Block „Das
+Wichtigste", max. fünf Zeilen seit B050) und in diese Datei; **kein** HMI-Endpunkt liefert eine der
+beiden aus. Quelle wird die Agenda, weil sie im pm-Repo liegt und committet ist —
+`PROJEKTSTATUS-UPDATE.md` liegt im Wurzelordner, also in **keinem** Repo. **Der Zeitstempel der
+Kachel kommt aus dem Commit, nicht aus dem Text:** fällt der geplante Lauf aus, bleibt die Datei
+stehen, und ein alter Stand sähe aus wie ein frischer (B038). Und die Kachel muss sagen können,
+dass **keine** Session lief — *„seit HH:MM keine Session"*.
+
+**Zweiter Doppeleingang, Ursache lokalisiert, weiterhin kein Filter.** Nach `N-0028`/`N-0029`
+(B050) sind `N-0032`/`N-0033` der zweite Fall. Der Absende-Knopf gibt sich frei, **bevor** der
+Verlauf neu geladen ist (`app.js`, `setTimeout(lade, 900)`). Als Punkt 6 in `T-0040`. Eine
+Dublettenerkennung bleibt abgelehnt — ein Filter, der Briefe still verschluckt, ist teurer als ein
+doppelter Brief.
+
+**Board-Check gegen die Erwartung gelesen (B041 Regel 3):** **pm 40 Tickets** (vorher 38,
++`T-0039`, +`T-0040`), offene pm-Tickets **11 → 13**; Briefe organisationsweit **43** (vorher 40),
+davon **0 offen** nach dieser Session. Fremde Änderungen: nur die bekannte `team-mail`-Anzeige
+(`digest/2026-08-16-woche-digest.md`, `git diff --quiet` = 0) — der Index-Refresh aus R7, erneut
+geprüft, erneut kein Commit.
+
+**⚠ Morgen fällig, nur am Host lösbar: `pm/T-0034`** (17.08., hoch) — unverändert, kein
+IMAP/Ollama in dieser Sandbox (Guardrail 2). `pm/T-0010`/`T-0013`/`T-0026` bleiben `in_review`,
+terminiert auf 18.08.
+
+Push: `PUSH-ANFORDERUNG.txt` war beim Start **nicht vorhanden** (die Zeile der 20:35-Session ist
+abgearbeitet). Diese Session legt sie neu an (Repos: platform, pm, process, p0). Alle Änderungen
+committet, `preflight.py` meldet STARTKLAR.
+
+---
+
+## Stand der Vorsession (20:06)
 
 1. **Dein Brief `pm/N-0030` ist beantwortet — er hat einen echten Werkzeugbefund getroffen
    (B053).** Du wolltest wissen, wer an welchem Task arbeitet. **Das Board kann das nicht sagen:**
@@ -19,7 +122,7 @@
 *Ab hier: Belege und Details zum Nachlesen. Übergabepunkt zwischen Cowork-Sessions, wird per
 Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
-## Aktueller Stand
+**Belege der Session 20:06–20:35**
 
 **Routine-Session 20:06–20:35.** Briefkasten beim Start: **ein offener Brief** — `pm/N-0030`
 (18:02), gefunden bei der Durchsuchung aller **40** Briefe aller Projekte/Teams auf

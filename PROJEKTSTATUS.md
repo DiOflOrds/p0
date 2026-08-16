@@ -1,6 +1,6 @@
 # Projektstatus — Fortschreibung über Sessions
 
-## Das Wichtigste (Stand 2026-08-16 17:35)
+## Das Wichtigste (Stand 2026-08-16 17:30)
 
 1. **Deine Entscheidung ist vollzogen.** `pm/T-0035` → **AK-b** (17:17). `p0/T-0008` ist
    geschlossen — kein Anthropic-Konto, kein API-Key, keine Kosten. **P0 und P1 haben jetzt kein
@@ -19,7 +19,7 @@ Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
 
-**Nachtrag 17:35 — zwei Vorgänge kamen während der Session herein (B036, fünfter Fund):**
+**Nachtrag 17:28 — zwei Vorgänge kamen während der Session herein (B036, fünfter Fund):**
 Der Auftraggeber hat `pm/T-0035` um **17:17** mit **AK-b** entschieden — beim Inbox-Check um
 17:06 lag der Antrag noch wartend da. Sichtbar wurde die Entscheidung erst im Abschluss-`git
 status` als fremde Änderung am Ticket, **nicht** über `inbox.liste` (die filtert entschiedene DRs
@@ -30,7 +30,7 @@ B049 organisationsweit erstmals auf 0.** Zeitgleich kamen die Briefe **`pm/N-002
 (wortgleich, eine Sekunde auseinander): *„du schreibst zu viel text"* — beantwortet und sofort
 angewandt, siehe **B050** und der Block „Das Wichtigste" oben.
 
-**Routine-Session 17:20:** Briefkasten **leer** (36 Briefe aller Projekte/Teams auf `status: offen`
+**Routine-Session 17:06:** Briefkasten **leer** (36 Briefe aller Projekte/Teams auf `status: offen`
 durchsucht, zweimal geprüft). Inbox: **ein wartender Antrag, nichts Unverbuchtes** — `pm/T-0035`
 (Klasse A zu `p0/T-0008`) steht seit 16:50 zur Entscheidung und ist **nicht entschieden**; gegen die
 DR-Rohdaten geprüft (B047): kein weiterer `decision-request` mit Status ≠ `done`, kein

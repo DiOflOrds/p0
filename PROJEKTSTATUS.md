@@ -1,8 +1,34 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 11:21 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB, `pm/T-0022` TEIL 1 GELIEFERT**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 11:45 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB, `pm/T-0022` KOMPLETT (BEIDE TEILE GELIEFERT)**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Routine-Session 11:45:** Briefkasten leer (zweimal geprüft, Sessionanfang und -ende), Inbox
+unverändert leer (37/37 DRs `done`) — kein neuer Kandidat wurde real gestartet, siehe unten.
+**`pm/T-0022` ist jetzt komplett: Teil 2 „Starten" geliefert** (Teil 1 „Anlegen" kam bereits in
+der 11:21-Session). Nur Technik-Kandidaten — Team-Kandidaten brauchen die volle Team-Gründung aus
+`intake.md` und sind laut Ticket bewusst außen vor. **Variante A gebaut** (weiterhin keine Antwort
+auf die A/B-Rückfrage im Briefkasten, Default laut Ticket): Der neue Knopf im Pool-Reiter
+entscheidet nichts — er legt `projects/p<N>` an (nächste freie Nummer über dieselbe Discovery wie
+Board/Matrix/Preflight, `board.projekt_pfade`) und stellt einen G0-Decision-Request (T-0001, Frist
+eine Woche, Default G0a) hinein, Ordner und Antrag in einem Commit im Sammel-Repo `projects`;
+scheitert der Commit, bleibt nichts auf der Platte. Der gestartete Kandidat wird in einem zweiten
+Commit aus dem Pool entfernt (Repo `pm`) — scheitert nur dieser zweite Commit, bleibt das bereits
+sichtbare Projekt bestehen (eine Rücknahme würde einen echten G0-Antrag wieder verschwinden
+lassen), die Antwort sagt das in Klartext statt es nur zu loggen (Lehre aus B038/`pm/T-0024`: ein
+stiller Fehlschlag ist teurer als ein lauter). **Bewusst kein echter Kandidat aus dem realen Pool
+gestartet** — das hätte einen echten, für dich sichtbaren G0-Antrag erzeugt, ohne dass konkret
+danach gefragt wurde; geprüft ist die Funktion über 20 neue Unit-Tests mit isolierten
+Git-Fixturen (`platform/tests/test_pool_starten.py`), keine echte Pool-Datei angefasst. SWR-089
+auf der P9-Fläche (v1.6, direkte Fortsetzung von SWR-086–088, keine neue Baseline). **305 Tests
+(vorher 285), Matrix 89 SWRs / 0 Lücken**, Katalog- und Architektur-Gate geprüft und grün. Push:
+`PUSH-ANFORDERUNG.txt` aus der 11:21-Session war beim Sessionstart noch unverarbeitet (letzter
+Wächter-Erfolg 11:00) — diese Session hängt eine weitere Zeile an; `pm/T-0010`/`T-0013`/`T-0026`
+bleiben unverändert `in_review` (kein `gh`/Netzzugriff in dieser Sandbox). team-mail-Digest-Befund
+aus der 11:21-Session unverändert offen (siehe Session-Agenda Punkt 3 — nur am Mission-Control-Host
+prüfbar). Alle Änderungen committet, `preflight.py` meldet STARTKLAR, `PUSH-ANFORDERUNG.txt`
+fortgeschrieben.
 
 **Routine-Session 11:21:** Briefkasten leer (30/30 beantwortet), Inbox leer (37/37 DRs
 entschieden, gegen Rohdaten geprüft). Der Auto-Push-Wächter lief um 11:00 wieder erfolgreich

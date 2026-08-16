@@ -1,13 +1,131 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 14:50 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB. ERSTER TEAM-GRÜNDUNGSANTRAG SEIT team-mail LIEGT IN DER INBOX (pm/T-0031, „team-dashboard"), UND pm/T-0025 IST ERLEDIGT (SWR-090).** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 15:35 (Routine-Session) — **ELF TEAMS/PROJEKTE IM SYSTEM: `team-dashboard` IST GEGRÜNDET (D006/TG-a, entschieden 15:21 mitten in der Session), `pm/T-0030` TEIL 1 IST ERLEDIGT (SWR-091 — offene Aufgaben lassen sich ab jetzt terminieren), UND EIN NEUER KLASSE-A-ENTSCHEID LIEGT IN DER INBOX (pm/T-0033, G0 für Projekt P11 „Widget-Dashboard").** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Routine-Session 15:35:** Briefkasten **leer** (zweimal geprüft, alle 36 Briefe beantwortet).
+Inbox: **eine Entscheidung fiel während der Session** — `pm/T-0031` → **D006/TG-a um 15:21**,
+also nach dem ersten Inbox-Check dieser Session um 15:11. Gefunden hat sie die **Zweitprüfung
+aus B036**; das ist der vierte Fund dieser Regel und der erste an einem **Klasse-A-Entscheid**,
+der sonst 30 Minuten unverbucht geblieben wäre.
+
+**`pm/T-0030` Teil 1 ist ERLEDIGT (SWR-091) — das Ticket gegen das Liegenbleiben war selbst
+der oberste liegengebliebene Punkt.** Die Session begann frei: kein offener Brief, kein
+entschiedener DR. `T-0030` stand seit der 14:05-Session als „Design-Session nötig" oben auf
+der Agenda. Es ein sechstes Mal weiterzureichen wäre die Wiederholung genau des Befunds
+gewesen, den es beschreibt (B043).
+
+Was der Auftraggeber in `pm/N-0025` bemängelt hatte, war strukturell richtig: Nur
+Decision-Requests hatten ein Zeitkonzept. Ein CR mit `prio: mittel` konnte beliebig lange
+offen bleiben, ohne dass **irgendein Werkzeug** das gemeldet hätte — die Priorität steuert
+die Reihenfolge *innerhalb* einer Session, nicht *ob* eine Session sich das Ticket vornimmt.
+Geliefert:
+
+- **`frist` gilt für jeden Tickettyp und wird für jeden geprüft.** Bis hierher stand die
+  Datumsprüfung im `decision-request`-Zweig; ein Tippfehler in der Frist eines CR fiel
+  **lautlos auf „keine Frist" zurück**. Ein Termin, den niemand prüft, ist keiner.
+- **Die Ampel-Regel liegt jetzt einmal** in `board.frist_ampel` und wird von den offenen
+  Entscheidungen **und** den Backlog-Fristen benutzt. Sie stand inline im Cockpit; sie ein
+  zweites Mal zu schreiben wäre die Falle aus B033 gewesen. Ein Test vergleicht alte
+  Inline-Formel und neue Funktion **einen ganzen Monat lang Tag für Tag**.
+- **`board.ist_ueberfaellig` gilt nur für offene Tickets** — eine gerissene Frist an einem
+  erledigten Ticket ist Historie, kein Vorwurf.
+- **Die Cockpit-Kachel zeigt überfällige Tickets vollständig und vor den Statuszahlen**, jedes
+  mit Frist und „n Tage über", dazu einen Zähler „n ohne Frist" für unterminierte
+  Backlog-Tickets. Sie in die auf drei Einträge gekürzte Aufgabenliste zu legen wäre die
+  Unsichtbarkeit aus B038 in neuem Gewand gewesen: *„Wo wird ein Fehlschlag sichtbar für
+  jemanden, der nicht danach sucht?"*
+
+**Nebenbefund, mitbehoben:** `DATUM_MUSTER` prüfte nur die **Form**. „2026-13-01" kam durch —
+und wäre über die Ampel als **„grau" = keine Frist** gelaufen. Ein falsch terminiertes Ticket
+hätte damit wie ein unterminiertes ausgesehen. Jetzt eine gemeinsame Prüfung `board.ist_datum`
+für `frist` und `erstellt`, nicht zwei.
+
+**Bewusst nicht angefasst: das generierte `BOARD.md`.** Eine Frist-Spalte wäre eine
+Formatänderung, und genau die hat heute früh alle board-check-Workflows rot gemacht
+(`pm/T-0013`) — das gehört gebündelt, nicht nebenbei.
+
+**Die Eskalationsregel — die offene Frage des Tickets — ist festgelegt (B044):** Ein
+überfälliges Backlog-Ticket ist der **erste Arbeitspunkt der nächsten Session nach dem
+Briefkasten**. Nimmt eine Session es trotzdem nicht auf, **schreibt sie den Grund beim Ticket
+in die Agenda**. Ab dem **zweiten** übergangenen Mal geht ein Vermerk an den Auftraggeber. Und
+sie ist **sofort angewandt statt nur gebaut**: `pm/T-0028` (23.08.), `pm/T-0032` (19.08.),
+`pm/T-0034` (17.08.), `team-dashboard/T-0001` (23.08.) tragen jetzt Termine.
+
+**8 neue Tests im Board, 3 im Cockpit — Gesamtsuite 329** (vorher 318), Matrix **91 SWRs /
+0 Lücken**, Katalog- und Architektur-Gate grün. **Gegenprobe geführt:** gegen den Altstand
+scheitern drei der neuen Tests nachweislich.
+
+---
+
+**`team-dashboard` ist gegründet — das zweite Projekt-Team der Organisation (D006/TG-a, B045).**
+Der Auftraggeber hat um 15:21 mit **TG-a** entschieden, also der Empfehlung des Teams gefolgt.
+Vollzogen sind alle vier Schritte aus `pm/T-0031`:
+
+1. **Repo `team-dashboard`** aus `process/templates/team-repo/`: Charter v1.0, `team.yaml`
+   (Profil `wiederkehrend`, Rolle `DASH-RED`, drei SLAs), `steckbrief.yaml`, Decision-Log mit
+   **D000 als Gründungsbeleg**, board-check-Workflow bereitgelegt, board-check grün. **Lokal
+   ohne Remote — und bewusst ohne `.kein-remote`:** Datenklasse `intern` *erlaubt* einen
+   Remote; er fehlt nur, weil GitHub-Repo, Secret und PAT-Erweiterung Handlungen des
+   Auftraggebers sind. Ein `.kein-remote` hätte eine Regel behauptet, die nicht gilt.
+2. **Registry-Eintrag** in `process/teams/registry.yaml`, Status `aktiv`, Gründungsbeleg
+   `pm/T-0031` / `pm/D006`.
+3. **Erstes Takt-Ticket `team-dashboard/T-0001`: „Widget-Vertrag entwerfen"**
+   (`takt: je-session`, Frist 23.08. für den ersten Entwurf). Die im Kandidat-Text notierte
+   Voraussetzung — *„Die Projekte haben eine Widget Kompatibilität"* — **existiert nicht**;
+   sie zu schaffen ist die eigentliche erste Arbeit und die Vorbedingung für den Bau.
+4. **Getrennter G0-DR `pm/T-0033` für Projekt P11 „Widget-Dashboard"** (Optionen G0a–G0c,
+   Frist 23.08., Default G0a) — **nicht** in der Gründung mitentschieden, weil ein
+   Projektauftrag eine eigene Klasse-A-Entscheidung ist. Drei Punkte stehen offen im Antrag:
+   die Datenquelle existiert bereits (`aggregation.cockpit` — eine zweite wäre B033),
+   „nicht scrollbar auf FHD" begrenzt bei 14 Projekten/Teams den Inhalt und ist eine
+   Sprint-0-Entwurfsfrage, und „vom Handy aus dem Internet" bleibt außen vor (Runbook Kap. 10).
+
+**Die Mail-Widget-Auflage steht dreimal im Klartext** — in `team.yaml`, im Charter und in der
+Registry: `team-mail` ist `sensibel`, gerendert wird **nur zur Laufzeit hinter dem
+PIN-Lesegate**, und der erste in ein Repo committete Digest-Inhalt macht `team-dashboard`
+`sensibel` und kostet den GitHub-Remote. Ein Feldwert `intern` erzwingt das nicht — deshalb
+ausgeschrieben, an jeder Stelle, an der jemand nachschaut.
+
+---
+
+**⚠ Befund in eigener Sache, mit Frist statt Fußnote: `pm/T-0034` (Frist 17.08., Priorität
+hoch).** Der **team-mail-Wochendigest** ist seit der Teamgründung fällig — `takte: [7]` gilt,
+`mail_digest.faellig(7)` meldet `True`, und in `team-mail/digest/` liegt bis heute **keine
+einzige `-woche-`-Datei**. Gefunden wurde das in der 11:21-Session. Seither stand es als
+Punkt 3 der Agenda, und die Sessions 11:45, 12:16, 14:05 und 14:50 haben jeweils „unverändert
+offen" notiert. **Fünf Sessions, fünfmal derselbe Satz.** Das ist wörtlich das Muster aus
+B043 — deshalb ist es ab jetzt ein Ticket mit Termin und nicht länger eine Agendazeile.
+Lösen kann es nur der Host (kein IMAP/Ollama in dieser Sandbox, Guardrail 2); der kürzeste
+Weg steht im Ticket: Server neu starten, Team-Reiter, „Jetzt zusammenfassen" — die
+Klartextzeile aus SWR-090 sagt vorher „Woche", die Erfolgsmeldung nennt hinterher die Datei.
+
+**Und noch ein Vorgang lief mitten hinein: der erste Wochendigest seit der Teamgründung steht
+(B046).** Um **15:28** startete am Host ein Lauf über 7 Tage (165 Mails), fand **kein Ollama** und
+schrieb Rohdaten mit dem Vermerk *„die naechste Session verdichtet"* — das ist der Fallback
+SWR-062, und diese Session ist die nächste. `team-mail/digest/2026-08-16-woche-digest.md` ist
+geschrieben, `mail_digest.faellig(7)` meldet jetzt **False**. Damit ist Verdacht 2 aus `T-0034`
+ausgeräumt: **der Takt war korrekt** (7 Tage, kein zweiter B040) — es fehlte schlicht Ollama. Der
+Digest ist als **von der Session verdichtet** gekennzeichnet, nicht als Ollama-Ergebnis; die
+Vorlagenzeile zu übernehmen wäre eine Falschaussage im Dokument gewesen. **Nicht versendet** —
+Mailversand ist Außenwirkung und läuft am Host. Vier Punkte darin brauchen deinen Blick:
+Google-Sicherheitswarnungen, der **weiterhin unbeantwortete Vedaco-Phishing-Verdacht**, der
+Enpal-Termin und eine Microsoft-365-Abo-Mail vom 10.08. **`pm/T-0034` bleibt offen** — dass die
+Datei jetzt da ist, heißt nicht, dass der Autopilot funktioniert; sie kam von Hand.
+
+Push: `PUSH-ANFORDERUNG.txt` aus der 14:50-Session war beim Sessionstart **noch unverarbeitet**
+(letzter Wächter-Erfolg 14:30:22) — diese Session hängt eine weitere Zeile an (Repos: platform,
+pm, p0, p9, process; `team-dashboard` ist neu und **lokal-only**, bis das GitHub-Repo besteht).
+`pm/T-0010`/`T-0013`/`T-0026` bleiben unverändert `in_review` (kein `gh`/Netzzugriff in dieser
+Sandbox). Alle Änderungen committet, `preflight.py` meldet STARTKLAR.
+
+---
 
 **Routine-Session 14:50:** Briefkasten hatte **einen neuen Brief** seit der 14:05-Session —
 `pm/N-0027` (12:43), beantwortet; zweite Prüfung am Sessionende: leer. Inbox: **erstmals seit
 Tagen wieder ein wartender Entscheid**, und zwar der von dieser Session vorgelegte (`pm/T-0031`),
-gegen die Rohdaten geprüft.
+gegen die Rohdaten geprüft. *(Nachtrag 15:35: Dieser Entscheid ist am 16.08. um 15:21 mit **TG-a** gefallen und in der 15:35-Session vollzogen — siehe oben.)*
 
 **`pm/N-0027` („starte mit der initialiserung von team-dashboard aus dem projekt-pool") —
 angefangen, aber bewusst nicht vollzogen.** Eine Team-Gründung ist **Klasse A** (Playbook

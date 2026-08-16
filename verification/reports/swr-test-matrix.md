@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 91 (reviewed: 91) · Tests mit SWR-Bezug: 348 · ohne Bezug: 30
+Stand: 2026-08-16 · SWRs: 96 (reviewed: 91) · Tests mit SWR-Bezug: 348 · ohne Bezug: 30
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -95,6 +95,11 @@ Stand: 2026-08-16 · SWRs: 91 (reviewed: 91) · Tests mit SWR-Bezug: 348 · ohne
 | SWR-089 | reviewed | test_pool_starten.py::TestStartenTechnik::test_technik_kandidat_wird_gestartet<br>test_pool_starten.py::TestStartenTechnik::test_ordner_und_ticket_valide<br>test_pool_starten.py::TestStartenTechnik::test_board_md_enthaelt_ticket<br>test_pool_starten.py::TestStartenTechnik::test_kandidat_aus_pool_entfernt<br>test_pool_starten.py::TestStartenTechnik::test_zwei_commits_mit_herkunft<br>test_pool_starten.py::TestStartenTechnik::test_case_und_leerzeichen_insensitiv<br>test_pool_starten.py::TestStartenAblehnungen::test_team_kandidat_abgelehnt<br>test_pool_starten.py::TestStartenAblehnungen::test_unbekannter_kandidat<br>test_pool_starten.py::TestStartenAblehnungen::test_leerer_kandidat<br>test_pool_starten.py::TestStartenAblehnungen::test_verbotenes_zeichen_pipe<br>test_pool_starten.py::TestStartenAblehnungen::test_verbotenes_zeichen_anfuehrungszeichen<br>test_pool_starten.py::TestStartenAblehnungen::test_fehlendes_projects_repo<br>test_pool_starten.py::TestStartenAblehnungen::test_fehlende_pool_datei<br>test_pool_starten.py::TestNummerierung::test_nummer_ueber_toplevel_und_sammelrepo<br>test_pool_starten.py::TestNummerierung::test_nummer_ohne_bestandsprojekte<br>test_pool_starten.py::TestCommitRuecknahme::test_gescheiterter_projekt_commit_nimmt_ordner_zurueck<br>test_pool_starten.py::TestCommitRuecknahme::test_gescheiterter_pool_commit_behaelt_projekt | 17 Test(s) |
 | SWR-090 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_was_laeuft_folgt_jetzt_takte<br>test_mail_autopilot.py::MailAutopilotTest::test_was_laeuft_ohne_wirkung<br>test_mail_autopilot.py::MailAutopilotTest::test_digest_marker_in_der_ergebniszeile<br>test_teams.py::TeamsTest::test_digest_vorschau_kommt_vom_werkzeug<br>test_teams.py::TeamsTest::test_digest_vorschau_mehrere_takte_und_modellname<br>test_teams.py::TeamsTest::test_digest_vorschau_fehlerwege<br>test_teams.py::TeamsTest::test_digest_jetzt_benennt_geschriebene_dateien<br>test_teams.py::TeamsTest::test_marker_stimmt_mit_werkzeug_ueberein | 8 Test(s) |
 | SWR-091 | reviewed | test_board.py::FristTest::test_ampel_stufen<br>test_board.py::FristTest::test_ampel_ist_dieselbe_regel_wie_im_cockpit<br>test_board.py::FristTest::test_ueberfaellig_nur_bei_offenen_tickets<br>test_board.py::FristTest::test_ohne_frist_nie_ueberfaellig<br>test_board.py::FristTest::test_frist_wird_auch_bei_change_request_geprueft<br>test_board.py::FristTest::test_unmoegliches_datum_faellt_nicht_auf_grau_zurueck<br>test_board.py::FristTest::test_frist_am_decision_request_bleibt_geprueft<br>test_org_cockpit.py::UeberfaelligTest::test_ueberfaelliges_backlog_ticket_steht_in_der_kachel<br>test_org_cockpit.py::UeberfaelligTest::test_erledigtes_ticket_ist_nie_ueberfaellig<br>test_org_cockpit.py::UeberfaelligTest::test_unterminierte_tickets_werden_gezaehlt_takte_nicht<br>test_org_cockpit.py::UeberfaelligTest::test_dr_ampel_kommt_aus_board | 11 Test(s) |
+| SWR-092 | draft | — | offen (Status draft) |
+| SWR-093 | draft | — | offen (Status draft) |
+| SWR-094 | draft | — | offen (Status draft) |
+| SWR-095 | draft | — | offen (Status draft) |
+| SWR-096 | draft | — | offen (Status draft) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

@@ -1,8 +1,129 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 16:50 (Routine-Session) — **DER „OHNE FRIST"-ZÄHLER IST ZU ENDE GELESEN: HINTER DER LETZTEN OFFENEN KACHEL (p0) STAND `p0/T-0008`, DAS EINZIGE OFFENE TICKET IN ZWEI ABGESCHLOSSENEN PROJEKTEN — ZWEIMAL VERTAGT, ABER OHNE JEDEN HINWEIS DARAUF IM TICKET. SEIN ZWILLING AUS DEMSELBEN ABNAHMEKRITERIUM IST LÄNGST `rejected`. BELEGKETTE NACHGETRAGEN (KLASSE C), ENTSCHEIDUNG NICHT SELBST GETROFFEN — `pm/T-0035` LIEGT ALS KLASSE-A-ANTRAG IN DER INBOX.** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+## Das Wichtigste (Stand 2026-08-16 17:35)
+
+1. **Deine Entscheidung ist vollzogen.** `pm/T-0035` → **AK-b** (17:17). `p0/T-0008` ist
+   geschlossen — kein Anthropic-Konto, kein API-Key, keine Kosten. **P0 und P1 haben jetzt kein
+   offenes Ticket mehr.**
+2. **Zum ersten Mal hat kein einziges Ticket in der ganzen Organisation eine fehlende Frist.**
+   Drei liegengebliebene pm-Tickets waren dreimal übersehen worden; sie sind jetzt terminiert.
+3. **Ein Nachweis war seit heute früh erbracht, ohne dass es jemand gemerkt hat:** Der Beleg für
+   `pm/T-0013` liegt in einer lokalen Logdatei — das Ticket erklärte ihn währenddessen für
+   unerreichbar.
+4. **Für dich zu tun:** einmal auf die GitHub-Actions-Seiten sehen (der Wächter öffnet sie von
+   allein) → damit schließen `pm/T-0010`, `pm/T-0013`, `pm/T-0026`. Frist 18.08.
+5. **Dein Brief „zu viel Text" ist umgesetzt** — dieser Block hier ist das Ergebnis (B050).
+
+*Ab hier: Belege und Details zum Nachlesen. Übergabepunkt zwischen Cowork-Sessions, wird per
+Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Nachtrag 17:35 — zwei Vorgänge kamen während der Session herein (B036, fünfter Fund):**
+Der Auftraggeber hat `pm/T-0035` um **17:17** mit **AK-b** entschieden — beim Inbox-Check um
+17:06 lag der Antrag noch wartend da. Sichtbar wurde die Entscheidung erst im Abschluss-`git
+status` als fremde Änderung am Ticket, **nicht** über `inbox.liste` (die filtert entschiedene DRs
+bauartbedingt heraus, SWR-039/B047). Verbucht: `p0/T-0008` → `rejected` mit Begründung und Beleg,
+`pm/T-0035` über die erlaubten Übergänge (`open → in_progress → in_review → done`) geschlossen.
+**Damit haben P0 und P1 kein offenes Ticket mehr, und der „ohne Frist"-Zähler steht zusammen mit
+B049 organisationsweit erstmals auf 0.** Zeitgleich kamen die Briefe **`pm/N-0028`/`N-0029`**
+(wortgleich, eine Sekunde auseinander): *„du schreibst zu viel text"* — beantwortet und sofort
+angewandt, siehe **B050** und der Block „Das Wichtigste" oben.
+
+**Routine-Session 17:20:** Briefkasten **leer** (36 Briefe aller Projekte/Teams auf `status: offen`
+durchsucht, zweimal geprüft). Inbox: **ein wartender Antrag, nichts Unverbuchtes** — `pm/T-0035`
+(Klasse A zu `p0/T-0008`) steht seit 16:50 zur Entscheidung und ist **nicht entschieden**; gegen die
+DR-Rohdaten geprüft (B047): kein weiterer `decision-request` mit Status ≠ `done`, kein
+Entscheidungsvermerk in `T-0035`. **Kein überfälliges Ticket** (frühester Termin `pm/T-0034`,
+17.08.), `mail_digest.faellig(1)` und `faellig(7)` beide `False`.
+
+**Der Agenda-Punkt war wieder der Zähler aus SWR-091 — und er war wieder nicht zu Ende gelesen
+(B049).** `cockpit_alle` meldete beim Start **p0 = 1** *und* **pm = 3**. Die 16:15-Session hatte die
+pm-Kachel für abgearbeitet erklärt (sie ging von 4 auf **3**, nicht auf 0), die 16:50-Session
+erklärte den Zähler für „zu Ende gelesen" und las dabei nur p0. Dahinter stehen **`pm/T-0010`,
+`pm/T-0013`, `pm/T-0026`** — drei `in_review`-Problemtickets ohne Frist, die in **sieben**
+Session-Fußzeilen wortgleich als *„bleiben `in_review`, Grund unverändert: kein `gh`/Netzzugriff"*
+stehen. Das Muster aus **B043**, diesmal an der eigenen Fußzeile.
+
+**Die Eskalationsregel aus B044 kann sie bauartbedingt nicht sehen.** „Überfällig" ist
+`board.ist_ueberfaellig`, und das setzt eine **Frist** voraus — ohne Frist ist die Ampel „grau", ein
+unterminiertes Ticket wird nie überfällig. Die Regel gegen das Liegenbleiben hat ihren blinden Fleck
+genau dort, wo das Liegenbleiben stattfindet. Einziger Melder ist der `unterminiert`-Zähler — und
+der ist eine **Zahl je Kachel**, keine Summe. Drei Sessions haben je eine Kachel gelesen und
+„erledigt" notiert; eine Org-Summe hätte jedes Mal ≠ 0 gemeldet.
+
+**⚠ Der schärfste Teil: bei `pm/T-0013` war die halbe Verifikation die ganze Zeit lokal prüfbar.**
+Das Ticket hat **zwei** Kriterien, die der alte Vermerk unter einem Satz zusammenfasste. Kriterium 1
+— *„`platform` erscheint als erstes Repo in der Push-Ausgabe"* — steht in `abschluss-auto.log`,
+einer Datei, für die es keinen Netzzugriff braucht: `platform` ist dort seit dem Lauf **07:59:59** in
+**jedem** erfolgreichen Wächter-Lauf das erste Repo (13 Läufe, zuletzt 17:00:23; davor, 00:44–07:15,
+war es `p0`). Der Vermerk, der den Nachweis für unerreichbar erklärte, nennt selbst *„letzter
+erfolgreicher Push 08:30"* — **genau dieser Lauf trug den Beleg schon.** Und der Hinderungsgrund von
+`T-0010`/`T-0026` (Wächter bricht seit 09:44 ab) ist **seit 10:30 weg**: 13 grüne Läufe, alle Repos
+`ahead 0/behind 0`.
+
+**Getan (Klasse C):** Kriterium 1 in `T-0013` mit Zeitstempeln als **erfüllt** belegt; die überholten
+Vermerke in `T-0010`/`T-0026` richtiggestellt; alle drei mit **Frist 18.08.** und der Begründung im
+Ticket. Gegenprobe zum CR-Kandidaten in `T-0026`: die Repo-Liste in
+`platform/.github/workflows/ci.yml` deckt P11 ab (liegt im gelisteten Sammel-Repo `projects`) — sie
+hat gehalten, weil P11 dorthin gelegt wurde, nicht weil sie sich selbst pflegt. **pm meldet jetzt
+`unterminiert=0`; organisationsweit bleibt 1** (`p0/T-0008`, begründet nach B048).
+**`T-0013` bleibt `in_review`** — ein Kriterium erfüllt heißt nicht beide erfüllt, und ein Gate, das
+nur lokal grün ist, war bei `T-0026` genau der Fehler.
+
+**Warum eine Frist hier keine Behauptung ist (Unterschied zu B048):** `p0/T-0008` wartet auf eine
+Entscheidung, die der Auftraggeber zweimal vertagt hat — ein Datum hätte dort einen Termin
+behauptet, den niemand zugesagt hat. Diese drei warten auf **einen Blick auf eine Seite, die der
+Wächter ohnehin öffnet** ([5/5] seiner Ausgabe). Präzedenzfall steht: `pm/T-0034` ist ebenfalls nur
+am Host lösbar und trägt trotzdem einen Termin.
+
+**Nicht gebaut, eingeplant als `pm/T-0036` (Klasse B, Frist 23.08., Priorität hoch):** Org-Summe
+statt Kachelzahl, Preflight-Zeile mit den **Namen** der unterminierten Tickets, Ablaufregel *„Kachel
+X erledigt ist keine gültige Abschlussmeldung"*. Das ist ein Eingriff in die Prüfstrecke selbst
+(Cockpit-Vertrag + Preflight-Ausgabe, berührt SWR-091); nebenbei in einer 30-Minuten-Routine wäre das
+das Risiko aus B025/B038. Von Hand sofort angewandt wurde, was ohne Code geht.
+
+**Fremde Änderung geprüft und übernommen (B041).** `pm/T-0035` trug beim Start eine uncommittete
+Zeile **„Benachrichtigt: 2026-08-16 per E-Mail (SWR-033)"** — der Marker aus
+`platform/scripts/dr_benachrichtigung.py`, geschrieben vom DR-Mailversand am Host nach der
+16:50-Session. Inhaltlich echt und historienwürdig, deshalb **eigener Commit vor der Sessionarbeit**,
+damit Fremdes und Eigenes nicht in einer Zeile stehen. Die bekannte `team-mail`-Anzeige
+(`digest/2026-08-16-woche-digest.md` in `git status`, `git diff` leer) ist unverändert der nicht
+durchlaufende Index-Refresh aus R7 — **erneut geprüft, erneut kein Commit**.
+
+**⚠ Morgen fällig, nur am Host lösbar: `pm/T-0034`** (17.08., hoch) — unverändert. Kein IMAP/Ollama
+in dieser Sandbox (Guardrail 2): **kein übergangenes Ticket im Sinne von B044**, sondern die Grenze
+der Ausführung.
+
+**Kein Code geändert, deshalb keine neuen Tests** — der Befund war eine Recherche in Log und Tickets.
+**329 Tests, Matrix 96 SWRs / 0 Lücken, Katalog- und Architektur-Gate grün.** Board-Check gegen die
+Erwartung gelesen (B041 Regel 3): **pm 36 Tickets** (vorher 35, +`T-0036`).
+
+**⚠ Werkzeug-Notiz (R7) — ein Umgehungsweg, der beinahe Arbeit vernichtet hätte.** `git status`
+hinterlässt auf diesem Mount ein `.git/index.lock`, das es nicht mehr löschen kann; jeder folgende
+`git`-Aufruf im selben Repo bricht dann ab. Der in dieser Session zuerst versuchte Ausweg —
+`GIT_INDEX_FILE` auf eine **Kopie** des Index — läuft zwar durch, lässt aber die echte `.git/index`
+auf altem Stand: **jede Datei, die nicht ausdrücklich im `git add` steht, wird aus diesem alten Stand
+mitcommittet.** Der Sammelcommit hat so `pm/T-0035` um **26 Zeilen zurückgesetzt** (Status wieder
+`open`, Vollzugsvermerk weg) — die Historie hätte „T-0035 → done" behauptet, während das Ticket
+wieder offen dastand. **Gefunden über die Zahl `-26` in der Diffstat beim Gegenlesen (B041 Regel 3),
+mit einem Korrektur-Commit behoben.** Richtig ist: Locks per **`mv`** nach `.git/verwaiste-locks/`
+wegräumen (Umbenennen ist erlaubt, Löschen nicht — wie in `pm/T-0023`), dann `git reset` gegen den
+echten Index und normale `git add`/`commit`-Aufrufe.
+
+Push: die Zeile der 16:50-Session in `PUSH-ANFORDERUNG.txt` ist **abgearbeitet** — Wächter-Erfolg
+**17:00:23** (`OK - alles geprueft und gepusht`), alle Repos `ahead 0/behind 0`, die Datei
+entsprechend nicht mehr vorhanden. Diese Session legt sie für ihre eigenen Commits neu an (Repos:
+pm, process). `pm/T-0010`/`T-0013`/`T-0026` bleiben `in_review`, jetzt aber **terminiert** statt
+unterminiert. Alle Änderungen committet, `preflight.py` meldet STARTKLAR.
+
+---
+
+## Stand der Vorsession
+
+*Zuletzt aktualisiert: 2026-08-16 16:50 (Routine-Session) — **DER „OHNE FRIST"-ZÄHLER IST ZU ENDE GELESEN: HINTER DER LETZTEN OFFENEN KACHEL (p0) STAND `p0/T-0008`, DAS EINZIGE OFFENE TICKET IN ZWEI ABGESCHLOSSENEN PROJEKTEN — ZWEIMAL VERTAGT, ABER OHNE JEDEN HINWEIS DARAUF IM TICKET. SEIN ZWILLING AUS DEMSELBEN ABNAHMEKRITERIUM IST LÄNGST `rejected`. BELEGKETTE NACHGETRAGEN (KLASSE C), ENTSCHEIDUNG NICHT SELBST GETROFFEN — `pm/T-0035` LIEGT ALS KLASSE-A-ANTRAG IN DER INBOX.** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+
+### Aktueller Stand der 16:50-Session
 
 **Routine-Session 16:50:** Briefkasten **leer** (37 Briefe aller Projekte/Teams auf `status: offen`
 durchsucht, zweimal geprüft). Inbox beim Start leer — und **erstmals beweisbar** nach der neuen
@@ -71,7 +192,7 @@ Zeile für ihre eigenen Commits an (Repos: pm, p0). `pm/T-0010`/`T-0013`/`T-0026
 
 ---
 
-## Stand der Vorsession
+### Ältere Stände
 
 *Zuletzt aktualisiert: 2026-08-16 16:15 (Routine-Session) — **PROJEKT P11 „WIDGET-DASHBOARD" IST ANGELEGT UND HAT G1 — BEIDE KLASSE-A-ENTSCHEIDE FIELEN UND WURDEN IN DERSELBEN SESSION VERBUCHT (G0a/D007 um 15:55, G1a/p11-D001 um 16:07 — 51 Sekunden nach dem Commit, mit dem das Projekt entstand). DIE INBOX IST LEER. ZWEI BEFUNDE AM WERKZEUG: EIN ENTSCHIEDENER, NICHT VERBUCHTER DR IST IN DER INBOX UNSICHTBAR, UND `blocked_by` REICHT NICHT ÜBER REPO-GRENZEN.** Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 

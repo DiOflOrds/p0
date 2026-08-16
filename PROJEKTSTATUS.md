@@ -1,5 +1,78 @@
 # Projektstatus — Fortschreibung über Sessions
 
+## Das Wichtigste (Stand Sprint 1, 2026-08-17)
+
+1. **Die Planeinheit ist ab jetzt der Sprint, nicht der Kalendertag** (Auftraggeber, 2026-08-17).
+   Ein Sprint = ein Routine-Lauf, Takt stündlich. Wir sind in **Sprint 1**; alle **17 offenen
+   Aufgaben** tragen eine Sprintnummer oder einen Takt. Verankert als **SWR-106**.
+2. **Erstmals wartet nichts mehr auf den Menschen.** `pm/T-0034` geschlossen (die Digests im Repo
+   belegen IMAP und Ollama), die drei CI-Tickets laufen jetzt über **SWR-105**.
+3. **444 Tests grün**, Matrix **106 SWRs / 0 Lücken**, Preflight STARTKLAR, kein offener Brief
+   (48 Briefe, 5 in diesem Lauf beantwortet).
+4. **⚠ `abschluss.cmd` wurde versehentlich geleert und aus dem Protokoll rekonstruiert.** Jeder
+   Schritt einzeln nachgefahren, gleiche Ausgaben — aber nicht zeichengleich. Bitte gegen eine
+   Vorgängerversion vergleichen.
+5. **`frist` bleibt neben `geplant_sprint`** — auf Wunsch des Auftraggebers. Die bekannte Schwäche
+   dieser Wahl wird geprüft statt vorausgesetzt (B060 / L-2026-08-17a).
+
+*Ab hier: Belege und Details zum Nachlesen. Übergabepunkt zwischen Cowork-Sessions, wird per
+Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+
+## Aktueller Stand
+
+**Sprint 1 (2026-08-17), erster Lauf nach der Umstellung auf Sprintplanung.**
+
+**Was sich grundsätzlich geändert hat.** `pm/D006` erklärt seit dem 16.08. jeden Routine-Lauf zum
+Sprint — geplant wurde trotzdem auf Kalenderdaten. Bei stündlichem Takt sind das rund **24 Sprints
+am Tag**; „23.08." wäre etwa Sprint 150 gewesen, ein Abstand, den niemand umrechnet. Ab jetzt trägt
+jedes offene Ticket ein `geplant_sprint` — oder ein `takt`, das sagt, dass es in **jedem** Sprint
+läuft (die fünf Dauerläufer bekommen bewusst keine Nummer, sonst stünde dieselbe Aussage zweimal).
+
+**Der Zähler ist eine Datei und keine Schätzung.** `pm/management/sprints.jsonl`, eine Zeile je
+Sprint, nur angehängt, **idempotent über eine Laufkennung**. Nicht aus der Git-Historie abgeleitet:
+eine Session schreibt mehrfach, Commits sind keine Läufe (**B056**, belegt mit 42 Commits auf rund
+30 Läufe). Rückwirkend wird nicht nummeriert — die Läufe des 16.08. ließen sich nur schätzen.
+
+**Der Horizont ist ehrlich beschriftet.** Sprint 1–3 sind fest, ab Sprint 4 ist die Nummer eine
+**Reihenfolge**. Dieselbe Zahl, aber mit ausgesprochener Verbindlichkeit statt suggerierter.
+
+**Die Entscheidung des Auftraggebers, die das Team anders empfohlen hatte.** `frist` und
+`geplant_sprint` laufen **parallel**. Das Team hatte diese Option als die schwächste bezeichnet
+(zwei Angaben zu „wann ist es dran" driften, B033). Sie wurde umgesetzt **und abgesichert**: beide
+Felder beantworten schriftlich **zwei verschiedene Fragen** — Zusage nach außen gegen Lauf des
+Teams —, und `board.sprint_widerspruch` meldet jedes Ticket, dessen geplanter Sprint **auch bei
+ununterbrochenem Takt** nach seiner Frist läge, über der Plantabelle. Aktuell: keiner. Verankert
+als **L-2026-08-17a**; dort steht auch, warum der Melder nur den günstigsten Fall prüft (ein
+Melder, der Risiken als Fehler ausgibt, erzieht zum Wegsehen).
+
+**Gegenprobe über den echten Bestand.** Der Altstand aus `git archive HEAD`, gegen die **neue**
+Plandatei gestartet, meldet **16 von 17 Zeilen als „ohne Zustand"** — grau, also ungeplant — und
+kennt `sprint_nr` nicht; der Neustand meldet 0 und `Sprint 1 · Takt 60 Min`. Das belegt den
+Schaden und nicht bloß ein fehlendes Modul (Regel 3 aus L-2026-08-16h). Und beim Zwischenstand hat
+der Bestandsabgleich aus SWR-103 `pm/T-0041` selbst als **nicht geplant** gemeldet — die Prüfung
+hat die Umstellung überwacht, die sie erweitert.
+
+**Vorher im selben Lauf.** `platform/T-0003` / **SWR-105** gebaut: die CI-Statusprüfung ohne
+Zugangsdaten (die Repos sind öffentlich, die Actions-API antwortet unangemeldet — es war also
+kein Klasse-A-Vorgang). Fünf Briefe beantwortet; `pm/T-0034` geschlossen, weil die Digests im Repo
+IMAP und lokales Ollama **belegen** statt sie zuzusagen.
+
+**⚠ Ein Fehler dieses Laufs, unverstellt.** Beim Einbau von Schritt [5/5] hat ein fehlgeschlagener
+Schreibbefehl `abschluss.cmd` **geleert**. Die Datei liegt am Wurzelverzeichnis und damit in keinem
+Repo — es gab nichts zurückzuholen. Sie ist aus `abschluss-auto.log` und dem zuvor wörtlich
+gelesenen Push-Abschnitt **rekonstruiert**; jeder Schritt wurde einzeln gegen die echten Skripte
+nachgefahren und liefert dieselben Ausgaben wie im Protokoll. Sie tut dasselbe, ist aber **nicht
+zeichengleich**. Ein Kopf-Kommentar in der Datei sagt das, und die Bitte an den Auftraggeber, eine
+Vorgängerversion zu vergleichen, steht in der Agenda und im Brief `pm/N-0036`.
+
+**Board-Check gegen die Erwartung gelesen (B041 Regel 3):** pm **41** Tickets (+1: `T-0041`),
+platform **3** (+1: `T-0003`); Briefe organisationsweit **48** (+5), davon **0 offen**. Matrix
+**106 SWRs / 0 Lücken** (vorher 104), **444 Tests** (vorher 380 zu Beginn des Abends).
+
+---
+
+## Vorheriger Stand (2026-08-16 23:06)
+
 ## Das Wichtigste (Stand 2026-08-16 23:06)
 
 1. **`pm/T-0032` ist erledigt — beide Teile.** Der Wunsch aus `pm/N-0025` („wiederkehrende aufgaben

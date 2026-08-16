@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 72 (reviewed: 72) · Tests mit SWR-Bezug: 174 · ohne Bezug: 19
+Stand: 2026-08-16 · SWRs: 73 (reviewed: 73) · Tests mit SWR-Bezug: 177 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -76,6 +76,7 @@ Stand: 2026-08-16 · SWRs: 72 (reviewed: 72) · Tests mit SWR-Bezug: 174 · ohne
 | SWR-070 | reviewed | test_org_cockpit.py::OrgCockpitTest::test_projects_sammelrepo_discovery | 1 Test(s) |
 | SWR-071 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_ki_hinweis_im_prompt<br>test_teams.py::TeamsTest::test_modellwahl_und_ki_hinweis_rundlauf<br>test_teams.py::TeamsTest::test_modellwahl_und_hinweis_validierung<br>test_teams.py::TeamsTest::test_ollama_modelle_liste | 4 Test(s) |
 | SWR-072 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_ki_hinweis_im_prompt | 1 Test(s) |
+| SWR-073 | reviewed | test_backend.py::SelbstNeustartTest::test_entscheidung_nur_bei_neuem_stand_ruhe_und_schleife<br>test_backend.py::SelbstNeustartTest::test_wache_beendet_prozess_mit_42<br>test_backend.py::SelbstNeustartTest::test_wache_ohne_marker_beendet_nie | 3 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

@@ -1,8 +1,54 @@
 # Projektstatus — Fortschreibung über Sessions
 
-*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 11:45 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB, `pm/T-0022` KOMPLETT (BEIDE TEILE GELIEFERT)**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+*Übergabepunkt zwischen Cowork-Sessions. Zuletzt aktualisiert: 2026-08-16 12:16 (Routine-Session) — **ZEHN PROJEKTE ABGESCHLOSSEN, TEAM IM REGELBETRIEB, ZWEI NEUE BRIEFE BEANTWORTET (N-0022/N-0023)**. Wird per Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Routine-Session 12:16:** Briefkasten hatte **zwei neue Briefe** seit der 11:45-Session —
+`pm/N-0022` (09:59, committet 11:59) und `pm/N-0023` (10:05, committet 12:05), beide erst nach
+Sessionende der Vorsession eingegangen, gefunden beim ersten Check dieser Session und
+beantwortet (zweite Prüfung am Sessionende: wieder leer). Inbox unverändert leer (37/37 `done`).
+
+**`pm/N-0023` sofort geliefert als `pm/T-0027`** (SUP.9, Korrektur an SWR-088, kein neuer SWR):
+Die Validierung für Pool-Kandidaten war mit „1-200 Zeichen, keine Zeilenumbrüche" zu eng für den
+eigentlichen Zweck des Feldes — bei Technik-Kandidaten trägt der Kandidat-Text die ganze Aufgabe
+(kein zweites Beschreibungsfeld), bei Team-Kandidaten die Kurzbeschreibung; beides sollte
+mehrsätzig sein dürfen, ausdrücklich auch bei KI-formulierten Vorschlägen (so der Brief).
+`platform/backend/pool.py`: `FELD_MAX` 200 → 4000, neue Funktion `_text_bereinigen` zieht
+Zeilenumbrüche zu Leerzeichen zusammen statt die Eingabe mit `PoolFehler(400, …)` abzulehnen —
+hart verboten bleibt nur `|` (das einzige Zeichen, das die Markdown-Tabellenzeile wirklich
+sprengt). HMI (`app.js`): Kurzbeschreibung (Team) und Kandidat-Text (Technik) laufen jetzt über
+`<textarea>` statt einer einzeiligen Eingabe — reine Darstellung, Validierung bleibt serverseitig.
+**Bewusst nicht angefasst:** `kandidat_starten` (Teil „Starten") prüft weiterhin hart auf `|`,
+`"` und Zeilenumbruch, weil der Text dort in ein Ticket-YAML-Frontmatter eingebettet wird — ein
+jetzt anlegbarer Kandidat mit `"` im Text lässt sich anlegen, aber erst nach Bereinigung starten
+(Fehlermeldung sagt das); Bestandsverhalten aus `pm/T-0022`, nicht Teil dieses Befunds. 4
+neue/geänderte Tests, Gesamtsuite **309 Tests** (vorher 305), Matrix weiterhin **89 SWRs / 0
+Lücken** (Testzahl je SWR-088 gestiegen, keine neue Anforderung), Katalog- und Architektur-Gate
+geprüft und grün.
+
+**`pm/N-0022` — Team-Gründung im Pool beauftragt, aber bewusst nicht in dieser Session gebaut,
+sondern als `pm/T-0028` (CR, `open`) für eine dafür vorgesehene Session eingeplant.** Der Brief
+benennt selbst den Unterschied zu „Projekt starten" („bei team-steuer/team-trading hängt daran
+mehr als ein Ordner"): `intake.md` verlangt für eine Team-Gründung einen vollen Steckbrief
+(Auftrag, Profil `entwicklung`/`dienstleistung`/`wiederkehrend`, Rollen, **Datenklasse**,
+Zugänge, Grenzen), Repo-Aufbau **aus Template** (`process/templates/team-repo/`) statt einem
+Ordner-Skelett, und bei Datenklasse `sensibel` ausdrücklich **keinen GitHub-Remote** — Klasse A
+mit Datenklassen-Wirkung (Playbook Kap. 15/16). Die Feldliste eines solchen Formulars in einer
+Routine-Session ohne Rückfrage an dich zu entwerfen, ist genau das Risiko aus B025/B038: ein zu
+schnell gebautes Werkzeug, das „sensibel" zwar als Option anbietet, den GitHub-Ausschluss
+dahinter aber nicht wirklich erzwingt. `pm/T-0028` beschreibt den Umfang (Formular, Charter-Entwurf,
+Gründungs-DR analog zu G0, Datenklasse explizit im Klartext) für die Umsetzung. **Zweiter Teil des
+Briefs** („Löschen von Kandidaten bleibt Session auf Zuruf") ist eine Festlegung, keine Anfrage —
+bestätigt, **keine Code-Änderung**.
+
+Push: `PUSH-ANFORDERUNG.txt` aus der 11:45-Session war beim Sessionstart bereits abgearbeitet
+(Wächter-Erfolg 12:00:22, Log `OK - alles geprueft und gepusht`) — diese Session schreibt am Ende
+eine neue Zeile für ihre eigenen Commits (platform, pm, p0). `pm/T-0010`/`T-0013`/`T-0026` bleiben
+unverändert `in_review` (kein `gh`/Netzzugriff in dieser Sandbox). team-mail-Digest-Befund
+unverändert offen (`mail_digest.faellig(7)` weiterhin `True`, nur am Mission-Control-Host
+prüfbar — siehe Session-Agenda Punkt 3). Alle Änderungen committet, `preflight.py` meldet
+STARTKLAR, `PUSH-ANFORDERUNG.txt` fortgeschrieben.
 
 **Routine-Session 11:45:** Briefkasten leer (zweimal geprüft, Sessionanfang und -ende), Inbox
 unverändert leer (37/37 DRs `done`) — kein neuer Kandidat wurde real gestartet, siehe unten.

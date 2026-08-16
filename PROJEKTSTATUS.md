@@ -1,23 +1,89 @@
 # Projektstatus — Fortschreibung über Sessions
 
-## Das Wichtigste (Stand 2026-08-16 17:30)
+## Das Wichtigste (Stand 2026-08-16 18:35)
 
-1. **Deine Entscheidung ist vollzogen.** `pm/T-0035` → **AK-b** (17:17). `p0/T-0008` ist
-   geschlossen — kein Anthropic-Konto, kein API-Key, keine Kosten. **P0 und P1 haben jetzt kein
-   offenes Ticket mehr.**
-2. **Zum ersten Mal hat kein einziges Ticket in der ganzen Organisation eine fehlende Frist.**
-   Drei liegengebliebene pm-Tickets waren dreimal übersehen worden; sie sind jetzt terminiert.
-3. **Ein Nachweis war seit heute früh erbracht, ohne dass es jemand gemerkt hat:** Der Beleg für
-   `pm/T-0013` liegt in einer lokalen Logdatei — das Ticket erklärte ihn währenddessen für
-   unerreichbar.
-4. **Für dich zu tun:** einmal auf die GitHub-Actions-Seiten sehen (der Wächter öffnet sie von
-   allein) → damit schließen `pm/T-0010`, `pm/T-0013`, `pm/T-0026`. Frist 18.08.
-5. **Dein Brief „zu viel Text" ist umgesetzt** — dieser Block hier ist das Ergebnis (B050).
+1. **Dein Knopf hat funktioniert.** Du hast „Markdown-Renderer auch für Briefe/Reports" um 18:03
+   aus dem Pool gestartet und um 18:04 mit **G0a** freigegeben. **Projekt P12 existiert, Sprint 0
+   ist geliefert** — Auftrag mit sechs messbaren Kriterien, fünf Anforderungen, sechs Risiken.
+2. **Eine Entscheidung wartet auf dich:** `p12/T-0002` (G1, Frist **23.08.**, Default G1a).
+3. **Der Kern des Projekts kam erst beim Hinsehen heraus:** Es gibt zwei Textwege im HMI — einer
+   formatiert, kann aber keine Ticket-Links; der andere verlinkt, formatiert aber nicht. Einfach
+   umstellen hätte die Links verloren, wo die meisten stehen. P12 führt beide zusammen.
+4. **Ehrlich offengelegt statt zugesagt:** Die Kriterien verlangen Tests an JavaScript — die
+   gibt es in der ganzen Organisation nicht. Wie geprüft wird, ist die erste Arbeit in Sprint 1.
+5. **Weiterhin für dich:** ein Blick auf die GitHub-Actions-Seiten schließt drei Tickets
+   (Frist 18.08.); `pm/T-0034` ist **morgen** fällig und nur am Host lösbar.
 
 *Ab hier: Belege und Details zum Nachlesen. Übergabepunkt zwischen Cowork-Sessions, wird per
 Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
 
 ## Aktueller Stand
+
+**Routine-Session 18:04–18:35.** Briefkasten **leer** (38 Briefe aller Projekte/Teams auf
+`status: offen` durchsucht, zweimal geprüft). Inbox: `inbox.liste` meldete **leer** — und das war
+für die Verbuchung **falsch**: `p12/T-0001` trug seit **18:04** den Vermerk **G0a** bei Status
+`open`. Gefunden hat es die Prüfung gegen die **DR-Rohdaten** (Ablaufregel aus B047, sechster Fund
+dieser Klasse). Am Ende: ein wartender DR (`p12/T-0002`, von dieser Session vorgelegt), kein
+unverbuchter. **Kein überfälliges Ticket, Org-Summe „ohne Frist" = 0**, `mail_digest.faellig(1)`
+und `faellig(7)` beide `False`.
+
+**P12 ist gestartet, freigegeben und hat Sprint 0 — und der Lauf war der erste echte Prüfstein für
+den „Starten"-Knopf (B051).** Ordner, Auftragsentwurf, leeres Decision-Log und der G0-Antrag kamen
+vom Werkzeug (`pm/T-0022` Teil 2), die Freigabe vom Auftraggeber. Vollzogen (Klasse C):
+Projektauftrag **v1.0** mit sechs messbaren Abnahmekriterien, **STK-022 + SWR-097–101** als `draft`
+(B027), Sprint-0-Plan mit sechs Risiken, G1-DR `p12/T-0002` (Frist 23.08., Default G1a). `T-0001`
+über die erlaubten Übergänge geschlossen. **Matrix 101 SWRs / 0 Lücken** (vorher 96).
+
+**⚠ Der inhaltliche Kern wurde in Sprint 0 gefunden, nicht vorausgesetzt.** Im HMI stehen **zwei**
+Textwege nebeneinander, und jedem fehlt genau die Fähigkeit des anderen: `mdRender` (SWR-059/060,
+aus P7) formatiert, kennt aber **keine Ticket-Links**; `preMitLinks`/`tlinks` (SWR-040) verlinkt
+Tickets, formatiert aber nichts. Der Renderer läuft heute an **zwei** Stellen (Digest, Charter),
+der Rohtext-Weg an **sieben**. Briefe und Reports naiv umzuhängen hätte die Ticket-Links **genau
+dort verloren, wo die meisten stehen** — Sprint-Reports und DR-Bodys. SWR-098 verlangt deshalb die
+Ticket-Erkennung **im Inline-Pass des vorhandenen Renderers**: P12 ist eine Zusammenführung, kein
+Anstrich. Zweiter Punkt, der bei P7 keiner sein musste: Briefe sind **Freitext eines Menschen** —
+daher SWR-100 (kein `innerHTML`, keine Bibliothek, Markup erscheint als Text) und SWR-099 (kein
+stiller Textverlust; Code-Blöcke kennt der Renderer heute nicht, `platform/N-0002` enthält welche).
+
+**⚠ Nicht zugesagt: die Prüfung.** Die Abnahmekriterien verlangen Nachweise an JavaScript — es gibt
+**329 Python-Tests und null JS-Tests**; „JS-Frontend-Tests" ist Pool-Kandidat **#8** und nicht
+beauftragt. Das steht als **R5** im Plan und als Punkt 1 im G1-Antrag: *wie* geprüft wird, ist die
+erste Entscheidung in Sprint 1 und gehört in den ADR — vor der Umstellung. Ein „Tests" im
+Kriterium, aus dem am Ende eine Stichprobe wird, wäre wörtlich B027/B038.
+
+**⚠ Werkzeugbefund B051: eine Konvention, die nur von Hand existierte, hat den ersten
+Werkzeuglauf nicht überlebt.** Zwei Sachen, beide lautlos: Der **Pool-Kandidat #7 wurde gelöscht
+statt nach „Realisiert" verschoben** (Diff des Knopf-Commits: `1 file changed, 1 deletion(-)`) —
+den Abschnitt gibt es seit **16:15 desselben Tages**, von Hand eingeführt für Kandidat #13 mit der
+Begründung aus B029; der Knopf war da schon gebaut. Und das erzeugte **Decision-Log hat keinen
+Tabellenkopf**: `pool.py` schreibt einen Platzhaltersatz, `inbox.entscheide` hängt die D000-Zeile
+an — ohne Kopf ist das keine Tabelle, sondern Pipe-Text, und der Platzhaltersatz behauptet danach
+weiter, es gebe keine Entscheidung. Gefunden nur beim Gegenlesen des fremden Commits (B041
+Regel 3). **Von Hand sofort behoben**, was ohne Code geht; die Werkzeugänderung ist als
+`pm/T-0037` eingeplant (Klasse B, Frist 23.08.) und **nicht** nebenbei gebaut (B025/B038).
+
+**⚠ Eigener Fehler dieser Session, gefunden und behoben.** Beim Erkunden lief `trace_matrix.py`
+ohne `--repos . --alle-projekte` und schrieb `p0/verification/reports/swr-test-matrix.md` auf einen
+Teilstand (24 SWRs, 56 Lücken). Sofort gegengelesen (`git diff --stat`: 116+/74−), **in-place** aus
+`git show HEAD:` zurückgeschrieben (`git checkout` scheitert am `unable to unlink` des Mounts, R7)
+und per `git diff --quiet` als bitgleich zu HEAD belegt — **bevor** irgendetwas committet wurde.
+**Lehre:** Ein Werkzeug, das Dateien schreibt, ist kein Erkundungsmittel.
+
+**Kein Code geändert, deshalb keine neuen Tests.** 329 Tests, Matrix 101 SWRs / 0 Lücken, Katalog-
+und Architektur-Gate grün. Board-Check gegen die Erwartung gelesen (B041 Regel 3): **pm 37
+Tickets** (vorher 36), **p12 2 Tickets** (vorher 1).
+
+**⚠ Morgen fällig, nur am Host lösbar: `pm/T-0034`** (17.08., hoch) — unverändert, kein
+IMAP/Ollama in dieser Sandbox (Guardrail 2). `pm/T-0010`/`T-0013`/`T-0026` bleiben `in_review`,
+terminiert auf 18.08. — sie warten auf den Blick auf die GitHub-Actions-Seiten.
+
+Push: `PUSH-ANFORDERUNG.txt` war beim Start **nicht vorhanden** (die Zeile der 17:06-Session ist
+abgearbeitet, Wächter-Erfolg 17:30:26). Diese Session legt sie neu an (Repos: projects, pm,
+process, p0). Alle Änderungen committet, `preflight.py` meldet STARTKLAR.
+
+---
+
+## Stand der Vorsession (17:06)
 
 **Nachtrag 17:28 — zwei Vorgänge kamen während der Session herein (B036, fünfter Fund):**
 Der Auftraggeber hat `pm/T-0035` um **17:17** mit **AK-b** entschieden — beim Inbox-Check um

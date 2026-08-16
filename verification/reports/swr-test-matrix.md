@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 70 (reviewed: 70) · Tests mit SWR-Bezug: 166 · ohne Bezug: 19
+Stand: 2026-08-16 · SWRs: 70 (reviewed: 70) · Tests mit SWR-Bezug: 169 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -69,11 +69,11 @@ Stand: 2026-08-16 · SWRs: 70 (reviewed: 70) · Tests mit SWR-Bezug: 166 · ohne
 | SWR-063 | reviewed | test_teams.py::TeamsTest::test_digest_jetzt | 1 Test(s) |
 | SWR-064 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_konfiguration_takte_und_fallback<br>test_mail_autopilot.py::MailAutopilotTest::test_faelligkeit_je_takt | 2 Test(s) |
 | SWR-065 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
-| SWR-066 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-066 | reviewed | test_org_cockpit.py::OrgCockpitTest::test_steckbrief_und_gruppen<br>test_org_cockpit.py::OrgCockpitTest::test_status_fallback_ueber_baseline_tag | 2 Test(s) |
 | SWR-067 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-068 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-069 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
-| SWR-070 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
+| SWR-070 | reviewed | test_org_cockpit.py::OrgCockpitTest::test_projects_sammelrepo_discovery | 1 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

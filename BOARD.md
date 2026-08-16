@@ -3,12 +3,6 @@
 Stand: 2026-08-16 · Tickets: 72
 
 
-## open (1)
-
-| ID | Titel | Typ | Takt | Rolle | Prio | Sprint | blockiert durch |
-|---|---|---|---|---|---|---|---|
-| [T-0008](tickets/T-0008.md) | Anthropic-API-Key als Secret hinterlegen | task | einmalig | mensch | hoch | 1 | — |
-
 ## done (69)
 
 | ID | Titel | Typ | Takt | Rolle | Prio | Sprint | blockiert durch |
@@ -83,9 +77,10 @@ Stand: 2026-08-16 · Tickets: 72
 | [T-0063](tickets/T-0063.md) | Prozess-CR (Retro S5): feedback_route v1.1 — automatischer Feedback-Abschluss | change-request | einmalig | dev | niedrig | 6 | — |
 | [T-0064](tickets/T-0064.md) | Prozess-CR (Retro S5): Produkt-Konfig produkte.yaml + trace_matrix --produkt | change-request | einmalig | dev | niedrig | 6 | — |
 
-## rejected (2)
+## rejected (3)
 
 | ID | Titel | Typ | Takt | Rolle | Prio | Sprint | blockiert durch |
 |---|---|---|---|---|---|---|---|
+| [T-0008](tickets/T-0008.md) | Anthropic-API-Key als Secret hinterlegen | task | einmalig | mensch | hoch | 1 | — |
 | [T-0047](tickets/T-0047.md) | Hub-VM (D014, E5): Beschaffung begleiten — Runbook, Deployment, Geräteregister | task | einmalig | cm | mittel | 4 | — |
 | [T-0072](tickets/T-0072.md) | Copilot-PoC-Lauf am Team-Node: DEV-Routineaufgabe via --provider copilot (Kriterium 9) | task | einmalig | dev | mittel | 6 | — |

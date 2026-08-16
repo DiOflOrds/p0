@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-16 · SWRs: 70 (reviewed: 70) · Tests mit SWR-Bezug: 169 · ohne Bezug: 19
+Stand: 2026-08-16 · SWRs: 72 (reviewed: 72) · Tests mit SWR-Bezug: 174 · ohne Bezug: 19
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -74,6 +74,8 @@ Stand: 2026-08-16 · SWRs: 70 (reviewed: 70) · Tests mit SWR-Bezug: 169 · ohne
 | SWR-068 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-069 | reviewed | — | manuelle Abnahme dokumentiert (p0/verification/reports/) — kein Unit-Test |
 | SWR-070 | reviewed | test_org_cockpit.py::OrgCockpitTest::test_projects_sammelrepo_discovery | 1 Test(s) |
+| SWR-071 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_ki_hinweis_im_prompt<br>test_teams.py::TeamsTest::test_modellwahl_und_ki_hinweis_rundlauf<br>test_teams.py::TeamsTest::test_modellwahl_und_hinweis_validierung<br>test_teams.py::TeamsTest::test_ollama_modelle_liste | 4 Test(s) |
+| SWR-072 | reviewed | test_mail_autopilot.py::MailAutopilotTest::test_ki_hinweis_im_prompt | 1 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

@@ -1,6 +1,200 @@
 # Projektstatus — Fortschreibung über Sessions
 
-## Das Wichtigste (Stand Sprint 5, 2026-08-17)
+## Das Wichtigste (Stand Sprint 6, 2026-08-17)
+
+1. **⚠ Der Wächter bricht weiter ab — aber später, und genau das ist der Beleg.** Der
+   erste Lauf nach der T-0007-Reparatur (03:59) erreichte `PREFLIGHT: STARTKLAR` mit
+   allen 16 Board-Prüfungen grün — die Stelle, an der die acht Läufe davor starben — und
+   scheiterte dann in `[2/5]` an einem `UnicodeEncodeError` beim `print`. Die Meldung hat
+   sich geändert, also gilt die Vorhersage aus `T-0007` als **eingetroffen**.
+2. **`platform/T-0009`: die Reparatur hatte nur ein Ende des Rohrs angefasst.** Sie stellte
+   das **Lesen** fest auf UTF-8 — und zerstörte damit an den drei Stellen, an denen Python
+   Python aufruft, eine Paarung, die vorher zufällig funktioniert hatte. Dazu ein zweiter,
+   **älterer** Grund: 121 Ticketdateien tragen ein „→", das cp1252 nicht ausgeben kann.
+3. **⚠ Vier Zahlen dieses Projekts sind widerlegt — alle vier ungezählt neben einer
+   richtigen Diagnose.** „Rund zweihundert Läufe" (waren 9), „die sieben Zeilen" (6),
+   „was dabei auftaucht braucht Urteil" (0), „nicht geschlossen 15" (17). Die letzte fand
+   die Regel, die aus den ersten dreien im selben Lauf entstanden war.
+4. **Zwei Befunde in der Planung selbst.** Sieben Planzeilen sagten etwas anderes als ihr
+   Ticket (`pm/T-0044`, jetzt geprüft per **SWR-109**), und die Kennzahl „nicht
+   geschlossen" hat keine dokumentierte Zählweise (`pm/T-0046`).
+5. **⚠ Und der Wächterlauf um 04:29 ist DURCHGELAUFEN** — mit der Korrektur aus `T-0009`
+   (committet 04:20), erster erfolgreicher Push seit 01:31, `CI-STATUS.md` neu (04:32).
+   Die Vorhersage dieses Sprints ist **im selben Lauf eingetroffen und übererfüllt**:
+   erwartet war `[3/5]`, geliefert wurde `[5/5]` inklusive Push.
+6. **Drei Vorhersagen auf einmal eingelöst.** `platform` ist **grün** (offen seit
+   Sprint 3); der Bericht nennt erstmals Job und Schritt → **`platform/T-0004`
+   geschlossen**, Frist 18.08. gewahrt; und für `pm/T-0043` sind zwei Ursachen
+   ausgeschlossen — darunter das Secret, womit die **Klasse-A-Sorge entfällt**.
+7. **514 Tests grün** (+22), Matrix **109 SWRs / 0 Lücken**, Preflight STARTKLAR, kein
+   offener Brief (48), unterminiert 0, überfällig 0, **Plan-Drift 0**.
+
+---
+
+## Aktueller Stand
+
+**Sprint 6 (2026-08-17), der Lauf, in dem eine Reparatur ihren eigenen Folgeschaden
+vorgeführt hat — und die Organisation vier eigene Zahlen widerlegt hat.**
+
+**Der Startcheck war diesmal Pflicht, nicht Spürsinn.** Sprint 5 hatte eine widerlegbare
+Vorhersage hinterlassen: *„bleibt `abschluss-auto.log` bei derselben Meldung, ist die
+Diagnose falsch."* Der Blick ins Protokoll war damit vorgeschrieben. **Das ist der
+Unterschied zwischen Sprint 5 und Sprint 6** — nicht Aufmerksamkeit, sondern dass es eine
+Zeile gab, die geprüft werden musste.
+
+**`platform/T-0009` — zwei Ursachen, und die zweite ist älter als die erste.**
+
+*Ursache A, der Folgeschaden:* `T-0007` setzte `encoding="utf-8", errors="replace"` an
+allen 33 Textmodus-Aufrufen. Für `git` (fremdes Programm, schreibt UTF-8) ist das richtig.
+An den drei Stellen, an denen Python **Python** aufruft (`preflight.board_check`,
+`preflight.unit_tests`, `teams._standard_runner`), schreibt das Kind aber in der
+Locale-Kodierung des Hosts. Vorher lasen und schrieben beide Seiten cp1252 — **zufällig
+passend**. Danach schrieb das Kind cp1252 und der Elternprozess las UTF-8: jedes `ü` in
+`ungültiger status` wurde zu **U+FFFD** — und U+FFFD ist genau das Zeichen, das cp1252 auf
+dem Rückweg nicht ausgeben kann. `errors="replace"` hat den Fehler nicht behoben, sondern
+**eine Stufe weitergereicht**. Nachgestellt und gegengeprobt: derselbe Aufruf mit
+`encoding="cp1252"` (Stand vor Sprint 5) liefert den Text sauber.
+
+*Ursache B, unabhängig und älter:* die Meldungen dieser Organisation zitieren
+Ticketinhalte. **121 Ticketdateien** tragen ein „→", dazu `↔`, `⟳`, `⚠`, `≤`, `≠`, `≈`,
+`✅`, `⏳`, `✓`, `✔`, `↻`. Ein Validierungsbefund an einem Ticket mit einem Pfeil im Titel
+beendet `preflight` mit demselben Fehler — **auch ohne Ursache A**. Sie hat nur nie
+zugeschlagen, weil der Lauf vorher schon an der Leseseite starb.
+
+*Die Korrektur:* neu `platform/scripts/konsole.py`, beide Enden an **einer** Stelle.
+`kind_umgebung()` setzt `PYTHONIOENCODING=utf-8` für Python-Kindprozesse (Ursache A
+verschwindet, das Zeichen entsteht nicht mehr); `sichere_ausgabe()` stellt `stdout`/`stderr`
+auf `errors="backslashreplace"` in allen **zwölf** Einstiegspunkten. Bewusst
+`backslashreplace` und nicht `replace`: letzteres erzeugt U+FFFD, also genau das Zeichen,
+an dem cp1252 scheitert — dieselbe Reparatur, die diesen Befund verursacht hat, ein zweites
+Mal. Bewusst **nicht** `reconfigure(encoding="utf-8")`: das tauschte einen Absturz gegen
+unlesbare Umlaute in jeder Zeile.
+
+**Warum der Regel-Test aus T-0007 blind war.** Er prüfte den gesamten Produktionscode —
+**auf das Lesen**. Ein Rohr hat zwei Enden, und die Regel beschrieb eines. Der neue
+Regel-Test prüft beide.
+
+**⚠ Die Zahl aus Sprint 5 ist widerlegt, die Diagnose ist bestätigt.** Sprint 5 schrieb an
+vier Stellen *„seit dem 17.08. kein einziger Push, rund zweihundert Mal"*. Das Protokoll
+zählt für den 17.08.: **12 Startmarken, 4 erfolgreiche Pushes, 9 Fehler**. Die Fehlserie
+beginnt um **02:14**. Und genau das macht die Diagnose **stärker** als in Sprint 5:
+
+| Zeit | Ereignis |
+|---|---|
+| 01:31:53 | letzter **erfolgreicher** Push |
+| 01:52–01:54 | die Commits, die das „⏳" in `pm/tickets/T-0042.md` einbrachten |
+| 02:14 | erster Lauf danach — **FEHLER** |
+| 02:14–03:59 | acht Läufe, alle FEHLER |
+
+Zwischen dem letzten grünen und dem ersten roten Lauf liegt genau ein Ereignis. Hätte
+jemand in Sprint 5 nachgezählt statt zu schätzen, wäre dieser Zeitpunkt schon dort sichtbar
+gewesen.
+
+**`pm/T-0044` — der Befund kam aus der Kernpflicht selbst.** Beim Sichten aller offenen
+Tickets wichen **sieben** Planzeilen von ihrem Ticket ab: Sprint 5 hatte fünf Aufgaben in
+`sprint-aktuell.md` „eine Nummer nach hinten" geschoben und die Ticketfelder nicht
+angefasst. Die vorhandenen Prüfungen konnten das **zu Recht** nicht finden — `nicht_geplant`
+fragt, ob ein Ticket **vorkommt** (alle kamen vor), `sprint_widerspruch` hält den Sprint
+gegen die **Frist** (beide drifteten gemeinsam). **Anwesenheit ist nicht Übereinstimmung.**
+Gebaut als `sprint.plan_drift()`, **SWR-109**.
+
+**⚠ Und die Prüfung fand beim ersten Lauf einen Fehler in sich selbst.** Die nackte
+Ticket-ID `T-0003` gibt es in `p11` **und** `p12`; blind aufgelöst ordnete sie die
+p12-Planzeile dem p11-Ticket zu und meldete einen Drift, den es nicht gibt. Eine Prüfung
+mit Fehlalarmen trainiert das Wegschauen. Behoben: volle Referenz gewinnt, nackte ID nur
+bei Eindeutigkeit — zwei Tests halten beide Hälften fest.
+
+**`platform/T-0008` — der Verschiebungsgrund war messbar und leer.** Sprint 5 hatte es mit
+*„die Korrektur schaltet eine Prüfung ein, die nie lief; was dabei auftaucht, braucht
+Urteil"* vertagt. Es wäre zum **zweiten** Mal mit demselben Grund verschoben worden — und
+L-2026-08-17j Regel 2 verlangt dann eine **Prüfung der Quelle**. Alle Tickets von p10/p11/p12
+gegen HEAD gehalten: **0 Statusänderungen, 0 Befunde**. Danach war die Korrektur eine Zeile
+(`git rev-parse --show-prefix` statt eines angenommenen Pfads). **Die Regel ist in Sprint 5
+aus einem Wartegrund entstanden und hat hier zum ersten Mal einen Verschiebungsgrund
+gekippt.**
+
+**⚠ Ein Regressionstest aus T-0007 hat einen Fehler in dieser Korrektur gefangen.** Die
+erste Fassung schrieb `praefix.stdout.strip()` — also denselben `AttributeError` auf `None`,
+der drei Sprints lang jeden Push verhindert hat, **eine Zeile weiter neu eingebaut**, im
+selben Modul, von einem Lauf, der dieses Muster kannte. Gefangen hat ihn ein Test, der für
+eine *andere* Zeile geschrieben wurde. Das ist der beste Beleg für diesen Testtyp: er
+sichert nicht eine Korrektur, sondern eine **Stelle**.
+
+**⚠ Und die vierte Zahl fand die eigene Regel, nachdem sie geschrieben war.** Beim
+Abschluss trug die erste Fassung „nicht geschlossen **14**" — geschätzt, in demselben
+Absatz, der drei geschätzte Zahlen korrigiert. Nachgezählt: das Werkzeug sagt **17 beim
+Start, 18 beim Abschluss**. Die seit Sprint 2 gemeldete **15** passt zu keiner Zählweise,
+und ihre Zählweise steht nirgends. Aufgenommen als `pm/T-0046`, **nicht rückwirkend
+korrigiert** — eine still ersetzte Zahl nimmt dem nächsten Leser den Hinweis.
+
+**Ehrlich zur Grenze (B027).** Dass der Wächter am Host jetzt weiterkommt, ist **nicht**
+belegt: diese Sandbox ist UTF-8 und hat auch diesen Fehler nie gesehen. Dieselbe Grenze wie
+bei T-0007 — und sie hat dort genau einmal getäuscht. **Widerlegbare Vorhersage, diesmal
+schärfer formuliert:** der nächste Lauf erreicht `[3/5]` oder weiter. Bricht er wieder in
+`[1/5]`/`[2/5]` mit einem Kodierungsfehler ab, ist `T-0009` widerlegt und wird
+wiedereröffnet. *Der Unterschied zu Sprint 5:* dort hieß die Erwartung „läuft durch", und
+jeder Abbruch hätte sie widerlegt. Hier ist sie ein **Fortschritt der Abbruchstelle** —
+prüfbar an einer Zeile, auch wenn ein dritter Defekt dahinterliegt.
+
+**Lessons sofort verankert (D005, noch in diesem Lauf):** **L-2026-08-17l** (eine Reparatur,
+die nur ein Ende eines Rohrs anfasst, verschiebt den Fehler ans andere; `errors="replace"`
+ist eine Verschiebung, keine Reparatur; ein Werkzeug, dessen Aufgabe das Melden ist, darf am
+Melden nicht sterben; ein Regel-Test deckt genau so viel ab, wie seine Regel sagt) und
+**L-2026-08-17m** (eine Zahl in einer Begründung wird gezählt oder weggelassen; die eigene
+Verifikation ist die wahrscheinlichste Stelle für eine ungeprüfte Zahl; ein
+Verschiebungsgrund ist prüfbar, bevor die Arbeit getan ist; wer eine Doppelaussage
+absichert, zählt vorher, wie viele Stellen dieselbe Frage beantworten).
+
+## ⚠ Der Lauf, der während dieses Sprints ankam — und drei Wartezeilen auflöste
+
+**Um 04:29 startete der Wächter, um 04:32:10 meldete er „OK - alles geprueft und
+gepusht".** Er lief mit `platform/T-0009` (committet 04:20:54) und ging durch alle fünf
+Schritte: `PREFLIGHT: STARTKLAR`, `Ran 510 tests`, Projektstatus versioniert, Push,
+CI-Status. **Der erste erfolgreiche Push seit 01:31:53.**
+
+Das ist kein Nebenergebnis, sondern der Beleg für die eigene Vorhersage — und er kam
+**innerhalb** des Sprints, der sie gestellt hat. Erwartet war `[3/5]` oder weiter;
+geliefert wurde der ganze Lauf.
+
+**`platform/T-0004` / SWR-107 — geschlossen, Frist 18.08. gewahrt.** Der Bericht nennt
+jetzt Job und Schritt: *p3 (failure): Schritt „BOARD.md aktuell?"*, ebenso p5. Alle fünf
+Zusicherungen von SWR-107 sind am echten Lauf geprüft — besonders die vierte, für die es
+bisher nur Tests mit injizierter Abruffunktion gab: `p1` meldete einen **echten** HTTP 504,
+und der Bericht behielt ihn als eigenen Zustand, statt ihn zu grün oder rot zu verbiegen.
+Das Ticket stand seit Sprint 2 auf `in_review` mit der Begründung *„der Netzweg wird beim
+nächsten Hostlauf belegt"*. Der Satz war richtig — falsch war die stille Annahme, dass der
+nächste Hostlauf **stattfindet**.
+
+**Die Vorhersage aus Sprint 3 ist eingetroffen.** `platform` ist grün, für den Commit
+`f3a71b0d`. Sie stand drei Sprints offen und war in dieser Zeit **nicht prüfbar**, weil
+kein Bericht entstand — kein Zeichen von Geduld, sondern die Folge desselben Defekts.
+
+**`pm/T-0043` — zwei Ursachen ausgeschlossen, der entscheidende Lauf angestoßen.** Der rote
+Schritt heißt „BOARD.md aktuell?" und liegt **zwei Schritte nach** dem Checkout von
+`platform`, für den `PLATFORM_READ_TOKEN` gebraucht wird. **Also kein Zugangsproblem** — die
+seit Sprint 2 in Aussicht gestellte Klasse-A-Entscheidung entfällt ersatzlos. Zweitens:
+`p3` und `p5` regenerieren ihre `BOARD.md` heute byte-gleich bis auf die Stand-Zeile, und
+genau die ignoriert der Vergleich (`-I "^Stand:"`, der Fix aus `pm/T-0010`); dieselbe
+Gegenprobe für die grünen `p7`/`p4` ergibt dasselbe.
+
+**Der eigentliche Fund dabei ist ein Lesefehler von vier Sprints.** `p3` und `p5` wurden
+seit dem **16.08. 07:0x** nicht gepusht — ohne Push kein neuer Lauf. Das „ROT" ist seit über
+21 Stunden **dasselbe eingefrorene Ergebnis** und wurde vier Sprints lang als fortlaufende
+Störung gelesen. Deshalb wurde der Auslöser diesmal **hergestellt** statt erhofft: `BOARD.md`
+in beiden Repos neu erzeugt (die Stand-Zeile ist heute tatsächlich veraltet), committet,
+beide in der Push-Anforderung. **Widerlegbare Vorhersage:** beide werden grün. Wenn nicht,
+ist „am heutigen Inhalt liegt es nicht" widerlegt.
+
+**Board-Check gegen die Erwartung gelesen (B041 Regel 3):** gesamt **258** (+4: `T-0009`,
+`pm/T-0044`, `pm/T-0045`, `pm/T-0046`), platform **9** (+1), pm **46** (+3),
+team-dashboard 2 (unverändert). Nicht geschlossen **17** (Start 17; zwei zu, zwei
+neu) — **erstmals mit Werkzeugzahl statt von Hand**, siehe `pm/T-0046`. Briefe **48**, davon **0 offen**. Matrix
+**109 SWRs / 0 Lücken** (+1: SWR-109). **514 Tests** (vorher 492). `nicht_geplant: []`,
+`widersprueche: []`, `plan_drift: []`.
+
+---
+
+## Vorheriger Stand (Sprint 5, 2026-08-17)
 
 1. **⚠ Seit dem 17.08. ist kein einziger Push durchgekommen — nicht mangels Lauf, sondern
    weil jeder Lauf abbrach.** Der Wächter versuchte es alle 15 Minuten, rund zweihundert

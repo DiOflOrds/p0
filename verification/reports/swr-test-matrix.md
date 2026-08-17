@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-17 · SWRs: 107 (reviewed: 97) · Tests mit SWR-Bezug: 489 · ohne Bezug: 30
+Stand: 2026-08-17 · SWRs: 107 (reviewed: 97) · Tests mit SWR-Bezug: 492 · ohne Bezug: 30
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -99,7 +99,7 @@ Stand: 2026-08-17 · SWRs: 107 (reviewed: 97) · Tests mit SWR-Bezug: 489 · ohn
 | SWR-093 | draft | — | offen (Status draft) |
 | SWR-094 | draft | — | offen (Status draft) |
 | SWR-095 | draft | — | offen (Status draft) |
-| SWR-096 | draft | test_org_cockpit.py::BaselineImSammelRepoTest::test_nachbar_baseline_wird_nicht_geerbt<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_eigene_baseline_bleibt_sichtbar<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_eigenstaendiges_repo_unveraendert<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_status_folgt_derselben_quelle<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_praefix_greift_nicht_in_die_mitte | 5 Test(s) |
+| SWR-096 | draft | test_org_cockpit.py::BaselineImSammelRepoTest::test_nachbar_baseline_wird_nicht_geerbt<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_eigene_baseline_bleibt_sichtbar<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_eigenstaendiges_repo_unveraendert<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_status_folgt_derselben_quelle<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_annotation_ist_kein_tagname<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_annotation_auch_im_eigenen_repo_kein_tagname<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_letzte_baseline_ist_die_juengste_nicht_die_alphabetisch_letzte<br>test_org_cockpit.py::BaselineImSammelRepoTest::test_praefix_greift_nicht_in_die_mitte | 8 Test(s) |
 | SWR-097 | draft | — | offen (Status draft) |
 | SWR-098 | draft | — | offen (Status draft) |
 | SWR-099 | draft | — | offen (Status draft) |

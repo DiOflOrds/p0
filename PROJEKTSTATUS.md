@@ -1,5 +1,408 @@
 # Projektstatus — Fortschreibung über Sessions
 
+## Das Wichtigste (Stand Sprint 5, 2026-08-17)
+
+1. **⚠ Seit dem 17.08. ist kein einziger Push durchgekommen — nicht mangels Lauf, sondern
+   weil jeder Lauf abbrach.** Der Wächter versuchte es alle 15 Minuten, rund zweihundert
+   Mal. Ursache gefunden und behoben: **`platform/T-0007`**.
+2. **`board.py` las die Git-Ausgabe ohne feste Kodierung.** Auf dem Windows-Host gilt
+   cp1252; `pm/T-0042.md` trägt seit Sprint 3 ein Zeichen, dessen UTF-8-Folge ein dort
+   unbelegtes Byte enthält. Der Lese-Thread starb, `stdout` wurde `None` **bei
+   `returncode == 0`**, und der Absturz nannte weder Datei noch Ursache.
+3. **⚠ Damit ist die Auskunft von drei Sprints widerlegt.** „Der Beleg kommt von selbst"
+   war falsch — er konnte nicht kommen. Der Beweis lag die ganze Zeit im Arbeitsordner.
+4. **`p11/T-0005` erledigt, und der Entwurf dreht die Frage um:** nicht die Kachelzahl
+   sprengt das Budget, sondern **ein Feld** — `letzte_baseline`, bis zu 300 Zeichen, ohne
+   Grenze im Vertrag. Eine Entscheidung liegt in der Inbox (`p11/T-0006`, Frist 19.08.).
+5. **492 Tests grün**, Matrix **108 SWRs / 0 Lücken**, Preflight STARTKLAR, kein offener
+   Brief (48 Briefe), unterminiert 0, überfällig 0.
+
+*Ab hier: Belege und Details zum Nachlesen. Übergabepunkt zwischen Cowork-Sessions, wird per
+Abschluss-Skript als `p0/PROJEKTSTATUS.md` versioniert.*
+
+## Aktueller Stand
+
+**Sprint 5 (2026-08-17), der Lauf, in dem der geplante Inhalt nicht der wertvollste war.**
+
+**Der Startcheck hat den Sprint umgeschrieben.** Geplant waren der Layout-Entwurf
+`p11/T-0005` und zwei Tickets, die „auf einen Hostlauf warten". Beim Nachsehen in
+`abschluss-auto.log` stand dort seit dem 17.08. bei **jedem** Lauf im Abstand von 15
+Minuten derselbe Abbruch: `board-check` von `pm` mit einem `UnicodeDecodeError`, danach
+ein `AttributeError`, danach *„ABBRUCH — nichts wurde gepusht"*.
+
+**`platform/T-0007` — zwei Defekte, und der zweite ist der schlimmere.**
+
+*Defekt 1, die Ursache:* `subprocess.run(..., text=True)` **ohne `encoding=`** nimmt die
+Locale-Kodierung des Systems. In der Sandbox ist das UTF-8, auf dem Host cp1252 — der
+Fehler ist hier **prinzipiell unsichtbar**. `pm/T-0042.md` trägt an Byte 10338 ein „⏳",
+dessen UTF-8-Folge das in cp1252 unbelegte Byte `8f` enthält. Bemerkenswert: **jede
+DATEI-Lesung in `board.py` war schon utf-8-fest** (sechs Stellen), nur diese eine
+GIT-Lesung nicht.
+
+*Defekt 2, die Behandlung:* `returncode` war **0** — aus Sicht von git war der Aufruf
+erfolgreich —, die Prüfung `if out.returncode != 0` ließ durch, und
+`parse_frontmatter(None)` starb an einem `AttributeError`, der **weder in der
+`except`-Liste stand noch die Datei, das Repo oder die Kodierung nannte**.
+
+*Korrektur:* `encoding="utf-8", errors="replace"` an **allen 33 Produktionsaufrufen** im
+Textmodus (15 Dateien) — die Regel gilt nicht für eine Zeile. Und `status_in_head` gibt
+bei einem Lesefehler `UNLESBAR` statt `None` zurück: `None` heißt „Ticket ist neu" und
+lässt die Übergangsprüfung **zu Recht** aus; ein Lesefehler, der ebenfalls `None` gäbe,
+hätte den Absturz gegen eine **still übersprungene Prüfung** getauscht — die schlechtere
+Hälfte des Tauschs. `validiere` macht daraus einen **Befund mit Dateinamen**.
+
+**⚠ Wie das drei Sprints überstehen konnte.** Das Erkennungsmuster war seit dem 16.08.
+aufgeschrieben (L-2026-08-16): *„`PUSH-ANFORDERUNG.txt` bleibt liegen +
+`abschluss-auto.log` ansehen"*. Genau das lag vor — die Datei war liegengeblieben und trug
+**zwei** Zeilen, aus Sprint 3 und Sprint 4. Der Wächter löscht sie bei Erfolg; zwei Zeilen
+sind zwei gescheiterte Läufe, ausgeschrieben, an der Stelle, an die das Team bei jedem
+Sprintende selbst schreibt. Sprint 3 hatte sogar vorhergesagt, die wiederholte Zeile werde
+„beim dritten Mal auffallen" — sie fiel nicht auf, weil sie dieselbe blieb.
+
+**Testdeckung aufgeschlüsselt statt gezählt (L-2026-08-17g Regel 2).** 6 neue Tests
+(486 → **492**): **3** fallen gegen den Altstand um, zwei davon mit **wörtlich der Meldung
+aus dem Hostprotokoll**, der dritte listet die 33 ungesicherten Aufrufstellen auf; **2**
+stellen die Ursache nach (dieselben Bytes über cp1252 → `UnicodeDecodeError`, über UTF-8 →
+sauber); **1** ist eine Gegenprobe (`OSError` bleibt `None`, damit die Reparatur nicht
+lauter wird als der Fehler). Der wertvollste ist der Regel-Test über den **gesamten**
+Produktionscode — sein Anlass steht in `preflight.py` selbst: dort trägt eine Funktion
+seit `pm/T-0024` die richtige Einstellung samt Begründung, und die drei Nachbaraufrufe
+**derselben Datei** haben sie nie bekommen.
+
+**`p11/T-0005` — der Entwurf dreht die Frage um.** Gefragt war, wie viele Kacheln bei
+1920×1080 ohne Scrollen passen. Die Antwort liegt nicht in der Zahl, sondern im **Rahmen**:
+`main { max-width: 62rem }` gilt seit P1 für jede Ansicht, und in dieser 992-px-Spalte
+passen 16 Kacheln bei **keiner** Anordnung (gestapelt Faktor 4,3; als Raster im Korridor
+1536 px gegen 948 px verfügbar). Über die volle Breite: **7 Spalten × 3 Reihen = 768 px**,
+180 px Reserve. Die drei Optionen des Projektauftrags (gruppieren, nur Auffälliges,
+Favoriten) sind bewusst verworfen — sie lösen ein Überlaufproblem, das bei 16 Einträgen
+nicht besteht, und für den Überlauf gibt es mit SWR-093 bereits eine freigegebene Antwort.
+
+**⚠ Der Fund, der nicht in der Frage stand.** `letzte_baseline` ist im Widget-Vertrag
+`typ: string` **ohne** Längengrenze und trägt im echten Payload bis zu **300 Zeichen**
+(p1) — in einer 240-px-Spalte rund 430 px, mehr als das ganze Reihenbudget. Der Vertrag
+begrenzt `aufgaben` mit `max_eintraege: 3` und lässt ausgerechnet das Feld frei, das
+wächst. Die Ursache ist nicht die Länge, sondern die **Vermischung**: das Feld trägt Tag
+**und** Annotation unter einem Namen, so wie `git tag -n1` sie ausgibt (B033). **Nicht im
+Widget gelöst** — ein `.slice()` im Dashboard wäre die eigene Regel neben dem Vertrag, die
+`T-0003` verbietet und die ADR-P11-001 als zweite Liste beschreibt. Weitergegeben an den
+Vertragsinhaber: `team-dashboard/T-0002`, Frist 19.08.
+
+**`platform/T-0008` — der zweite Befund kam aus derselben Frage.** Wer wissen will, was
+ein `None` aus `status_in_head` alles heißen kann, findet den nächsten Fall: für `p10`,
+`p11` und `p12` (verschachtelt im Repo `projects`) sucht die Funktion die Datei unter
+`HEAD:tickets/…` statt `HEAD:p11/tickets/…`. `git show` scheitert, das gilt als „Ticket
+ist neu", und der `board-check` meldet `OK`. **Für drei von sechzehn Einträgen hat SWR-002
+nie geprüft.** Live-Beleg aus diesem Lauf: `p11/T-0005` wurde versehentlich direkt
+`open → done` gesetzt — ein unzulässiger Übergang, und der Check über alle 16 Einträge lief
+fehlerfrei durch. Von Hand korrigiert, bewusst nicht mitgebaut (B025 — und weil die
+Korrektur eine nie gelaufene Prüfung einschaltet, was Urteil braucht).
+
+**Ehrlich zur Grenze (B027).** Dass der Wächter am Host jetzt durchläuft, ist **nicht**
+belegt: diese Sandbox ist UTF-8 und hat den Fehler nie gesehen. Der Layout-Entwurf ist
+gerechnet, nicht gemessen — kein Browser hat die Seite gesehen. Beides sind widerlegbare
+Vorhersagen: bleibt `abschluss-auto.log` bei derselben Meldung, ist die Diagnose falsch
+und `T-0007` wird wiedereröffnet.
+
+**Der DR, der nicht gestellt wurde.** Die Planung sah einen Inbox-DR an den Auftraggeber
+vor („bitte einen Hostlauf auslösen"; die Frist von `platform/T-0004` läuft am 18.08. ab).
+Er wurde hinfällig, bevor er geschrieben war — die Ursache war kein Mensch, sondern ein
+Werkzeug. Das steht hier, weil ein nicht gestellter DR sonst spurlos verschwindet: **erst
+nachsehen, dann eskalieren.**
+
+**Lessons sofort verankert (D005, noch in diesem Lauf):** **L-2026-08-17j** (ein
+ausbleibendes Ergebnis hat zwei Erklärungen, und nur eine heißt warten; die **zweite**
+Wiederholung eines Wartegrundes ist der Auslöser für eine Prüfung der Quelle, nicht für
+einen weiteren Vermerk; ein Protokoll, das niemand liest, ist keines; eine Lehre, die nur
+an ihrem Fundort steht, schützt genau eine Zeile) und **L-2026-08-17k** (ein Rückgabewert,
+der „alles in Ordnung" und „ich konnte nicht nachsehen" zusammenfasst, ist ein stiller
+Ausfall mit Ansage).
+
+**Board-Check gegen die Erwartung gelesen (B041 Regel 3):** gesamt **254** (+4), platform
+**8** (+2), p11 **6** (+1), team-dashboard **2** (+1); nicht geschlossen **15** — zum
+dritten Mal dieselbe Zahl und zum dritten Mal Zufall (zwei zu, zwei neu). Briefe **48**,
+davon **0 offen**. Matrix **108 SWRs / 0 Lücken** (unverändert: die Korrektur fällt unter
+SWR-002 und braucht keine neue Anforderung — Präzedenz B065). **492 Tests** (vorher 486).
+`nicht_geplant: []`, `widersprueche: []`.
+
+---
+
+## Vorheriger Stand (Sprint 4, 2026-08-17)
+
+**Sprint 4 (2026-08-17), der Lauf, in dem ein Ticket seine eigene Problembeschreibung
+widerlegt hat.**
+
+**Der Plan war klein und ist aufgegangen.** Sprint 4 hatte ein Sachticket (`platform/T-0006`)
+und zwei, die auf einen Hostlauf warten. Dazu kam im Lauf eine Planungsaufgabe, die aus dem
+Sachticket folgte: mit `T-0006` fiel der Grund weg, mit dem `p11/T-0003` auf Sprint 5 gesetzt
+worden war.
+
+**`platform/T-0006` — warum `null` und nicht ein zweites Feld.** Das Ticket hatte den Weg
+bewusst offen gelassen und drei Varianten mit ihrem Preis genannt. Gewählt ist Variante 2,
+und zwar am **Objekt**: `kpi` ist ganz `null`, wenn nichts erhoben wurde, nicht `{laeufe:
+null}`. Der Grund ist nicht Eleganz, sondern Bestand — `team: null` heißt im Payload seit P7
+sauber „kein Team", der Widget-Vertrag hatte das ausdrücklich als in Ordnung befunden. Eine
+vorhandene Redewendung zu erweitern ist billiger als eine neue zu erfinden, für die Quelle wie
+für jeden Leser.
+
+**Die drei Tatsachen, und warum zwei davon nicht die naheliegenden sind.**
+
+| Feld | `null` genau dann, wenn | echte Null |
+|---|---|---|
+| `kpi` | **keine Run-Registry-Datei** vorhanden | Registry da, keine Läufe → `{laeufe: 0}` |
+| `team.letzter_digest` | die **SLA** nennt keinen `digest` | SLA nennt einen, noch keiner da → `""` |
+| `letzte_baseline` | das **Profil** kennt kein G4 (Playbook Kap. 15) | G4 vorgesehen, noch kein Tag → `""` |
+
+`laeufe == 0` als Kriterium hätte einer echten Null-Messung ihre 0 genommen. `isdir("digest")`
+hätte genau im Moment vor dem ersten Digest „führt keine Digests" gesagt — also in dem
+einzigen Moment, für den man die Unterscheidung braucht. Und die Baseline hängt am **Profil**
+und nicht an der Cockpit-**Gruppe**: die Gruppe sagt, WER ein Eintrag ist, das Profil sagt,
+WELCHE Gates gelten. An dieser Verwechslung war der erste Widget-Vertrag schon einmal
+gescheitert (`platform` ist festes Team **und** trägt eine Baseline).
+
+**⚠ Der Befund des Laufs steht in der Problembeschreibung des eigenen Tickets.**
+`platform/T-0006` führte `team.letzter_digest` mit dem Fall *„`team-dashboard`: führt Digests,
+hatte noch keinen"*. Gegen den eigenen Steckbrief gehalten stimmt das nicht: `team-dashboard`
+hat drei SLAs — `widget-inhalte`, `widget-vertrag`, `nur-darstellen` — und darunter keinen
+Digest. Es führt keine. Der Satz stand da, weil eine leere Stelle nach „noch nicht" aussieht:
+**dieselbe Verwechslung, die das Ticket beheben sollte, in seiner eigenen
+Problembeschreibung.** Er bleibt wörtlich als widerlegt im Ticket stehen (L-2026-08-17g Regel
+4). Ohne den Fund wäre die Verzeichnisregel gebaut worden — die Widerlegung hat also nicht nur
+einen Satz korrigiert, sondern die Bauart.
+
+**Der Preis, benannt und nicht kleingeredet.** `null` weitet den Wertebereich von drei Feldern
+für **jeden** Leser. Wer `p.kpi.kosten_eur.toFixed(2)` schreibt, ohne auf `null` zu prüfen,
+bekommt keinen falschen Wert, sondern einen **Absturz** — im HMI die ganze Kachel. Das ist ein
+anderer Fehlermodus als vorher und ein schlechterer, wenn man ihn übersieht; deshalb steht das
+Mitziehen des einen heutigen Lesers (`backend/static/app.js`) in der **Verifikation** der
+Anforderung und nicht als Folgeticket. Zweiter Teil des Preises: `letzte_baseline` wird jetzt
+immer gezeigt, auch als „noch keine" — vorher fiel die Zeile bei leerem Wert stillschweigend
+weg, und genau das verbietet SWR-096.
+
+**Der Widget-Vertrag steht als v2.** Die drei `null_unklar`-Marken und alle
+`bis_dahin`-Behelfsregeln sind **ersatzlos** weg, nicht umformuliert; `v1` bleibt als Beleg
+daneben stehen. Der Gewinn ist dabei nicht die Marke, sondern ihr **Ort**: vorher musste ein
+Widget drei Sonderregeln für drei Felder kennen, jetzt gilt für alle Felder derselbe Satz, und
+er steht **einmal** oben in der YAML. Ein Vertrag, der je Feld eine Ausnahme trägt, ist eine
+Liste von Ausnahmen und kein Vertrag.
+
+**`p11/T-0003` — zerlegt, nicht verschoben.** In Sprint 3 stand das Ticket mit einem sauber
+begründeten Termin auf Sprint 5: drei Vertragsfelder waren nur über eine Behelfsregel bedient,
+und davor zu bauen hätte geheißen, die SWR-096-Tests zweimal zu schreiben. Dieser Sprint hat
+den Grund aufgelöst — **und damit stand der Termin nur noch da, weil er einmal dorthin
+geschrieben worden war.** Übrig blieb „zu groß", und dafür sieht `pm/D006` nicht Verschieben
+vor, sondern Zerlegen: `p11/T-0004` (ADR) in diesem Sprint erledigt, `p11/T-0005`
+(Layout-Entwurf) auf Sprint 5, der Rest bleibt in `T-0003`. Frist 20.08. unverändert.
+
+**Der ADR sagt einen Satz, den es ohne diesen Sprint nicht gäbe.** `ADR-P11-001` legt fest,
+dass der Server für das Dashboard **nichts** aufbereitet — keine zweite Sicht auf dieselbe
+Quelle. Der Punkt, der neu ist: SWR-108 hat die drei Fälle ausgeschrieben in `cockpitKarte`
+untergebracht, an einer Stelle, die ein Widget nicht mitbenutzen kann. Der ADR macht daraus
+eine Auflage: **erst herausziehen, dann rendern.** Ohne sie wäre die naheliegende erste
+Handlung des Baus gewesen, sie abzuschreiben — und die zweite Liste wäre da, in JavaScript
+statt in YAML, also dort, wo sie niemand sucht.
+
+**Zwei Tickets ohne Arbeit, zum zweiten Mal mit demselben Grund.** `platform/T-0004` (Netzweg
+der Jobs-Abfrage) und `pm/T-0043` (welcher Schritt macht `p3`/`p5` rot) warten beide auf einen
+`CI-STATUS.md`, der **nach** dem SWR-107-Commit (01:17) entstanden ist. Die Datei steht
+unverändert auf **00:46**. Beide auf Sprint 5, keine Handlung. Dass es der **zweite** Sprint
+in Folge ist, steht ausdrücklich in der Agenda für den Auftraggeber — nicht weil etwas zu tun
+wäre, sondern weil zwei Sprints in Folge dieselbe Zeile zu schreiben der Moment ist, an dem
+man es sagt statt still weiterzulaufen.
+
+Für `pm/T-0043` hat dieser Sprint die Liste des Ausgeschlossenen trotzdem verlängert: der
+`board-check` läuft in dieser Session über **alle 16** Einträge fehlerfrei durch, auch über
+`p3` und `p5`. Am Ticketbestand dieser Repos, wie er heute im Git steht, liegt der rote Lauf
+also nicht. Das ist kein Beweis für die Umgebung, sondern eine Möglichkeit weniger.
+
+**Testdeckung aufgeschlüsselt statt gezählt (L-2026-08-17g Regel 2).** 15 neue Tests sind
+nicht 15 Belege: **6** fallen ohne die Korrektur um (Rückbau in einer Kopie geprüft), **4**
+fallen gegen eine nachgestellte **falsche** Umsetzung um — `laeufe == 0` als Kriterium, das
+Verzeichnis statt der Zusage, die Gruppe statt des Profils, die Profilprüfung vor der
+Tag-Prüfung, jede einzeln nachgebaut —, **5** sichern unveränderte Normalfälle. Suite 471 →
+**486**.
+
+**Ehrlich zur Grenze.** Die HMI-Zeilen sind gegen den Quellcode gelesen und nicht in einem
+Browser gesehen; Mission Control läuft am Host, nicht in dieser Sandbox. Dieselbe Grenze wie
+bei SWR-105/107, und sie steht hier, statt in einer grünen Zahl unterzugehen (B027).
+
+**Lessons sofort verankert (D005, noch in diesem Lauf):** **L-2026-08-17h** (eine leere Stelle
+sieht immer nach „noch nicht" aus; die Tatsache für „nicht geliefert" ist die Zusage und nicht
+ihr Nebenprodukt; eine vorhandene Redewendung erweitern schlägt eine neue erfinden; wer den
+Wertebereich weitet, zieht die Leser im selben Commit mit; zu jedem verworfenen Weg gehört ein
+Test, der ihn nachstellt) und **L-2026-08-17i** (ein Verschiebungsgrund hat eine Verfallszeit
+und wird von dem Sprint geprüft, der die Sperre auflöst; „zu groß" heißt zerlegen, nicht
+verschieben).
+
+**Board-Check gegen die Erwartung gelesen (B041 Regel 3):** gesamt **250** (+2, beide aus der
+Zerlegung), platform **6** (unverändert — `T-0006` hat nur den Status gewechselt), p11 **5**
+(+2), pm **43** (unverändert); nicht geschlossen **15** — dieselbe Zahl wie in Sprint 3, und
+das ist Zufall und kein Stillstand: zwei zu, zwei neu. Briefe **48**, davon **0 offen**. Matrix
+**108 SWRs / 0 Lücken** (+1: SWR-108). **486 Tests** (vorher 471). `nicht_geplant: []`,
+`widersprueche: []`.
+
+**Die Vorhersage aus Sprint 3 ist weiterhin offen.** `platform` sollte im nächsten
+`CI-STATUS.md` grün sein; ohne Hostlauf gibt es dazu nichts zu berichten. Sie bleibt stehen und
+bleibt widerlegbar.
+
+---
+
+## Vorheriger Stand (Sprint 3, 2026-08-17)
+
+**Sprint 3 (2026-08-17), der Lauf, in dem eine Entscheidung fällig war und eine Feldliste einen
+Fehler fand.**
+
+**Der Plan war klein und ist aufgegangen.** Sprint 3 hatte drei Sachaufgaben: die Entscheidung aus
+`pm/T-0042`, den Widget-Vertrag, und den Blick auf die beiden Tickets, die auf einen Hostlauf
+warten. Alle drei sind erledigt, zwei davon durch Arbeit und eines durch die ehrliche Feststellung,
+dass es nichts zu tun gibt.
+
+**`pm/T-0042` — warum keiner der vier Wege gewählt wurde.** Das Ticket beschrieb die Zwickmühle
+korrekt: `platform` prüft `p0`/`p9`, die Projekt-Repos prüfen `platform`, alle werden im selben
+Lauf gepusht. Die vier angebotenen Wege behandelten das als Reihenfolge- oder Wiederholungsfrage.
+Es ist keine. **Die SWR↔Test-Matrix ist eine Aussage über alle Repos zur gleichen Zeit** — eine
+CI, die je Repo läuft, sieht die anderen immer so, wie der Push sie hinterlassen hat, und kein
+Push-Auftrag der Welt erzeugt Gleichzeitigkeit. Das Gate stand am falschen Ort, nicht in der
+falschen Reihenfolge.
+
+**Der Satz, der die Entscheidung trägt.** `abschluss.cmd` Schritt [2/5] fährt **dieselbe** Prüfung
+über den vollständigen, gleichzeitigen lokalen Stand — **vor** dem Push, mit Abbruch. Für jeden
+Push über `abschluss.cmd` konnte das Gate in der CI deshalb nur zweierlei sein: überflüssig (grün)
+oder falsch (rot). Es hat in seiner Laufzeit **keinen** echten Befund erbracht, den [2/5] nicht
+schon verhindert hätte — und zwei falsche in zwei beobachteten Pushes. Der Lauf checkt jetzt
+**drei** Repos aus statt vierzehn.
+
+**Der Preis steht an zwei Stellen, nicht an einer.** Ein Push an `platform`, der `abschluss.cmd`
+umgeht, wird nicht mehr gegen die Matrix geprüft. Dieser Satz steht im Ticket **und im Kopf der
+Workflow-Datei** — wer den Workflow liest, soll den Preis sehen, ohne ein Ticket zu suchen. Ein
+„aufgeräumtes" Gate ohne benannten Preis wäre eine stille Schwächung.
+
+**Und was bewusst stehen geblieben ist.** Der Katalog-Check in derselben CI hat dieselbe Bauart und
+hat noch nie falsch rot gemeldet. Ihn auf theoretischen Verdacht mit abzuräumen wäre das Gegenteil
+der Sorgfalt, die den Befund gefunden hat. Stattdessen **eine Zeile** in `abschluss.cmd`: `process`
+geht vor `platform`, damit ist die häufigere Hälfte seines Rennens weg. (Das ist die einzige
+Änderung an der in Sprint 1 rekonstruierten Datei, sauber kommentiert.)
+
+**Der Widget-Vertrag — und warum er mehr war als Schreibarbeit.** `team-dashboard/T-0001` verlangte
+vier Antworten: welche Felder, woher, was optional, wie versioniert. Die Antworten stehen in
+`team-dashboard/vertrag/widget-vertrag-v1.yaml` (**normativ**, die einzige Stelle mit der
+Feldliste) und `team-dashboard/docs/02-widget-vertrag.md` (die Begründung, die die Liste
+ausdrücklich **nicht** wiederholt — zwei Listen wären B033, und das wäre eine schlechte erste
+Arbeit für ein Team, dessen Zweck es ist, dass eine Seite dasselbe sagt wie ihre Quelle).
+
+**Die wichtigste Frage war die leichteste.** *Woher kommen die Felder?* Aus der **vorhandenen**
+Cockpit-Aggregation, aus keiner zweiten Quelle. Eine zweite Erhebung hätte Dashboard und Cockpit
+auseinanderlaufen lassen — und sie wäre unnötig gewesen.
+
+**Eine Annahme des Auftrags hat die Prüfung korrigiert.** Ticket und Team-Charter hielten fest,
+kein Projekt liefere heute etwas Abgreifbares. Gegen den echten Bestand gehalten liefert
+`aggregation.cockpit` für **alle 16** Projekte und Teams **dieselben 17 Felder**. Gefehlt hat nicht
+die Lieferung, sondern die **Zusage**. Das ist eine gute Nachricht und macht P11 kleiner als
+gedacht — sie steht hier, weil eine widerlegte Annahme genauso berichtenswert ist wie ein Fehler.
+
+**⚠ B064 — und dass niemand danach gesucht hat, ist der Punkt.** Beim Feld-für-Feld-Abgleich gegen
+den echten Payload meldeten `p11` und `p12` als ihre letzte Baseline **`p10-v1.0`**. `git tag`
+beantwortet die Frage nach dem **Repository**, nicht nach dem Ordner; seit dem Monorepo-Beschluss
+`pm/D003` liegen Projekte ab P10 als Ordner in `projects`. Das Cockpit nahm die letzte Zeile, wem
+auch immer sie gehörte. **Kein fehlender Wert, ein falscher** — und nicht erst im geplanten
+Dashboard, sondern seit P10 in Mission Control.
+
+**Warum es so lange unentdeckt blieb.** Der Nachbar in derselben Funktion war **zufällig** richtig:
+`einstufung` sucht nach `"<projekt>-v1.0"` und filtert damit implizit nach dem Projektnamen; nur
+die Baseline-Zeile daneben las denselben Text ungefiltert. Eine geteilte Quelle mit zwei
+Auflösungen — dieselbe Familie wie **B059**, dieselbe Lesson wie **L-2026-08-16m**. Dass die
+Organisation diese Lesson schon hatte und den Fall trotzdem trug, ist der eigentliche Wert des
+Befundes.
+
+**Behoben und gegengeprüft.** Eine gemeinsame Funktion `aggregation.projekt_tags` für **beide**
+Leser; aus dem Substring-Test wurde ein Präfix-Test. **Fünf Regressionstests** (Suite 463 →
+**468**), darunter ausdrücklich der Fall, der die Korrektur **widerlegen** würde: `p0` trägt
+`genesis-v1.0`, ein globaler Filter hätte ihm Baseline **und** Status `abgeschlossen` genommen.
+**Gegenprobe über den echten Bestand** (Regel 3 aus L-2026-08-16h): der Altstand aus
+`git archive HEAD`, gegen die tatsächlichen 16 Repos gestartet, meldet für `p11` und `p12`
+weiterhin `p10-v1.0`; der Neustand meldet leer.
+
+**Was der Vertrag nicht heilen konnte und deshalb als Ticket abgibt.** `SWR-096` verlangt, ein
+nicht geliefertes Feld als „keine Daten" zu zeigen — und setzt damit voraus, dass man es von einer
+echten Null unterscheiden kann. Bei drei Feldern kann man das heute nicht: **15 von 16** Einträgen
+melden `kpi: {laeufe: 0}`, obwohl nur `p0` eine Run-Registry führt. Ein Widget, das diese Null
+rendert, behauptet fünfzehnmal eine Messung, die es nicht gibt — in der Form, die am meisten nach
+Fakt aussieht. Als `platform/T-0006` beauftragt (Sprint 4), **Weg bewusst offen**: drei Varianten
+mit ihrem jeweiligen Preis stehen im Ticket. Bis dahin steht die Behelfsregel **an einer Stelle**,
+in der YAML.
+
+**Ehrlich zur Prüfbarkeit des Vertrags.** Gedeckt ist er heute durch **eine einmalige Gegenprobe**:
+17 Feldnamen gegen den echten Payload aller 16 Einträge, keine Abweichung in beide Richtungen,
+jedes Pflichtfeld überall vorhanden. Einen **laufenden** Test gibt es nicht — er gehört zu SWR-096
+und damit zu P11, mit der Auflage, die YAML zu **lesen** statt die Liste in Python abzuschreiben.
+Das offen zu sagen ist B027; es als „getestet" zu führen wäre B038.
+
+**Zwei Tickets ohne Arbeit, mit Grund.** `platform/T-0004` (Netzweg der Jobs-Abfrage) und
+`pm/T-0043` (welcher Schritt macht `p3`/`p5` rot) warten beide auf **denselben** Beleg: einen
+`CI-STATUS.md`, der **nach** dem SWR-107-Commit (01:17) entstanden ist. Der letzte Hostlauf war
+00:46. Beide auf Sprint 4, **keine Handlung nötig**. Für `T-0043` hat dieser Sprint die Liste des
+Ausgeschlossenen trotzdem verlängert: die Workflow-Dateien von `p3`, `p5` und `p7` unterscheiden
+sich **ausschließlich in Kommentarzeilen**, und keines der drei Repos hat eine zweite
+Workflow-Datei. Kein Raten, nur eine Möglichkeit weniger.
+
+**Kein `blocked`, obwohl blockiert.** `pm/T-0043` wartet auf einen Hostlauf, nicht auf ein Ticket
+des **eigenen** Repos — und nur solche kann `blocked_by` ausdrücken (B047). Eine erfundene
+pm-interne Sperre einzutragen, um ein Statusfeld zu bedienen, wäre eine Falschaussage im Board.
+Dieselbe Entscheidung wie bei `p11/T-0003` im August.
+
+**Lessons sofort verankert (D005, noch in diesem Lauf):** **L-2026-08-17e** (B064 — wechselt der
+Behälter, wechselt die Bedeutung jeder Frage an ihn; ein Nachbar, der richtig aussieht, kann aus
+Versehen richtig sein), **L-2026-08-17f** (B061-Auflösung — vor dem Justieren eines Gates kommt
+die Frage nach seinem Ort; wer ein Gate entfernt, schreibt auf, welcher echte Befund verloren
+geht) und **L-2026-08-17g** (die Gegenprüfung prüft auch die **Begründung** — vier Sätze dieses
+Laufs waren nachweislich falsch; Testdeckung wird durch Rückbau bewiesen, nicht durch Zählen).
+
+## ⚠ Die unabhängige Gegenprüfung hat vier falsche Sätze dieses Laufs gefunden
+
+Nach dem ersten Commit lief die Gegenprüfung (L-2026-08-16m). Die Suite war grün. Sie fand elf
+Punkte — bemerkenswert ist ihre **Art**: die schwersten waren keine Codefehler, sondern
+**Behauptungen dieses Laufs über den eigenen Code**.
+
+* *„Aus dem Substring-Test wurde ein Präfix-Test."* **Falsch.** Das galt nur für den Zeilenfilter;
+  `einstufung` suchte weiter im ganzen Text **inklusive Tag-Annotation**. Nachgestellt: ein
+  Zwischenstand `p11-v0.9` mit der Nachricht *„Vorbereitung auf p11-v1.0"* wies das Projekt als
+  **abgeschlossen** aus, ohne dass es je eine Baseline hatte. Der Satz stand **dreimal** — im
+  Ticket, in der Doku und in einem Test-Docstring. **Jetzt behoben:** Vergleich Name gegen Name.
+* *„Getragen wird das von `preflight.py` und Schritt [2/5]."* **Falsch.** `preflight.py` kennt die
+  Matrix nicht. Das ausgesprochene Sicherheitsnetz war doppelt so groß gemalt wie das echte —
+  ausgerechnet in dem Absatz, der den Preis einer Gate-Entfernung ehrlich nennen sollte.
+* *„Fünf Regressionstests."* Einer davon war **ohne** die Korrektur grün. Durch Rückbau in einer
+  Kopie geprüft: 6 von 8 fallen um, einer ist eine Gegenprobe, einer bewies nichts — er ist jetzt
+  um die fehlende Zusicherung ergänzt.
+* *„Teams haben kein G4, also keine Baseline."* Am echten Payload **widerlegt**: `platform` ist
+  `festes-team` und trägt eine. Ein Widget, das dem ersten Vertragsentwurf gefolgt wäre, hätte
+  einen real vorhandenen Wert unterdrückt.
+
+**Dazu ein weiterer echter Fehler am selben Feld — B065.** „Letzte Baseline" war die
+**lexikografisch** letzte, nicht die jüngste: `platform` zeigte `p9-v1.0`, während `p10-v1.0`
+dreieinhalb Stunden jünger war, und `p10-v1.10` stünde vor `p10-v1.2`. Behoben
+(`--sort=creatordate`), mit einem Test, der ohne die Änderung umfällt.
+
+**Die widerlegten Sätze stehen wörtlich als widerlegt in den Tickets** und wurden nicht
+stillschweigend ersetzt — sonst fehlt dem nächsten Leser der Hinweis, welche Art Satz hier schon
+einmal ungeprüft durchging. Verankert als **L-2026-08-17g**. Suite **463 → 471**.
+
+
+**Board-Check gegen die Erwartung gelesen (B041 Regel 3):** platform **6** Tickets (+2), pm **43**
+(unverändert — `T-0042` hat nur den Status gewechselt), gesamt **248** (+2); nicht geschlossen
+**15** (unverändert: zwei zu, zwei neu). Briefe **48**, davon **0 offen**. Matrix **107 SWRs / 0
+Lücken** — unverändert, und das ist richtig: dieser Sprint hat keine neue Anforderung gebracht,
+sondern einen Fehler behoben und einen Vertrag geschrieben. **471 Tests** (vorher 463).
+`nicht_geplant: []`, `widersprueche: []`.
+
+**Eine Vorhersage, damit sie widerlegbar bleibt.** Nach der Änderung sollte `platform` im nächsten
+`CI-STATUS.md` **grün** sein. Trifft das nicht ein, ist die Diagnose aus `pm/T-0042` widerlegt und
+das Ticket wird wiedereröffnet — das steht so in der DoD und nicht nur hier.
+
+---
+
+## Vorheriger Stand (Sprint 2, 2026-08-17)
+
 ## Das Wichtigste (Stand Sprint 2, 2026-08-17)
 
 1. **Die CI-Statusprüfung aus Sprint 1 hat beim ersten Lauf drei rote Repos gefunden** — `p3`,
@@ -1605,7 +2008,7 @@ Repos: github.com/DiOflOrds/{process,platform,p0,produkt-datakonv,p1,p2,p3,p4,p5
 
 **P10 IST FREIGEGEBEN — G1a/D001 am 2026-08-16 08:18 (via Inbox), verbucht (B026/B027).** Damit ist der Befund aus `pm/T-0017` auch praktisch bestätigt: Der Antrag war nach dem Fix sichtbar und entscheidbar. **Deinem Wunsch entsprechend tragen Entscheidungen ab jetzt Datum *und* Uhrzeit** (SWR-084, `pm/T-0018`, P2-Fläche v1.1) — in der Decision-Log-Zeile und im Ticket-Vermerk, beide aus einem Zeitwert, damit sie nicht über einen Minutenwechsel auseinanderlaufen; das HMI zeigt es ohne eigene Änderung mit. Für die P10-Freigabe wurde die Uhrzeit **nachgetragen: 08:18** — nicht geschätzt, sondern der Zeitstempel des Commits `cfab77c`, mit Herkunftsvermerk im Log und im Ticket; der Entscheidungsinhalt blieb unangetastet. Nicht geändert: `frist`/`erstellt`/`geändert` bleiben reine Datumsfelder (Fristen gelten tagesgenau, `board.py` validiert dort ein Datumsmuster). **Eine Abweichung, der du widersprechen kannst (B027):** Der Intake hatte zugesagt, SWR-077–081 gingen mit G1 auf `reviewed`. Das habe ich **nicht** getan — die Matrix hätte sie mangels Tests als „manuelle Abnahme dokumentiert" ausgewiesen und das Lücken-Gate wäre grün geblieben, obwohl nichts gebaut ist (nachgestellt: 84 SWRs / 0 Lücken trotz leerer Umsetzung). Stattdessen wechselt jede Anforderung einzeln auf `reviewed`, wenn Sprint 1 sie mit Nachweis liefert. **214 Tests, Matrix 84/0, 0,00 € API.** Nächster Schritt: P10 Sprint 1 (ADR-007, Schreibendpunkt, Editor, Labels, PIN-Gate).
 
-**⚠ BEFUND pm/T-0017 (Routine-Session, B024) — bitte zuerst lesen: Eine Entscheidung, die dir nie vorgelegt wurde.** Beim Pflichtpunkt „Inbox prüfen" lieferte die Inbox eine **leere Liste** — obwohl Agenda und dieser Statusbericht seit heute Vormittag sagen, der G1-Antrag `p10/T-0002` warte dort auf dich. Ursache: `aggregation.projekte()` fand `p10` korrekt, aber **vier** Stellen bauten den Pfad danach selbst als `root/<name>` zusammen; für ein Projekt im Sammel-Repo ergibt das `./p10` statt `./projects/p10` — Ordner existiert nicht, **null Tickets, keine Fehlermeldung**. Betroffen: Inbox (SWR-027), Inbox-Zähler (SWR-076), Übersicht (SWR-026), Entscheidungshistorie (SWR-042) — und, am schwersten, die **Frist-Warnmail (SWR-033/034)**. Heißt konkret: Am 23.08. wäre der Default **G1a** gelaufen und P10 Sprint 1 hätte begonnen, ohne dass du den Antrag je gesehen oder auch nur eine Warnmail bekommen hättest. Genau das schließt Playbook Kap. 16 aus. Verschärfend: Dass hier „liegt in deiner Inbox" stand, hat die Lücke zugedeckt. **Behoben** — alle vier Stellen nutzen jetzt `aggregation.projekt_pfad`, dazu **5 Regressionstests, die gegen den alten Code nachweislich scheitern**; kein neuer SWR (SWR-070 war richtig, nur unvollständig umgesetzt). Es ist derselbe Fehler wie in p9/T-0007 vom Vormittag, nur eine Ebene tiefer — die Lesson war richtig und wurde zu eng angewendet; sie ist jetzt aufs ganze Repo verschärft (B025). **210 Tests, Matrix 83/0, 0,00 € API.** **Die Frist von `p10/T-0002` bleibt unverändert 23.08.** — sie zu verschieben wäre ein Eingriff in einen Klasse-A-Vorgang; wenn dich die verlorenen Tage stören, genügt ein Wort im Briefkasten. **Deine Stichprobe: Server neu starten, Inbox öffnen — steht der G1-Antrag jetzt da?**
+**⚠ BEFUND pm/T-0017 (Routine-Session, B024) — bitte zuerst lesen: Eine Entscheidung, die dir nie vorgelegt wurde.** Beim Pflichtpunkt „Inbox prüfen" lieferte die Inbox eine **leere Liste** — obwohl Agenda und dieser Statusbericht seit heute Vormittag sagen, der G1-Antrag `p10/T-0002` warte dort auf dich. Ursache: `aggregation.projekte()` fand `p10` korrekt, aber **vier** Stellen bauten den Pfad danach selbst als `root/<name>` zusammen; für ein Projekt im Sammel-Repo ergibt das `./p10` statt `./projects/p10` — Ordner existiert nicht, **null Tickets, keine Fehlermeldung**. Betroffen: Inbox (SWR-027), Inbox-Zähler (SWR-076), Übersicht (SWR-026), Entscheidungshistorie (SWR-042) — und, am schwersten, die **Frist-Warnmail (SWR-033/034)**. Heißt konkret: Am 23.08. wäre der Default **G1a** gelaufen und P10 Sprint 1 hätte begonnen, ohne dass du den Antrag je gesehen oder auch nur eine Warnmail bekommen hättest. Genau das schließt Playbook Kap. 16 aus. Verschärfend: Dass hier „liegt in deiner Inbox" stand, hat die Lücke zugedeckt. **Behoben** — alle vier Stellen nutzen jetzt `aggregation.projekt_pfad`, dazu **8 Tests (6 mit nachgewiesener Deckung), die gegen den alten Code nachweislich scheitern**; kein neuer SWR (SWR-070 war richtig, nur unvollständig umgesetzt). Es ist derselbe Fehler wie in p9/T-0007 vom Vormittag, nur eine Ebene tiefer — die Lesson war richtig und wurde zu eng angewendet; sie ist jetzt aufs ganze Repo verschärft (B025). **210 Tests, Matrix 83/0, 0,00 € API.** **Die Frist von `p10/T-0002` bleibt unverändert 23.08.** — sie zu verschieben wäre ein Eingriff in einen Klasse-A-Vorgang; wenn dich die verlorenen Tage stören, genügt ein Wort im Briefkasten. **Deine Stichprobe: Server neu starten, Inbox öffnen — steht der G1-Antrag jetzt da?**
 
 **Brief platform/N-0002 beantwortet und behoben (B023):** Der `ConnectionResetError`-Traceback (WinError 10054) in deinem Server-Log war **kein Fehler** — ein Gerät in deinem LAN (sehr wahrscheinlich das Handy) kappt die offen gehaltene Verbindung, wenn du den Bildschirm sperrst oder den Tab schließt. Trotzdem behoben, weil ein Log, in dem Normalvorgänge wie Abstürze aussehen, den nächsten *echten* Traceback unsichtbar macht: Ab jetzt steht dort eine Klartextzeile statt fünfzehn Zeilen Stack. Gefangen werden **nur** die drei Abbruch-Arten, echte Fehler behalten ihren vollen Traceback (zwei Tests sichern genau das ab). Nebenbefund mitgeprüft: Der Ruhe-Zähler des Selbst-Neustarts (SWR-073) wird auch im Abbruchfall freigegeben — sonst hätte ein einziger Handy-Abbruch den Server dauerhaft als „beschäftigt" markiert. Nachweis: Symptom nachgestellt, **vorher 2 Tracebacks, nachher 0**, Folge-Anfrage weiter `200`. `pm/T-0016`, kein neuer SWR.
 

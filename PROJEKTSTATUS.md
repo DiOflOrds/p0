@@ -1,42 +1,155 @@
 # Projektstatus — Fortschreibung über Sessions
 
-## Das Wichtigste (Stand Sprint 7, 2026-08-17)
+## Das Wichtigste (Stand Sprint 8, 2026-08-17)
 
-1. **✅ Zum ersten Mal meldet `CI-STATUS.md` ALLES GRÜN — 14 Abfragen, kein rotes Repo.**
-   `p3` und `p5` sind grün für ihren Commit (`673eacd9`, `0fde98c3`). Damit ist
-   **`pm/T-0043` nach fünf Sprints geschlossen** und die widerlegbare Vorhersage aus
-   Sprint 6 ist **eingetroffen**.
-2. **Die Ursache war eine Abwesenheit, kein Defekt.** Beide Repos trugen einen Stand vom
-   16.08. 07:0x, erzeugt von einer `board.py`-Fassung vor der Takt-Spalten-Änderung —
-   und bekamen danach nie wieder einen Push. **Ohne Push kein CI-Lauf:** das „ROT" war
-   ein Standbild und wurde vier Sprints lang als laufende Störung gelesen.
-3. **⚠ Der Startcheck fand, dass Sprint 6 eine Anforderung gemeldet, aber nie committet
-   hat.** „Matrix 109 SWRs / 0 Lücken" galt für die **Arbeitskopie**; im Git standen 108.
-   Der Plattformcode für SWR-109 und seine sieben Tests waren gepusht — das Requirement
-   nicht. Für einen Tag trug die Organisation Code ohne Anforderung im Git.
-4. **⚠ Und der eigentliche Befund ist, warum es niemand sah.** `preflight` **hatte** es
-   gemeldet: `[p9] Arbeitskopie nicht sauber (1 Datei(en))`. Daneben standen **fünf**
-   gleich aussehende Zeilen, alle mit `1 Datei(en)`, alle eine `BOARD.md`, deren
-   `Stand:`-Zeile das Werkzeug bei **jedem** Lauf neu erzeugt. Sechs identische Meldungen,
-   fünf davon dauerhaft belanglos — die sechste hatte keine Chance.
-5. **Sechs Sachtickets geschlossen:** `pm/T-0043`, `platform/T-0010` (neu, im selben
-   Sprint), `team-dashboard/T-0002`, `pm/T-0045`, `pm/T-0046`, `pm/T-0036`. Dazu die sechs
-   Takt-Pflichten.
-6. **⚠ Und die Schlussverifikation hat einen eigenen Fehler dieses Laufs gefunden.**
-   `board.py --check` hält den Status gegen HEAD und ist damit **blind für einen bereits
-   committeten** Sprung: `pm/T-0043` und `team-dashboard/T-0002` sind mit `open -> done`
-   in die Historie gegangen, weil zwischen Setzen und Commit nicht geprüft wurde. Die drei
-   noch unverbuchten wurden erwischt und korrekt nachgeholt. Als `pm/T-0048` aufgenommen,
-   **nicht** nachträglich geglättet.
-7. **⚠ Zum zweiten Mal in zwei Sprints ist ein Verschiebungsgrund an der Messung
-   gescheitert** — `pm/T-0036`: „Änderung an der Prüfstrecke, nicht nebenbei" gegen
-   **0 unterminierte Tickets im Bestand** gehalten.
-8. **568 Tests grün** (+54), Matrix **114 SWRs / 0 Lücken**, Preflight STARTKLAR, kein
-   offener Brief, unterminiert 0, überfällig 0, Plan-Drift 0, sprint_vergangen 0.
+1. **⚠ Der Startcheck fand eine Falschmeldung dieser Organisation an ihren Auftraggeber.**
+   Sprint 7 hat `platform/T-0010` an **vier** Stellen als erledigt gemeldet — Planzeile,
+   Sprintabschluss, Session-Agenda und diesem Statusbericht. Das Ticket stand auf
+   `status: open`. **Die Arbeit war fertig** (SWR-110 in `p9` im Git, 19 Tests grün,
+   `BEFUND:`-Zeile in `preflight`); nur das Feld wurde nie umgelegt.
+2. **⚠ Und der eigentliche Befund ist, dass alle drei Planprüfungen `[]` meldeten — jede
+   zu Recht.** `nicht_geplant` fragt nach dem **Vorkommen** (es kam vor). `plan_drift`
+   vergleicht die **Sprintnummer** und überspringt Zeilen mit „dieser Sprint". Und
+   `sprint_vergangen` kann nicht anschlagen, solange der fragliche Sprint der laufende ist:
+   `7 < 7` ist falsch. Die **Statusspalte** las keine von ihnen.
+3. **⚠ Die übersprungene Zeilenart ist genau die, um die es geht.** „dieser Sprint" tragen
+   die Aufgaben, die ein laufender Sprint gerade **schließt** — also die Zeilen, in denen im
+   Abschluss „erledigt" geschrieben wird. `plan_drift` prüft die Zukunft und lässt die
+   Gegenwart aus.
+4. **⚠ Und `sprint_vergangen` findet den Fall konstruktionsbedingt einen Sprint zu spät.**
+   Nach der Registrierung von Sprint 8 meldete sie ihn sauber. Ihr frühester möglicher
+   Zeitpunkt liegt damit **nach** dem Bericht an den Auftraggeber — eine Prüfung, die den
+   Fehler erst findet, nachdem er berichtet wurde, verhindert die Falschmeldung nicht.
+   Deshalb steht die neue Prüfung in `preflight`.
+5. **`pm/T-0049` / SWR-115 gebaut und im selben Sprint geschlossen** — die Statusspalte wird
+   ab jetzt gegen den Ticketstatus gehalten, in **beiden** Richtungen, Takt-Dauerläufer
+   ausgenommen (mit Gegenprobe). 17 Tests.
+6. **✅ Die Prüfung hat an ihrem ersten Tag einen echten Drift gefunden — im eigenen Plan
+   dieses Sprints.** Nachdem `pm/T-0049` auf `done` ging, meldete sie *„Ticket steht auf
+   done, Plan sagt offen"* — die Richtung, die über `offene_tickets` grundsätzlich
+   unsichtbar ist.
+7. **✅ Die widerlegbare Vorhersage aus Sprint 7 ist eingetroffen.** Der Wächterlauf 05:47
+   lief vollständig durch, `CI-STATUS.md` meldet **ALLES GRÜN (15 Abfragen)**. SWR-110 hat
+   nicht fälschlich blockiert und im selben Lauf zweimal korrekt gegriffen.
+8. **⚠ Zum dritten Mal in drei Sprints ist ein Verschiebungsgrund an der Messung
+   gescheitert** — `pm/T-0038`: „gebündelt mit `pm/T-0036`" gegen ein Ticket gehalten, das
+   seit Sprint 7 **geschlossen** ist und die gemeinsame Fläche **nie** angefasst hat. Neu
+   daran: der Grund zeigte auf etwas, das es nicht mehr gab, **und** galt nur für einen von
+   fünf Teilen. Zerlegt, Teil a) gebaut (**SWR-116**).
+9. **Drei Sachtickets geschlossen** (`platform/T-0010` als Reparatur, `pm/T-0049`,
+   `pm/T-0038` Teil a) plus sechs Takt-Pflichten. `projects/p11/T-0003` von `open` auf
+   **`blocked`** korrigiert.
+10. **601 Tests grün** (+33), Matrix **116 SWRs / 0 Lücken**, Preflight STARTKLAR, kein
+    offener Brief, unterminiert 0, überfällig 0, Plan-Drift 0, sprint_vergangen 0,
+    **Statusdrift 0**.
 
 ---
 
 ## Aktueller Stand
+
+**Sprint 8 (2026-08-17), der Lauf, in dem eine Prüfung fand, dass die Organisation sich
+selbst geglaubt hat — vier Dokumente lang.**
+
+### ⚠ `platform/T-0010` — die Arbeit war fertig, die Meldung hatte keine Deckung
+
+Alle fünf Punkte der Definition of Done wurden in diesem Sprint einzeln nachgeprüft und
+waren erfüllt:
+
+```
+$ git -C p9 show HEAD:...software-requirements.md | grep -c SWR-110      3
+$ python -m unittest tests.test_preflight_arbeitskopie                   19 Tests, OK
+$ grep -c 'BEFUND' platform/scripts/preflight.py                         vorhanden
+$ grep -m1 '^status:' platform/tickets/T-0010.md                         status: open
+```
+
+**Über den legalen Weg geschlossen** — `open → in_progress → in_review → done` mit **drei**
+Commits statt einem. Damit erzeugt die Reparatur nicht zusätzlich den Fehler, den
+`pm/T-0048` beschreibt.
+
+### ⚠ Der Befund über die Prüfungen — drei schwiegen, und jede hatte recht
+
+| Prüfung | Frage, die sie stellt | Warum sie schwieg |
+|---|---|---|
+| `nicht_geplant` (SWR-106) | Kommt das Ticket im Plan **vor**? | Es kam vor. |
+| `plan_drift` (SWR-109) | Sagt der Plan dieselbe **Sprintnummer** wie das Ticket? | Die Zeile sagt „dieser Sprint", trägt keine Nummer, wird **übersprungen**. |
+| `sprint_vergangen` (SWR-112) | Ist der geplante Sprint **vorbei**? | `7 < 7` ist falsch. Frühester Zeitpunkt: der Folgesprint. |
+
+**Die Lücke ist keine Schwäche einer der drei, sondern eine Spalte, die keine von ihnen
+liest.** Die Plantabelle hat vier Spalten; drei wurden geprüft, die vierte — die, in der
+„erledigt" steht — gegen nichts.
+
+### `pm/T-0049` / SWR-115 — beide Richtungen, und die Ausnahme am Sachverhalt
+
+`status_drift` meldet eine Planzeile „erledigt" über einem nicht geschlossenen Ticket
+**und** ein `done`-Ticket unter einer Zeile, die offene Arbeit behauptet. Die zweite
+Richtung erzwang eine neue Bestandsfunktion (`sprint.alle_tickets`): `offene_tickets` lässt
+`done` weg, dieser Fall wäre darüber **grundsätzlich unsichtbar**.
+
+**Takt-Dauerläufer sind ausgenommen, und die Ausnahme hängt am Ticketfeld `takt`, nicht am
+Wortlaut der Planspalte.** Schriebe jemand „erledigt" statt „erfüllt", entstünde sonst ein
+Befund aus einer Formulierung statt aus einem Sachverhalt. **Gegenprobe als Test:** dieselbe
+Zeile **ohne** `takt` im Ticket **ist** ein Befund — ohne sie wäre die Ausnahme nicht
+widerlegbar.
+
+**Zwei geschlossene Wortmengen statt einer Heuristik.** Was in keiner steht, wird
+**ignoriert** statt geraten: ein Ratefehler dieser Prüfung wäre ein Fehlalarm über einen
+korrekt geführten Plan, und ein Fehlalarm trainiert das Wegsehen — dieselbe Abwägung wie bei
+SWR-109, SWR-110 und SWR-112.
+
+### ✅ Die Prüfung hat ihren eigenen Erbauer erwischt
+
+Nachdem `pm/T-0049` auf `done` gesetzt war, meldete `preflight`:
+
+```
+[org] BEFUND: 1 Planzeile(n) widersprechen ihrem Ticket
+    pm/T-0049: Ticket steht auf „done“, Plan sagt „offen“
+```
+
+Das ist die zweite Melderichtung, am Bestand belegt und nicht nur im Test. **Zum zweiten Mal
+in zwei Sprints hat eine Verifikation einen Fehler des Laufs gefunden, der sie gebaut hat.**
+
+### ⚠ `pm/T-0038` — ein Grund, der auf ein Ticket zeigte, das es nicht mehr gab
+
+Der Verschiebungsgrund lautete wörtlich: *„gehört gebündelt mit `pm/T-0036` ausgeliefert."*
+Gemessen: `pm/T-0036` ist seit Sprint 7 **geschlossen** und hat **nie** eine
+Board-Formatänderung gemacht — Teil b) wurde eine Preflight-Zeile, Teil a) ging als
+`pm/T-0047` weiter.
+
+**Und der Grund galt nur für einen von fünf Teilen.** Nur b) ist eine Formatänderung; a), c)
+und e) haben zwei Sprints auf einen Grund gewartet, der sie nicht betraf.
+
+| Teil | Inhalt | Wohin |
+|---|---|---|
+| a) | Feld `verantwortlich` + Validierung | **gebaut**, SWR-116, 16 Tests |
+| b) | `BOARD.md`-Spalte (**die** Formatänderung) | `pm/T-0050`, Sprint 9 |
+| c) | Cockpit-/Preflight-Zähler mit Refs | `pm/T-0051`, Sprint 9 |
+| d) | Ablaufregel Session-Agenda | erledigt seit Sprint 6 |
+| e) | HMI „Für dich: Handlungen" | `pm/T-0052`, Sprint 10 |
+
+**SWR-116** führt `verantwortlich` als **eigenes** Feld ein statt `rolle` umzudeuten:
+`rolle: mensch` trägt bereits eine zweite, verhaltensändernde Bedeutung (Gate, von der
+Übergangsprüfung ausgenommen), und eine Umdeutung hätte den betroffenen Tickets still die
+Übergangsprüfung abgeschaltet — B033. Das Feld ist **optional**; alle 16 Boards validieren
+unverändert. Steht `mensch`, verlangt die Validierung einen Abschnitt
+`## Handlung beim Menschen` — sonst wäre „ein Mensch muss ran" eine Behauptung ohne Beleg
+(B038).
+
+### `projects/p11/T-0003` — Status korrigiert statt Termin verschoben
+
+Es stand auf `open` mit `blocked_by: []` und sah wie unerledigte Teamarbeit aus, obwohl das
+Team es nicht bewegen kann. Jetzt `blocked` mit `blocked_by: [T-0006]`. Die zweite Sperre
+(`team-dashboard/T-0002`) ist in Sprint 7 gefallen und deshalb **nicht** eingetragen.
+
+### ⚠ Drei eigene Abweichungen im Plan — von der Prüfung aus Sprint 6 gefunden
+
+Beim Abschluss meldete `plan_drift` drei Tickets, die im Plan auf Sprint 9 standen und in
+ihrem Feld noch auf 8 — dieselbe Sorte Fehler, für die die Prüfung gebaut wurde. Korrigiert,
+bevor der Plan stand. **Die Prüfstrecke findet inzwischen in jedem Sprint mindestens einen
+Fehler des laufenden Sprints.**
+
+---
+
+## Historie: Sprint 7 (2026-08-17)
 
 **Sprint 7 (2026-08-17), der Lauf, in dem eine Prüfung ihren eigenen Erbauer überführt hat
 — und ein fünf Sprints altes Problem sich als Abwesenheit herausstellte.**

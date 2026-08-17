@@ -1,5 +1,102 @@
 # Projektstatus — Fortschreibung über Sessions
 
+## Das Wichtigste (Stand Sprint 12, 2026-08-17)
+
+1. **⚠⚠ Der beschlossene HMI-Sprint konnte seine eigene Abnahme nicht erfüllen.** Die DoD
+   von `pm/T-0058` und `pm/T-0060` verlangt wörtlich *„JS-Test; scheitert nachweislich
+   gegen den Vorstand"*. Gemessen: **741 Python-Tests, 0 JS-Tests** bei **1.524 Zeilen
+   `app.js`**, während SWR-098/099/100 Nachweise an JavaScript verlangen.
+   > **Eine Prüfung, die es nicht gibt, ist von einer grünen nicht zu unterscheiden.**
+   Fünf Sprints lang war „Tests grün" wahr — für die Tests, **die es gab**. Dritte Gestalt
+   derselben Familie in drei Sprints: SWR-122 (Prüfung ohne Leser), SWR-125 (Regel ohne
+   Prüfung), jetzt **Fläche ohne Prüfung**.
+2. **Gebaut: ADR-008 + SWR-128** (`projects/p12/T-0004`). Renderentscheidungen wandern nach
+   `backend/static/regeln.js` (kein DOM, kein Netz), geprüft mit Nodes **eingebautem**
+   Runner — **kein npm, kein package.json, keine Abhängigkeit**. ADR-002 („no build") wird
+   damit nicht widerrufen, sondern **eingelöst**: sein eigener Satz lautete *„bei
+   wachsendem Frontend-Scope neu bewerten"*. 13 Python-Zusicherungen.
+3. **⚠ Die Werkzeugfrage ist NICHT vom Team entschieden.** „Darf Node Voraussetzung
+   werden?" ist ein **neues externes Werkzeug** → **Klasse A** → DR
+   **`projects/p12/T-0007`** (A/B/C, Default `B-node-optional`, Frist 2026-08-24). Die
+   bequeme Gegenerzählung („ist gratis, also Klasse C") war verfügbar und wurde nicht
+   genommen — genau dafür existiert die Regel.
+4. **⚠ `übersprungen` ist nicht `ok`.** `js_tests.lauf()` kennt **drei** Zustände. Wer nur
+   zwei kennt, verbucht das Nichtlaufen als Erfolg — und genau so blieb „null JS-Tests"
+   fünf Sprints unsichtbar. `rot` zählt als Befund, `übersprungen` nicht: ein Werkzeug ohne
+   Entscheidung darf den Lauf des Menschen nicht blockieren. Die Meldung nennt `node`
+   **und** den offenen DR, damit sie einen Handlungsweg trägt statt eine Sackgasse.
+5. **⚠ Die ADR-Regel wurde im selben Lauf mit einer Prüfung versehen** — die Lehre aus
+   Sprint 11 („eine Regel, die im selben Lauf am Nachbarfall nicht angewandt wird, ist noch
+   keine Praxis"). `regeln.js` darf im **Code** kein `document.`/`fetch(` enthalten,
+   `app.js` muss die vier Regeln aus `Regeln` lesen. ⚠ Nebenbefund: der erste Entwurf
+   dieser Prüfung wurde **an einer Kommentarzeile** rot — sie bestrafte die Begründung,
+   warum die Datei das DOM *nicht* anfasst. Kommentare werden jetzt entfernt, mit
+   Gegenprobe gegen zu viel Nachsicht.
+6. **✅ `pm/T-0060` (SWR-129): der Brief ist im HMI ein Verlauf.** Beiträge mit Absender und
+   Zeit, nach Urheber getrennt, **Antwortfeld je Brief**, und der durch eine Nachfrage
+   wieder geöffnete Brief trägt ein eigenes Schild — ohne das sähe er aus wie ein nie
+   beantworteter. ⚠ Der Urheber wird aus der **Nutzerregistry** aufgelöst, nicht aus einem
+   Vergleich mit `brief.von`: der Mensch darf einen anderen registrierten Nutzer wählen —
+   Registry ist ein Fakt, Namensvergleich wäre eine Annahme (B038). Die Gegenprobe wird
+   gegen die naive Regel rot.
+7. **✅ `pm/T-0058` (SWR-130): Anzeige ohne Reload — auch im Fehlerfall.** Der 900-ms-Timer
+   ist ersetzt; gezeigt wird, was `GET /api/briefkasten` liefert (kein zweiter
+   Inhaltszustand, B033). Im 503-Fall wird **ebenfalls** nachgeladen und der Brief trägt
+   „gespeichert, noch nicht verbucht" — die Datei liegt vor git auf der Platte (SWR-121),
+   und eine Liste, die sie verschweigt, behauptet das Gegenteil. Ohne Kennung in der
+   Meldung wird **keine erfunden** (B038): das ist dann ein echter Fehler.
+8. **✅ Klammer `pm/T-0039` geschlossen** — beide Teile erledigt (`T-0059`/SWR-126 Sprint
+   11, `T-0060`/SWR-129 Sprint 12). Vier Verschiebungen, eine Zerlegung, jetzt vollständig.
+9. **⚠ `pm/T-0054` nach ZWEI Verschiebungen zerlegt statt nach vier.** Sprint 11 leitete
+   die Regel bei vier ab und hinterließ die Erkennungsfrage *„auf welche anderen offenen
+   Fälle trifft dieser Satz gerade zu?"* (`L-2026-08-17x`). Antwort dieses Laufs:
+   `pm/T-0054`, dessen Naht wörtlich im Ticket steht. Neu: `pm/T-0064` (Liste, Sprint 13),
+   `pm/T-0065` (Knopf, Sprint 14).
+10. **⚠⚠ Eine Zusage an den Auftraggeber ist nicht eingelöst.** Sprint 11 schrieb ihm, der
+    Dashboard-Endpunkt und die Detailseiten kämen *„im Oberflächen-Lauf als Nächstes"*.
+    Der Oberflächen-Lauf war dieser. `p11/T-0008` ist **dritte Verschiebung**. Der Befund
+    steht im Ticket, im Sprintplan und in der Agenda — nicht in einer Fußnote.
+11. **⚠ Drei dritte Verschiebungen** (`pm/T-0052`, `p11/T-0008`, `promt-team/T-0001`). Bei
+    allen dreien ist die **Zerlegungsnaht jetzt benannt**, statt sie beim vierten Mal zu
+    suchen. Das ist der operative Unterschied zu Sprint 11.
+12. **⚠ Zwei Routine-Läufe schrieben heute 10:25–11:21 gleichzeitig in dieselben Repos.**
+    Der zweite hat es gemessen und **nichts geschrieben** (Befundbericht 11:05).
+    `sprint_register.beginne()` ist idempotent je *Kennung* und kennt keinen Fall für
+    **zwei verschiedene** Läufe. *Ein Register ohne Endezeitpunkt kann Überlappung nicht
+    sehen.* Aufgenommen als **`platform/T-0013`** (Sprint 13) — mit der Auflage, die
+    Taktabstände **vor** dem Bauen zu messen: 07:10 / 09:14 / 10:04 / 11:27 sind **nicht**
+    gleichmäßig 60 Min, der Takt ist bisher eine Annahme.
+13. **⚠ Ein Schreibversuch hat in diesem Lauf eine Datei zerstört.** Ein Patch-Skript
+    öffnete `preflight.py` mit ungültigem `newline`-Wert; Python kürzte die Datei auf
+    **0 Bytes** und warf danach die Ausnahme. Folgenlos, weil auf einer Arbeitskopie
+    gearbeitet wurde (und das war **Glück aus einer anderen Entscheidung** — Tests auf
+    einer Kopie sind ~50× schneller, Befund vom 11:05 — nicht Vorsicht an dieser Stelle).
+    **Dieselbe Klasse wie `abschluss.cmd` in Sprint 1**, dem einzigen offenen Punkt beim
+    Auftraggeber. Verankert als `L-2026-08-17y`: Temp-Datei schreiben, dann `os.replace`.
+14. **Vier Sachtickets geschlossen** (`p12/T-0004`, `pm/T-0060`, `pm/T-0058`, `pm/T-0039`),
+    alle über den legalen Weg mit je drei Commits, plus sechs Takt-Pflichten. **Vier neue
+    Tickets**: `p12/T-0007` (DR), `platform/T-0013`, `pm/T-0064`, `pm/T-0065`.
+15. **754 Python-Tests grün** (+13), **16 JS-Tests grün** (+16, von **null**), Matrix
+    **130 SWRs / 0 Lücken**, Preflight **STARTKLAR** — nach allen Änderungen des Laufs
+    gemessen. unterminiert 0, Kalenderfristen 0, Plan-Drift 0, überfällig 0, Statusdrift 0,
+    Statusübergänge seit Stichtag 0, Altbestand 52 (unverändert).
+16. **⚠ Briefkasten: beim Start leer, beim Abschluss nicht.** `pm/N-0042` traf **12:00**
+    ein, mitten im Sprintabschluss, und wurde noch in diesem Lauf beantwortet (Klasse B).
+    **Zweiter Sprint in Folge**, in dem der Startstand am Laufende nicht mehr galt — die
+    Regel aus Sprint 11 („zweimal prüfen") hat gegriffen, und die Wiederholung zeigt, dass
+    es kein Sonderfall ist: bei 60-Minuten-Takt ist ein Brief mitten im Lauf der
+    **Regelfall**. ⚠ Nebenbefund am eigenen Ablauf: der Abschluss-Preflight lief **nach**
+    dem Schreiben der Berichte, die deshalb nachträglich ergänzt werden mussten.
+17. **⚠ Der neue Brief enthielt einen Widerspruch zum Brief desselben Morgens** —
+    `pm/N-0038` verlangt, **alle** offenen Aufgaben zu sehen (zum Priorisieren),
+    `pm/N-0042` weniger Scrollen. Aufgelöst als *falten statt weglassen* und dem
+    Auftraggeber **im Antwortbrief offengelegt**, statt als stillschweigende Auslegung
+    angewandt zu werden. Die Rollen-Sicht wurde in `pm/T-0064` **hineingezogen** statt
+    danebengestellt (B033); neu ist nur `pm/T-0066` (Kompaktheit).
+
+---
+
+
 ## Das Wichtigste (Stand Sprint 11, 2026-08-17)
 
 1. **⚠⚠ Der Auftraggeber hat Kalenderfristen zum zweiten Mal gerügt — die Ursache war die

@@ -21,7 +21,7 @@ Stand: 2026-08-17 · Tickets: 72
 | [T-0019](tickets/T-0019.md) | Rollenkarten v1 für QM, RM, PROB, CHG + Registry-Aktivierung | task | einmalig | coach | Team | hoch | 2 | — |
 | [T-0020](tickets/T-0020.md) | Prozess-Skills v1 für SUP.1, SWE.1, SUP.9 schreiben (+ Gold-Beispiele) | task | einmalig | coach | Team | hoch | 2 | T-0019 |
 | [T-0021](tickets/T-0021.md) | SWE.1: Plattform-Anforderungen als erstes Requirements-Set (EN) + G1-Vorlage | task | einmalig | rm | Team | hoch | 2 | T-0019 |
-| [T-0022](tickets/T-0022.md) | Budget-Review (D003): Ist-Daten der Testphase → Budget-Festlegung | decision-request | einmalig | pl | MENSCH | hoch | 2 | — |
+| [T-0022](tickets/T-0022.md) | Budget-Review (D003): Ist-Daten der Testphase → Budget-Festlegung | decision-request | einmalig | pl | Team | hoch | 2 | — |
 | [T-0024](tickets/T-0024.md) | Prozess-CR (Retro S2): Session-Preflight als Skript-Route (Locks, Status, Board, Tests) | change-request | einmalig | cm | Team | hoch | 3 | — |
 | [T-0027](tickets/T-0027.md) | Problem: platform-CI rot — pyyaml fehlt auf dem GitHub-Runner (Umgebungs-Drift zu Sandbox/Team-Node) | problem | einmalig | dev | Team | hoch | 2 | — |
 | [T-0028](tickets/T-0028.md) | Rollenkarten v1 für ARCH, DEV, TEST + Registry v1.2 (SWE-Rollen aktivieren) | task | einmalig | coach | Team | hoch | 3 | — |
@@ -29,9 +29,9 @@ Stand: 2026-08-17 · Tickets: 72
 | [T-0030](tickets/T-0030.md) | SWE.1: STK-012 + SWR-020/021 draft → reviewed; G1-Erweiterungsvorlage | task | einmalig | rm | Team | hoch | 3 | — |
 | [T-0031](tickets/T-0031.md) | SWE.2: Architektur Backend/Frontend-MVP + ADRs → G2-Vorlage | task | einmalig | arch | Team | hoch | 3 | T-0028, T-0030 |
 | [T-0032](tickets/T-0032.md) | Backend-MVP: Decision-Inbox, Board/Report-Aggregation, E-Mail-Versand (SWR-020) | task | einmalig | dev | Team | hoch | 3 | T-0031 |
-| [T-0035](tickets/T-0035.md) | DR: Hub-VM-Beschaffung (E5, R2) — Anbieter/Größe/Kosten + Deployment-Ziel + D006-Review | decision-request | einmalig | pl | MENSCH | hoch | 3 | — |
+| [T-0035](tickets/T-0035.md) | DR: Hub-VM-Beschaffung (E5, R2) — Anbieter/Größe/Kosten + Deployment-Ziel + D006-Review | decision-request | einmalig | pl | Team | hoch | 3 | — |
 | [T-0040](tickets/T-0040.md) | Problem: Frontend rendert nicht (hängt bei „Lade …", keine Tabs, keine API-Calls) | problem | einmalig | dev | Team | hoch | 3 | — |
-| [T-0041](tickets/T-0041.md) | DR: Übungsprodukt wählen (P0 Kap. 5, Sprint 4) — Produkt + Repo-Ort | decision-request | einmalig | pl | MENSCH | hoch | 4 | — |
+| [T-0041](tickets/T-0041.md) | DR: Übungsprodukt wählen (P0 Kap. 5, Sprint 4) — Produkt + Repo-Ort | decision-request | einmalig | pl | Team | hoch | 4 | — |
 | [T-0042](tickets/T-0042.md) | Produkt-Repo-Skelett produkt-datakonv (lokal) + CM-Setup (CI, Baseline-Struktur) | task | einmalig | cm | Team | hoch | 4 | — |
 | [T-0043](tickets/T-0043.md) | SWE.1 datakonv: Clarifications + STK/SWR-Set (EN, 10–20 SWRs) → G1-Vorlage | task | einmalig | rm | Team | hoch | 4 | T-0042 |
 | [T-0044](tickets/T-0044.md) | SWE.2 datakonv: Architektur (Units, Schnittstellen, ADRs) → G2-Vorlage | task | einmalig | arch | Team | hoch | 4 | T-0043 |
@@ -40,11 +40,11 @@ Stand: 2026-08-17 · Tickets: 72
 | [T-0052](tickets/T-0052.md) | SWE.5/6: Integrations-/Gesamtverifikation datakonv (CLI-E2E gegen STK/SWR) + Report | task | einmalig | test | Team | hoch | 5 | — |
 | [T-0053](tickets/T-0053.md) | SUP.9: realen Befund aus der Integrationsverifikation als Problem bis Abschluss führen | problem | einmalig | prob | Team | hoch | 5 | T-0052 |
 | [T-0057](tickets/T-0057.md) | Release datakonv 1.0.0 (SPL.2): Packaging, Release Notes, Tag, Katalog → G3 | task | einmalig | cm | Team | hoch | 5 | T-0052, T-0053, T-0054, T-0056 |
-| [T-0061](tickets/T-0061.md) | DR: G3 — Release datakonv 1.0.0 freigeben | decision-request | einmalig | pl | MENSCH | hoch | 5 | — |
+| [T-0061](tickets/T-0061.md) | DR: G3 — Release datakonv 1.0.0 freigeben | decision-request | einmalig | pl | Team | hoch | 5 | — |
 | [T-0065](tickets/T-0065.md) | Self-Check gegen Basispraktiken aller Stufe-1-Prozesse → Report (Fundstellen/Lücken) | task | einmalig | qm | Team | hoch | 6 | — |
 | [T-0066](tickets/T-0066.md) | Self-Check-Lücken schließen oder als P1-Backlog dokumentieren | task | einmalig | pl | Team | hoch | 6 | T-0065 |
 | [T-0067](tickets/T-0067.md) | Betriebs-Runbook: Backup, Monitoring, Update, Störungsbehandlung, Geräte-Onboarding | task | einmalig | cm | Team | hoch | 6 | — |
-| [T-0071](tickets/T-0071.md) | DR: P0-Abschlussbericht → P0-Abnahme gegen Kap. 3 | decision-request | einmalig | pl | MENSCH | hoch | 6 | T-0062, T-0063, T-0064, T-0065, T-0066, T-0067, T-0068, T-0070 |
+| [T-0071](tickets/T-0071.md) | DR: P0-Abschlussbericht → P0-Abnahme gegen Kap. 3 | decision-request | einmalig | pl | Team | hoch | 6 | T-0062, T-0063, T-0064, T-0065, T-0066, T-0067, T-0068, T-0070 |
 | [T-0003](tickets/T-0003.md) | Rollen-Registry v1: Aufgaben-Typen und Provider-Ketten verfeinern | task | einmalig | coach | Team | mittel | 1 | T-0001 |
 | [T-0009](tickets/T-0009.md) | Sprint-1-Abnahme: Erster autonomer Tick (CM erstellt CM-Strategie-Entwurf) | task | einmalig | pl | Team | mittel | 1 | T-0001, T-0002, T-0005, T-0006 |
 | [T-0010](tickets/T-0010.md) | CM-Strategie v1 erstellen (Ziel des ersten autonomen Ticks) | task | einmalig | cm | Team | mittel | 1 | — |

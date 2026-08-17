@@ -1,11 +1,11 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-17 · SWRs: 108 (reviewed: 98) · Tests mit SWR-Bezug: 507 · ohne Bezug: 30
+Stand: 2026-08-17 · SWRs: 108 (reviewed: 98) · Tests mit SWR-Bezug: 508 · ohne Bezug: 35
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
 | SWR-001 | reviewed | test_board.py::TestBoard::test_gutfall<br>test_board.py::TestBoard::test_pflichtfeld_fehlt<br>test_board.py::TestBoard::test_ungueltiger_status<br>test_board.py::TestBoard::test_id_dateiname_mismatch<br>test_board.py::TestBoard::test_blocked_ohne_blocker<br>test_board.py::TestBoard::test_in_review_ohne_reviewer<br>test_board.py::TestBoard::test_in_review_reviewer_ist_autor<br>test_board.py::TestBoard::test_in_review_mit_reviewer_ok<br>test_board.py::TestBoard::test_crlf_toleranz<br>test_board.py::DecisionRequestFelderTest::test_gueltige_felder<br>test_board.py::DecisionRequestFelderTest::test_ungueltige_frist<br>test_board.py::DecisionRequestFelderTest::test_default_nicht_in_optionen<br>test_board.py::DecisionRequestFelderTest::test_neuer_dr_ohne_optionen_abgelehnt<br>test_board.py::DecisionRequestFelderTest::test_bestands_dr_ausgenommen<br>test_board.py::DecisionRequestFelderTest::test_optionstoken_zerlegung | 15 Test(s) |
-| SWR-002 | reviewed | test_board.py::TestBoard::test_uebergangsmatrix<br>test_board.py::TestBoard::test_mensch_tickets_ohne_uebergangspruefung<br>test_board.py::SetzeStatusTest::test_gueltiger_uebergang_schreibt_ticket_und_board<br>test_board.py::SetzeStatusTest::test_unzulaessiger_uebergang_wird_abgelehnt<br>test_board.py::SetzeStatusTest::test_in_review_erfordert_reviewer<br>test_board.py::SetzeStatusTest::test_status_cli | 6 Test(s) |
+| SWR-002 | reviewed | test_board.py::TestBoard::test_uebergangsmatrix<br>test_board.py::TestBoard::test_mensch_tickets_ohne_uebergangspruefung<br>test_board.py::SetzeStatusTest::test_gueltiger_uebergang_schreibt_ticket_und_board<br>test_board.py::SetzeStatusTest::test_unzulaessiger_uebergang_wird_abgelehnt<br>test_board.py::SetzeStatusTest::test_in_review_erfordert_reviewer<br>test_board.py::SetzeStatusTest::test_status_cli<br>test_board.py::GitAusgabeKodierungTest::test_echter_umlaut_ueber_git_wird_korrekt_gelesen | 7 Test(s) |
 | SWR-003 | reviewed | test_board.py::TestBoard::test_blocked_by_unbekannt<br>test_board.py::TestBoard::test_blocked_by_selbstverweis | 2 Test(s) |
 | SWR-004 | reviewed | test_board.py::TestBoard::test_board_deterministisch<br>test_board.py::TestBoard::test_prio_sortierung<br>test_board.py::TestBoard::test_offene_blocker<br>test_board.py::TestBoard::test_main_schreibt_board | 4 Test(s) |
 | SWR-005 | reviewed | test_board.py::TestBoard::test_main_check_modus<br>test_board.py::TestBoard::test_main_fehlerfall | 2 Test(s) |
@@ -119,6 +119,11 @@ Keine.
 
 ## Tests ohne SWR-Bezug (informativ — Prozess-Tooling mit CR-Bezug erlaubt, T-0025)
 
+- test_board.py::GitAusgabeKodierungTest::test_cp1252_stellt_den_hostfehler_nach
+- test_board.py::GitAusgabeKodierungTest::test_stdout_none_ist_befund_und_kein_absturz
+- test_board.py::GitAusgabeKodierungTest::test_unlesbarer_vorgaenger_erscheint_als_befund_mit_datei
+- test_board.py::GitAusgabeKodierungTest::test_fehlendes_git_bleibt_kein_befund
+- test_board.py::SubprocessKodierungRegelTest::test_kein_produktionsaufruf_liest_ohne_feste_kodierung
 - test_feedback_route.py::RoutingTest::test_wunsch_wird_change_request
 - test_feedback_route.py::RoutingTest::test_fehler_wird_problem
 - test_feedback_route.py::RoutingTest::test_feedback_geht_in_progress_mit_notiz

@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-17 · SWRs: 108 (reviewed: 98) · Tests mit SWR-Bezug: 508 · ohne Bezug: 35
+Stand: 2026-08-17 · SWRs: 108 (reviewed: 98) · Tests mit SWR-Bezug: 508 · ohne Bezug: 46
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -130,6 +130,17 @@ Keine.
 - test_feedback_route.py::RoutingTest::test_dry_run_aendert_nichts
 - test_feedback_route.py::AbschlussTest::test_zwei_laeufe_schliessen_feedback
 - test_feedback_route.py::AbschlussTest::test_offenes_folgeticket_blockiert_abschluss
+- test_konsole.py::UrsacheAKindSchreibtAndersAlsElternLiest::test_altstand_erzeugt_genau_das_zeichen_das_cp1252_nicht_ausgeben_kann
+- test_konsole.py::UrsacheAKindSchreibtAndersAlsElternLiest::test_mit_kind_umgebung_entsteht_das_zeichen_nicht
+- test_konsole.py::UrsacheAKindSchreibtAndersAlsElternLiest::test_kind_umgebung_erbt_die_uebrige_umgebung_und_aendert_os_environ_nicht
+- test_konsole.py::UrsacheBMeldungStirbtAmMelden::test_ein_pfeil_aus_einem_ticket_beendet_den_lauf
+- test_konsole.py::UrsacheBMeldungStirbtAmMelden::test_nach_sichere_ausgabe_kommt_die_meldung_an
+- test_konsole.py::UrsacheBMeldungStirbtAmMelden::test_der_fehlerweg_ist_backslashreplace_und_nicht_replace
+- test_konsole.py::UrsacheBMeldungStirbtAmMelden::test_reine_ascii_ausgabe_bleibt_unveraendert
+- test_konsole.py::UrsacheBMeldungStirbtAmMelden::test_ein_strom_ohne_reconfigure_wird_uebersprungen_statt_zu_werfen
+- test_konsole.py::RegelUeberDenGesamtenProduktionscode::test_jeder_python_kindprozess_bekommt_die_kind_kodierung
+- test_konsole.py::RegelUeberDenGesamtenProduktionscode::test_jeder_einstiegspunkt_sichert_seine_ausgabe
+- test_konsole.py::HostmeldungNachgestellt::test_preflight_meldung_mit_ufffd_toetet_den_lauf_nicht_mehr
 - test_preflight.py::TestLockArtefakte::test_findet_bekannte_artefakte
 - test_preflight.py::TestLockArtefakte::test_sauberes_repo_ohne_funde
 - test_preflight.py::TestLockArtefakte::test_entfernen_meldet_erfolg

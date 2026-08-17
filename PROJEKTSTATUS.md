@@ -1,5 +1,229 @@
 # Projektstatus — Fortschreibung über Sessions
 
+## Das Wichtigste (Stand Sprint 11, 2026-08-17)
+
+1. **⚠⚠ Der Auftraggeber hat Kalenderfristen zum zweiten Mal gerügt — die Ursache war die
+   eigene Prüfstrecke.** `unterminierte_tickets` (SWR-091 → SWR-114 → SWR-117) meldet jedes
+   offene Ticket **ohne `frist`**. Die Gegenentscheidung steht seit **SWR-106**
+   (Anforderungen v1.12): *„Terminierung auf Sprints statt auf Kalenderdaten"* — derselbe
+   Satz im Kopf von `sprint_register.py`. **Die Entscheidung hat keine Prüfung
+   mitgeändert.** Gebaut: **SWR-125** (`platform/T-0012`), 19 Tests.
+2. **⚠ Und die Prüfung musste dafür nicht einmal blockieren.** Der erste Entwurf von Brief
+   und Ticket behauptete „sonst wird der Startcheck rot"; nachgemessen am HEAD von Sprint 10
+   fehlt dort `befunde += 1`. Es genügte, dass **„unterminiert 0" berichtet wird** — in
+   `PROJEKTSTATUS-UPDATE.md`, `sprint-aktuell.md` und `session-agenda.md`.
+   **Eine Kennzahl steuert, sobald sie berichtet wird.** Die Zeile zählt ab jetzt.
+3. **⚠ Eine ungeprüfte Behauptung über den eigenen Code, in dem Ticket, das eine ungeprüfte
+   Zahl aufarbeitet.** Gefunden nur, weil derselbe Lauf die Stelle anfassen musste.
+   Korrigiert an allen drei Orten, der Originalsatz steht im Brief daneben.
+   Erkennungsfrage in `L-2026-08-17w`: *habe ich in den Code gesehen, oder aus dem Namen
+   geschlossen?*
+4. **Die Schätzung des Auftraggebers war genauer als jede eigene Zahl.** Er schrieb „über
+   240 Durchläufe". Gemessen über alle 14 offenen Nicht-DR-Tickets, Abstand zwischen
+   geplantem Sprint und Sprint der Frist bei 24 Sprints/Tag: **+168 bis +408, Median +240.**
+   **Alle 14 auf grün** — die vier unbemerkten Verschiebungen von `pm/T-0039` (Befund aus
+   Sprint 10) liefen die ganze Zeit unter einer grünen Frist.
+5. **✅ `pm/T-0059` als erste Sacharbeit erledigt, wie Sprint 10 zugesagt hatte** —
+   **SWR-126**, der Brief ist ein Verlauf. Die Zerlegungsregel ist **am Bestand gemessen**:
+   41 Briefe, **52** `## Antwort`-Überschriften (alle mit ISO-Datum) und **11** weitere
+   `##`-Überschriften, die Abschnitte *innerhalb* einer Antwort sind. Ein naives „jede `##`
+   ist ein Beitrag" hätte **11 Briefe falsch zerlegt**.
+6. **52 > 41 ist selbst ein Befund:** Briefe mit **mehreren** Teambeiträgen existieren
+   längst, von Hand angelegt (`pm/N-0015`). **Der Wunsch des Auftraggebers beschrieb keine
+   neue Idee, sondern eine bestehende Praxis ohne Werkzeug.**
+7. **⚠ `pm/T-0028` nach vier Verschiebungen zerlegt statt ein fünftes Mal geschoben.**
+   Gemessen: `geplant_sprint` 7→8→9→10→11 — **derselbe Zählerstand, an dem Sprint 10 bei
+   `pm/T-0039` die Zerlegungsregel abgeleitet hat**, während `pm/T-0028` in *derselben
+   Plantabelle desselben Laufs* mit dem Vermerk „Rest = Umfang (3 Flächen)" ein viertes Mal
+   verschoben wurde. **Umfang ist nach D006 der Zerlegungsgrund selbst.** Erster Teil
+   gebaut: **SWR-127** (`pm/T-0062`), 15 Tests.
+8. **⚠ Dieselbe Nichtanwendung an zwei weiteren Stellen desselben Vorlaufs.** Die Klammer
+   `pm/T-0039` blieb auf Sprint 11, während ihr letzter Teil auf 12 liegt — gegen die Regel,
+   die Sprint 10 *„wer zerlegt, zieht die Klammer nach"* selbst formuliert hat.
+   `projects/p12/T-0003` trug wörtlich den Vermerk *„beim Anfassen zerlegen, nicht
+   schieben"* und wurde angefasst und geschoben. Beide korrigiert, `p12/T-0003` zerlegt.
+   **Eine Regel, die im selben Lauf am Nachbarfall nicht angewandt wird, ist noch keine
+   Praxis** (`L-2026-08-17x`).
+9. **⚠⚠ Der schwerste Planbefund: B025 ist für die HMI kein Grund, sondern ein
+   Ausschluss.** Fünf offene Aufgaben liegen auf der HMI-Fläche (`pm/T-0052`, `T-0054`,
+   `T-0058`, `T-0060`, Rest von `T-0028`). Die Arbeit jedes Laufs entsteht aus den Briefen
+   des Auftraggebers, und die treffen zuerst das Backend. **Solange jeder Lauf Backend baut,
+   bekommt die HMI nie einen Lauf.** Aufgelöst nicht durch einen sechsten Satz, sondern
+   durch einen Beschluss (Klasse B): **Sprint 12 ist ein HMI-Sprint.**
+10. **⚠ Fünf Alttests fielen — und alle fünf hatten recht.** Zwei durch SWR-125, drei in
+    `test_org_cockpit`/`test_org_kopfblock`. Der lehrreichste:
+    `test_decision_request_ist_kein_treffer` nannte im Docstring `frist` + `default` als
+    Steuerung und legte den DR **ohne frist** an — er belegte eine **Nachsicht** und nannte
+    sie eine **Steuerung**. **In allen fünf Fällen wurde die Provokation ersetzt, nie die
+    Erwartung.** Dritter bis siebter Fall dieser Sorte in zwei Sprints.
+11. **Ein Nebenbefund an der alten Regel:** sie nahm **jeden** `decision-request` aus, auch
+    einen ganz ohne Termin. Im Bestand tragen **3 von 46** DRs keine `frist` — die Prüfung
+    konnte sie nicht sehen. Die neue Regel meldet sie.
+12. **`kalenderfristen` steht nicht nur im Preflight, sondern auch im Cockpit-Kopfblock.**
+    Der Auftraggeber sieht ins Cockpit, nicht in den Startcheck; eine Prüfung, deren
+    Ergebnis nur dort erscheint, wo der Betroffene nicht hinsieht, ist die halbe
+    Wiederholung von SWR-122. Dritter Schlüssel — Vertrags**erweiterung**, keine Änderung.
+13. **Drei Sachtickets geschlossen** (`platform/T-0012`, `pm/T-0059`, `pm/T-0062`), alle
+    über den legalen Weg mit je drei Commits, plus sechs Takt-Pflichten. **Sechs neue
+    Tickets**: `pm/T-0061` (Nebenbefund), `pm/T-0062`/`T-0063` und `p12/T-0004`–`T-0006`
+    (Zerlegungen).
+14. **⚠ `pm/T-0061` ist der ehrliche Rest:** `board.sprint_widerspruch` (SWR-106) hält
+    `frist` gegen `geplant_sprint` und war der **Preis** für die Doppelführung beider
+    Felder. Seine Begründung beruft sich wörtlich auf den Auftraggeber — der sie mit
+    `pm/N-0041` **am selben Tag** widerrufen hat. Nach der Migration: **0 offene Tickets mit
+    beiden Feldern**, die Prüfung hat keinen möglichen Fall mehr. Nicht gelöscht (das wäre
+    eine zweite Änderung derselben Fläche, B025), sondern terminiert.
+15. **741 Tests grün** (+52), Matrix **127 SWRs / 0 Lücken**, Preflight **STARTKLAR** — nach
+    allen Änderungen des Laufs gemessen. unterminiert 0, **Kalenderfristen 0**, Plan-Drift 0,
+    überfällig 0, Statusdrift 0, Statusübergänge seit Stichtag 0, Altbestand 52
+    (unverändert). **Ein Brief eingegangen und beantwortet, keiner offen.**
+16. **⚠ Zwei weitere Briefe kamen **während** des Laufs herein und wurden noch in ihm
+    beantwortet** (`promt-team/N-0001`, `team-dashboard/N-0002`). Der Startcheck am
+    Laufbeginn kannte sie nicht — sie trafen um 08:39 und 08:43 ein und wurden erst vom
+    **Abschluss**-Preflight gemeldet. **Ein Briefkasten-Stand vom Laufbeginn ist am
+    Laufende keine Aussage mehr.** Beide sind beantwortet, keiner offen.
+17. **⚠ Und der erste dieser Briefe traf denselben Befund ein zweites Mal.** Der
+    Auftraggeber fragt, welche KI-Rollen über Ollama statt Claude laufen können. **Die
+    Zuordnung existiert seit Sprint 3** — 9 Aufgaben-Typen in `process/roles/registry.yaml`
+    tragen `chain: [ollama, …]` mit dem Kommentar *„ollama ab Sprint 6"*. Gemessen:
+    `run-registry.jsonl` enthält **7 Läufe insgesamt**, davon **1** auf Ollama; Telemetrie
+    und Goldset je Rolle existieren nicht. **Dritter Fall desselben Musters in einem Lauf:
+    beschlossen, nicht geprüft, wirkungslos.** Keine Empfehlung gegeben — Kap. 14 bindet
+    Routing-Änderungen an Daten, und die Rollenbeschreibung des Auftraggebers sagt selbst
+    *„ohne Baseline kein Optimierungslauf"*. Als Soll/Ist-Prüfung in `promt-team/T-0001`
+    aufgenommen.
+18. **⚠ Der Abschluss-Testlauf hat einen Vertrag nachgefordert, den dieser Lauf vergessen
+    hatte.** `test_vertrag_feldliste` meldete zwei Payload-Schlüssel
+    (`kalenderfristen_gesamt`/`_refs`), die der Widget-Vertrag nicht kannte. **Zweimal in
+    Folge derselbe Ablauf** — der Vermerk in v2.3 lautet wörtlich „das ist nicht der
+    Sorgfalt zu verdanken". **Wer Code ändert, sieht den Vertrag nicht: er liegt in einem
+    anderen Repo.** Vertrag auf **v2.4**, Lesson `L-2026-08-17y`. Die Prüfung ist damit die
+    **Lösung** und nicht der Notausgang — sie ist die einzige Stelle, die die beiden Repos
+    zusammenhält, und darf nicht als Redundanz gelesen werden.
+
+---
+
+## Sprint 11 (2026-08-17) im Detail
+
+### ⚠⚠ Eine Regel, die fünf Sprints lang von einer Prüfung überstimmt wurde
+
+| | |
+|---|---|
+| Beschluss | SWR-106, Anforderungen **v1.12**: „Terminierung auf Sprints statt auf Kalenderdaten" |
+| zweiter Ort desselben Satzes | Modulkopf `platform/scripts/sprint_register.py` |
+| Prüfung, die das Gegenteil belohnt | `aggregation.unterminierte_tickets` — meldet Tickets **ohne `frist`** |
+| bei der Entscheidung angefasst? | **nein** |
+| Zustand fünf Sprints später | **14 von 14** offenen Teamaufgaben mit Kalenderdatum |
+| erste Rüge | Brief, der zu SWR-106 führte |
+| zweite Rüge | `pm/N-0041`, 2026-08-17 07:41 |
+
+Der Mechanismus ist banal und deshalb gefährlich: Der Startcheck fragt *„welche Tickets
+haben keinen Termin?"* und liest „Termin" als **Datum**. Jeder Lauf sah „Ticket ohne
+Frist", trug eine Frist ein und hielt die berichtete Null.
+
+> **Eine Entscheidung, die keine Prüfung mitgeändert hat, ist eine Absichtserklärung.**
+
+Spiegelbild zu **SWR-122** aus Sprint 10 — dort wurde eine Prüfung berechnet und von
+niemandem **gelesen**, hier eine Regel beschlossen und von keiner Prüfung **vertreten**.
+
+### ⚠ Der Fehler im eigenen Entwurf, und warum er den Befund verschärft
+
+Behauptet: *„sonst wird der Startcheck rot."* Gemessen am HEAD von Sprint 10: die Zeile wird
+**gedruckt** (`print`), `befunde += 1` fehlt. Der Check blieb grün.
+
+Damit fällt die einfache Erklärung („ein Gate hat uns gezwungen") weg. Übrig bleibt die
+schwierigere: **es hat gereicht, dass die Zahl im Bericht an den Auftraggeber steht.**
+
+> **Eine Kennzahl steuert, sobald sie berichtet wird — auch wenn sie nichts blockiert.**
+
+Die Frage „blockiert sie?" ist damit die falsche Frage an eine neue Kennzahl. Die richtige:
+*wer liest sie, und was tut er, damit sie gut aussieht?*
+
+### Was SWR-125 tut
+
+1. **Umgedreht, nicht ergänzt** (B033 — sonst zwei Terminbegriffe): terminiert heißt
+   `geplant_sprint`. Ein Ticket **nur mit `frist`** ist unterminiert.
+2. **Neuer Befund `kalenderfristen`** — die Rückkehr wird **gemeldet**, nicht bloß nicht
+   mehr gefordert. Genau dieses Nichtmelden ist die Ursache des Befundes.
+3. **Das Datum bleibt, wo ein Mensch wartet** (`decision-request`): seine Antwortzeit läuft
+   in Tagen. Dieselbe Grenze zog `sprint_vergangen` (SWR-112) schon in der Gegenrichtung —
+   jetzt an **beiden** Enden gleich. **Ein DR ohne `frist` ist ab jetzt unterminiert**
+   (3 von 46 im Bestand).
+4. **Die Abgrenzung steht genau einmal** (`_ist_unterminiert`) und wird von Kachelzahl
+   (SWR-091) **und** Org-Summe (SWR-114/117) gelesen. Zwei Stellen mit derselben Regel waren
+   der Grund, dass SWR-106 wirkungslos blieb.
+
+### ✅ SWR-126 — und was die Messung über die eigene Praxis verraten hat
+
+| Messung am Briefbestand (2026-08-17) | |
+|---|---|
+| Briefe | **41** |
+| `## Antwort…`-Überschriften | **52** — alle mit ISO-Datum |
+| davon Briefe mit **mehr als einer** Team-Antwort | mehrere, **von Hand** (`pm/N-0015` „## Vollzug") |
+| andere `##`-Überschriften (Abschnitte *in* einer Antwort) | **11** |
+| davon mit ISO-Datum in Klammern | **1** — und die **ist** ein Beitrag |
+
+Daraus die Regel: Beitragskopf ist, was mit `Antwort` beginnt **oder** eine Klammer mit
+ISO-Datum trägt. Ein naives „jede `##` ist ein Beitrag" hätte **11 Briefe falsch zerlegt**;
+die Gegenprobe über alle 41 echten Briefe wird gegen das naive Verfahren rot.
+
+⚠ **`52 > 41` ist der eigentliche Nebenbefund:** die Praxis „im selben Brief weiterreden"
+gab es längst — ihr fehlte nur das Werkzeug. Ein CR, der eine **bestehende** Praxis
+beschreibt, ist etwas anderes als eine neue Idee, und viermal verschoben wurde er trotzdem.
+
+**`spalte_antwort` ist ab jetzt eine Sicht auf `beitraege`**, kein zweiter Parser (B033) —
+B054 ist der Beleg, was zwei Leser derselben Datei kosten: dort blieb bei zehn von dreißig
+Briefen die Antwort unsichtbar.
+
+**Die Statusrücksetzung ist der Punkt, an dem der CR kippt.** `offene()` trägt die
+Preflight-Zeile und die Cockpit-Kachel; ein Beitrag an einem `beantwortet`-en Brief wäre von
+**keiner** Session gesehen worden. Sie ist **unbedingt** und nicht an einer Absenderprüfung
+aufgehängt: `COMMIT_IDENTITAET` legt diesen Pfad auf den Menschen fest, ein Absenderfeld
+ließe sich fälschen.
+
+### ⚠ Drei Nichtanwendungen einer Regel aus dem Vorlauf, in einem Lauf gefunden
+
+| Fall | Regel aus Sprint 10 | was Sprint 10 tat |
+|---|---|---|
+| `pm/T-0028` | „viermal um eins verschoben → zerlegen" | vierte Verschiebung, Grund „Umfang" |
+| `pm/T-0039` (Klammer) | „Klammer auf den Termin des letzten Teils nachziehen" | auf 11 gelassen, letzter Teil auf 12 |
+| `projects/p12/T-0003` | *„beim Anfassen zerlegen, nicht schieben"* (im Ticket) | angefasst und geschoben |
+
+**Fünfter Sprint in Folge, in dem die Verifikation einen Fehler des Vorlaufs findet.** Der
+Fehler ist damit keine Nachlässigkeit einer Session, sondern eine Eigenschaft des
+Arbeitsschritts „Regel aufschreiben und weiterarbeiten". Erkennungsfrage aus
+`L-2026-08-17x`: *auf welche anderen offenen Fälle trifft dieser Satz gerade zu?*
+
+### ⚠⚠ B025 als Ausschluss — der Planbefund und sein Beschluss
+
+| | |
+|---|---|
+| offene Aufgaben auf der HMI-Fläche | **5** (`pm/T-0052`, `T-0054`, `T-0058`, `T-0060`, Rest `T-0028`) |
+| Verschiebungsgrund bei allen | B025 („nicht zwei Bauflächen in einem Lauf") |
+| Herkunft der Arbeit jedes Laufs | Briefe des Auftraggebers |
+| Fläche, die diese Briefe zuerst treffen | **Backend** (Ursache, Reparatur) |
+| Folge | die HMI ist strukturell immer „die zweite Fläche" |
+
+**Ein Grund, dessen Bedingung durch die eigene Arbeitsweise nie eintritt, ist kein Grund,
+sondern ein Ausschluss.** Beschluss (Klasse B, PM — Playbook Kap. 16 „Priorisierung"):
+**Sprint 12 ist ein HMI-Sprint**, die Backend-Flächen bleiben unberührt, sofern kein Brief
+sie erzwingt.
+
+### Verifikation (nach allen Änderungen gemessen)
+
+| | |
+|---|---|
+| Preflight | **STARTKLAR** |
+| Tests | **741 grün** (+52) |
+| Matrix | **127 SWRs / 0 Lücken** |
+| unterminiert | **0** |
+| **Kalenderfristen an Teamaufgaben** | **0** (vorher 14) |
+| Plan-Drift / überfällig / Statusdrift | **0 / 0 / 0** |
+| Statusübergänge seit Stichtag | **0** (Altbestand 52, unverändert) |
+| Briefkasten | 1 eingegangen, 1 beantwortet, **0 offen** |
+
+---
+
 ## Das Wichtigste (Stand Sprint 10, 2026-08-17)
 
 1. **⚠⚠ `PREFLIGHT: STARTKLAR` über sechs Befunden.** Der Startcheck meldete grün, während

@@ -1,37 +1,158 @@
 # Projektstatus — Fortschreibung über Sessions
 
-## Das Wichtigste (Stand Sprint 6, 2026-08-17)
+## Das Wichtigste (Stand Sprint 7, 2026-08-17)
 
-1. **⚠ Der Wächter bricht weiter ab — aber später, und genau das ist der Beleg.** Der
-   erste Lauf nach der T-0007-Reparatur (03:59) erreichte `PREFLIGHT: STARTKLAR` mit
-   allen 16 Board-Prüfungen grün — die Stelle, an der die acht Läufe davor starben — und
-   scheiterte dann in `[2/5]` an einem `UnicodeEncodeError` beim `print`. Die Meldung hat
-   sich geändert, also gilt die Vorhersage aus `T-0007` als **eingetroffen**.
-2. **`platform/T-0009`: die Reparatur hatte nur ein Ende des Rohrs angefasst.** Sie stellte
-   das **Lesen** fest auf UTF-8 — und zerstörte damit an den drei Stellen, an denen Python
-   Python aufruft, eine Paarung, die vorher zufällig funktioniert hatte. Dazu ein zweiter,
-   **älterer** Grund: 121 Ticketdateien tragen ein „→", das cp1252 nicht ausgeben kann.
-3. **⚠ Vier Zahlen dieses Projekts sind widerlegt — alle vier ungezählt neben einer
-   richtigen Diagnose.** „Rund zweihundert Läufe" (waren 9), „die sieben Zeilen" (6),
-   „was dabei auftaucht braucht Urteil" (0), „nicht geschlossen 15" (17). Die letzte fand
-   die Regel, die aus den ersten dreien im selben Lauf entstanden war.
-4. **Zwei Befunde in der Planung selbst.** Sieben Planzeilen sagten etwas anderes als ihr
-   Ticket (`pm/T-0044`, jetzt geprüft per **SWR-109**), und die Kennzahl „nicht
-   geschlossen" hat keine dokumentierte Zählweise (`pm/T-0046`).
-5. **⚠ Und der Wächterlauf um 04:29 ist DURCHGELAUFEN** — mit der Korrektur aus `T-0009`
-   (committet 04:20), erster erfolgreicher Push seit 01:31, `CI-STATUS.md` neu (04:32).
-   Die Vorhersage dieses Sprints ist **im selben Lauf eingetroffen und übererfüllt**:
-   erwartet war `[3/5]`, geliefert wurde `[5/5]` inklusive Push.
-6. **Drei Vorhersagen auf einmal eingelöst.** `platform` ist **grün** (offen seit
-   Sprint 3); der Bericht nennt erstmals Job und Schritt → **`platform/T-0004`
-   geschlossen**, Frist 18.08. gewahrt; und für `pm/T-0043` sind zwei Ursachen
-   ausgeschlossen — darunter das Secret, womit die **Klasse-A-Sorge entfällt**.
-7. **514 Tests grün** (+22), Matrix **109 SWRs / 0 Lücken**, Preflight STARTKLAR, kein
-   offener Brief (48), unterminiert 0, überfällig 0, **Plan-Drift 0**.
+1. **✅ Zum ersten Mal meldet `CI-STATUS.md` ALLES GRÜN — 14 Abfragen, kein rotes Repo.**
+   `p3` und `p5` sind grün für ihren Commit (`673eacd9`, `0fde98c3`). Damit ist
+   **`pm/T-0043` nach fünf Sprints geschlossen** und die widerlegbare Vorhersage aus
+   Sprint 6 ist **eingetroffen**.
+2. **Die Ursache war eine Abwesenheit, kein Defekt.** Beide Repos trugen einen Stand vom
+   16.08. 07:0x, erzeugt von einer `board.py`-Fassung vor der Takt-Spalten-Änderung —
+   und bekamen danach nie wieder einen Push. **Ohne Push kein CI-Lauf:** das „ROT" war
+   ein Standbild und wurde vier Sprints lang als laufende Störung gelesen.
+3. **⚠ Der Startcheck fand, dass Sprint 6 eine Anforderung gemeldet, aber nie committet
+   hat.** „Matrix 109 SWRs / 0 Lücken" galt für die **Arbeitskopie**; im Git standen 108.
+   Der Plattformcode für SWR-109 und seine sieben Tests waren gepusht — das Requirement
+   nicht. Für einen Tag trug die Organisation Code ohne Anforderung im Git.
+4. **⚠ Und der eigentliche Befund ist, warum es niemand sah.** `preflight` **hatte** es
+   gemeldet: `[p9] Arbeitskopie nicht sauber (1 Datei(en))`. Daneben standen **fünf**
+   gleich aussehende Zeilen, alle mit `1 Datei(en)`, alle eine `BOARD.md`, deren
+   `Stand:`-Zeile das Werkzeug bei **jedem** Lauf neu erzeugt. Sechs identische Meldungen,
+   fünf davon dauerhaft belanglos — die sechste hatte keine Chance.
+5. **Sechs Sachtickets geschlossen:** `pm/T-0043`, `platform/T-0010` (neu, im selben
+   Sprint), `team-dashboard/T-0002`, `pm/T-0045`, `pm/T-0046`, `pm/T-0036`. Dazu die sechs
+   Takt-Pflichten.
+6. **⚠ Und die Schlussverifikation hat einen eigenen Fehler dieses Laufs gefunden.**
+   `board.py --check` hält den Status gegen HEAD und ist damit **blind für einen bereits
+   committeten** Sprung: `pm/T-0043` und `team-dashboard/T-0002` sind mit `open -> done`
+   in die Historie gegangen, weil zwischen Setzen und Commit nicht geprüft wurde. Die drei
+   noch unverbuchten wurden erwischt und korrekt nachgeholt. Als `pm/T-0048` aufgenommen,
+   **nicht** nachträglich geglättet.
+7. **⚠ Zum zweiten Mal in zwei Sprints ist ein Verschiebungsgrund an der Messung
+   gescheitert** — `pm/T-0036`: „Änderung an der Prüfstrecke, nicht nebenbei" gegen
+   **0 unterminierte Tickets im Bestand** gehalten.
+8. **568 Tests grün** (+54), Matrix **114 SWRs / 0 Lücken**, Preflight STARTKLAR, kein
+   offener Brief, unterminiert 0, überfällig 0, Plan-Drift 0, sprint_vergangen 0.
 
 ---
 
 ## Aktueller Stand
+
+**Sprint 7 (2026-08-17), der Lauf, in dem eine Prüfung ihren eigenen Erbauer überführt hat
+— und ein fünf Sprints altes Problem sich als Abwesenheit herausstellte.**
+
+### ✅ `pm/T-0043` — geschlossen, mit dem Beleg aus dem Lauf um 05:02
+
+Der Wächterlauf 05:02 pushte `p3` (`4468678..673eacd`) und `p5` (`85c4570..0fde98c`) und
+löste damit die CI-Läufe aus, die Sprint 6 **hergestellt** statt erhofft hatte:
+
+| Repo | Commit | Zustand |
+|---|---|---|
+| p3 | `673eacd9` | **grün für diesen Commit** |
+| p5 | `0fde98c3` | **grün für diesen Commit** |
+
+`CI-STATUS: ALLES GRUEN (14 Abfragen)` — erstmals seit dem Bestehen von SWR-105 ist kein
+Repo rot. Alle drei DoD-Punkte erfüllt, Frist 19.08. gewahrt.
+
+**Die Lehre wiegt schwerer als das Ticket.** Ein rotes Ergebnis altert nicht und meldet
+sich nicht. Der Zustand, auf dessen Änderung vier Sprints gewartet haben, **konnte** sich
+nicht ändern, solange niemand etwas tat. Erkennungsfrage ab jetzt (L-2026-08-17n Regel 5):
+*Kann sich der Zustand, auf den ich warte, überhaupt ändern, wenn ich nichts tue?*
+
+### ⚠ `platform/T-0010` — die Verifikation misst die Arbeitskopie, der Push liefert HEAD
+
+Sprint 6 schrieb SWR-109 um 04:25 nach `p9/requirements/software/software-requirements.md`
+und committete `p9` nie. Belegt:
+
+```
+$ git -C p9 log -1 --format="%ci"          2026-08-17 03:03:31 +0200
+$ git -C p9 show HEAD:...requirements.md | grep -c SWR-109        0
+$ grep -c SWR-109 p9/requirements/...md                            2
+```
+
+Beide Werkzeuge sind für sich korrekt: `trace_matrix` liest die Platte (und **muss** das,
+sonst könnte man eine Anforderung nicht schreiben und im selben Lauf prüfen), `abschluss.cmd
+[4/5]` pusht HEAD. Falsch war, dass **niemand vor dem Push gefragt hat, ob das Gemessene
+das Gelieferte ist**.
+
+**Sofort repariert** (`p9` committet, `c2be4b0`), **dann gebaut** (SWR-110): `preflight`
+nennt die unsauberen Dateien statt sie zu zählen und macht eine unverbuchte Anforderungs-,
+Ticket- oder `BOARD.md`-Datei zum **Befund**, der `abschluss.cmd` in `[1/5]` anhält.
+
+**Die Ausnahme ist der Teil, der das Werkzeug brauchbar macht.** Ohne sie hätte der Befund
+**täglich** gefeuert — fünf Repos sind jeden Tag unsauber, weil die `Stand:`-Zeile
+regeneriert wird. Sie wird deshalb am **Diff** entschieden und nie am Dateinamen, mit einem
+Gegentest, der eine `BOARD.md` mit einer **zweiten** geänderten Zeile sehr wohl meldet.
+Ohne diesen Gegentest wäre die Ausnahme nicht widerlegbar.
+
+**⚠ Ein Test hat beim Schreiben eine zweite Lücke gefunden.** `git status` fasst einen nicht
+getrackten **Ordner** zu einer Zeile `?? tickets/` zusammen — ein neu angelegtes Ticket in
+einem neuen Ordner wäre unsichtbar geblieben, also genau der Fall „existiert nur in der
+Arbeitskopie". Behoben mit `-uall`. Der Test war für die Regel geschrieben, nicht für diese
+Zeile.
+
+### `team-dashboard/T-0002` — der vierte Befund an einem Feld, und der erste ohne falschen Wert
+
+`letzte_baseline` trug Tag **und** Annotation in einem String (`p1`: 300 Zeichen).
+Entschieden wurde Weg 1: zwei Felder, getrennt in der **Quelle** (`aggregation`), wo
+`git tag -n1` sie ohnehin trennt — nicht im Widget, wo die Regel im JavaScript stünde und
+Cockpit und Dashboard Verschiedenes sagen würden. Am echten Payload geprüft: p1 → 7 + 284
+Zeichen, platform → Tag + kurzer Text, pm → `null`/`null`, p11 → `""`/`""`. Vertrag **v2.1**,
+SWR-111, Leser mitgezogen.
+
+Nach B064 (geerbte Nachbar-Baseline), B065 (lexikografisch statt jüngste) und SWR-108 ist
+das der **vierte** Befund an diesem Feld — und der erste, bei dem **beide** Werte richtig
+waren und trotzdem etwas nicht stimmte. Ein Feld, das dreimal auffällig war, verdient die
+Frage, ob es **eine** Sache benennt.
+
+### Drei Befunde in den eigenen Zahlen — alle geschlossen
+
+* **`pm/T-0045` / SWR-112:** offene Tickets auf einem **vergangenen** Sprint werden
+  gemeldet. `widersprueche` hielt den Sprint gegen die Frist, `plan_drift` gegen die
+  Planzeile — gegen die **Gegenwart** hielt ihn niemand. Drei Abgrenzungen entschieden:
+  erledigte Tickets kein Fall, `in_review` zählt mit, `decision-request` ausgenommen.
+  Ohne die letzte hätte die Prüfung an ihrem **ersten Tag** `p11/T-0006` fehlgemeldet.
+* **`pm/T-0046` / SWR-113:** „nicht geschlossen" hat eine aufgeschriebene Zählweise
+  (Takt-Dauerläufer eingeschlossen), kommt aus dem Werkzeug und trägt `sachtickets` als
+  eigene Zahl daneben. Die Reihe 2–5 bleibt **unkorrigiert** mit ⚠.
+* **`pm/T-0036` / SWR-114:** der „ohne Frist"-Zähler wird org-weit **mit Namen** gemeldet
+  statt kachelweise gezählt. Teil a) als `pm/T-0047` abgetrennt (B025: `aggregation.cockpit`
+  war in diesem Lauf schon angefasst).
+
+### ⚠ Die Prüfung aus Sprint 6 hat ihren eigenen Erbauer überführt
+
+Beim Fortschreiben des Plans wurden `pm/T-0038` und `projects/p11/T-0003` eine Nummer nach
+hinten gesetzt — und die Ticketfelder blieben stehen. `plan_drift` meldete **2**, also genau
+den Fehler, gegen den sie in Sprint 6 gebaut wurde, im Lauf danach und beim selben Team.
+Nachgezogen, danach **0**. Das ist kein Rückfall, sondern der Beleg, dass die Prüfung an der
+richtigen Stelle sitzt: sie hat den Fehler gefunden, **bevor** der Plan stand.
+
+### Board-Check gegen die Erwartung gelesen (B041 Regel 3)
+
+Tickets gesamt **261** (+3: `platform/T-0010`, `pm/T-0047`, `pm/T-0048`). Nicht
+geschlossen **15** (Start 16; sechs zu, drei neu, eines davon zu) — nach der in diesem Sprint **festgelegten**
+Zählweise, davon 6 Takt-Dauerläufer und **9 Sachtickets**. Matrix **114 SWRs / 0 Lücken**
+(+5: SWR-110 bis SWR-114). **568 Tests** (vorher 514). `nicht_geplant: []`,
+`widersprueche: []`, `plan_drift: []`, `sprint_vergangen: []`, Briefe: **kein offener**.
+
+### Ehrlich zur Grenze (B027) und widerlegbare Vorhersage
+
+`preflight` bricht ab jetzt bei unverbuchten Verifikationsquellen ab. Dieser Sprint hat
+alles committet — **also läuft der nächste Wächterlauf durch**. Bricht er in `[1/5]` mit
+einer `BEFUND:`-Zeile ab, ist die Stand-Zeilen-Ausnahme aus SWR-110 zu eng gefasst und
+`platform/T-0010` wird wiedereröffnet. Die Ausnahme ist am Host **nicht** erprobt: diese
+Sandbox erzeugt dieselben `BOARD.md`-Diffs, aber der Host schreibt CRLF — sollte das den
+Diff verändern, meldet der Lauf es an dieser Zeile.
+
+**Lessons sofort verankert (D005, noch in diesem Lauf): L-2026-08-17n** mit fünf Regeln.
+Die wichtigste ist aus **vier** gleichartigen Abwägungen in vier Sprints entstanden
+(SWR-109, SWR-110, SWR-112, B049) und ab jetzt eine Bauregel: *zu jeder neuen Prüfung
+gehört die Frage, was sie am ersten Tag melden würde, und ein Test für den Fall, den sie
+**nicht** melden soll.*
+
+---
+
+## Vorheriger Stand (Sprint 6, 2026-08-17)
 
 **Sprint 6 (2026-08-17), der Lauf, in dem eine Reparatur ihren eigenen Folgeschaden
 vorgeführt hat — und die Organisation vier eigene Zahlen widerlegt hat.**

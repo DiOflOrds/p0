@@ -2,6 +2,128 @@
 
 ---
 
+## Sprint 37 (2026-08-22, Cowork **mit Shell**) — der Befund war unser eigener Plan
+
+Der Auto-Abschluss des Auftraggebers brach seit Stunden bei Schritt **[1/6]** mit Exit 1 ab:
+kein Push, keine Teststrecke, kein CI. Sprint 36 hatte den Grund als *„in diesem Lauf nicht
+identifiziert"* berichtet. Er stand wörtlich im Protokoll.
+
+    [org] BEFUND: 12 Planzeile(n) nennen eine andere Sprintnummer als ihr Ticket
+
+**Sprint 36 hat seine Tickets vorbildlich auf 37 nachgezogen — und seine eigene Plantabelle
+stehen lassen.** Damit war `plan_drift` von der anderen Seite ausgelöst: nicht der Plan lief
+dem Ticket davon, sondern das Ticket dem Plan. `pl.md` Lehre 8 zum **dritten Mal in vier
+Sprints**, und die Ursache war eine Vorsichtsmaßnahme gegen genau denselben Fehler.
+
+> **Die teuerste Handlung dieses Tages war eine Tabelle.**
+
+### Repariert wurde das Muster, nicht nur der Befund
+
+Die 32 nicht geschlossenen Tickets stehen auf `geplant_sprint: 38` **und** die
+Fälligkeitsspalte der Plantabelle ist im **selben Schritt** mitgezogen. Gemessen mit
+**laufendem** Sprint 37 und Tickets auf **38**:
+
+| Prüfung | Wert |
+|---|---|
+| `plan_drift` · `sprint_vergangen` · `status_drift` · `plan_nachlauf` · `nicht_geplant` | **0 · 0 · 0 · 0 · 0** |
+
+**Das ist die erste Sprintübergabe dieses Hauses, die grün ist, egal ob der alte Sprint noch
+läuft oder schon geschlossen ist** (`L-2026-08-22e`, `pl.md` Lehre 16).
+
+### Der Ertrag: vier Tickets, drei Anforderungen, 27 Zusicherungen
+
+| Ticket | Was geschah | Wirkung |
+|---|---|---|
+| `platform/T-0066` → **in_review** | **`SWR-214`.** Der leere Ollama-Takt wird im **Preflight** gemeldet statt 87 Läufe lang im Protokoll eines Dienstes. Die maßgebliche Auflösung ist **gemessen**: nur `besetzungen.yaml` steht im Pfad, der ein Ticket verwirft. | Offload-Engpass benannt |
+| `platform/T-0055` Teil A → **in_review** | **`SWR-215`.** Der Herzschlag des Wächters bekommt einen **Leser** — vier Zustände, nicht zwei. | nächster Ausfall < 15 Min sichtbar |
+| `pm/T-0085` → **in_review** | **`pm/B060` + `SWR-216`.** Kennung ist Beschriftung, nicht Identität — bewacht statt umnummeriert. | räumt `pm/T-0082` |
+| `team-termine/T-0002` → **in_review** | CM-Plan P16 v1.0 — **10 Work Products, 0 Lücken**. | letzte WP-Lücke geschlossen |
+
+### ⚠⚠ Ollama-Offload: 0 — und der Grund ist zum ersten Mal gezählt
+
+| Größe | Wert |
+|---|---|
+| Instanzen mit `motor: ollama` | **2** (`PROB@platform`, `MAIL-RED@team-mail`) |
+| offene Tickets mit einer davon | **0 von 34** |
+| Aufgaben-Typen mit Ollama-Kette, die je ein Ticket trugen | **2 von 8** |
+| Tickets im Gesamtbestand mit `aufgaben_typ` | **4 von 383 (1,0 %)** |
+
+> **Selbst wenn Ollama aus dieser Sandbox erreichbar wäre, hätte es nichts zu tun. Sechs von
+> acht Aufgaben-Typen mit Ollama-Kette haben in 383 Tickets nie eines getragen — das ist
+> keine Auslastungsfrage, sondern eine Absichtserklärung.**
+
+Dieser Lauf hat deshalb den **Engpass gebaut** statt die Delegation zu behaupten. Was fehlt,
+ist eine **Besetzungsentscheidung** (Klasse B des PM) — ausdrücklich nicht hier
+mitentschieden, übergeben an `pm/T-0079` mit der Zahl in der Hand.
+
+### ⚠ Vier Befunde, die keine Planung gefunden hat
+
+1. **Ein Brief kam ZWISCHEN den Sprints an.** `platform/N-0010`, committet **14:13:59** —
+   12 Min nach dem Ende von 36, 9 Min vor dem Beginn von 37, beim Start bereits beantwortet.
+   Der Briefkasten war zu Recht „0 offen"; dass die **Post gewachsen** ist, sah nur
+   `test_post_im_lauf` (70/75 → 71/76). **Dritter Lauf in Folge.**
+2. **Ein falsches Grün im eigenen Bau.** Der erste Entwurf stellte eine Befund-Tabelle über
+   die Plantabelle; `plan_tabelle()` liest die **erste**. `plan_drift` meldete **0**, weil
+   **keine** Planzeile geparst wurde — widerlegt nur von `nicht_geplant: 39`.
+   > **Eine Prüfung, die nichts findet, weil sie nichts liest, sieht genauso aus wie eine,
+   > die nichts zu finden hatte.**
+3. **Eine Mutationsprobe hat den eigenen Test widerlegt.** Die Probe „jeder `p*`-Ordner ist
+   eine Kennung" blieb **grün**: der Test prüfte die **Ausgabe**, nicht die **Regel**.
+   Geschärft, dann 4 von 4 rot.
+4. **Die Nachverbuchung des Hosts läuft der Session in die Commits.** Dreimal war der Diff
+   schon verbucht, während dieser Lauf am `index.lock` wartete — die Ticket-ID im Commit
+   ging jedes Mal verloren. Behandelt mit einem leeren Commit **neben** dem Diff; eine
+   Umgehung, keine Lösung (gehört zu `platform/T-0071`/`T-0072`).
+
+### Zahlen — gemessen, nicht geschätzt
+
+| Größe | Wert |
+|---|---|
+| Offene Aufgaben | **39 → 39** (4 auf `in_review`, keines `done`) |
+| Teststrecke | **111 von 112 Modulen, 1567 Zusicherungen, 0 rot** (blockweise; die Sandbox deckelt einen Aufruf bei ~178 s) |
+| Rot **im** Lauf | **1**, gefunden **und** geschlossen (`test_post_im_lauf`) |
+| `trace_matrix` | **216 SWRs, 0 Lücken** (213 → 216) |
+| `organigramm.py --check` | **grün** (21 Dateien) |
+| Briefkasten | Start **0 offen / 70** (oberste Ebene) · Ende **0 offen / 71** (beide Ebenen) |
+| Work Products | **56 → 66** über 8 Einheiten, **0 fehlend, 0 undeklariert** |
+| Workflows | **8** über 5 Einheiten, **0 unabgedeckte Takte** |
+| Wächter | **lebt** — Herzschlag 14:27:21, PID 23284 |
+| Ollama-Offload | **0 delegiert, Ersparnis 0** |
+
+⚠ **Nicht gemessen und deshalb nicht behauptet:** `test_js_teststrecke` und ein
+**vollständiger** `preflight` laufen in dieser Sandbox über die Zeitgrenze. Gemessen ist
+diesmal **wo** die Zeit hingeht: `uebergangshistorie` **45 s**, `sprint.plan` 6 s,
+18× `git status` 9 s, `parkplatz_stand` 0,3 s.
+
+⚠ **Ein Nebenbefund ohne Ticket, hier benannt statt verschwiegen:** der Lock-Parkplatz ist
+auf **12 716** Artefakte gewachsen (`platform` 2 753, `pm` 2 560) und wächst weiter, weil
+der Mount kein `unlink` erlaubt. `preflight` sagt seit Wochen *„Parkplatz gelegentlich auf
+dem Host leeren"* — getan hat es niemand.
+
+### ⚠⚠ Die Stichprobe ist noch im Lauf gefahren — und hat die Erwartung widerlegt
+
+Zweimal, das zweite Mal mit untätiger Session. **Die Org-Prüfungen sind grün** (`Plan-Drift
+0`, `Offen auf vergangenem Sprint 0`, `Plannachlauf 0`, `Statusübergänge im laufenden
+Sprint 0`) — **und der Abschluss bricht weiter bei `[1/6]` ab, jetzt mit 7 Befunden statt
+einem.**
+
+Die 7 sind `index.lock`-Artefakte, und der eigentliche Fund ist, dass drei Beobachter
+verschieden antworten: die **Sandbox** sagt „existiert nicht", **`git` in derselben
+Sandbox** sagt „existiert" (`unable to unlink … Operation not permitted`), der **Host**
+sagt „existiert, nicht entfernt — Git-Prozess aktiv", obwohl seit zehn Minuten keiner lief.
+
+> **Eine Sperre zu räumen beweist nicht, dass der Weg frei ist. Es beweist nur, dass diese
+> Sperre weg ist — und das ist genau der Unterschied, den eine Stichprobe misst und ein
+> Haken behauptet.**
+
+Aufgenommen als **`platform/T-0073`** (prio hoch, Sprint 38), im selben Zug mit seiner
+Planzeile. ⚠ Der Lock-Parkplatz wuchs in diesem Lauf von 12 630 auf **12 841** (+211).
+
+**Für den Menschen bleibt damit offen:** es wird weiter nicht gepusht. Der Rückstand steht
+namentlich in `PUSH-ANFORDERUNG.txt`, der Grund ist ab jetzt benannt statt unbekannt.
+
+---
+
 ## Sprint 36 (2026-08-22, Cowork **mit Shell**) — vierzehn Sperren gefallen, und keine durch neuen Code
 
 Die Sandbox läuft wieder. Zum ersten Mal seit fünf Sitzungen hatte ein Cowork-Lauf `git`,

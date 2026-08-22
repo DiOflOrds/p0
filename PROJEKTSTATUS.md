@@ -2,6 +2,78 @@
 
 ---
 
+## Sprint 39 (, 2026-08-22 — **der erste Sprint, der Tickets SCHLIESST**)
+
+1. **✅⚠⚠ 41 offen → 33, `in_review` 11 → 2, NEUN `done`.** Sprint 37 schloss **null**,
+   Sprint 38 schloss **null** — beide lieferten gute Arbeit und ließen sie liegen. Der
+   `in_review`-Stau war der eigentliche Engpass dieses Hauses.
+   > **Ein `in_review`-Stau ist kein Ordnungsproblem, sondern ein Lieferproblem: fertige
+   > Arbeit gilt nicht.** (`L-2026-08-22p`)
+2. **⚠⚠ Und zwei von elf Reviews haben die Lieferung WIDERLEGT.**
+   `platform/T-0069`: die DoD ist **nicht bearbeitet worden** — der Ollama-Tick schrieb
+   zwei generische Dateien und berührte die Frage nicht; das erzeugte Template **zitiert
+   die unbeantwortete DoD als Checkliste**. `platform/T-0055`: was als *„Teil A"* verbucht
+   wurde, ist **Teil C** — Teil B ist nirgends geliefert. Beide zurück auf `open`.
+   > **`status: ok` heißt „gelaufen", nicht „gelöst".**
+3. **✅ Die rote CI ist namentlich gemessen und geschlossen** (`T-0074`, `in_review`).
+   Nachgestellter CI-Checkout mit **genau** den drei Repos des Workflows:
+   **1616 Tests / 31 rot → 1635 / 0 rot**. `SWR-221`/`222`/`223`.
+   ⚠⚠ **Drei der betroffenen Dateien HATTEN einen Wächter — und er fragte `process`, das
+   die CI von `platform` MIT auscheckt.**
+   > **Ein Wächter, der die Anwesenheit der falschen Datei prüft, misst nicht, ob er
+   > arbeiten kann.**
+4. **⚠⚠ Der teurere Teil des Befundes stand nicht in der CI-Meldung:** von den **76**
+   Zusicherungen, die den echten Bestand lesen, waren **31 rot** — und **45 GRÜN, ohne
+   dass ihre Eingabe da war.** Eine rote Zusicherung wird irgendwann gelesen, eine grüne
+   ohne Eingabe nie.
+5. **✅ Das Post-Widget passt wieder in eine Kachel** (`team-dashboard/T-0007`,
+   `in_review`, **vierte Berührung → gebaut**). Zeiträume **3 → 1**, Kacheln **12 → 4**,
+   SPAM-Grund **3× → 1×** (`SWR-224`/`225`).
+   ⚠⚠ **Ursache 2 („überlappende Spalten") brauchte keinen Browser** — sie stand in zwei
+   Zeilen CSS: `.widget dl` ist ein Grid `auto 1fr`, und das Raster hing als **drittes**
+   Kind darin. **Ein Darstellungsfehler ist nicht automatisch eine Frage an die
+   Darstellung.**
+6. **⚠⚠ Dieser Lauf hat den Sprint-37-Fehler wiederholt — in derselben Datei, obwohl die
+   Lehre im Bericht stand.** Eine Tabelle über der Plantabelle, alle fünf Sprintprüfungen
+   melden **0**, weil sie nichts lesen; gefunden wieder nur an `nicht_geplant: 33`.
+   > **Eine Lehre, die zweimal denselben Fehler nicht verhindert hat, ist keine Lehre,
+   > sondern eine Notiz.** Gebaut als `SWR-226` — die Plantabelle wird jetzt an ihren
+   > **Spalten** erkannt statt an ihrer **Stelle**.
+7. **⚠⚠ Neuer Befund aus einem Review, das nach etwas anderem suchte:** die
+   **Betriebsschicht dieses Hauses liegt in keinem Repo** — **27 Dateien, 88 kB**, darunter
+   `waechter.py` (30-s-Takt) und `abschluss.cmd` (15-min-Takt, pusht 14 Repos). Keine
+   Prüfung dieses Hauses fasst sie an. `platform/T-0075`.
+8. **⚠ Zwei eigene Statusübergänge dieses Laufs sind unzulässig** (`T-0074`, `T-0007`:
+   `open → in_review` ohne Zwischenschritt). Nicht reparierbar, ab jetzt in der Liste der
+   **fortgeschriebenen** Verstöße (**11 → 13**) — benannt statt geglättet.
+9. **Zahlen:** offen **41 → 33** · Teststrecke voller Bestand **1636, 0 rot** ·
+   CI-Checkout **1635, 0 rot** · JS **127 grün** (vorher 116, 1 rot im CI) ·
+   `trace_matrix` **226 / 0 Lücken** · `organigramm --check` grün · Sprintübergabe
+   **0·0·0·0·0** · Briefkasten **0 offen / 71** · Work Products **66 / 0 Lücken** ·
+   Ollama-Offload **0 / 0**.
+
+### Erste Aufgaben des Folgelaufs
+
+1. **Die zwei Reviews von `T-0074` und `T-0007`** — Reviewer ≠ Autor. Sonst wächst der
+   Stau wieder, den dieser Lauf gerade geräumt hat.
+2. **⚠ Stichprobe für den Menschen: `CI-STATUS.md` nach dem nächsten Push.** `platform`
+   und `projects` müssen **grün** zeigen. Gemessen ist ein **nachgestellter** Checkout,
+   nicht der Runner.
+3. **`platform/T-0075`** — die unversionierte Betriebsschicht. ⚠ Kein pauschales
+   „alles nach `platform/scripts`": die `.cmd`-Dateien setzen Wurzelpfade voraus.
+4. **`platform/T-0069`** — die Messung auf dem **Host** nachholen; die Sandbox
+   reproduziert die Diskrepanz nachweislich nicht.
+5. **`promt-team/T-0012`** — nach `pm/B061` **und** dem `T-0069`-Review doppelt begründet:
+   der eine Beleg, auf dem die Offload-Regel steht, hat am Thema vorbeigearbeitet.
+6. **`team-dashboard/T-0007` Restpunkte**: Screenshot nach `bugs/` und der Blick im
+   Browser. **Beide brauchen einen Browser — diese Session hatte keinen.**
+
+⚠ **Nicht gemessen und deshalb nicht behauptet:** ein vollständiger `preflight` in **einem**
+Aufruf läuft in dieser Sandbox über die Zeitgrenze (`test_uebergang_historie` allein
+**109 s** über 19 Repos). Org-Prüfungen einzeln, Teststrecke blockweise gefahren.
+
+---
+
 ## Sprint 38 (2026-08-22, Cowork **mit Shell**) — der Blocker war ein Falschbefund, den das Haus selbst schon verworfen hatte
 
 Der Auto-Abschluss des Auftraggebers brach seit dem 21.08. **bei jedem Lauf** ab. Gezählt

@@ -2,6 +2,145 @@
 
 ---
 
+## Sprint 38 (2026-08-22, Cowork **mit Shell**) — der Blocker war ein Falschbefund, den das Haus selbst schon verworfen hatte
+
+Der Auto-Abschluss des Auftraggebers brach seit dem 21.08. **bei jedem Lauf** ab. Gezählt
+über alle Protokolle in `abschluss-logs/`:
+
+| Größe | Wert |
+|---|---|
+| Auto-Abschlüsse seit 2026-08-21 20:44 | **77** |
+| davon mit `PREFLIGHT: 0` / STARTKLAR | **0** |
+| davon Abbruch an der Lock-Zeile | **23** |
+
+Der Grund war `preflight.raeume_locks`: sieben `index.lock`, die es nicht entfernen wollte,
+weil `git_prozess_aktiv()` „ja" sagte.
+
+> **⚠⚠ Und 160 Zeilen tiefer beurteilt `repo_status` DASSELBE Artefakt im SELBEN Lauf
+> ausdrücklich als „kein Befund" — mit ausgeschriebener Begründung (`SWR-191`, `SWR-166`).
+> Zwei Pfade, ein Artefakt, entgegengesetzte Urteile. Abgebrochen ist der Lauf an dem
+> Pfad OHNE die Begründung.**
+
+Dass es ein Falschbefund war, stand in demselben Protokoll: alle sieben Repos meldeten in
+derselben Sekunde `sauber`. **Die Sperre hat nichts gesperrt.**
+
+### Die Frage mit der größten Hebelwirkung, und ihre Antwort lautet „nie"
+
+`git_prozess_aktiv()` fragt das **ganze Gerät**. Auf dem Rechner des Auftraggebers laufen
+Wächter (30 s), Ollama-Schnelltakt und Auto-Abschluss (je 15 min) sowie Mission Control —
+die Geräte-Frage lautet dort praktisch immer „ja".
+
+> **Eine Frage über das Gerät kann eine Frage über eine Datei nicht beantworten, und wo
+> sie es doch tut, lautet die Antwort immer „Finger weg".**
+
+Geräumt wird jetzt nach dem **Alter** des Artefakts (`SWR-217`). ⚠ Der Eingriff ist
+**schmal**: ohne sichtbaren git-Prozess bleibt alles beim Alten, sonst verlöre
+`--nur-locks` seinen einzigen Zweck — **in diesem Lauf dreimal live gebraucht**.
+
+### ✅ Der Nachweis kommt nicht von uns, sondern von Ihrer Maschine
+
+Der 17:25-Lauf des Hosts, **ohne unser Zutun**:
+
+| Prüfpunkt | Ergebnis |
+|---|---|
+| Preflight | **STARTKLAR** |
+| Tests | **1616 + 42 grün** (zwei Strecken) |
+| Push | **14 Repos** |
+| Schrittfolge | **[5/6]**, Schlussmarke *„ALLES GEPRUEFT UND GEPUSHT"* |
+| Exit-Code | **0** |
+
+`PUSH-ANFORDERUNG.txt` ist damit **geräumt** — zum ersten Mal seit dem 21.08.
+
+### Der Ertrag: fünf Tickets, vier Anforderungen, eine Klasse-B-Entscheidung
+
+| Ticket | Was geschah | Wirkung |
+|---|---|---|
+| `platform/T-0073` → **in_review** | **`SWR-217`** + **`SWR-218`** | Der Betrieb läuft wieder |
+| `team-mail/T-0006` → **in_review** | **`SWR-219`**, fünfte Berührung, Entscheidung endlich ausgeführt | Kein scharfer Versand mehr |
+| `pm/T-0079` → **in_review** | **`pm/B061`** + **`SWR-220`**, vierte Berührung → entschieden | Besetzungsfrage geschlossen |
+| `team-dashboard/T-0001` → **in_review** | Widget-Vertrag **v2.9** | Sperre dreier Widget-Tickets gefallen |
+| `platform/T-0074` → **neu** | Die rote CI hinter dem geräumten Blocker | Benannt statt übersehen |
+
+### ⚠⚠ Der Lauf hat sechs eigene Messungen widerlegt, bevor er sie berichtet hat
+
+Beim Nachmessen der Mutationsproben hielt Python ein `__pycache__/*.pyc` für gültig,
+dessen Bytecode von einer **Probe** stammte: eine Probe ändert **ein Zeichen**
+(`befunde += 1` → `+= 0`) und behält die **Größe**, die Rücknahme trifft dieselbe
+`mtime`-Sekunde — und der Cache ist auf diesem Mount **nicht löschbar** (R7).
+
+> **Eine Zusicherung, die eine andere Fassung misst als die im Repo, sieht genauso grün
+> aus wie eine, die stimmt — und die Mutationsprobe ist genau die Bearbeitung, die diese
+> Falle stellt.**
+
+Gemessen: dieselbe Strecke meldete aus der Quelle `OK` und aus dem alten Cache
+`FAILED (1)` bei **byte-identischer Datei**. Gebaut als `SWR-218`; **alle Probenzahlen
+dieses Berichts sind mit frischem Cache nachgemessen.**
+
+### ⚠ Zwei eigene Fehler dieses Laufs, benannt statt geglättet
+
+1. **Eine Mutationsprobe war ungültig und wurde als „0 rot" gezählt.** Sie löschte einen
+   `except`-Block und erzeugte eine Datei, die **nicht parst**. **Eine Probe, die den Bau
+   zerstört statt die Regel zu verfälschen, misst nichts** — korrigiert, Ergebnis rot.
+2. **Zwei neue Zusicherungen hätten die CI rot gemacht.** Ihr Wächter fragte
+   `process/roles` — und die CI von `platform` checkt `process` **mit** aus. Vor dem Push
+   auf `pm/management/sprints.jsonl` umgestellt. **Ein Wächter, der die Anwesenheit der
+   falschen Datei prüft, misst nicht, ob er arbeiten kann.**
+
+### ⚠ Was der Auftraggeber wissen sollte
+
+* **`team-mail`: der Versand war scharf.** `lauf_takt` rief bei jedem Takt den Sendeweg;
+  verhindert hat die Mail allein das fehlende `SMTP_HOST`. **Am Tag, an dem Sie die
+  Zugangsdaten (`N-0003`) einrichten, wäre eine Mail rausgegangen, die niemand beschlossen
+  hat.** Jetzt endet der Weg in `ausgang/*.eml` — fertig adressiert, nicht gesendet.
+* **`pm/N-0045`: Ihre Beobachtung war exakt richtig und exakt vollständig.** 86 Instanzen,
+  13 Rollen, **genau eine** uneinheitlich (`PROB`). ⚠ **Und die Umstellung hätte nichts
+  gebracht:** von 40 offenen Tickets tragen 2 die Rolle `prob` und **1 einziges** überhaupt
+  einen `aufgaben_typ` — alle acht auf Ollama zu stellen gäbe dem Takt **null** zusätzliche
+  Tickets. Entschieden als `pm/B061`, **widerruflich**.
+* **`p0/N-0002` (Post-Widget „viel zu groß"):** am laufenden Renderweg bestätigt — **3
+  Takte, 12 Kacheln** in einem Raster für eine Zeitreihe. Der Vertrag hat jetzt eine
+  Obergrenze; die **Darstellung** folgt in `team-dashboard/T-0007`.
+* **Die CI ist rot** (`platform`, `projects`) — schon vor diesem Sprint, jetzt sichtbar und
+  als `platform/T-0074` verbucht.
+
+### Zahlen — gemessen, nicht geschätzt
+
+| Größe | Wert |
+|---|---|
+| Offene Aufgaben | **40 → 41** (5 zusätzlich `in_review`, 1 neu, keines `done`) |
+| Teststrecke (Host, ein Lauf) | **1616 + 42, alle grün** |
+| Teststrecke (Sandbox, blockweise) | **1603** über 112 Module, **0 rot** · JS **122** über 7 Dateien, **0 rot** |
+| Rot **im** Lauf | **4**, alle gefunden **und** geschlossen (3 geerbt aus Sprint 37, 1 selbst verursacht) |
+| `trace_matrix` | **220 SWRs, 0 Lücken** (216 → 220) |
+| `organigramm.py --check` | **grün** (21 Dateien) |
+| Sprintübergabe | `plan_drift`·`sprint_vergangen`·`status_drift`·`plan_nachlauf`·`nicht_geplant` = **0·0·0·0·0**, **vor und nach** `--beende` |
+| Briefkasten | Start **0 offen / 71** · Ende **0 offen / 71** — erstmals seit vier Läufen **kein** Brief im Lauf |
+| Work Products / Workflows | **66 / 8** über 19 Einheiten, **0 Lücken** |
+| Wächter | **lebt** — Herzschlag 17:41:08, PID 23284 |
+| Ollama-Offload | **0 delegiert, Ersparnis 0** |
+| Lock-Parkplatz | **12 841 → 12 948** (+107 in diesem Lauf) |
+
+### ⚠⚠ Ollama-Offload: 0 — und der Grund ist jetzt eine Entscheidung, keine Vermutung
+
+Ollama ist aus dieser Sandbox **nicht erreichbar** (gemessen: `localhost` und `127.0.0.1`
+Connection refused, `host.docker.internal` **403 Forbidden** durch die Allowlist) — der
+Takt läuft auf **Ihrem** Rechner. Und selbst dort hätte er nichts zu tun: **1 von 40**
+offenen Tickets trägt überhaupt einen `aufgaben_typ`. `pm/B061` hat festgestellt, dass die
+Besetzungsfrage **nicht** der Engpass war; der Engpass heißt `promt-team/T-0012` und steht
+mit dieser Begründung neu auf Sprint 39.
+
+⚠ **Der geforderte Nachweis für die Delegation ist damit weiterhin nicht geführt, und das
+steht hier statt eines Hakens:** `pm/T-0071` belegt **einen** gelungenen Tick, nicht einen
+laufenden Takt.
+
+⚠ **Nicht gemessen und deshalb nicht behauptet:** `test_js_teststrecke` läuft in dieser
+Sandbox über die Zeitgrenze (>165 s) — die JS-Strecke ist stattdessen **direkt mit `node`**
+gefahren (122 grün, 0 rot), was diese Sandbox bisher nie geliefert hat. Ein
+**vollständiger** `preflight` in einem Aufruf bleibt über der Grenze; die Org-Prüfungen
+sind einzeln gemessen.
+
+---
+
 ## Sprint 37 (2026-08-22, Cowork **mit Shell**) — der Befund war unser eigener Plan
 
 Der Auto-Abschluss des Auftraggebers brach seit Stunden bei Schritt **[1/6]** mit Exit 1 ab:

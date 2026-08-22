@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-22 · SWRs: 225 (reviewed: 154) · Tests mit SWR-Bezug: 2097 · ohne Bezug: 48
+Stand: 2026-08-22 · SWRs: 226 (reviewed: 154) · Tests mit SWR-Bezug: 2107 · ohne Bezug: 48
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -229,6 +229,7 @@ Stand: 2026-08-22 · SWRs: 225 (reviewed: 154) · Tests mit SWR-Bezug: 2097 · o
 | SWR-223 | offen | — | offen (Status offen) |
 | SWR-224 | offen | — | offen (Status offen) |
 | SWR-225 | offen | — | offen (Status offen) |
+| SWR-226 | offen | test_plantabelle_erkennung.py::DieTabelleWirdAnIhrenSpaltenErkannt::test_ohne_vorspann_findet_sie_den_plan<br>test_plantabelle_erkennung.py::DieTabelleWirdAnIhrenSpaltenErkannt::test_MIT_vorspann_findet_sie_denselben_plan<br>test_plantabelle_erkennung.py::DieTabelleWirdAnIhrenSpaltenErkannt::test_zwei_vorspann_tabellen_aendern_nichts<br>test_plantabelle_erkennung.py::DieTabelleWirdAnIhrenSpaltenErkannt::test_die_alte_bauform_WAERE_hier_rot<br>test_plantabelle_erkennung.py::OhnePlantabelleGibtEsKEINEN_Rueckfall::test_nur_eine_fremde_tabelle_ergibt_None<br>test_plantabelle_erkennung.py::OhnePlantabelleGibtEsKEINEN_Rueckfall::test_ohne_ueberschrift_ergibt_None<br>test_plantabelle_erkennung.py::OhnePlantabelleGibtEsKEINEN_Rueckfall::test_eine_tabelle_ohne_faellig_ist_kein_plan<br>test_plantabelle_erkennung.py::OhnePlantabelleGibtEsKEINEN_Rueckfall::test_eine_tabelle_ohne_aufgabe_ist_kein_plan<br>test_plantabelle_erkennung.py::AmEchtenPlanGemessen::test_der_echte_plan_wird_gefunden<br>test_plantabelle_erkennung.py::AmEchtenPlanGemessen::test_die_gefundene_tabelle_traegt_beide_pflichtspalten | 10 Test(s) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 

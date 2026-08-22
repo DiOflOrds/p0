@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-17 · SWRs: 18 (reviewed: 18) · Tests mit SWR-Bezug: 47 · ohne Bezug: 0
+Stand: 2026-08-22 · SWRs: 18 (reviewed: 18) · Tests mit SWR-Bezug: 47 · ohne Bezug: 0
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|

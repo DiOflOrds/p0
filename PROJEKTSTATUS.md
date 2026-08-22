@@ -2,6 +2,82 @@
 
 ---
 
+## Sprint 40 (2026-08-22 — **der Sprint, der zwei eigene Befunde widerlegt hat**)
+
+1. **✅⚠⚠ Das Review von `platform/T-0074` hat die Gegenprobe des Vorlaufs widerlegt.**
+   Sprint 39 meldete den nachgestellten CI-Checkout mit *„0 rot"*. Derselbe Aufbau an
+   diesem HEAD: **1635 Tests, 1 rot** — `test_baseline_trennung.PayloadTest`, eine Klasse,
+   die keiner der 21 deklarierten gehört.
+   Nachgezählt über den Syntaxbaum: **16 Klassen lösen die Organisationswurzel selbst auf,
+   keine stand im Register**; 12 mit handgeschriebenem Wächter **in einer Methode**, 3 ganz
+   ohne (in der CI **grün, ohne zu messen**), 1 rot.
+   > **Eine Gegenprobe über die Deklarationen findet jede falsche Deklaration und keine
+   > fehlende.** Auflage im selben Lauf erfüllt (`SWR-227`): **1640 / 0 rot**.
+2. **⚠⚠ Die Ursache war die FORM des Werkzeugs.** `am_bestand` gilt der ganzen Klasse; in
+   zwölf Fällen liest genau **eine von zwanzig** Methoden den Bestand.
+   > **Ein zu grober Wächter wird nicht benutzt, und ein nicht benutzter Wächter ist von
+   > keinem Wächter nicht zu unterscheiden.**
+3. **⚠⚠ Der automatische Takt hat eine Review-Entscheidung in 36 Minuten zurückgenommen.**
+   19:34 gab das QM-Review `platform/T-0069` mit Auflage zurück, 20:10 wählte der Takt es,
+   20:13 stand es wieder auf `in_review` — **mit denselben zwei generischen Dateien wie 24 h
+   zuvor**. Gebaut als `SWR-228`. ⚠ Und die tiefere Ursache war der **unzulässige Übergang**
+   selbst: `in_review → open` kennt die Tabelle nicht, und `waehle_ticket` wählt genau
+   `open`. Der ehrliche Weg existierte nicht (`platform/T-0076`).
+4. **✅ Die rote CI ist grün — belegt von Ihrer Maschine.** `CI-STATUS.json` 20:26:
+   `alles_gruen: true`, `platform` (`12845a40`) und `projects` (`5736a885`) grün. **Die
+   Stichprobe aus dem Sprint-39-Bericht ist damit erledigt.**
+5. **⚠⚠ Das Sprint-Planning hat zum ersten Mal die Berührungen GEZÄHLT**, statt sie zu
+   schätzen: **22 von 33** offenen Tickets standen bei der **fünften** Terminierung oder
+   später; `promt-team/T-0003` bei der **zweiundzwanzigsten**.
+   > **Eine geschätzte Zahl vor einer Regel, die an einer Zahl hängt, ist dasselbe wie
+   > keine Regel.** Verbucht als `platform/T-0078`.
+6. **✅ `pm/T-0071` ist nach elf Terminierungen gemessen und geschlossen.** 128
+   Schnelltakt-Läufe über drei Tage, **27** Auswahlen, **2** Läufe mit `status: ok`,
+   **0 gelöste Aufgaben**; Serialisierung sauber (kleinster Abstand **895 s**).
+   > **„Ein sauberer Lauf" ist eine Aussage über den Aufruf — und sie ist auch dann wahr,
+   > wenn er 128-mal nichts erledigt.**
+7. **✅ P16 ist rollen-initialisiert** — acht Tickets, fünf Rollenkarten (**und fünf
+   bewusst ohne**), QM-Plan mit dem Gate `G-Schreib`, Verifikationsstrategie,
+   Entwicklungsumgebung, Problem-/Change-Management, STK-Liste. ⚠⚠ **Und `SWR-229` liegt
+   VOR dem ersten Commit des Schreibwegs** — das ist wörtlich das Abnahmekriterium `Z3`.
+8. **⚠⚠ Zwei eigene Befunde dieses Laufs sind widerlegt worden, bevor sie berichtet waren.**
+   Eine Mutationsprobe, die dreimal dieselbe Zahl meldete, weil sie den mutierten Code nie
+   geladen hatte; und ein Ticket über einen „nie benannten" Befund, den `preflight.py`
+   seit `pm/T-0023` benennt und der Schnelltakt **alle 15 Minuten** ausdruckt.
+   > **Das Ticket `platform/T-0067` fragt „wer liest die maschinellen Befunde". Die
+   > ehrlichste Antwort eines Sprints, der sie beantworten soll, ist: wir auch nicht, wenn
+   > der Befund nicht im Weg steht.** Gebaut als `SWR-230`.
+9. **Zahlen:** offen **33 → 36** (vier neue Befunde gebucht) · Teststrecke **1662, 0 rot** ·
+   CI-Checkout **1662, 0 rot** (183 übersprungen) · JS **127 grün** · `trace_matrix` **230 / 0 Lücken** ·
+   Sprintübergabe **0·0·0·0·0** · Briefkasten **0 offen / 71** · Work Products **72 / 0** ·
+   Ollama-Offload **0 / 0,00 €**.
+
+### Erste Aufgaben des Folgelaufs
+
+1. **Die elf Reviews dieses Laufs** — `platform/T-0067`, `T-0074`, `pm/T-0071`,
+   `team-termine/T-0003`, `T-0004`, `T-0006`–`T-0011`. Reviewer ≠ Autor. **Das ist die
+   erste Handlung, nicht die letzte.**
+2. **`platform/T-0078`** — die Regel der vierten Berührung braucht einen Vollstrecker.
+   Solange sie keinen hat, ist jede Terminierung dieses Hauses unverbindlich.
+3. **`promt-team/T-0012`** — erbt die Nützlichkeitsfrage aus dem geschlossenen `pm/T-0071`.
+   ⚠ Und es ist selbst bei der **achten** Terminierung.
+4. **`platform/T-0075`** — die unversionierte Betriebsschicht; erbt aus `T-0077` die
+   Randbedingung, dass die Altbestand-Hälfte `rolle: mensch` braucht.
+5. **`platform/T-0069`** — die Messung auf dem **Host**. Der Takt fasst es nicht mehr an
+   (`auflage: offen`), also muss es ein Mensch oder eine Rolle tun.
+
+⚠ **Für den Auftraggeber, ohne Frist:** `team-dashboard/T-0008` — ein Blick auf das
+reparierte Post-Widget im Browser und ein Screenshot nach `bugs/`. **Keine Session dieses
+Hauses kann das** (gemessen: Chromium-Download an der Netz-Allowlist gescheitert).
+
+⚠ **Nicht gemessen und deshalb nicht behauptet:** ein vollständiger `preflight` in **einem**
+Aufruf läuft in dieser Sandbox über die Zeitgrenze. Org-Prüfungen einzeln, Teststrecke
+blockweise gefahren; `test_js_teststrecke` allein **174 s**, `test_uebergang_historie`
+**112 s**.
+
+
+---
+
 ## Sprint 39 (, 2026-08-22 — **der erste Sprint, der Tickets SCHLIESST**)
 
 1. **✅⚠⚠ 41 offen → 33, `in_review` 11 → 2, NEUN `done`.** Sprint 37 schloss **null**,

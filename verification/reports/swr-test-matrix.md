@@ -1,6 +1,6 @@
 # SWR ↔ Test-Matrix (generiert von platform/scripts/trace_matrix.py — nicht von Hand editieren)
 
-Stand: 2026-08-22 · SWRs: 223 (reviewed: 154) · Tests mit SWR-Bezug: 2097 · ohne Bezug: 48
+Stand: 2026-08-22 · SWRs: 225 (reviewed: 154) · Tests mit SWR-Bezug: 2097 · ohne Bezug: 48
 
 | SWR | Status | Unit-Tests | Abdeckung |
 |---|---|---|---|
@@ -227,6 +227,8 @@ Stand: 2026-08-22 · SWRs: 223 (reviewed: 154) · Tests mit SWR-Bezug: 2097 · o
 | SWR-221 | offen | — | offen (Status offen) |
 | SWR-222 | offen | test_bestandswaechter.py::AmVollenBestandUeberspringtNichts::test_keine_deklarierte_eingabe_fehlt<br>test_bestandswaechter.py::AmVollenBestandUeberspringtNichts::test_die_zusicherungen_laufen_hier_wirklich<br>test_bestandswaechter.py::DerWaechterFragtNichtDieFalscheDatei::test_keine_zusicherung_haengt_ihren_skip_an_process<br>test_bestandswaechter.py::DerDekoratorVerweigertDenFreibrief::test_ohne_eingabe_ein_fehler<br>test_bestandswaechter.py::DerDekoratorVerweigertDenFreibrief::test_fehlende_nennt_die_fehlende_eingabe_beim_namen<br>test_bestandswaechter.py::DerDekoratorVerweigertDenFreibrief::test_vorhandene_eingabe_fehlt_nicht | 6 Test(s) |
 | SWR-223 | offen | — | offen (Status offen) |
+| SWR-224 | offen | — | offen (Status offen) |
+| SWR-225 | offen | — | offen (Status offen) |
 
 ## Lücken (reviewed ohne Testabdeckung)
 
